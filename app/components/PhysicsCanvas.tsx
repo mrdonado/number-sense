@@ -1,11 +1,19 @@
 "use client";
 
-import { useEffect, useRef, forwardRef, useImperativeHandle } from "react";
+import {
+  useEffect,
+  useRef,
+  forwardRef,
+  useImperativeHandle,
+  useState,
+} from "react";
 import Matter from "matter-js";
 
 const BALL_RADIUS = 20;
 // Maximum ball diameter as a fraction of the smaller canvas dimension
 const MAX_BALL_RATIO = 0.4;
+// Zoom indicator height in pixels
+const ZOOM_INDICATOR_HEIGHT = 4;
 
 // Helper to get CSS variable value
 function getCSSVariable(name: string): string {
@@ -48,6 +56,8 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle>(function PhysicsCanvas(
   const isPanningRef = useRef(false);
   const panStartRef = useRef<{ x: number; y: number } | null>(null);
   const panBoundsStartRef = useRef<{ minX: number; minY: number } | null>(null);
+  // State to track zoom level for the indicator (1.0 = full view, 0.1 = max zoom)
+  const [zoomLevel, setZoomLevel] = useState(1.0);
 
   useEffect(() => {
     if (!containerRef.current || !canvasRef.current) return;
@@ -55,7 +65,8 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle>(function PhysicsCanvas(
     const container = containerRef.current;
     const canvas = canvasRef.current;
     const width = container.clientWidth;
-    const height = container.clientHeight;
+    // Account for zoom indicator height
+    const height = container.clientHeight - ZOOM_INDICATOR_HEIGHT;
 
     // Set canvas size
     canvas.width = width;
@@ -226,6 +237,10 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle>(function PhysicsCanvas(
       render.bounds.min.y = from.minY + (to.minY - from.minY) * eased;
       render.bounds.max.x = from.maxX + (to.maxX - from.maxX) * eased;
       render.bounds.max.y = from.maxY + (to.maxY - from.maxY) * eased;
+
+      // Update zoom indicator
+      const currentWidth = render.bounds.max.x - render.bounds.min.x;
+      setZoomLevel(currentWidth / width);
 
       if (progress < 1) {
         zoomAnimationRef.current = requestAnimationFrame(() =>
@@ -450,6 +465,9 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle>(function PhysicsCanvas(
       render.bounds.max.x = newMaxX;
       render.bounds.max.y = newMaxY;
 
+      // Update zoom indicator
+      setZoomLevel(newZoom);
+
       // Update zoomed state based on zoom level
       if (newZoom >= MAX_ZOOM) {
         isZoomedRef.current = false;
@@ -666,9 +684,25 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle>(function PhysicsCanvas(
   return (
     <div
       ref={containerRef}
-      className="w-full flex-1 rounded-lg overflow-hidden bg-physics-canvas-bg"
+      className="w-full flex-1 rounded-lg overflow-hidden bg-physics-canvas-bg relative flex flex-col"
     >
-      <canvas ref={canvasRef} />
+      {/* Zoom indicator */}
+      <div
+        className="w-full shrink-0 bg-zinc-700"
+        style={{
+          height: ZOOM_INDICATOR_HEIGHT,
+        }}
+      >
+        <div
+          className="bg-zinc-400"
+          style={{
+            height: "100%",
+            width: `${zoomLevel * 100}%`,
+            transition: "width 0.1s ease-out",
+          }}
+        />
+      </div>
+      <canvas ref={canvasRef} className="flex-1" />
     </div>
   );
 });

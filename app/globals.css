@@ -5,6 +5,8 @@
   --foreground: #171717;
   --physics-canvas-bg: #27272a;
   --physics-ball: #ef4444;
+  --zoom-indicator-bg: #3f3f46;
+  --zoom-indicator-bar: #a1a1aa;
 }
 
 @theme inline {
@@ -22,6 +24,8 @@
     --foreground: #ededed;
     --physics-canvas-bg: #27272a;
     --physics-ball: #ef4444;
+    --zoom-indicator-bg: #3f3f46;
+    --zoom-indicator-bar: #a1a1aa;
   }
 }
 
