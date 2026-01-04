@@ -131,11 +131,12 @@ describe("PhysicsCanvas", () => {
 
     it("creates Matter.js renderer with correct dimensions", () => {
       render(<PhysicsCanvas />);
+      // Note: height is 600 - 4 (ZOOM_INDICATOR_HEIGHT) = 596
       expect(Matter.Render.create).toHaveBeenCalledWith(
         expect.objectContaining({
           options: expect.objectContaining({
             width: 800,
-            height: 600,
+            height: 596,
             wireframes: false,
           }),
         })
@@ -145,10 +146,12 @@ describe("PhysicsCanvas", () => {
     it("creates ground, ceiling and walls for ball containment", () => {
       render(<PhysicsCanvas />);
 
+      // Note: height is 600 - 4 (ZOOM_INDICATOR_HEIGHT) = 596
+
       // Ground
       expect(Matter.Bodies.rectangle).toHaveBeenCalledWith(
         400, // width / 2
-        630, // height + 30
+        626, // height + 30 = 596 + 30
         800, // width
         60,
         expect.objectContaining({ isStatic: true })
@@ -166,18 +169,18 @@ describe("PhysicsCanvas", () => {
       // Left wall
       expect(Matter.Bodies.rectangle).toHaveBeenCalledWith(
         -30,
-        300, // height / 2
+        298, // height / 2 = 596 / 2
         60,
-        600, // height
+        596, // height
         expect.objectContaining({ isStatic: true })
       );
 
       // Right wall
       expect(Matter.Bodies.rectangle).toHaveBeenCalledWith(
         830, // width + 30
-        300, // height / 2
+        298, // height / 2 = 596 / 2
         60,
-        600, // height
+        596, // height
         expect.objectContaining({ isStatic: true })
       );
     });
