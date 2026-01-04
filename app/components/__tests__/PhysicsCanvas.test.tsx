@@ -11,7 +11,9 @@ vi.mock("matter-js", () => {
   };
 
   const mockRunner = {};
-  const mockRender = {};
+  const mockRender = { mouse: null };
+  const mockMouse = { position: { x: 0, y: 0 } };
+  const mockMouseConstraint = {};
 
   return {
     default: {
@@ -29,18 +31,34 @@ vi.mock("matter-js", () => {
         run: vi.fn(),
         stop: vi.fn(),
       },
+      Mouse: {
+        create: vi.fn(() => mockMouse),
+        clearSourceEvents: vi.fn(),
+      },
+      MouseConstraint: {
+        create: vi.fn(() => mockMouseConstraint),
+      },
       Bodies: {
-        rectangle: vi.fn(() => ({ id: "rect" })),
+        rectangle: vi.fn(() => ({ id: "rect", isStatic: true })),
         circle: vi.fn((x, y, radius, options) => ({
           id: "circle",
           x,
           y,
           radius,
           options,
+          isStatic: false,
         })),
       },
       Composite: {
         add: vi.fn(),
+        allBodies: vi.fn(() => []),
+      },
+      Query: {
+        point: vi.fn(() => []),
+      },
+      Events: {
+        on: vi.fn(),
+        off: vi.fn(),
       },
     },
   };
@@ -254,6 +272,69 @@ describe("PhysicsCanvas", () => {
       expect(Matter.Render.stop).toHaveBeenCalled();
       expect(Matter.Runner.stop).toHaveBeenCalled();
       expect(Matter.Engine.clear).toHaveBeenCalled();
+    });
+
+    it("clears mouse source events on unmount", () => {
+      const { unmount } = render(<PhysicsCanvas />);
+
+      unmount();
+
+      expect(Matter.Mouse.clearSourceEvents).toHaveBeenCalled();
+    });
+  });
+
+  describe("mouse interaction", () => {
+    it("creates a mouse for the canvas", () => {
+      render(<PhysicsCanvas />);
+      expect(Matter.Mouse.create).toHaveBeenCalled();
+    });
+
+    it("creates a mouse constraint for dragging balls", () => {
+      render(<PhysicsCanvas />);
+      expect(Matter.MouseConstraint.create).toHaveBeenCalledWith(
+        expect.any(Object),
+        expect.objectContaining({
+          mouse: expect.any(Object),
+          constraint: expect.objectContaining({
+            stiffness: 0.2,
+          }),
+        })
+      );
+    });
+
+    it("adds mouse constraint to the world", () => {
+      render(<PhysicsCanvas />);
+
+      // Check that Composite.add was called with the mouse constraint
+      const addCalls = (Matter.Composite.add as ReturnType<typeof vi.fn>).mock
+        .calls;
+      const hasMouseConstraint = addCalls.some(
+        (call) =>
+          call[1] && !Array.isArray(call[1]) && typeof call[1] === "object"
+      );
+      expect(hasMouseConstraint).toBe(true);
+    });
+
+    it("registers afterRender event for cursor updates", () => {
+      render(<PhysicsCanvas />);
+
+      expect(Matter.Events.on).toHaveBeenCalledWith(
+        expect.any(Object),
+        "afterRender",
+        expect.any(Function)
+      );
+    });
+
+    it("unregisters afterRender event on cleanup", () => {
+      const { unmount } = render(<PhysicsCanvas />);
+
+      unmount();
+
+      expect(Matter.Events.off).toHaveBeenCalledWith(
+        expect.any(Object),
+        "afterRender",
+        expect.any(Function)
+      );
     });
   });
 

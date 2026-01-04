@@ -25,6 +25,7 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle>(function PhysicsCanvas(
   const engineRef = useRef<Matter.Engine | null>(null);
   const renderRef = useRef<Matter.Render | null>(null);
   const runnerRef = useRef<Matter.Runner | null>(null);
+  const mouseConstraintRef = useRef<Matter.MouseConstraint | null>(null);
 
   useEffect(() => {
     if (!containerRef.current || !canvasRef.current) return;
@@ -58,6 +59,22 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle>(function PhysicsCanvas(
     });
     renderRef.current = render;
 
+    // Create mouse and mouse constraint for dragging
+    const mouse = Matter.Mouse.create(canvas);
+    const mouseConstraint = Matter.MouseConstraint.create(engine, {
+      mouse: mouse,
+      constraint: {
+        stiffness: 0.2,
+        render: { visible: false },
+      },
+    });
+    mouseConstraintRef.current = mouseConstraint;
+
+    // Keep the mouse in sync with rendering
+    render.mouse = mouse;
+
+    Matter.Composite.add(engine.world, mouseConstraint);
+
     // Create ground (invisible floor for balls to bounce on)
     const ground = Matter.Bodies.rectangle(width / 2, height + 30, width, 60, {
       isStatic: true,
@@ -83,6 +100,17 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle>(function PhysicsCanvas(
 
     Matter.Composite.add(engine.world, [ground, leftWall, rightWall]);
 
+    // Update cursor when hovering over bodies
+    const updateCursor = () => {
+      const bodies = Matter.Composite.allBodies(engine.world);
+      const hoveredBodies = Matter.Query.point(bodies, mouse.position);
+      // Filter out static bodies (walls, ground)
+      const hoveredDynamicBodies = hoveredBodies.filter((b) => !b.isStatic);
+      canvas.style.cursor = hoveredDynamicBodies.length > 0 ? "pointer" : "default";
+    };
+
+    Matter.Events.on(render, "afterRender", updateCursor);
+
     // Run the renderer
     Matter.Render.run(render);
 
@@ -93,8 +121,10 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle>(function PhysicsCanvas(
 
     // Cleanup
     return () => {
+      Matter.Events.off(render, "afterRender", updateCursor);
       Matter.Render.stop(render);
       Matter.Runner.stop(runner);
+      Matter.Mouse.clearSourceEvents(mouse);
       Matter.Engine.clear(engine);
     };
   }, []);
