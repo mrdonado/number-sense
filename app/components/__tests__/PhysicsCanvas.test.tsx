@@ -11,9 +11,15 @@ vi.mock("matter-js", () => {
   };
 
   const mockRunner = {};
-  const mockRender = { mouse: null };
+  const mockRender = {
+    mouse: null,
+    bounds: {
+      min: { x: 0, y: 0 },
+      max: { x: 800, y: 600 },
+    },
+  };
   const mockMouse = { position: { x: 0, y: 0 } };
-  const mockMouseConstraint = {};
+  const mockMouseConstraint = { body: null };
 
   return {
     default: {
@@ -371,6 +377,96 @@ describe("PhysicsCanvas", () => {
       expect(Matter.Events.off).toHaveBeenCalledWith(
         expect.any(Object),
         "afterUpdate",
+        expect.any(Function)
+      );
+    });
+  });
+
+  describe("zoom functionality", () => {
+    it("registers beforeRender event for zoom tracking", () => {
+      render(<PhysicsCanvas />);
+
+      expect(Matter.Events.on).toHaveBeenCalledWith(
+        expect.any(Object),
+        "beforeRender",
+        expect.any(Function)
+      );
+    });
+
+    it("adds dblclick event listener to canvas for zoom in", () => {
+      const addEventListenerSpy = vi.spyOn(
+        HTMLCanvasElement.prototype,
+        "addEventListener"
+      );
+
+      render(<PhysicsCanvas />);
+
+      expect(addEventListenerSpy).toHaveBeenCalledWith(
+        "dblclick",
+        expect.any(Function)
+      );
+
+      addEventListenerSpy.mockRestore();
+    });
+
+    it("adds click event listener to canvas for zoom reset", () => {
+      const addEventListenerSpy = vi.spyOn(
+        HTMLCanvasElement.prototype,
+        "addEventListener"
+      );
+
+      render(<PhysicsCanvas />);
+
+      expect(addEventListenerSpy).toHaveBeenCalledWith(
+        "click",
+        expect.any(Function)
+      );
+
+      addEventListenerSpy.mockRestore();
+    });
+
+    it("removes dblclick event listener on cleanup", () => {
+      const removeEventListenerSpy = vi.spyOn(
+        HTMLCanvasElement.prototype,
+        "removeEventListener"
+      );
+
+      const { unmount } = render(<PhysicsCanvas />);
+      unmount();
+
+      expect(removeEventListenerSpy).toHaveBeenCalledWith(
+        "dblclick",
+        expect.any(Function)
+      );
+
+      removeEventListenerSpy.mockRestore();
+    });
+
+    it("removes click event listener on cleanup", () => {
+      const removeEventListenerSpy = vi.spyOn(
+        HTMLCanvasElement.prototype,
+        "removeEventListener"
+      );
+
+      const { unmount } = render(<PhysicsCanvas />);
+      unmount();
+
+      expect(removeEventListenerSpy).toHaveBeenCalledWith(
+        "click",
+        expect.any(Function)
+      );
+
+      removeEventListenerSpy.mockRestore();
+    });
+
+    it("unregisters beforeRender event on cleanup", () => {
+      const { unmount } = render(<PhysicsCanvas />);
+
+      unmount();
+
+      expect(Matter.Events.off).toHaveBeenCalledWith(
+        expect.any(Object),
+        "beforeRender",
         expect.any(Function)
       );
     });
