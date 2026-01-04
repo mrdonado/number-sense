@@ -106,7 +106,8 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle>(function PhysicsCanvas(
       const hoveredBodies = Matter.Query.point(bodies, mouse.position);
       // Filter out static bodies (walls, ground)
       const hoveredDynamicBodies = hoveredBodies.filter((b) => !b.isStatic);
-      canvas.style.cursor = hoveredDynamicBodies.length > 0 ? "pointer" : "default";
+      canvas.style.cursor =
+        hoveredDynamicBodies.length > 0 ? "pointer" : "default";
     };
 
     Matter.Events.on(render, "afterRender", updateCursor);
