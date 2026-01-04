@@ -4,12 +4,20 @@ import { useEffect, useRef, forwardRef, useImperativeHandle } from "react";
 import Matter from "matter-js";
 
 const BALL_RADIUS = 20;
+// Maximum ball diameter as a fraction of the smaller canvas dimension
+const MAX_BALL_RATIO = 0.4;
 
 // Helper to get CSS variable value
 function getCSSVariable(name: string): string {
   return getComputedStyle(document.documentElement)
     .getPropertyValue(name)
     .trim();
+}
+
+// Store original radius on body for scaling calculations
+interface BallBody extends Matter.Body {
+  circleRadius?: number;
+  originalRadius?: number;
 }
 
 export interface PhysicsCanvasHandle {
@@ -34,6 +42,8 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle>(function PhysicsCanvas(
     maxY: number;
   } | null>(null);
   const isZoomedRef = useRef(false);
+  // Track the current scale factor (1.0 = no scaling)
+  const scaleFactorRef = useRef(1.0);
 
   useEffect(() => {
     if (!containerRef.current || !canvasRef.current) return;
@@ -400,20 +410,67 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle>(function PhysicsCanvas(
     if (!containerRef.current || !engineRef.current) return;
 
     const width = containerRef.current.clientWidth;
-    const x = Math.random() * (width - radius * 2) + radius;
+    const height = containerRef.current.clientHeight;
+    const minDimension = Math.min(width, height);
+
+    // Maximum allowed displayed radius based on canvas size
+    const maxDisplayRadius = (minDimension * MAX_BALL_RATIO) / 2;
+
+    // Get all existing dynamic bodies (balls)
+    const bodies = Matter.Composite.allBodies(engineRef.current.world);
+    const balls = bodies.filter((b) => !b.isStatic) as BallBody[];
+
+    // Find the largest original radius among all balls (including the new one)
+    let maxOriginalRadius = radius;
+    balls.forEach((ball) => {
+      if (ball.originalRadius && ball.originalRadius > maxOriginalRadius) {
+        maxOriginalRadius = ball.originalRadius;
+      }
+    });
+
+    // Calculate the required scale factor to fit the largest ball
+    let newScaleFactor = 1.0;
+    if (maxOriginalRadius > maxDisplayRadius) {
+      newScaleFactor = maxDisplayRadius / maxOriginalRadius;
+    }
+
+    // If scale factor changed, we need to resize all existing balls
+    if (newScaleFactor !== scaleFactorRef.current) {
+      const scaleRatio = newScaleFactor / scaleFactorRef.current;
+
+      balls.forEach((ball) => {
+        if (ball.originalRadius) {
+          const newRadius = ball.originalRadius * newScaleFactor;
+          // Scale the body
+          Matter.Body.scale(ball, scaleRatio, scaleRatio);
+          // Update the circleRadius property
+          ball.circleRadius = newRadius;
+        }
+      });
+
+      scaleFactorRef.current = newScaleFactor;
+    }
+
+    // Calculate the display radius for the new ball
+    const displayRadius = radius * scaleFactorRef.current;
+
+    const x = Math.random() * (width - displayRadius * 2) + displayRadius;
 
     // Get ball color from CSS variable
     const ballColor = getCSSVariable("--physics-ball");
 
     // Create a ball at a random x position, near the top
-    const ball = Matter.Bodies.circle(x, radius + 10, radius, {
+    const ball = Matter.Bodies.circle(x, displayRadius + 10, displayRadius, {
       restitution: 0.7, // Bounciness (0 = no bounce, 1 = perfect bounce)
       friction: 0.001,
       frictionAir: 0.001,
       render: {
         fillStyle: ballColor,
       },
-    });
+    }) as BallBody;
+
+    // Store the original radius for future scaling calculations
+    ball.originalRadius = radius;
 
     Matter.Composite.add(engineRef.current.world, [ball]);
   };
