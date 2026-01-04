@@ -1,6 +1,6 @@
 import Matter from "matter-js";
 import {
-  MAX_BALL_RATIO,
+  TARGET_BALL_RATIO,
   BALL_RESTITUTION,
   BALL_FRICTION,
   BALL_FRICTION_AIR,
@@ -16,7 +16,7 @@ export class BallManager {
 
   /**
    * Spawn a new ball with the given radius
-   * Handles automatic scaling when balls exceed canvas size
+   * Handles automatic scaling so the largest ball always fills TARGET_BALL_RATIO of the canvas
    */
   spawnBall(
     engine: Matter.Engine,
@@ -26,8 +26,8 @@ export class BallManager {
     const { width, height } = dimensions;
     const minDimension = Math.min(width, height);
 
-    // Maximum allowed displayed radius based on canvas size
-    const maxDisplayRadius = (minDimension * MAX_BALL_RATIO) / 2;
+    // Target display radius: largest ball's diameter should be TARGET_BALL_RATIO of canvas
+    const targetDisplayRadius = (minDimension * TARGET_BALL_RATIO) / 2;
 
     // Get all existing dynamic bodies (balls)
     const bodies = Matter.Composite.allBodies(engine.world);
@@ -41,11 +41,8 @@ export class BallManager {
       }
     });
 
-    // Calculate the required scale factor to fit the largest ball
-    let newScaleFactor = 1.0;
-    if (maxOriginalRadius > maxDisplayRadius) {
-      newScaleFactor = maxDisplayRadius / maxOriginalRadius;
-    }
+    // Calculate scale factor so the largest ball fits the target size
+    const newScaleFactor = targetDisplayRadius / maxOriginalRadius;
 
     // If scale factor changed, resize all existing balls
     if (newScaleFactor !== this.scaleFactor) {

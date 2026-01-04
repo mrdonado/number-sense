@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import {
   BALL_RADIUS,
-  MAX_BALL_RATIO,
+  TARGET_BALL_RATIO,
   ZOOM_INDICATOR_HEIGHT,
   ZOOM_DURATION,
   BALL_VISIBLE_RATIO,
@@ -23,9 +23,9 @@ describe("PhysicsCanvas Constants", () => {
       expect(BALL_RADIUS).toBeGreaterThan(0);
     });
 
-    it("has valid max ball ratio between 0 and 1", () => {
-      expect(MAX_BALL_RATIO).toBeGreaterThan(0);
-      expect(MAX_BALL_RATIO).toBeLessThanOrEqual(1);
+    it("has valid target ball ratio between 0 and 1", () => {
+      expect(TARGET_BALL_RATIO).toBeGreaterThan(0);
+      expect(TARGET_BALL_RATIO).toBeLessThanOrEqual(1);
     });
 
     it("has physics properties in valid ranges", () => {

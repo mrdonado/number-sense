@@ -1,7 +1,8 @@
 // Ball configuration
 export const BALL_RADIUS = 20;
-// Maximum ball diameter as a fraction of the smaller canvas dimension
-export const MAX_BALL_RATIO = 0.4;
+// Target ball diameter as a fraction of the smaller canvas dimension
+// The largest ball will always be scaled to this size
+export const TARGET_BALL_RATIO = 0.5;
 
 // Zoom indicator height in pixels
 export const ZOOM_INDICATOR_HEIGHT = 4;
