@@ -44,6 +44,10 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle>(function PhysicsCanvas(
   const isZoomedRef = useRef(false);
   // Track the current scale factor (1.0 = no scaling)
   const scaleFactorRef = useRef(1.0);
+  // Track middle button panning state
+  const isPanningRef = useRef(false);
+  const panStartRef = useRef<{ x: number; y: number } | null>(null);
+  const panBoundsStartRef = useRef<{ minX: number; minY: number } | null>(null);
 
   useEffect(() => {
     if (!containerRef.current || !canvasRef.current) return;
@@ -194,6 +198,9 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle>(function PhysicsCanvas(
     // Zoom animation constants
     const ZOOM_DURATION = 300; // ms
     const BALL_VISIBLE_RATIO = 0.85; // Ball takes 85% of visible area
+    const WHEEL_ZOOM_FACTOR = 0.1; // Zoom 10% per wheel tick
+    const MIN_ZOOM = 0.1; // Maximum zoom in (10% of original view = 10x zoom)
+    const MAX_ZOOM = 1.0; // Maximum zoom out (100% = full view)
 
     // Full view bounds
     const fullBounds = {
@@ -334,9 +341,14 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle>(function PhysicsCanvas(
       animateZoom(currentBounds, fullBounds, Date.now());
     };
 
-    // Track zoomed ball position
+    // Track zoomed ball position (only for double-click zoom, not wheel zoom or panning)
     const updateZoomedView = () => {
-      if (!isZoomedRef.current || !zoomTargetRef.current) return;
+      // Skip if not zoomed, if user is panning, or if this is a wheel zoom (no target)
+      if (!isZoomedRef.current || isPanningRef.current) return;
+
+      // Only auto-follow ball when zoomed via double-click (zoomTargetRef is set)
+      // For wheel zoom, we clear zoomTargetRef so user has manual control
+      if (!zoomTargetRef.current) return;
 
       // Find the ball we're zoomed on (the one closest to center of view)
       const centerX = (render.bounds.min.x + render.bounds.max.x) / 2;
@@ -364,9 +376,6 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle>(function PhysicsCanvas(
 
       // Update bounds to follow the ball (only if not animating)
       if (!zoomAnimationRef.current) {
-        const ballRadius =
-          (closestBall as Matter.Body & { circleRadius?: number })
-            .circleRadius || 20;
         const viewWidth = render.bounds.max.x - render.bounds.min.x;
         const viewHeight = render.bounds.max.y - render.bounds.min.y;
 
@@ -377,8 +386,177 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle>(function PhysicsCanvas(
       }
     };
 
+    // Handle mouse wheel zoom
+    const handleWheel = (e: WheelEvent) => {
+      e.preventDefault();
+
+      // Cancel any ongoing animation
+      if (zoomAnimationRef.current) {
+        cancelAnimationFrame(zoomAnimationRef.current);
+        zoomAnimationRef.current = null;
+      }
+
+      // Get current view dimensions
+      const currentWidth = render.bounds.max.x - render.bounds.min.x;
+      const currentHeight = render.bounds.max.y - render.bounds.min.y;
+
+      // Calculate current zoom level (1.0 = full view, smaller = zoomed in)
+      const currentZoom = currentWidth / width;
+
+      // Calculate new zoom based on scroll direction
+      const zoomDelta = e.deltaY > 0 ? WHEEL_ZOOM_FACTOR : -WHEEL_ZOOM_FACTOR;
+      let newZoom = currentZoom + zoomDelta;
+
+      // Clamp zoom to min/max bounds
+      newZoom = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, newZoom));
+
+      // If zoom didn't change, nothing to do
+      if (newZoom === currentZoom) return;
+
+      // Get mouse position in world coordinates (before zoom)
+      const rect = canvas.getBoundingClientRect();
+      const mouseCanvasX = e.clientX - rect.left;
+      const mouseCanvasY = e.clientY - rect.top;
+
+      // Mouse position as a fraction of canvas size
+      const mouseRatioX = mouseCanvasX / width;
+      const mouseRatioY = mouseCanvasY / height;
+
+      // Mouse position in world coordinates
+      const mouseWorldX = render.bounds.min.x + mouseRatioX * currentWidth;
+      const mouseWorldY = render.bounds.min.y + mouseRatioY * currentHeight;
+
+      // Calculate new view dimensions
+      const newWidth = width * newZoom;
+      const newHeight = height * newZoom;
+
+      // Calculate new bounds, keeping mouse position at same screen location
+      let newMinX = mouseWorldX - mouseRatioX * newWidth;
+      let newMinY = mouseWorldY - mouseRatioY * newHeight;
+      let newMaxX = newMinX + newWidth;
+      let newMaxY = newMinY + newHeight;
+
+      // Clamp bounds to world limits when zooming out
+      if (newZoom >= MAX_ZOOM) {
+        newMinX = 0;
+        newMinY = 0;
+        newMaxX = width;
+        newMaxY = height;
+      }
+
+      // Apply new bounds
+      render.bounds.min.x = newMinX;
+      render.bounds.min.y = newMinY;
+      render.bounds.max.x = newMaxX;
+      render.bounds.max.y = newMaxY;
+
+      // Update zoomed state based on zoom level
+      if (newZoom >= MAX_ZOOM) {
+        isZoomedRef.current = false;
+        zoomTargetRef.current = null;
+        // Resume physics and enable dragging when zoomed out
+        runner.enabled = true;
+        mouseConstraint.constraint.stiffness = 0.2;
+      } else {
+        isZoomedRef.current = true;
+        // Clear zoomTargetRef for wheel zoom - this disables auto-follow
+        // so user has manual control over panning
+        zoomTargetRef.current = null;
+        // Freeze physics and disable dragging when zoomed in
+        runner.enabled = false;
+        mouseConstraint.constraint.stiffness = 0;
+      }
+    };
+
+    // Handle middle mouse button down to start panning
+    const handleMouseDown = (e: MouseEvent) => {
+      // Middle button is button 1
+      if (e.button === 1 && isZoomedRef.current) {
+        e.preventDefault();
+        isPanningRef.current = true;
+        panStartRef.current = { x: e.clientX, y: e.clientY };
+        panBoundsStartRef.current = {
+          minX: render.bounds.min.x,
+          minY: render.bounds.min.y,
+        };
+        canvas.style.cursor = "grabbing";
+      }
+    };
+
+    // Handle mouse move for panning
+    const handleMouseMove = (e: MouseEvent) => {
+      if (
+        !isPanningRef.current ||
+        !panStartRef.current ||
+        !panBoundsStartRef.current
+      )
+        return;
+
+      // Calculate delta in screen coordinates
+      const deltaX = e.clientX - panStartRef.current.x;
+      const deltaY = e.clientY - panStartRef.current.y;
+
+      // Convert screen delta to world delta based on current zoom
+      const currentWidth = render.bounds.max.x - render.bounds.min.x;
+      const currentHeight = render.bounds.max.y - render.bounds.min.y;
+      const worldDeltaX = -(deltaX / width) * currentWidth;
+      const worldDeltaY = -(deltaY / height) * currentHeight;
+
+      // Apply new bounds (pan in opposite direction of mouse movement)
+      let newMinX = panBoundsStartRef.current.minX + worldDeltaX;
+      let newMinY = panBoundsStartRef.current.minY + worldDeltaY;
+
+      // Allow panning up to 1.5x the scene size (0.5 extra on each side)
+      const extraWidth = width * 0.5;
+      const extraHeight = height * 0.5;
+
+      // Clamp bounds to stay within extended scene area
+      newMinX = Math.max(-extraWidth, newMinX);
+      newMinY = Math.max(-extraHeight, newMinY);
+      newMinX = Math.min(width + extraWidth - currentWidth, newMinX);
+      newMinY = Math.min(height + extraHeight - currentHeight, newMinY);
+
+      render.bounds.min.x = newMinX;
+      render.bounds.min.y = newMinY;
+      render.bounds.max.x = newMinX + currentWidth;
+      render.bounds.max.y = newMinY + currentHeight;
+
+      // Update zoom target to match current pan position
+      if (zoomTargetRef.current) {
+        zoomTargetRef.current = {
+          minX: render.bounds.min.x,
+          minY: render.bounds.min.y,
+          maxX: render.bounds.max.x,
+          maxY: render.bounds.max.y,
+        };
+      }
+    };
+
+    // Handle mouse up to stop panning
+    const handleMouseUp = (e: MouseEvent) => {
+      if (e.button === 1 && isPanningRef.current) {
+        isPanningRef.current = false;
+        panStartRef.current = null;
+        panBoundsStartRef.current = null;
+        canvas.style.cursor = "default";
+      }
+    };
+
+    // Prevent context menu on middle click
+    const handleContextMenu = (e: MouseEvent) => {
+      if (isPanningRef.current) {
+        e.preventDefault();
+      }
+    };
+
     canvas.addEventListener("dblclick", handleDoubleClick);
     canvas.addEventListener("click", handleClick);
+    canvas.addEventListener("wheel", handleWheel, { passive: false });
+    canvas.addEventListener("mousedown", handleMouseDown);
+    canvas.addEventListener("mousemove", handleMouseMove);
+    canvas.addEventListener("mouseup", handleMouseUp);
+    canvas.addEventListener("mouseleave", handleMouseUp);
+    canvas.addEventListener("contextmenu", handleContextMenu);
     Matter.Events.on(render, "beforeRender", updateZoomedView);
 
     // Run the renderer
@@ -396,6 +574,12 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle>(function PhysicsCanvas(
       }
       canvas.removeEventListener("dblclick", handleDoubleClick);
       canvas.removeEventListener("click", handleClick);
+      canvas.removeEventListener("wheel", handleWheel);
+      canvas.removeEventListener("mousedown", handleMouseDown);
+      canvas.removeEventListener("mousemove", handleMouseMove);
+      canvas.removeEventListener("mouseup", handleMouseUp);
+      canvas.removeEventListener("mouseleave", handleMouseUp);
+      canvas.removeEventListener("contextmenu", handleContextMenu);
       Matter.Events.off(render, "beforeRender", updateZoomedView);
       Matter.Events.off(engine, "afterUpdate", checkEscapedBalls);
       Matter.Events.off(render, "afterRender", updateCursor);

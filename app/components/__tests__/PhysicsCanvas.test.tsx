@@ -425,6 +425,23 @@ describe("PhysicsCanvas", () => {
       addEventListenerSpy.mockRestore();
     });
 
+    it("adds wheel event listener for mouse wheel zoom", () => {
+      const addEventListenerSpy = vi.spyOn(
+        HTMLCanvasElement.prototype,
+        "addEventListener"
+      );
+
+      render(<PhysicsCanvas />);
+
+      expect(addEventListenerSpy).toHaveBeenCalledWith(
+        "wheel",
+        expect.any(Function),
+        { passive: false }
+      );
+
+      addEventListenerSpy.mockRestore();
+    });
+
     it("removes dblclick event listener on cleanup", () => {
       const removeEventListenerSpy = vi.spyOn(
         HTMLCanvasElement.prototype,
@@ -459,6 +476,23 @@ describe("PhysicsCanvas", () => {
       removeEventListenerSpy.mockRestore();
     });
 
+    it("removes wheel event listener on cleanup", () => {
+      const removeEventListenerSpy = vi.spyOn(
+        HTMLCanvasElement.prototype,
+        "removeEventListener"
+      );
+
+      const { unmount } = render(<PhysicsCanvas />);
+      unmount();
+
+      expect(removeEventListenerSpy).toHaveBeenCalledWith(
+        "wheel",
+        expect.any(Function)
+      );
+
+      removeEventListenerSpy.mockRestore();
+    });
+
     it("unregisters beforeRender event on cleanup", () => {
       const { unmount } = render(<PhysicsCanvas />);
 
@@ -469,6 +503,173 @@ describe("PhysicsCanvas", () => {
         "beforeRender",
         expect.any(Function)
       );
+    });
+  });
+
+  describe("panning functionality", () => {
+    it("adds mousedown event listener for panning", () => {
+      const addEventListenerSpy = vi.spyOn(
+        HTMLCanvasElement.prototype,
+        "addEventListener"
+      );
+
+      render(<PhysicsCanvas />);
+
+      expect(addEventListenerSpy).toHaveBeenCalledWith(
+        "mousedown",
+        expect.any(Function)
+      );
+
+      addEventListenerSpy.mockRestore();
+    });
+
+    it("adds mousemove event listener for panning", () => {
+      const addEventListenerSpy = vi.spyOn(
+        HTMLCanvasElement.prototype,
+        "addEventListener"
+      );
+
+      render(<PhysicsCanvas />);
+
+      expect(addEventListenerSpy).toHaveBeenCalledWith(
+        "mousemove",
+        expect.any(Function)
+      );
+
+      addEventListenerSpy.mockRestore();
+    });
+
+    it("adds mouseup event listener for panning", () => {
+      const addEventListenerSpy = vi.spyOn(
+        HTMLCanvasElement.prototype,
+        "addEventListener"
+      );
+
+      render(<PhysicsCanvas />);
+
+      expect(addEventListenerSpy).toHaveBeenCalledWith(
+        "mouseup",
+        expect.any(Function)
+      );
+
+      addEventListenerSpy.mockRestore();
+    });
+
+    it("adds mouseleave event listener for panning", () => {
+      const addEventListenerSpy = vi.spyOn(
+        HTMLCanvasElement.prototype,
+        "addEventListener"
+      );
+
+      render(<PhysicsCanvas />);
+
+      expect(addEventListenerSpy).toHaveBeenCalledWith(
+        "mouseleave",
+        expect.any(Function)
+      );
+
+      addEventListenerSpy.mockRestore();
+    });
+
+    it("adds contextmenu event listener to prevent context menu during panning", () => {
+      const addEventListenerSpy = vi.spyOn(
+        HTMLCanvasElement.prototype,
+        "addEventListener"
+      );
+
+      render(<PhysicsCanvas />);
+
+      expect(addEventListenerSpy).toHaveBeenCalledWith(
+        "contextmenu",
+        expect.any(Function)
+      );
+
+      addEventListenerSpy.mockRestore();
+    });
+
+    it("removes mousedown event listener on cleanup", () => {
+      const removeEventListenerSpy = vi.spyOn(
+        HTMLCanvasElement.prototype,
+        "removeEventListener"
+      );
+
+      const { unmount } = render(<PhysicsCanvas />);
+      unmount();
+
+      expect(removeEventListenerSpy).toHaveBeenCalledWith(
+        "mousedown",
+        expect.any(Function)
+      );
+
+      removeEventListenerSpy.mockRestore();
+    });
+
+    it("removes mousemove event listener on cleanup", () => {
+      const removeEventListenerSpy = vi.spyOn(
+        HTMLCanvasElement.prototype,
+        "removeEventListener"
+      );
+
+      const { unmount } = render(<PhysicsCanvas />);
+      unmount();
+
+      expect(removeEventListenerSpy).toHaveBeenCalledWith(
+        "mousemove",
+        expect.any(Function)
+      );
+
+      removeEventListenerSpy.mockRestore();
+    });
+
+    it("removes mouseup event listener on cleanup", () => {
+      const removeEventListenerSpy = vi.spyOn(
+        HTMLCanvasElement.prototype,
+        "removeEventListener"
+      );
+
+      const { unmount } = render(<PhysicsCanvas />);
+      unmount();
+
+      expect(removeEventListenerSpy).toHaveBeenCalledWith(
+        "mouseup",
+        expect.any(Function)
+      );
+
+      removeEventListenerSpy.mockRestore();
+    });
+
+    it("removes mouseleave event listener on cleanup", () => {
+      const removeEventListenerSpy = vi.spyOn(
+        HTMLCanvasElement.prototype,
+        "removeEventListener"
+      );
+
+      const { unmount } = render(<PhysicsCanvas />);
+      unmount();
+
+      expect(removeEventListenerSpy).toHaveBeenCalledWith(
+        "mouseleave",
+        expect.any(Function)
+      );
+
+      removeEventListenerSpy.mockRestore();
+    });
+
+    it("removes contextmenu event listener on cleanup", () => {
+      const removeEventListenerSpy = vi.spyOn(
+        HTMLCanvasElement.prototype,
+        "removeEventListener"
+      );
+
+      const { unmount } = render(<PhysicsCanvas />);
+      unmount();
+
+      expect(removeEventListenerSpy).toHaveBeenCalledWith(
+        "contextmenu",
+        expect.any(Function)
+      );
+
+      removeEventListenerSpy.mockRestore();
     });
   });
 
