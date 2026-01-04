@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, forwardRef, useImperativeHandle } from "react";
 import Matter from "matter-js";
 
 const BALL_RADIUS = 20;
@@ -12,7 +12,14 @@ function getCSSVariable(name: string): string {
     .trim();
 }
 
-export default function PhysicsCanvas() {
+export interface PhysicsCanvasHandle {
+  spawnBall: (radius: number) => void;
+}
+
+const PhysicsCanvas = forwardRef<PhysicsCanvasHandle>(function PhysicsCanvas(
+  _props,
+  ref
+) {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const engineRef = useRef<Matter.Engine | null>(null);
@@ -92,17 +99,17 @@ export default function PhysicsCanvas() {
     };
   }, []);
 
-  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+  const spawnBall = (radius: number) => {
     if (!containerRef.current || !engineRef.current) return;
 
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
+    const width = containerRef.current.clientWidth;
+    const x = Math.random() * (width - radius * 2) + radius;
 
     // Get ball color from CSS variable
     const ballColor = getCSSVariable("--physics-ball");
 
-    // Create a ball at the clicked x position, near the top
-    const ball = Matter.Bodies.circle(x, BALL_RADIUS + 10, BALL_RADIUS, {
+    // Create a ball at a random x position, near the top
+    const ball = Matter.Bodies.circle(x, radius + 10, radius, {
       restitution: 0.7, // Bounciness (0 = no bounce, 1 = perfect bounce)
       friction: 0.001,
       frictionAir: 0.001,
@@ -114,13 +121,18 @@ export default function PhysicsCanvas() {
     Matter.Composite.add(engineRef.current.world, [ball]);
   };
 
+  useImperativeHandle(ref, () => ({
+    spawnBall,
+  }));
+
   return (
     <div
       ref={containerRef}
-      onClick={handleClick}
-      className="w-full flex-1 rounded-lg cursor-pointer overflow-hidden bg-physics-canvas-bg"
+      className="w-full flex-1 rounded-lg overflow-hidden bg-physics-canvas-bg"
     >
       <canvas ref={canvasRef} />
     </div>
   );
-}
+});
+
+export default PhysicsCanvas;
