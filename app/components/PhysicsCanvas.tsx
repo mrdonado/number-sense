@@ -81,6 +81,12 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle>(function PhysicsCanvas(
       render: { visible: false },
     });
 
+    // Create ceiling (invisible roof for balls to bounce on)
+    const ceiling = Matter.Bodies.rectangle(width / 2, -30, width, 60, {
+      isStatic: true,
+      render: { visible: false },
+    });
+
     // Create walls to keep balls contained
     const leftWall = Matter.Bodies.rectangle(-30, height / 2, 60, height, {
       isStatic: true,
@@ -98,7 +104,7 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle>(function PhysicsCanvas(
       }
     );
 
-    Matter.Composite.add(engine.world, [ground, leftWall, rightWall]);
+    Matter.Composite.add(engine.world, [ground, ceiling, leftWall, rightWall]);
 
     // Update cursor when hovering over bodies
     const updateCursor = () => {
@@ -110,6 +116,54 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle>(function PhysicsCanvas(
         hoveredDynamicBodies.length > 0 ? "pointer" : "default";
     };
 
+    // Check for escaped balls and wrap them to the opposite side
+    const SPEED_REDUCTION = 0.5;
+    const checkEscapedBalls = () => {
+      const bodies = Matter.Composite.allBodies(engine.world);
+      bodies.forEach((body) => {
+        if (body.isStatic) return;
+
+        const { x, y } = body.position;
+        const radius =
+          (body as Matter.Body & { circleRadius?: number }).circleRadius || 20;
+        let newX = x;
+        let newY = y;
+        let escaped = false;
+
+        // Check if ball escaped through left
+        if (x < -radius * 2) {
+          newX = width + radius;
+          escaped = true;
+        }
+        // Check if ball escaped through right
+        else if (x > width + radius * 2) {
+          newX = -radius;
+          escaped = true;
+        }
+
+        // Check if ball escaped through top
+        if (y < -radius * 2) {
+          newY = height + radius;
+          escaped = true;
+        }
+        // Check if ball escaped through bottom
+        else if (y > height + radius * 2) {
+          newY = -radius;
+          escaped = true;
+        }
+
+        if (escaped) {
+          // Teleport to opposite side with reduced velocity
+          Matter.Body.setPosition(body, { x: newX, y: newY });
+          Matter.Body.setVelocity(body, {
+            x: body.velocity.x * SPEED_REDUCTION,
+            y: body.velocity.y * SPEED_REDUCTION,
+          });
+        }
+      });
+    };
+
+    Matter.Events.on(engine, "afterUpdate", checkEscapedBalls);
     Matter.Events.on(render, "afterRender", updateCursor);
 
     // Run the renderer
@@ -122,6 +176,7 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle>(function PhysicsCanvas(
 
     // Cleanup
     return () => {
+      Matter.Events.off(engine, "afterUpdate", checkEscapedBalls);
       Matter.Events.off(render, "afterRender", updateCursor);
       Matter.Render.stop(render);
       Matter.Runner.stop(runner);

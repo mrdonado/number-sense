@@ -45,9 +45,16 @@ vi.mock("matter-js", () => {
           x,
           y,
           radius,
+          circleRadius: radius,
           options,
           isStatic: false,
+          position: { x, y },
+          velocity: { x: 0, y: 0 },
         })),
+      },
+      Body: {
+        setPosition: vi.fn(),
+        setVelocity: vi.fn(),
       },
       Composite: {
         add: vi.fn(),
@@ -129,13 +136,22 @@ describe("PhysicsCanvas", () => {
       );
     });
 
-    it("creates ground and walls for ball containment", () => {
+    it("creates ground, ceiling and walls for ball containment", () => {
       render(<PhysicsCanvas />);
 
       // Ground
       expect(Matter.Bodies.rectangle).toHaveBeenCalledWith(
         400, // width / 2
         630, // height + 30
+        800, // width
+        60,
+        expect.objectContaining({ isStatic: true })
+      );
+
+      // Ceiling
+      expect(Matter.Bodies.rectangle).toHaveBeenCalledWith(
+        400, // width / 2
+        -30, // -30
         800, // width
         60,
         expect.objectContaining({ isStatic: true })
@@ -325,6 +341,16 @@ describe("PhysicsCanvas", () => {
       );
     });
 
+    it("registers afterUpdate event for escape detection", () => {
+      render(<PhysicsCanvas />);
+
+      expect(Matter.Events.on).toHaveBeenCalledWith(
+        expect.any(Object),
+        "afterUpdate",
+        expect.any(Function)
+      );
+    });
+
     it("unregisters afterRender event on cleanup", () => {
       const { unmount } = render(<PhysicsCanvas />);
 
@@ -333,6 +359,18 @@ describe("PhysicsCanvas", () => {
       expect(Matter.Events.off).toHaveBeenCalledWith(
         expect.any(Object),
         "afterRender",
+        expect.any(Function)
+      );
+    });
+
+    it("unregisters afterUpdate event on cleanup", () => {
+      const { unmount } = render(<PhysicsCanvas />);
+
+      unmount();
+
+      expect(Matter.Events.off).toHaveBeenCalledWith(
+        expect.any(Object),
+        "afterUpdate",
         expect.any(Function)
       );
     });
