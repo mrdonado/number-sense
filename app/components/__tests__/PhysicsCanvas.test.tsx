@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { render, screen, act } from "@testing-library/react";
 import { useRef, useEffect } from "react";
 import Matter from "matter-js";
-import PhysicsCanvas, { PhysicsCanvasHandle } from "../PhysicsCanvas";
+import PhysicsCanvas, { PhysicsCanvasHandle } from "../PhysicsCanvas/index";
 
 // Mock Matter.js
 vi.mock("matter-js", () => {
@@ -199,7 +199,7 @@ describe("PhysicsCanvas", () => {
       render(<TestWrapper onRef={(ref) => (handle = ref)} />);
 
       expect(handle).not.toBeNull();
-      expect(handle?.spawnBall).toBeInstanceOf(Function);
+      expect(handle!.spawnBall).toBeInstanceOf(Function);
     });
 
     it("creates a ball with the specified radius when spawnBall is called", async () => {

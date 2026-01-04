@@ -1,0 +1,48 @@
+import Matter from "matter-js";
+
+// Extended Matter.Body with custom properties for ball tracking
+export interface BallBody extends Matter.Body {
+  circleRadius?: number;
+  originalRadius?: number;
+}
+
+// Public handle exposed via ref
+export interface PhysicsCanvasHandle {
+  spawnBall: (radius: number) => void;
+}
+
+// Bounds rectangle for zoom/pan calculations
+export interface Bounds {
+  minX: number;
+  minY: number;
+  maxX: number;
+  maxY: number;
+}
+
+// Canvas dimensions
+export interface Dimensions {
+  width: number;
+  height: number;
+}
+
+// Physics engine refs container
+export interface PhysicsRefs {
+  engine: Matter.Engine | null;
+  render: Matter.Render | null;
+  runner: Matter.Runner | null;
+  mouseConstraint: Matter.MouseConstraint | null;
+}
+
+// Zoom state
+export interface ZoomState {
+  isZoomed: boolean;
+  target: Bounds | null;
+  animationFrame: number | null;
+}
+
+// Pan state
+export interface PanState {
+  isPanning: boolean;
+  startPosition: { x: number; y: number } | null;
+  boundsStart: { minX: number; minY: number } | null;
+}

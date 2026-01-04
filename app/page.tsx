@@ -1,7 +1,9 @@
 "use client";
 
 import { useRef, useState } from "react";
-import PhysicsCanvas, { PhysicsCanvasHandle } from "./components/PhysicsCanvas";
+import PhysicsCanvas, {
+  PhysicsCanvasHandle,
+} from "./components/PhysicsCanvas/index";
 
 export default function Home() {
   const canvasRef = useRef<PhysicsCanvasHandle>(null);
