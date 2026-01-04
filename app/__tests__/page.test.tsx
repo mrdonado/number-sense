@@ -7,7 +7,7 @@ import Home from "../page";
 // Mock the PhysicsCanvas component
 const mockSpawnBall = vi.fn();
 
-vi.mock("../components/PhysicsCanvas", () => ({
+vi.mock("../components/PhysicsCanvas/index", () => ({
   default: React.forwardRef(function MockPhysicsCanvas(
     _props: unknown,
     ref: React.ForwardedRef<{ spawnBall: (radius: number) => void }>
@@ -17,6 +17,9 @@ vi.mock("../components/PhysicsCanvas", () => ({
   }),
   __esModule: true,
 }));
+
+// Helper to calculate expected radius from area: r = √(A/π)
+const areaToRadius = (area: number) => Math.sqrt(area / Math.PI);
 
 describe("Home Page", () => {
   beforeEach(() => {
@@ -30,7 +33,7 @@ describe("Home Page", () => {
 
   it("renders the input field with correct placeholder", () => {
     render(<Home />);
-    expect(screen.getByPlaceholderText("Enter radius")).toBeInTheDocument();
+    expect(screen.getByPlaceholderText("Enter area")).toBeInTheDocument();
   });
 
   it("renders the Drop Ball button", () => {
@@ -46,35 +49,36 @@ describe("Home Page", () => {
   });
 
   describe("ball spawning", () => {
-    it("spawns a ball with the entered radius when clicking the button", async () => {
+    it("spawns a ball with radius calculated from area when clicking the button", async () => {
       const user = userEvent.setup();
       render(<Home />);
 
-      const input = screen.getByPlaceholderText("Enter radius");
+      const input = screen.getByPlaceholderText("Enter area");
       const button = screen.getByRole("button", { name: "Drop Ball" });
 
-      await user.type(input, "25");
+      await user.type(input, "100");
       await user.click(button);
 
-      expect(mockSpawnBall).toHaveBeenCalledWith(25);
+      // Area 100 → radius = √(100/π) ≈ 5.64
+      expect(mockSpawnBall).toHaveBeenCalledWith(areaToRadius(100));
     });
 
     it("spawns a ball when pressing Enter in the input field", async () => {
       const user = userEvent.setup();
       render(<Home />);
 
-      const input = screen.getByPlaceholderText("Enter radius");
+      const input = screen.getByPlaceholderText("Enter area");
 
-      await user.type(input, "30{Enter}");
+      await user.type(input, "314{Enter}");
 
-      expect(mockSpawnBall).toHaveBeenCalledWith(30);
+      expect(mockSpawnBall).toHaveBeenCalledWith(areaToRadius(314));
     });
 
-    it("does not spawn a ball with zero radius", async () => {
+    it("does not spawn a ball with zero area", async () => {
       const user = userEvent.setup();
       render(<Home />);
 
-      const input = screen.getByPlaceholderText("Enter radius");
+      const input = screen.getByPlaceholderText("Enter area");
       const button = screen.getByRole("button", { name: "Drop Ball" });
 
       await user.type(input, "0");
@@ -83,11 +87,11 @@ describe("Home Page", () => {
       expect(mockSpawnBall).not.toHaveBeenCalled();
     });
 
-    it("does not spawn a ball with negative radius", async () => {
+    it("does not spawn a ball with negative area", async () => {
       const user = userEvent.setup();
       render(<Home />);
 
-      const input = screen.getByPlaceholderText("Enter radius");
+      const input = screen.getByPlaceholderText("Enter area");
       const button = screen.getByRole("button", { name: "Drop Ball" });
 
       await user.type(input, "-5");
@@ -111,7 +115,7 @@ describe("Home Page", () => {
       const user = userEvent.setup();
       render(<Home />);
 
-      const input = screen.getByPlaceholderText("Enter radius");
+      const input = screen.getByPlaceholderText("Enter area");
       const button = screen.getByRole("button", { name: "Drop Ball" });
 
       // Clear and type non-numeric (browser input type=number typically prevents this,
@@ -122,23 +126,36 @@ describe("Home Page", () => {
       expect(mockSpawnBall).not.toHaveBeenCalled();
     });
 
-    it("spawns multiple balls with different radii", async () => {
+    it("spawns multiple balls with different areas", async () => {
       const user = userEvent.setup();
       render(<Home />);
 
-      const input = screen.getByPlaceholderText("Enter radius");
+      const input = screen.getByPlaceholderText("Enter area");
       const button = screen.getByRole("button", { name: "Drop Ball" });
 
-      await user.type(input, "20");
-      await user.click(button);
-
-      await user.clear(input);
       await user.type(input, "50");
       await user.click(button);
 
+      await user.clear(input);
+      await user.type(input, "200");
+      await user.click(button);
+
       expect(mockSpawnBall).toHaveBeenCalledTimes(2);
-      expect(mockSpawnBall).toHaveBeenNthCalledWith(1, 20);
-      expect(mockSpawnBall).toHaveBeenNthCalledWith(2, 50);
+      expect(mockSpawnBall).toHaveBeenNthCalledWith(1, areaToRadius(50));
+      expect(mockSpawnBall).toHaveBeenNthCalledWith(2, areaToRadius(200));
+    });
+
+    it("handles decimal area values", async () => {
+      const user = userEvent.setup();
+      render(<Home />);
+
+      const input = screen.getByPlaceholderText("Enter area");
+      const button = screen.getByRole("button", { name: "Drop Ball" });
+
+      await user.type(input, "3.14");
+      await user.click(button);
+
+      expect(mockSpawnBall).toHaveBeenCalledWith(areaToRadius(3.14));
     });
   });
 
@@ -148,7 +165,7 @@ describe("Home Page", () => {
       render(<Home />);
 
       const input = screen.getByPlaceholderText(
-        "Enter radius"
+        "Enter area"
       ) as HTMLInputElement;
 
       await user.type(input, "42");
@@ -161,7 +178,7 @@ describe("Home Page", () => {
       render(<Home />);
 
       const input = screen.getByPlaceholderText(
-        "Enter radius"
+        "Enter area"
       ) as HTMLInputElement;
 
       await user.type(input, "100");

@@ -10,8 +10,10 @@ export default function Home() {
   const [inputValue, setInputValue] = useState("");
 
   const handleSubmit = () => {
-    const radius = parseInt(inputValue, 10);
-    if (!isNaN(radius) && radius > 0) {
+    const area = parseFloat(inputValue);
+    if (!isNaN(area) && area > 0) {
+      // Calculate radius from area: A = πr² → r = √(A/π)
+      const radius = Math.sqrt(area / Math.PI);
       canvasRef.current?.spawnBall(radius);
     }
   };
@@ -34,7 +36,7 @@ export default function Home() {
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="Enter radius"
+            placeholder="Enter area"
             className="px-4 py-2 border border-zinc-300 dark:border-zinc-700 rounded-lg bg-white dark:bg-zinc-900 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-physics-ball"
           />
           <button
