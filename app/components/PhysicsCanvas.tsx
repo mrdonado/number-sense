@@ -209,8 +209,8 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle>(function PhysicsCanvas(
     // Zoom animation constants
     const ZOOM_DURATION = 300; // ms
     const BALL_VISIBLE_RATIO = 0.85; // Ball takes 85% of visible area
-    const WHEEL_ZOOM_FACTOR = 0.1; // Zoom 10% per wheel tick
-    const MIN_ZOOM = 0.1; // Maximum zoom in (10% of original view = 10x zoom)
+    const WHEEL_ZOOM_FACTOR = 1.15; // Logarithmic zoom factor (15% per wheel tick)
+    const MIN_ZOOM = 0.01; // Maximum zoom in (1% of original view = 100x zoom)
     const MAX_ZOOM = 1.0; // Maximum zoom out (100% = full view)
 
     // Full view bounds
@@ -418,9 +418,12 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle>(function PhysicsCanvas(
       // Calculate current zoom level (1.0 = full view, smaller = zoomed in)
       const currentZoom = currentWidth / width;
 
-      // Calculate new zoom based on scroll direction
-      const zoomDelta = e.deltaY > 0 ? WHEEL_ZOOM_FACTOR : -WHEEL_ZOOM_FACTOR;
-      let newZoom = currentZoom + zoomDelta;
+      // Calculate new zoom using logarithmic scaling (multiply/divide by factor)
+      // Scroll down (positive deltaY) = zoom out (multiply), scroll up = zoom in (divide)
+      let newZoom =
+        e.deltaY > 0
+          ? currentZoom * WHEEL_ZOOM_FACTOR
+          : currentZoom / WHEEL_ZOOM_FACTOR;
 
       // Clamp zoom to min/max bounds
       newZoom = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, newZoom));
