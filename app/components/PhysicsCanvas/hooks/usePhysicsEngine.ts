@@ -29,7 +29,9 @@ interface UsePhysicsEngineReturn {
   spawnBall: (radius: number, name?: string) => void;
   clearBalls: () => void;
   removeBall: (id: number) => void;
+  toggleBallVisibility: (id: number) => void;
   balls: BallInfo[];
+  hiddenBallIds: Set<number>;
   hoveredBallId: number | null;
   setHoveredBallId: (id: number | null) => void;
   getBallAtPoint: (x: number, y: number) => number | null;
@@ -53,6 +55,8 @@ export function usePhysicsEngine(
   const [balls, setBalls] = useState<BallInfo[]>([]);
   const [hoveredBallId, setHoveredBallId] = useState<number | null>(null);
   const hoveredBallIdRef = useRef<number | null>(null);
+  const [hiddenBallIds, setHiddenBallIds] = useState<Set<number>>(new Set());
+  const hiddenBallIdsRef = useRef<Set<number>>(new Set());
   const hasRestoredBalls = useRef(false);
 
   // Keep ref in sync with state for use in render callback
@@ -143,6 +147,9 @@ export function usePhysicsEngine(
     const drawHoverHighlight = () => {
       const ctx = canvas.getContext("2d");
       if (!ctx || hoveredBallIdRef.current === null) return;
+
+      // Don't draw highlight for hidden balls
+      if (hiddenBallIdsRef.current.has(hoveredBallIdRef.current)) return;
 
       const bodies = Matter.Composite.allBodies(engine.world);
       const hoveredBall = bodies.find(
@@ -358,31 +365,129 @@ export function usePhysicsEngine(
     setBalls([]);
   }, []);
 
-  const removeBall = useCallback((id: number) => {
-    if (!physicsRefs.current.engine) return;
+  const removeBall = useCallback(
+    (id: number) => {
+      if (!physicsRefs.current.engine) return;
 
-    const bodies = Matter.Composite.allBodies(physicsRefs.current.engine.world);
-    const ballToRemove = bodies.find((b) => b.id === id);
+      // Remove from hidden set if it was hidden
+      const newHiddenSet = new Set(hiddenBallIdsRef.current);
+      newHiddenSet.delete(id);
 
-    if (ballToRemove) {
-      Matter.Composite.remove(physicsRefs.current.engine.world, ballToRemove);
+      // Get current balls without the removed one
+      const remainingBalls = balls.filter((b) => b.id !== id);
 
-      // Recalculate scale factor for remaining balls
-      ballManagerRef.current.recalculateScale(
+      if (remainingBalls.length === 0) {
+        // Just remove the ball and clear everything
+        const bodies = Matter.Composite.allBodies(
+          physicsRefs.current.engine.world
+        );
+        const ballToRemove = bodies.find((b) => b.id === id);
+        if (ballToRemove) {
+          Matter.Composite.remove(
+            physicsRefs.current.engine.world,
+            ballToRemove
+          );
+        }
+        ballManagerRef.current.resetScale();
+        setBalls([]);
+        setHiddenBallIds(new Set());
+        hiddenBallIdsRef.current = new Set();
+        return;
+      }
+
+      // Repaint all remaining balls
+      const { newBalls, idMapping } = ballManagerRef.current.repaintBalls(
         physicsRefs.current.engine,
-        dimensionsRef.current
+        dimensionsRef.current,
+        remainingBalls,
+        newHiddenSet
       );
 
-      setBalls((prev) => prev.filter((b) => b.id !== id));
-    }
-  }, []);
+      // Update hidden ball IDs with new IDs
+      const updatedHiddenSet = new Set<number>();
+      newHiddenSet.forEach((oldId) => {
+        const newId = idMapping.get(oldId);
+        if (newId !== undefined) {
+          updatedHiddenSet.add(newId);
+        }
+      });
+
+      hiddenBallIdsRef.current = updatedHiddenSet;
+      setHiddenBallIds(updatedHiddenSet);
+      setBalls(newBalls);
+    },
+    [balls]
+  );
+
+  const toggleBallVisibility = useCallback(
+    (id: number) => {
+      if (!physicsRefs.current.engine) return;
+
+      // Calculate new hidden set
+      const newHiddenSet = new Set(hiddenBallIdsRef.current);
+      const isCurrentlyHidden = newHiddenSet.has(id);
+      if (isCurrentlyHidden) {
+        newHiddenSet.delete(id);
+      } else {
+        newHiddenSet.add(id);
+      }
+
+      // Calculate what the new scale factor would be
+      const visibleBalls = balls.filter((b) => !newHiddenSet.has(b.id));
+      const newScaleFactor =
+        ballManagerRef.current.calculateScaleFactorForBalls(
+          visibleBalls,
+          dimensionsRef.current
+        );
+      const currentScaleFactor = ballManagerRef.current.getScaleFactor();
+
+      // Check if scale factor would change
+      if (Math.abs(newScaleFactor - currentScaleFactor) > 0.0001) {
+        // Scale factor changes - need to repaint
+        const { newBalls, idMapping } = ballManagerRef.current.repaintBalls(
+          physicsRefs.current.engine,
+          dimensionsRef.current,
+          balls,
+          newHiddenSet
+        );
+
+        // Update hidden ball IDs with new IDs
+        const updatedHiddenSet = new Set<number>();
+        newHiddenSet.forEach((oldId) => {
+          const newId = idMapping.get(oldId);
+          if (newId !== undefined) {
+            updatedHiddenSet.add(newId);
+          }
+        });
+
+        hiddenBallIdsRef.current = updatedHiddenSet;
+        setHiddenBallIds(updatedHiddenSet);
+        setBalls(newBalls);
+      } else {
+        // Scale factor stays the same - just toggle visibility in place
+        const bodies = Matter.Composite.allBodies(
+          physicsRefs.current.engine.world
+        );
+        const ball = bodies.find((b) => b.id === id);
+        if (ball) {
+          ball.render.visible = isCurrentlyHidden; // toggle: was hidden, now visible (or vice versa)
+        }
+
+        hiddenBallIdsRef.current = newHiddenSet;
+        setHiddenBallIds(newHiddenSet);
+      }
+    },
+    [balls]
+  );
 
   return {
     zoomLevel,
     spawnBall,
     clearBalls,
     removeBall,
+    toggleBallVisibility,
     balls,
+    hiddenBallIds,
     hoveredBallId,
     setHoveredBallId,
     getBallAtPoint,

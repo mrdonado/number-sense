@@ -13,8 +13,10 @@ describe("Legend", () => {
   const defaultProps = {
     balls: mockBalls,
     hoveredBallId: null,
+    hiddenBallIds: new Set<number>(),
     onHover: vi.fn(),
     onRemove: vi.fn(),
+    onToggleVisibility: vi.fn(),
   };
 
   it("renders nothing when there are no balls", () => {
@@ -22,8 +24,10 @@ describe("Legend", () => {
       <Legend
         balls={[]}
         hoveredBallId={null}
+        hiddenBallIds={new Set()}
         onHover={vi.fn()}
         onRemove={vi.fn()}
+        onToggleVisibility={vi.fn()}
       />
     );
     expect(container.firstChild).toBeNull();
@@ -114,22 +118,22 @@ describe("Legend", () => {
       expect(onRemove).toHaveBeenCalledTimes(1);
     });
 
-    it("does not trigger onHover when clicking remove button", () => {
-      const onHover = vi.fn();
+    it("does not trigger onToggleVisibility when clicking remove button", () => {
       const onRemove = vi.fn();
+      const onToggleVisibility = vi.fn();
       render(
-        <Legend {...defaultProps} onHover={onHover} onRemove={onRemove} />
+        <Legend
+          {...defaultProps}
+          onRemove={onRemove}
+          onToggleVisibility={onToggleVisibility}
+        />
       );
-
-      // Reset any calls from initial render
-      onHover.mockClear();
 
       const removeButtons = screen.getAllByRole("button", { name: "🗑️" });
       fireEvent.click(removeButtons[0]);
 
-      // onHover should not be called during click (stopPropagation)
-      // Note: mouseEnter/mouseLeave on the parent might still fire, but click should be isolated
       expect(onRemove).toHaveBeenCalled();
+      expect(onToggleVisibility).not.toHaveBeenCalled();
     });
 
     it("has cursor-pointer class on remove button", () => {
@@ -139,6 +143,61 @@ describe("Legend", () => {
       removeButtons.forEach((button) => {
         expect(button.className).toContain("cursor-pointer");
       });
+    });
+  });
+
+  describe("visibility toggle", () => {
+    it("calls onToggleVisibility with ball id when list item is clicked", () => {
+      const onToggleVisibility = vi.fn();
+      render(
+        <Legend {...defaultProps} onToggleVisibility={onToggleVisibility} />
+      );
+
+      const listItems = screen.getAllByRole("listitem");
+      fireEvent.click(listItems[1]);
+
+      expect(onToggleVisibility).toHaveBeenCalledWith(2);
+    });
+
+    it("shows grayed out style for hidden balls", () => {
+      const hiddenBallIds = new Set([2]);
+      render(<Legend {...defaultProps} hiddenBallIds={hiddenBallIds} />);
+
+      const listItems = screen.getAllByRole("listitem") as HTMLElement[];
+
+      // Hidden ball (id=2) should have reduced opacity
+      expect(listItems[1].style.opacity).toBe("0.4");
+
+      // Visible balls should have full opacity
+      expect(listItems[0].style.opacity).toBe("1");
+      expect(listItems[2].style.opacity).toBe("1");
+    });
+
+    it("applies grayscale filter to hidden ball color indicator", () => {
+      const hiddenBallIds = new Set([1]);
+      render(<Legend {...defaultProps} hiddenBallIds={hiddenBallIds} />);
+
+      const listItems = screen.getAllByRole("listitem");
+      const hiddenColorIndicator = listItems[0].querySelector(
+        "span"
+      ) as HTMLElement;
+      const visibleColorIndicator = listItems[1].querySelector(
+        "span"
+      ) as HTMLElement;
+
+      expect(hiddenColorIndicator.style.filter).toBe("grayscale(100%)");
+      expect(visibleColorIndicator.style.filter).toBe("none");
+    });
+
+    it("shows dimmed text for hidden balls", () => {
+      const hiddenBallIds = new Set([3]);
+      render(<Legend {...defaultProps} hiddenBallIds={hiddenBallIds} />);
+
+      const hiddenBallText = screen.getByText("Green Ball");
+      const visibleBallText = screen.getByText("Red Ball");
+
+      expect(hiddenBallText.style.color).toBe("rgba(255, 255, 255, 0.5)");
+      expect(visibleBallText.style.color).toBe("white");
     });
   });
 });

@@ -20,7 +20,9 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle>(function PhysicsCanvas(
     spawnBall,
     clearBalls,
     removeBall,
+    toggleBallVisibility,
     balls,
+    hiddenBallIds,
     hoveredBallId,
     setHoveredBallId,
     getBallAtPoint,
@@ -85,8 +87,10 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle>(function PhysicsCanvas(
         <Legend
           balls={balls}
           hoveredBallId={hoveredBallId}
+          hiddenBallIds={hiddenBallIds}
           onHover={setHoveredBallId}
           onRemove={removeBall}
+          onToggleVisibility={toggleBallVisibility}
         />
       </div>
     </div>

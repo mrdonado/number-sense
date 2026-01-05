@@ -176,6 +176,48 @@ export class BallManager {
   }
 
   /**
+   * Spawn a ball at the current scale factor without recalculating
+   * Used for hidden balls that shouldn't affect the visible scaling
+   */
+  private spawnBallAtCurrentScale(
+    engine: Matter.Engine,
+    persistedBall: PersistedBall,
+    dimensions: Dimensions
+  ): BallInfo {
+    const { width } = dimensions;
+    const { originalRadius, name, color } = persistedBall;
+
+    // Calculate the display radius using current scale factor
+    const displayRadius = originalRadius * this.scaleFactor;
+
+    const x = Math.random() * (width - displayRadius * 2) + displayRadius;
+
+    // Create a ball with the persisted color
+    const ball = Matter.Bodies.circle(x, displayRadius + 10, displayRadius, {
+      restitution: BALL_RESTITUTION,
+      friction: BALL_FRICTION,
+      frictionAir: BALL_FRICTION_AIR,
+      render: {
+        fillStyle: color,
+      },
+    }) as BallBody;
+
+    // Store the original radius, name, and color
+    ball.originalRadius = originalRadius;
+    ball.ballName = name;
+    ball.ballColor = color;
+
+    Matter.Composite.add(engine.world, [ball]);
+
+    return {
+      id: ball.id,
+      name,
+      color,
+      originalRadius,
+    };
+  }
+
+  /**
    * Reset the scale factor (useful when clearing all balls)
    */
   resetScale(): void {
@@ -183,24 +225,66 @@ export class BallManager {
   }
 
   /**
-   * Recalculate scale factor after removing a ball
-   * Resizes all remaining balls so the largest fills TARGET_BALL_RATIO of the canvas
+   * Get the current scale factor
    */
-  recalculateScale(engine: Matter.Engine, dimensions: Dimensions): void {
+  getScaleFactor(): number {
+    return this.scaleFactor;
+  }
+
+  /**
+   * Calculate what the scale factor would be for the given visible balls
+   * Used to determine if a repaint is needed
+   */
+  calculateScaleFactorForBalls(
+    visibleBalls: BallInfo[],
+    dimensions: Dimensions
+  ): number {
+    if (visibleBalls.length === 0) {
+      return 1.0;
+    }
+
+    const minDimension = Math.min(dimensions.width, dimensions.height);
+    const targetDisplayRadius = (minDimension * TARGET_BALL_RATIO) / 2;
+
+    // Find the largest original radius among visible balls
+    let maxOriginalRadius = 0;
+    visibleBalls.forEach((ball) => {
+      if (ball.originalRadius > maxOriginalRadius) {
+        maxOriginalRadius = ball.originalRadius;
+      }
+    });
+
+    if (maxOriginalRadius === 0) return 1.0;
+
+    return targetDisplayRadius / maxOriginalRadius;
+  }
+
+  /**
+   * Recalculate scale factor after removing or hiding a ball
+   * Resizes all remaining visible balls so the largest fills TARGET_BALL_RATIO of the canvas
+   * @param excludeIds - Set of ball IDs to exclude from scaling calculations (e.g., hidden balls)
+   */
+  recalculateScale(
+    engine: Matter.Engine,
+    dimensions: Dimensions,
+    excludeIds?: Set<number>
+  ): void {
     const { width, height } = dimensions;
     const minDimension = Math.min(width, height);
     const targetDisplayRadius = (minDimension * TARGET_BALL_RATIO) / 2;
 
-    // Get all remaining dynamic bodies (balls)
+    // Get all remaining dynamic bodies (balls), excluding hidden ones
     const bodies = Matter.Composite.allBodies(engine.world);
-    const balls = bodies.filter((b) => !b.isStatic) as BallBody[];
+    const balls = bodies.filter(
+      (b) => !b.isStatic && (!excludeIds || !excludeIds.has(b.id))
+    ) as BallBody[];
 
     if (balls.length === 0) {
       this.scaleFactor = 1.0;
       return;
     }
 
-    // Find the largest original radius among remaining balls
+    // Find the largest original radius among remaining visible balls
     let maxOriginalRadius = 0;
     balls.forEach((ball) => {
       if (ball.originalRadius && ball.originalRadius > maxOriginalRadius) {
@@ -213,11 +297,13 @@ export class BallManager {
     // Calculate new scale factor
     const newScaleFactor = targetDisplayRadius / maxOriginalRadius;
 
-    // If scale factor changed, resize all balls
+    // If scale factor changed, resize all balls (including hidden ones to maintain consistency)
     if (newScaleFactor !== this.scaleFactor) {
       const scaleRatio = newScaleFactor / this.scaleFactor;
 
-      balls.forEach((ball) => {
+      // Scale ALL balls, not just visible ones, to maintain consistency
+      const allBalls = bodies.filter((b) => !b.isStatic) as BallBody[];
+      allBalls.forEach((ball) => {
         if (ball.originalRadius) {
           const newRadius = ball.originalRadius * newScaleFactor;
           Matter.Body.scale(ball, scaleRatio, scaleRatio);
@@ -227,5 +313,97 @@ export class BallManager {
 
       this.scaleFactor = newScaleFactor;
     }
+  }
+
+  /**
+   * Repaint all balls by removing them and respawning fresh
+   * This ensures consistent sizing and positioning after visibility changes
+   * @param excludeIds - Set of ball IDs to exclude from scaling calculations (hidden balls)
+   * @returns New ball info array with updated IDs (preserving original order)
+   */
+  repaintBalls(
+    engine: Matter.Engine,
+    dimensions: Dimensions,
+    currentBalls: BallInfo[],
+    excludeIds: Set<number>
+  ): { newBalls: BallInfo[]; idMapping: Map<number, number> } {
+    const { width, height } = dimensions;
+    const minDimension = Math.min(width, height);
+    const targetDisplayRadius = (minDimension * TARGET_BALL_RATIO) / 2;
+
+    // Get all current ball bodies
+    const bodies = Matter.Composite.allBodies(engine.world);
+    const ballBodies = bodies.filter((b) => !b.isStatic) as BallBody[];
+
+    // Remove all ball bodies from the world
+    ballBodies.forEach((ball) => {
+      Matter.Composite.remove(engine.world, ball);
+    });
+
+    // Separate visible and hidden balls from currentBalls (preserving references)
+    const visibleBallInfos = currentBalls.filter((b) => !excludeIds.has(b.id));
+    const hiddenBallInfos = currentBalls.filter((b) => excludeIds.has(b.id));
+
+    // Calculate scale factor based on visible balls only
+    let maxOriginalRadius = 0;
+    visibleBallInfos.forEach((ball) => {
+      if (ball.originalRadius > maxOriginalRadius) {
+        maxOriginalRadius = ball.originalRadius;
+      }
+    });
+
+    // Set scale factor (default to 1.0 if no visible balls)
+    if (maxOriginalRadius > 0) {
+      this.scaleFactor = targetDisplayRadius / maxOriginalRadius;
+    } else {
+      this.scaleFactor = 1.0;
+    }
+
+    const idMapping = new Map<number, number>();
+    const newBallInfoMap = new Map<number, BallInfo>();
+
+    // Spawn all visible balls at the correct scale
+    for (const ballInfo of visibleBallInfos) {
+      const newBallInfo = this.spawnBallAtCurrentScale(
+        engine,
+        {
+          name: ballInfo.name,
+          color: ballInfo.color,
+          originalRadius: ballInfo.originalRadius,
+        },
+        dimensions
+      );
+      idMapping.set(ballInfo.id, newBallInfo.id);
+      newBallInfoMap.set(ballInfo.id, newBallInfo);
+    }
+
+    // Spawn hidden balls at the same scale, but hidden
+    for (const ballInfo of hiddenBallInfos) {
+      const newBallInfo = this.spawnBallAtCurrentScale(
+        engine,
+        {
+          name: ballInfo.name,
+          color: ballInfo.color,
+          originalRadius: ballInfo.originalRadius,
+        },
+        dimensions
+      );
+      idMapping.set(ballInfo.id, newBallInfo.id);
+      newBallInfoMap.set(ballInfo.id, newBallInfo);
+
+      // Hide the newly created ball
+      const newBodies = Matter.Composite.allBodies(engine.world);
+      const newBall = newBodies.find((b) => b.id === newBallInfo.id);
+      if (newBall) {
+        newBall.render.visible = false;
+      }
+    }
+
+    // Reconstruct newBalls array in the original order
+    const newBalls: BallInfo[] = currentBalls.map(
+      (ball) => newBallInfoMap.get(ball.id)!
+    );
+
+    return { newBalls, idMapping };
   }
 }
