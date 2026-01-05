@@ -6,7 +6,7 @@ import {
   BALL_FRICTION_AIR,
   BALL_COLORS,
 } from "../constants";
-import type { BallBody, BallInfo, Dimensions } from "../types";
+import type { BallBody, BallInfo, Dimensions, PersistedBall } from "../types";
 
 /**
  * Manages ball spawning and scaling
@@ -96,6 +96,82 @@ export class BallManager {
       name: name || `Ball ${ball.id}`,
       color: ballColor,
       originalRadius: radius,
+    };
+  }
+
+  /**
+   * Restore a ball from persisted data (with specific color)
+   * Used when loading balls from localStorage
+   */
+  restoreBall(
+    engine: Matter.Engine,
+    persistedBall: PersistedBall,
+    dimensions: Dimensions
+  ): BallInfo {
+    const { width, height } = dimensions;
+    const minDimension = Math.min(width, height);
+    const { originalRadius, name, color } = persistedBall;
+
+    // Target display radius
+    const targetDisplayRadius = (minDimension * TARGET_BALL_RATIO) / 2;
+
+    // Get all existing dynamic bodies (balls)
+    const bodies = Matter.Composite.allBodies(engine.world);
+    const balls = bodies.filter((b) => !b.isStatic) as BallBody[];
+
+    // Find the largest original radius among all balls (including the new one)
+    let maxOriginalRadius = originalRadius;
+    balls.forEach((ball) => {
+      if (ball.originalRadius && ball.originalRadius > maxOriginalRadius) {
+        maxOriginalRadius = ball.originalRadius;
+      }
+    });
+
+    // Calculate scale factor
+    const newScaleFactor = targetDisplayRadius / maxOriginalRadius;
+
+    // If scale factor changed, resize all existing balls
+    if (newScaleFactor !== this.scaleFactor) {
+      const scaleRatio = newScaleFactor / this.scaleFactor;
+
+      balls.forEach((ball) => {
+        if (ball.originalRadius) {
+          const newRadius = ball.originalRadius * newScaleFactor;
+          Matter.Body.scale(ball, scaleRatio, scaleRatio);
+          ball.circleRadius = newRadius;
+        }
+      });
+
+      this.scaleFactor = newScaleFactor;
+    }
+
+    // Calculate the display radius for the new ball
+    const displayRadius = originalRadius * this.scaleFactor;
+
+    const x = Math.random() * (width - displayRadius * 2) + displayRadius;
+
+    // Create a ball with the persisted color
+    const ball = Matter.Bodies.circle(x, displayRadius + 10, displayRadius, {
+      restitution: BALL_RESTITUTION,
+      friction: BALL_FRICTION,
+      frictionAir: BALL_FRICTION_AIR,
+      render: {
+        fillStyle: color,
+      },
+    }) as BallBody;
+
+    // Store the original radius, name, and color
+    ball.originalRadius = originalRadius;
+    ball.ballName = name;
+    ball.ballColor = color;
+
+    Matter.Composite.add(engine.world, [ball]);
+
+    return {
+      id: ball.id,
+      name,
+      color,
+      originalRadius,
     };
   }
 

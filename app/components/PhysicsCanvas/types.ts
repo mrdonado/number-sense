@@ -16,6 +16,13 @@ export interface BallInfo {
   originalRadius: number;
 }
 
+// Persisted ball data for localStorage
+export interface PersistedBall {
+  name: string;
+  color: string;
+  originalRadius: number;
+}
+
 // Public handle exposed via ref
 export interface PhysicsCanvasHandle {
   spawnBall: (radius: number, name?: string) => void;

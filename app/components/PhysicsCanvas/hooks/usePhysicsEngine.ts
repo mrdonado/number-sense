@@ -9,7 +9,15 @@ import { createCursorUpdateHandler } from "../physics/cursorManager";
 import { BallManager } from "../physics/ballManager";
 import { useZoom } from "./useZoom";
 import { usePanning } from "./usePanning";
-import type { BallBody, BallInfo, Dimensions, PhysicsRefs } from "../types";
+import type {
+  BallBody,
+  BallInfo,
+  Dimensions,
+  PersistedBall,
+  PhysicsRefs,
+} from "../types";
+
+const STORAGE_KEY = "number-sense-balls";
 
 interface UsePhysicsEngineOptions {
   containerRef: React.RefObject<HTMLDivElement | null>;
@@ -43,11 +51,26 @@ export function usePhysicsEngine(
   const [balls, setBalls] = useState<BallInfo[]>([]);
   const [hoveredBallId, setHoveredBallId] = useState<number | null>(null);
   const hoveredBallIdRef = useRef<number | null>(null);
+  const hasRestoredBalls = useRef(false);
 
   // Keep ref in sync with state for use in render callback
   useEffect(() => {
     hoveredBallIdRef.current = hoveredBallId;
   }, [hoveredBallId]);
+
+  // Persist balls to localStorage whenever they change
+  useEffect(() => {
+    if (balls.length === 0 && !hasRestoredBalls.current) {
+      // Don't clear storage before we've had a chance to restore
+      return;
+    }
+    const persistedBalls: PersistedBall[] = balls.map((ball) => ({
+      name: ball.name,
+      color: ball.color,
+      originalRadius: ball.originalRadius,
+    }));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(persistedBalls));
+  }, [balls]);
 
   // These refs will be populated after physics initialization
   const zoomHookRef = useRef<ReturnType<typeof useZoom> | null>(null);
@@ -205,6 +228,31 @@ export function usePhysicsEngine(
     canvas.addEventListener("mouseleave", handleMouseUp);
     canvas.addEventListener("contextmenu", handleContextMenu);
     Matter.Events.on(render, "beforeRender", updateZoomedView);
+
+    // Restore persisted balls from localStorage
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored) {
+        const persistedBalls: PersistedBall[] = JSON.parse(stored);
+        const restoredBalls: BallInfo[] = [];
+
+        for (const persistedBall of persistedBalls) {
+          const ballInfo = ballManagerRef.current.restoreBall(
+            engine,
+            persistedBall,
+            { width, height }
+          );
+          restoredBalls.push(ballInfo);
+        }
+
+        if (restoredBalls.length > 0) {
+          setBalls(restoredBalls);
+        }
+      }
+    } catch (e) {
+      console.error("Failed to restore balls from localStorage:", e);
+    }
+    hasRestoredBalls.current = true;
 
     // Cleanup
     return () => {
