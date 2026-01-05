@@ -54,6 +54,12 @@ export default function Home() {
           >
             Drop Ball
           </button>
+          <button
+            onClick={() => canvasRef.current?.clearBalls()}
+            className="px-6 py-2 bg-zinc-600 text-white rounded-lg hover:opacity-90 transition-opacity font-medium"
+          >
+            Clear
+          </button>
         </div>
         <PhysicsCanvas ref={canvasRef} />
       </main>

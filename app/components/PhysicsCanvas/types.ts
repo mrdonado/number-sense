@@ -26,6 +26,7 @@ export interface PersistedBall {
 // Public handle exposed via ref
 export interface PhysicsCanvasHandle {
   spawnBall: (radius: number, name?: string) => void;
+  clearBalls: () => void;
 }
 
 // Bounds rectangle for zoom/pan calculations

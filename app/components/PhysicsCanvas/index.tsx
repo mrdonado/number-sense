@@ -18,6 +18,7 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle>(function PhysicsCanvas(
   const {
     zoomLevel,
     spawnBall,
+    clearBalls,
     balls,
     hoveredBallId,
     setHoveredBallId,
@@ -29,6 +30,7 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle>(function PhysicsCanvas(
 
   useImperativeHandle(ref, () => ({
     spawnBall,
+    clearBalls,
   }));
 
   // Handle mouse move on canvas to detect hover over balls

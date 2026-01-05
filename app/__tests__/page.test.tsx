@@ -6,15 +6,20 @@ import Home from "../page";
 
 // Mock the PhysicsCanvas component
 const mockSpawnBall = vi.fn();
+const mockClearBalls = vi.fn();
 
 vi.mock("../components/PhysicsCanvas/index", () => ({
   default: React.forwardRef(function MockPhysicsCanvas(
     _props: unknown,
     ref: React.ForwardedRef<{
       spawnBall: (radius: number, name?: string) => void;
+      clearBalls: () => void;
     }>
   ) {
-    React.useImperativeHandle(ref, () => ({ spawnBall: mockSpawnBall }));
+    React.useImperativeHandle(ref, () => ({
+      spawnBall: mockSpawnBall,
+      clearBalls: mockClearBalls,
+    }));
     return <div data-testid="physics-canvas">Physics Canvas</div>;
   }),
   __esModule: true,
@@ -26,6 +31,7 @@ const areaToRadius = (area: number) => Math.sqrt(area / Math.PI);
 describe("Home Page", () => {
   beforeEach(() => {
     mockSpawnBall.mockClear();
+    mockClearBalls.mockClear();
   });
 
   it("renders the header", () => {
@@ -44,6 +50,11 @@ describe("Home Page", () => {
     expect(
       screen.getByRole("button", { name: "Drop Ball" })
     ).toBeInTheDocument();
+  });
+
+  it("renders the Clear button", () => {
+    render(<Home />);
+    expect(screen.getByRole("button", { name: "Clear" })).toBeInTheDocument();
   });
 
   it("renders the PhysicsCanvas component", () => {
@@ -211,6 +222,38 @@ describe("Home Page", () => {
       await user.clear(input);
 
       expect(input.value).toBe("");
+    });
+  });
+
+  describe("clear balls", () => {
+    it("calls clearBalls when clicking the Clear button", async () => {
+      const user = userEvent.setup();
+      render(<Home />);
+
+      const clearButton = screen.getByRole("button", { name: "Clear" });
+      await user.click(clearButton);
+
+      expect(mockClearBalls).toHaveBeenCalledTimes(1);
+    });
+
+    it("can clear after spawning balls", async () => {
+      const user = userEvent.setup();
+      render(<Home />);
+
+      const areaInput = screen.getByPlaceholderText("Enter area");
+      const dropButton = screen.getByRole("button", { name: "Drop Ball" });
+      const clearButton = screen.getByRole("button", { name: "Clear" });
+
+      // Spawn a ball
+      await user.type(areaInput, "100");
+      await user.click(dropButton);
+
+      expect(mockSpawnBall).toHaveBeenCalledTimes(1);
+
+      // Clear all balls
+      await user.click(clearButton);
+
+      expect(mockClearBalls).toHaveBeenCalledTimes(1);
     });
   });
 });
