@@ -6,7 +6,7 @@ import {
   BALL_FRICTION_AIR,
   BALL_COLORS,
 } from "../constants";
-import type { BallBody, Dimensions } from "../types";
+import type { BallBody, BallInfo, Dimensions } from "../types";
 
 /**
  * Manages ball spawning and scaling
@@ -17,13 +17,14 @@ export class BallManager {
   /**
    * Spawn a new ball with the given radius
    * Handles automatic scaling so the largest ball always fills TARGET_BALL_RATIO of the canvas
+   * Returns the ball info for tracking in the legend
    */
   spawnBall(
     engine: Matter.Engine,
     radius: number,
     dimensions: Dimensions,
     name?: string
-  ): void {
+  ): BallInfo {
     const { width, height } = dimensions;
     const minDimension = Math.min(width, height);
 
@@ -88,6 +89,14 @@ export class BallManager {
     ball.ballColor = ballColor;
 
     Matter.Composite.add(engine.world, [ball]);
+
+    // Return ball info for the legend
+    return {
+      id: ball.id,
+      name: name || `Ball ${ball.id}`,
+      color: ballColor,
+      originalRadius: radius,
+    };
   }
 
   /**

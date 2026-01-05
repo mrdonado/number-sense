@@ -9,7 +9,7 @@ import { createCursorUpdateHandler } from "../physics/cursorManager";
 import { BallManager } from "../physics/ballManager";
 import { useZoom } from "./useZoom";
 import { usePanning } from "./usePanning";
-import type { Dimensions, PhysicsRefs } from "../types";
+import type { BallBody, BallInfo, Dimensions, PhysicsRefs } from "../types";
 
 interface UsePhysicsEngineOptions {
   containerRef: React.RefObject<HTMLDivElement | null>;
@@ -19,6 +19,10 @@ interface UsePhysicsEngineOptions {
 interface UsePhysicsEngineReturn {
   zoomLevel: number;
   spawnBall: (radius: number, name?: string) => void;
+  balls: BallInfo[];
+  hoveredBallId: number | null;
+  setHoveredBallId: (id: number | null) => void;
+  getBallAtPoint: (x: number, y: number) => number | null;
 }
 
 export function usePhysicsEngine(
@@ -36,6 +40,14 @@ export function usePhysicsEngine(
   const ballManagerRef = useRef<BallManager>(new BallManager());
   const dimensionsRef = useRef<Dimensions>({ width: 0, height: 0 });
   const [zoomLevel, setZoomLevel] = useState(1.0);
+  const [balls, setBalls] = useState<BallInfo[]>([]);
+  const [hoveredBallId, setHoveredBallId] = useState<number | null>(null);
+  const hoveredBallIdRef = useRef<number | null>(null);
+
+  // Keep ref in sync with state for use in render callback
+  useEffect(() => {
+    hoveredBallIdRef.current = hoveredBallId;
+  }, [hoveredBallId]);
 
   // These refs will be populated after physics initialization
   const zoomHookRef = useRef<ReturnType<typeof useZoom> | null>(null);
@@ -102,8 +114,38 @@ export function usePhysicsEngine(
     });
     const updateCursor = createCursorUpdateHandler(engine, mouse, canvas);
 
+    // Handler to draw highlight border on hovered balls
+    const drawHoverHighlight = () => {
+      const ctx = canvas.getContext("2d");
+      if (!ctx || hoveredBallIdRef.current === null) return;
+
+      const bodies = Matter.Composite.allBodies(engine.world);
+      const hoveredBall = bodies.find(
+        (b) => b.id === hoveredBallIdRef.current
+      ) as BallBody | undefined;
+
+      if (hoveredBall && hoveredBall.circleRadius) {
+        // Account for current zoom/pan by using render bounds
+        const scaleX = width / (render.bounds.max.x - render.bounds.min.x);
+        const scaleY = height / (render.bounds.max.y - render.bounds.min.y);
+        const offsetX = render.bounds.min.x;
+        const offsetY = render.bounds.min.y;
+
+        const screenX = (hoveredBall.position.x - offsetX) * scaleX;
+        const screenY = (hoveredBall.position.y - offsetY) * scaleY;
+        const screenRadius = hoveredBall.circleRadius * scaleX;
+
+        ctx.beginPath();
+        ctx.arc(screenX, screenY, screenRadius + 3, 0, Math.PI * 2);
+        ctx.strokeStyle = "#ffffff";
+        ctx.lineWidth = 3;
+        ctx.stroke();
+      }
+    };
+
     Matter.Events.on(engine, "afterUpdate", checkEscapedBalls);
     Matter.Events.on(render, "afterRender", updateCursor);
+    Matter.Events.on(render, "afterRender", drawHoverHighlight);
 
     // Run the renderer
     Matter.Render.run(render);
@@ -178,6 +220,7 @@ export function usePhysicsEngine(
       Matter.Events.off(render, "beforeRender", updateZoomedView);
       Matter.Events.off(engine, "afterUpdate", checkEscapedBalls);
       Matter.Events.off(render, "afterRender", updateCursor);
+      Matter.Events.off(render, "afterRender", drawHoverHighlight);
       Matter.Render.stop(render);
       Matter.Runner.stop(runner);
       Matter.Mouse.clearSourceEvents(mouse);
@@ -192,7 +235,7 @@ export function usePhysicsEngine(
       const width = containerRef.current.clientWidth;
       const height = containerRef.current.clientHeight;
 
-      ballManagerRef.current.spawnBall(
+      const ballInfo = ballManagerRef.current.spawnBall(
         physicsRefs.current.engine,
         radius,
         {
@@ -201,13 +244,61 @@ export function usePhysicsEngine(
         },
         name
       );
+
+      setBalls((prev) => [...prev, ballInfo]);
     },
     [containerRef]
+  );
+
+  const getBallAtPoint = useCallback(
+    (screenX: number, screenY: number): number | null => {
+      if (!physicsRefs.current.engine || !physicsRefs.current.render)
+        return null;
+
+      const render = physicsRefs.current.render;
+      const { width, height } = dimensionsRef.current;
+
+      // Convert screen coordinates to world coordinates accounting for zoom/pan
+      const bounds = {
+        minX: render.bounds.min.x,
+        minY: render.bounds.min.y,
+        maxX: render.bounds.max.x,
+        maxY: render.bounds.max.y,
+      };
+
+      const scaleX = (bounds.maxX - bounds.minX) / width;
+      const scaleY = (bounds.maxY - bounds.minY) / height;
+
+      const worldX = bounds.minX + screenX * scaleX;
+      const worldY = bounds.minY + screenY * scaleY;
+
+      const bodies = Matter.Composite.allBodies(
+        physicsRefs.current.engine.world
+      );
+
+      for (const body of bodies) {
+        if (body.isStatic) continue;
+        const ball = body as BallBody;
+        const dx = worldX - ball.position.x;
+        const dy = worldY - ball.position.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        if (ball.circleRadius && distance <= ball.circleRadius) {
+          return ball.id;
+        }
+      }
+
+      return null;
+    },
+    []
   );
 
   return {
     zoomLevel,
     spawnBall,
+    balls,
+    hoveredBallId,
+    setHoveredBallId,
+    getBallAtPoint,
   };
 }
 
@@ -221,7 +312,7 @@ import {
   MOUSE_STIFFNESS,
 } from "../constants";
 import { screenToWorld, findClosestBody } from "../utils";
-import type { Bounds, BallBody } from "../types";
+import type { Bounds } from "../types";
 
 interface ZoomHandlerOptions {
   dimensions: Dimensions;

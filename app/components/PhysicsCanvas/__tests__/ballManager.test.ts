@@ -144,6 +144,30 @@ describe("BallManager", () => {
       }
     });
 
+    it("returns BallInfo with correct data", () => {
+      const result = ballManager.spawnBall(
+        mockEngine,
+        25,
+        dimensions,
+        "Test Ball"
+      );
+
+      expect(result).toMatchObject({
+        id: expect.any(Number),
+        name: "Test Ball",
+        color: expect.any(String),
+        originalRadius: 25,
+      });
+      expect(BALL_COLORS).toContain(result.color);
+    });
+
+    it("returns BallInfo with default name when not provided", () => {
+      const result = ballManager.spawnBall(mockEngine, 10, dimensions);
+
+      // Default name is "Ball {id}" where id can be any number (including decimals from mock)
+      expect(result.name).toMatch(/^Ball .+$/);
+    });
+
     it("scales down existing balls when a larger ball is added", () => {
       // First, spawn a ball with radius 10 to set the internal scaleFactor
       ballManager.spawnBall(mockEngine, 10, dimensions);

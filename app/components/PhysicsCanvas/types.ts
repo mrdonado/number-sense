@@ -8,6 +8,14 @@ export interface BallBody extends Matter.Body {
   ballColor?: string;
 }
 
+// Ball info for the legend
+export interface BallInfo {
+  id: number;
+  name: string;
+  color: string;
+  originalRadius: number;
+}
+
 // Public handle exposed via ref
 export interface PhysicsCanvasHandle {
   spawnBall: (radius: number, name?: string) => void;

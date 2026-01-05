@@ -1,8 +1,9 @@
 "use client";
 
-import { useRef, forwardRef, useImperativeHandle } from "react";
+import { useRef, forwardRef, useImperativeHandle, useCallback } from "react";
 import { ZOOM_INDICATOR_HEIGHT } from "./constants";
 import { usePhysicsEngine } from "./hooks/usePhysicsEngine";
+import { Legend } from "./Legend";
 import type { PhysicsCanvasHandle } from "./types";
 
 export type { PhysicsCanvasHandle } from "./types";
@@ -14,7 +15,14 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle>(function PhysicsCanvas(
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  const { zoomLevel, spawnBall } = usePhysicsEngine({
+  const {
+    zoomLevel,
+    spawnBall,
+    balls,
+    hoveredBallId,
+    setHoveredBallId,
+    getBallAtPoint,
+  } = usePhysicsEngine({
     containerRef,
     canvasRef,
   });
@@ -22,6 +30,26 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle>(function PhysicsCanvas(
   useImperativeHandle(ref, () => ({
     spawnBall,
   }));
+
+  // Handle mouse move on canvas to detect hover over balls
+  const handleCanvasMouseMove = useCallback(
+    (e: React.MouseEvent<HTMLCanvasElement>) => {
+      const canvas = canvasRef.current;
+      if (!canvas) return;
+
+      const rect = canvas.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      const ballId = getBallAtPoint(x, y);
+      setHoveredBallId(ballId);
+    },
+    [getBallAtPoint, setHoveredBallId]
+  );
+
+  const handleCanvasMouseLeave = useCallback(() => {
+    setHoveredBallId(null);
+  }, [setHoveredBallId]);
 
   return (
     <div
@@ -44,7 +72,19 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle>(function PhysicsCanvas(
           }}
         />
       </div>
-      <canvas ref={canvasRef} className="flex-1" />
+      <div className="flex-1 relative">
+        <canvas
+          ref={canvasRef}
+          className="w-full h-full"
+          onMouseMove={handleCanvasMouseMove}
+          onMouseLeave={handleCanvasMouseLeave}
+        />
+        <Legend
+          balls={balls}
+          hoveredBallId={hoveredBallId}
+          onHover={setHoveredBallId}
+        />
+      </div>
     </div>
   );
 });
