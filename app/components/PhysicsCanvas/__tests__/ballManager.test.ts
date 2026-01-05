@@ -310,4 +310,217 @@ describe("BallManager", () => {
       expect(displayRadius).toBe(targetDisplayRadius);
     });
   });
+
+  describe("recalculateScale", () => {
+    it("scales remaining balls up when largest ball is removed", () => {
+      // First spawn two balls to establish scale factor
+      ballManager.spawnBall(mockEngine, 10, dimensions);
+
+      const existingSmallBall = {
+        id: 1,
+        isStatic: false,
+        originalRadius: 10,
+        circleRadius: targetDisplayRadius,
+      } as BallBody;
+
+      vi.mocked(Matter.Composite.allBodies).mockReturnValue([
+        existingSmallBall,
+      ]);
+
+      // Add a larger ball - this will scale down the first one
+      ballManager.spawnBall(mockEngine, 20, dimensions);
+
+      // Now simulate that the large ball was removed, only small ball remains
+      const remainingSmallBall = {
+        id: 1,
+        isStatic: false,
+        originalRadius: 10,
+        circleRadius: 75, // was scaled to half (150 * 0.5)
+      } as BallBody;
+
+      vi.mocked(Matter.Composite.allBodies).mockReturnValue([
+        remainingSmallBall,
+      ]);
+      vi.mocked(Matter.Body.scale).mockClear();
+
+      // Recalculate scale
+      ballManager.recalculateScale(mockEngine, dimensions);
+
+      // The small ball should be scaled up to fill target size
+      // Old scaleFactor was 150/20 = 7.5, new is 150/10 = 15
+      // scaleRatio = 15 / 7.5 = 2
+      expect(Matter.Body.scale).toHaveBeenCalledWith(remainingSmallBall, 2, 2);
+    });
+
+    it("does not scale when scale factor remains the same", () => {
+      // Spawn a ball
+      ballManager.spawnBall(mockEngine, 10, dimensions);
+
+      const existingBall = {
+        id: 1,
+        isStatic: false,
+        originalRadius: 10,
+        circleRadius: targetDisplayRadius,
+      } as BallBody;
+
+      vi.mocked(Matter.Composite.allBodies).mockReturnValue([existingBall]);
+      vi.mocked(Matter.Body.scale).mockClear();
+
+      // Recalculate - should not change anything since largest ball is still the same size
+      ballManager.recalculateScale(mockEngine, dimensions);
+
+      expect(Matter.Body.scale).not.toHaveBeenCalled();
+    });
+
+    it("resets scale factor to 1.0 when no balls remain", () => {
+      // Spawn a ball to set scale factor
+      ballManager.spawnBall(mockEngine, 10, dimensions);
+
+      // Simulate all balls removed
+      vi.mocked(Matter.Composite.allBodies).mockReturnValue([]);
+      vi.mocked(Matter.Body.scale).mockClear();
+
+      // Recalculate
+      ballManager.recalculateScale(mockEngine, dimensions);
+
+      // No scaling should happen
+      expect(Matter.Body.scale).not.toHaveBeenCalled();
+
+      // Verify scale factor was reset by spawning a new ball
+      vi.mocked(Matter.Bodies.circle).mockClear();
+      ballManager.spawnBall(mockEngine, 20, dimensions);
+
+      // New ball should be at target size
+      const call = vi.mocked(Matter.Bodies.circle).mock.calls[0];
+      const displayRadius = call[2];
+      expect(displayRadius).toBe(targetDisplayRadius);
+    });
+
+    it("scales all remaining balls proportionally", () => {
+      // Spawn three balls: 10, 20, 40 (largest)
+      ballManager.spawnBall(mockEngine, 10, dimensions);
+
+      // Set up first ball
+      const ball1 = {
+        id: 1,
+        isStatic: false,
+        originalRadius: 10,
+        circleRadius: targetDisplayRadius,
+      } as BallBody;
+      vi.mocked(Matter.Composite.allBodies).mockReturnValue([ball1]);
+
+      ballManager.spawnBall(mockEngine, 20, dimensions);
+
+      // Set up first two balls
+      const ball1Scaled = {
+        id: 1,
+        isStatic: false,
+        originalRadius: 10,
+        circleRadius: 75, // scaled down
+      } as BallBody;
+      const ball2 = {
+        id: 2,
+        isStatic: false,
+        originalRadius: 20,
+        circleRadius: targetDisplayRadius,
+      } as BallBody;
+      vi.mocked(Matter.Composite.allBodies).mockReturnValue([
+        ball1Scaled,
+        ball2,
+      ]);
+
+      ballManager.spawnBall(mockEngine, 40, dimensions);
+
+      // Now simulate largest ball (40) was removed
+      // Remaining: ball1 (orig 10), ball2 (orig 20)
+      const remainingBall1 = {
+        id: 1,
+        isStatic: false,
+        originalRadius: 10,
+        circleRadius: 37.5, // 10 * (150/40)
+      } as BallBody;
+      const remainingBall2 = {
+        id: 2,
+        isStatic: false,
+        originalRadius: 20,
+        circleRadius: 75, // 20 * (150/40)
+      } as BallBody;
+
+      vi.mocked(Matter.Composite.allBodies).mockReturnValue([
+        remainingBall1,
+        remainingBall2,
+      ]);
+      vi.mocked(Matter.Body.scale).mockClear();
+
+      ballManager.recalculateScale(mockEngine, dimensions);
+
+      // Both balls should be scaled up
+      // Old scaleFactor = 150/40 = 3.75, new = 150/20 = 7.5
+      // scaleRatio = 7.5 / 3.75 = 2
+      expect(Matter.Body.scale).toHaveBeenCalledWith(remainingBall1, 2, 2);
+      expect(Matter.Body.scale).toHaveBeenCalledWith(remainingBall2, 2, 2);
+    });
+
+    it("ignores static bodies when recalculating", () => {
+      ballManager.spawnBall(mockEngine, 20, dimensions);
+
+      // Set up a dynamic ball and a static boundary
+      const dynamicBall = {
+        id: 1,
+        isStatic: false,
+        originalRadius: 20,
+        circleRadius: targetDisplayRadius,
+      } as BallBody;
+      const staticBoundary = {
+        id: 2,
+        isStatic: true,
+      } as unknown as Matter.Body;
+
+      vi.mocked(Matter.Composite.allBodies).mockReturnValue([
+        dynamicBall,
+        staticBoundary,
+      ]);
+      vi.mocked(Matter.Body.scale).mockClear();
+
+      ballManager.recalculateScale(mockEngine, dimensions);
+
+      // Static body should not be scaled
+      expect(Matter.Body.scale).not.toHaveBeenCalledWith(
+        staticBoundary,
+        expect.any(Number),
+        expect.any(Number)
+      );
+    });
+
+    it("updates circleRadius on scaled balls", () => {
+      // Spawn two balls
+      ballManager.spawnBall(mockEngine, 10, dimensions);
+
+      const smallBall = {
+        id: 1,
+        isStatic: false,
+        originalRadius: 10,
+        circleRadius: targetDisplayRadius,
+      } as BallBody;
+      vi.mocked(Matter.Composite.allBodies).mockReturnValue([smallBall]);
+
+      ballManager.spawnBall(mockEngine, 20, dimensions);
+
+      // Simulate large ball removed
+      const remainingBall = {
+        id: 1,
+        isStatic: false,
+        originalRadius: 10,
+        circleRadius: 75,
+      } as BallBody;
+
+      vi.mocked(Matter.Composite.allBodies).mockReturnValue([remainingBall]);
+
+      ballManager.recalculateScale(mockEngine, dimensions);
+
+      // circleRadius should be updated to new display radius
+      // New display radius = 10 * (150/10) = 150
+      expect(remainingBall.circleRadius).toBe(targetDisplayRadius);
+    });
+  });
 });

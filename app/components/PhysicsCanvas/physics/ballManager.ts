@@ -181,4 +181,51 @@ export class BallManager {
   resetScale(): void {
     this.scaleFactor = 1.0;
   }
+
+  /**
+   * Recalculate scale factor after removing a ball
+   * Resizes all remaining balls so the largest fills TARGET_BALL_RATIO of the canvas
+   */
+  recalculateScale(engine: Matter.Engine, dimensions: Dimensions): void {
+    const { width, height } = dimensions;
+    const minDimension = Math.min(width, height);
+    const targetDisplayRadius = (minDimension * TARGET_BALL_RATIO) / 2;
+
+    // Get all remaining dynamic bodies (balls)
+    const bodies = Matter.Composite.allBodies(engine.world);
+    const balls = bodies.filter((b) => !b.isStatic) as BallBody[];
+
+    if (balls.length === 0) {
+      this.scaleFactor = 1.0;
+      return;
+    }
+
+    // Find the largest original radius among remaining balls
+    let maxOriginalRadius = 0;
+    balls.forEach((ball) => {
+      if (ball.originalRadius && ball.originalRadius > maxOriginalRadius) {
+        maxOriginalRadius = ball.originalRadius;
+      }
+    });
+
+    if (maxOriginalRadius === 0) return;
+
+    // Calculate new scale factor
+    const newScaleFactor = targetDisplayRadius / maxOriginalRadius;
+
+    // If scale factor changed, resize all balls
+    if (newScaleFactor !== this.scaleFactor) {
+      const scaleRatio = newScaleFactor / this.scaleFactor;
+
+      balls.forEach((ball) => {
+        if (ball.originalRadius) {
+          const newRadius = ball.originalRadius * newScaleFactor;
+          Matter.Body.scale(ball, scaleRatio, scaleRatio);
+          ball.circleRadius = newRadius;
+        }
+      });
+
+      this.scaleFactor = newScaleFactor;
+    }
+  }
 }

@@ -28,6 +28,7 @@ interface UsePhysicsEngineReturn {
   zoomLevel: number;
   spawnBall: (radius: number, name?: string) => void;
   clearBalls: () => void;
+  removeBall: (id: number) => void;
   balls: BallInfo[];
   hoveredBallId: number | null;
   setHoveredBallId: (id: number | null) => void;
@@ -357,10 +358,30 @@ export function usePhysicsEngine(
     setBalls([]);
   }, []);
 
+  const removeBall = useCallback((id: number) => {
+    if (!physicsRefs.current.engine) return;
+
+    const bodies = Matter.Composite.allBodies(physicsRefs.current.engine.world);
+    const ballToRemove = bodies.find((b) => b.id === id);
+
+    if (ballToRemove) {
+      Matter.Composite.remove(physicsRefs.current.engine.world, ballToRemove);
+
+      // Recalculate scale factor for remaining balls
+      ballManagerRef.current.recalculateScale(
+        physicsRefs.current.engine,
+        dimensionsRef.current
+      );
+
+      setBalls((prev) => prev.filter((b) => b.id !== id));
+    }
+  }, []);
+
   return {
     zoomLevel,
     spawnBall,
     clearBalls,
+    removeBall,
     balls,
     hoveredBallId,
     setHoveredBallId,

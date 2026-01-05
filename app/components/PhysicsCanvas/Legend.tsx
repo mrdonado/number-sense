@@ -6,9 +6,15 @@ interface LegendProps {
   balls: BallInfo[];
   hoveredBallId: number | null;
   onHover: (id: number | null) => void;
+  onRemove: (id: number) => void;
 }
 
-export function Legend({ balls, hoveredBallId, onHover }: LegendProps) {
+export function Legend({
+  balls,
+  hoveredBallId,
+  onHover,
+  onRemove,
+}: LegendProps) {
   if (balls.length === 0) {
     return null;
   }
@@ -35,7 +41,19 @@ export function Legend({ balls, hoveredBallId, onHover }: LegendProps) {
               className="w-3 h-3 rounded-full shrink-0"
               style={{ backgroundColor: ball.color }}
             />
-            <span className="text-white text-sm truncate">{ball.name}</span>
+            <span className="text-white text-sm truncate flex-1">
+              {ball.name}
+            </span>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onRemove(ball.id);
+              }}
+              className="text-white/60 hover:text-white transition-colors text-sm cursor-pointer"
+              title="Remove ball"
+            >
+              🗑️
+            </button>
           </li>
         ))}
       </ul>

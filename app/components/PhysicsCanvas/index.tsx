@@ -19,6 +19,7 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle>(function PhysicsCanvas(
     zoomLevel,
     spawnBall,
     clearBalls,
+    removeBall,
     balls,
     hoveredBallId,
     setHoveredBallId,
@@ -85,6 +86,7 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle>(function PhysicsCanvas(
           balls={balls}
           hoveredBallId={hoveredBallId}
           onHover={setHoveredBallId}
+          onRemove={removeBall}
         />
       </div>
     </div>
