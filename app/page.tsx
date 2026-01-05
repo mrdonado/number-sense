@@ -8,13 +8,14 @@ import PhysicsCanvas, {
 export default function Home() {
   const canvasRef = useRef<PhysicsCanvasHandle>(null);
   const [inputValue, setInputValue] = useState("");
+  const [nameValue, setNameValue] = useState("");
 
   const handleSubmit = () => {
     const area = parseFloat(inputValue);
     if (!isNaN(area) && area > 0) {
       // Calculate radius from area: A = πr² → r = √(A/π)
       const radius = Math.sqrt(area / Math.PI);
-      canvasRef.current?.spawnBall(radius);
+      canvasRef.current?.spawnBall(radius, nameValue || undefined);
     }
   };
 
@@ -31,6 +32,14 @@ export default function Home() {
           Number Sense
         </h1>
         <div className="flex gap-3">
+          <input
+            type="text"
+            value={nameValue}
+            onChange={(e) => setNameValue(e.target.value)}
+            onKeyDown={handleKeyDown}
+            placeholder="Enter name"
+            className="px-4 py-2 border border-zinc-300 dark:border-zinc-700 rounded-lg bg-white dark:bg-zinc-900 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-physics-ball"
+          />
           <input
             type="number"
             value={inputValue}

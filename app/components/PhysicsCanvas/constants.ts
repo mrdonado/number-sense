@@ -26,3 +26,25 @@ export const WALL_OFFSET = 30;
 
 // Mouse constraint
 export const MOUSE_STIFFNESS = 0.2;
+
+// Ball color palette - works well with the existing theme
+export const BALL_COLORS = [
+  "#ef4444", // red
+  "#f97316", // orange
+  "#eab308", // yellow
+  "#22c55e", // green
+  "#14b8a6", // teal
+  "#3b82f6", // blue
+  "#8b5cf6", // violet
+  "#ec4899", // pink
+  "#f43f5e", // rose
+  "#06b6d4", // cyan
+  "#84cc16", // lime
+  "#a855f7", // purple
+  "#0ea5e9", // sky
+  "#10b981", // emerald
+  "#f59e0b", // amber
+  "#6366f1", // indigo
+  "#d946ef", // fuchsia
+  "#64748b", // slate
+];

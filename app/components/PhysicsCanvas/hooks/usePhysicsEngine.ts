@@ -18,7 +18,7 @@ interface UsePhysicsEngineOptions {
 
 interface UsePhysicsEngineReturn {
   zoomLevel: number;
-  spawnBall: (radius: number) => void;
+  spawnBall: (radius: number, name?: string) => void;
 }
 
 export function usePhysicsEngine(
@@ -186,16 +186,21 @@ export function usePhysicsEngine(
   }, [containerRef, canvasRef]);
 
   const spawnBall = useCallback(
-    (radius: number) => {
+    (radius: number, name?: string) => {
       if (!containerRef.current || !physicsRefs.current.engine) return;
 
       const width = containerRef.current.clientWidth;
       const height = containerRef.current.clientHeight;
 
-      ballManagerRef.current.spawnBall(physicsRefs.current.engine, radius, {
-        width,
-        height,
-      });
+      ballManagerRef.current.spawnBall(
+        physicsRefs.current.engine,
+        radius,
+        {
+          width,
+          height,
+        },
+        name
+      );
     },
     [containerRef]
   );

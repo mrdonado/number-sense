@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import Matter from "matter-js";
 import { BallManager } from "../physics/ballManager";
-import { TARGET_BALL_RATIO } from "../constants";
+import { TARGET_BALL_RATIO, BALL_COLORS } from "../constants";
 import type { BallBody } from "../types";
 
 // Mock Matter.js
@@ -26,11 +26,6 @@ vi.mock("matter-js", () => ({
       allBodies: vi.fn(() => []),
     },
   },
-}));
-
-// Mock getCSSVariable
-vi.mock("../utils", () => ({
-  getCSSVariable: vi.fn(() => "#ff6b6b"),
 }));
 
 describe("BallManager", () => {
@@ -90,6 +85,63 @@ describe("BallManager", () => {
       const addedBall = addedBalls[0];
 
       expect(addedBall.originalRadius).toBe(originalRadius);
+    });
+
+    it("stores name on the ball when provided", () => {
+      ballManager.spawnBall(mockEngine, 10, dimensions, "Test Ball");
+
+      const addCall = vi.mocked(Matter.Composite.add).mock.calls[0];
+      const addedBalls = addCall[1] as BallBody[];
+      const addedBall = addedBalls[0];
+
+      expect(addedBall.ballName).toBe("Test Ball");
+    });
+
+    it("stores undefined name when not provided", () => {
+      ballManager.spawnBall(mockEngine, 10, dimensions);
+
+      const addCall = vi.mocked(Matter.Composite.add).mock.calls[0];
+      const addedBalls = addCall[1] as BallBody[];
+      const addedBall = addedBalls[0];
+
+      expect(addedBall.ballName).toBeUndefined();
+    });
+
+    it("assigns a color from the palette", () => {
+      ballManager.spawnBall(mockEngine, 10, dimensions);
+
+      const addCall = vi.mocked(Matter.Composite.add).mock.calls[0];
+      const addedBalls = addCall[1] as BallBody[];
+      const addedBall = addedBalls[0];
+
+      expect(BALL_COLORS).toContain(addedBall.ballColor);
+    });
+
+    it("avoids reusing colors when adding multiple balls", () => {
+      const usedColors: string[] = [];
+
+      // Spawn several balls and track their colors
+      for (let i = 0; i < 5; i++) {
+        // Set up mock to return existing balls with their colors
+        const existingBalls = usedColors.map((color, idx) => ({
+          id: idx,
+          isStatic: false,
+          originalRadius: 10,
+          ballColor: color,
+        })) as BallBody[];
+
+        vi.mocked(Matter.Composite.allBodies).mockReturnValue(existingBalls);
+
+        ballManager.spawnBall(mockEngine, 10, dimensions);
+
+        const addCall = vi.mocked(Matter.Composite.add).mock.calls[i];
+        const addedBalls = addCall[1] as BallBody[];
+        const addedBall = addedBalls[0];
+
+        // New color should not be in usedColors (until palette is exhausted)
+        expect(usedColors).not.toContain(addedBall.ballColor);
+        usedColors.push(addedBall.ballColor!);
+      }
     });
 
     it("scales down existing balls when a larger ball is added", () => {

@@ -4,8 +4,8 @@ import {
   BALL_RESTITUTION,
   BALL_FRICTION,
   BALL_FRICTION_AIR,
+  BALL_COLORS,
 } from "../constants";
-import { getCSSVariable } from "../utils";
 import type { BallBody, Dimensions } from "../types";
 
 /**
@@ -21,7 +21,8 @@ export class BallManager {
   spawnBall(
     engine: Matter.Engine,
     radius: number,
-    dimensions: Dimensions
+    dimensions: Dimensions,
+    name?: string
   ): void {
     const { width, height } = dimensions;
     const minDimension = Math.min(width, height);
@@ -64,8 +65,12 @@ export class BallManager {
 
     const x = Math.random() * (width - displayRadius * 2) + displayRadius;
 
-    // Get ball color from CSS variable
-    const ballColor = getCSSVariable("--physics-ball");
+    // Pick a color that hasn't been used yet, or random if all colors are in use
+    const usedColors = new Set(balls.map((b) => b.ballColor).filter(Boolean));
+    const availableColors = BALL_COLORS.filter((c) => !usedColors.has(c));
+    const colorPool =
+      availableColors.length > 0 ? availableColors : BALL_COLORS;
+    const ballColor = colorPool[Math.floor(Math.random() * colorPool.length)];
 
     // Create a ball at a random x position, near the top
     const ball = Matter.Bodies.circle(x, displayRadius + 10, displayRadius, {
@@ -77,8 +82,10 @@ export class BallManager {
       },
     }) as BallBody;
 
-    // Store the original radius for future scaling calculations
+    // Store the original radius, name, and color for future reference
     ball.originalRadius = radius;
+    ball.ballName = name;
+    ball.ballColor = ballColor;
 
     Matter.Composite.add(engine.world, [ball]);
   }

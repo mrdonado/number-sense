@@ -4,11 +4,13 @@ import Matter from "matter-js";
 export interface BallBody extends Matter.Body {
   circleRadius?: number;
   originalRadius?: number;
+  ballName?: string;
+  ballColor?: string;
 }
 
 // Public handle exposed via ref
 export interface PhysicsCanvasHandle {
-  spawnBall: (radius: number) => void;
+  spawnBall: (radius: number, name?: string) => void;
 }
 
 // Bounds rectangle for zoom/pan calculations

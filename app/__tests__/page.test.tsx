@@ -10,7 +10,9 @@ const mockSpawnBall = vi.fn();
 vi.mock("../components/PhysicsCanvas/index", () => ({
   default: React.forwardRef(function MockPhysicsCanvas(
     _props: unknown,
-    ref: React.ForwardedRef<{ spawnBall: (radius: number) => void }>
+    ref: React.ForwardedRef<{
+      spawnBall: (radius: number, name?: string) => void;
+    }>
   ) {
     React.useImperativeHandle(ref, () => ({ spawnBall: mockSpawnBall }));
     return <div data-testid="physics-canvas">Physics Canvas</div>;
@@ -34,6 +36,7 @@ describe("Home Page", () => {
   it("renders the input field with correct placeholder", () => {
     render(<Home />);
     expect(screen.getByPlaceholderText("Enter area")).toBeInTheDocument();
+    expect(screen.getByPlaceholderText("Enter name")).toBeInTheDocument();
   });
 
   it("renders the Drop Ball button", () => {
@@ -59,8 +62,23 @@ describe("Home Page", () => {
       await user.type(input, "100");
       await user.click(button);
 
-      // Area 100 → radius = √(100/π) ≈ 5.64
-      expect(mockSpawnBall).toHaveBeenCalledWith(areaToRadius(100));
+      // Area 100 → radius = √(100/π) ≈ 5.64, no name provided
+      expect(mockSpawnBall).toHaveBeenCalledWith(areaToRadius(100), undefined);
+    });
+
+    it("spawns a ball with name when provided", async () => {
+      const user = userEvent.setup();
+      render(<Home />);
+
+      const nameInput = screen.getByPlaceholderText("Enter name");
+      const areaInput = screen.getByPlaceholderText("Enter area");
+      const button = screen.getByRole("button", { name: "Drop Ball" });
+
+      await user.type(nameInput, "My Ball");
+      await user.type(areaInput, "100");
+      await user.click(button);
+
+      expect(mockSpawnBall).toHaveBeenCalledWith(areaToRadius(100), "My Ball");
     });
 
     it("spawns a ball when pressing Enter in the input field", async () => {
@@ -71,7 +89,7 @@ describe("Home Page", () => {
 
       await user.type(input, "314{Enter}");
 
-      expect(mockSpawnBall).toHaveBeenCalledWith(areaToRadius(314));
+      expect(mockSpawnBall).toHaveBeenCalledWith(areaToRadius(314), undefined);
     });
 
     it("does not spawn a ball with zero area", async () => {
@@ -141,8 +159,16 @@ describe("Home Page", () => {
       await user.click(button);
 
       expect(mockSpawnBall).toHaveBeenCalledTimes(2);
-      expect(mockSpawnBall).toHaveBeenNthCalledWith(1, areaToRadius(50));
-      expect(mockSpawnBall).toHaveBeenNthCalledWith(2, areaToRadius(200));
+      expect(mockSpawnBall).toHaveBeenNthCalledWith(
+        1,
+        areaToRadius(50),
+        undefined
+      );
+      expect(mockSpawnBall).toHaveBeenNthCalledWith(
+        2,
+        areaToRadius(200),
+        undefined
+      );
     });
 
     it("handles decimal area values", async () => {
@@ -155,7 +181,7 @@ describe("Home Page", () => {
       await user.type(input, "3.14");
       await user.click(button);
 
-      expect(mockSpawnBall).toHaveBeenCalledWith(areaToRadius(3.14));
+      expect(mockSpawnBall).toHaveBeenCalledWith(areaToRadius(3.14), undefined);
     });
   });
 
