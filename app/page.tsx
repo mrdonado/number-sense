@@ -25,9 +25,13 @@ export default function Home() {
     canvasRef.current?.clearBalls();
   }, []);
 
-  const handleCompare = useCallback(() => {
-    canvasRef.current?.enterComparisonMode();
-  }, []);
+  const handleCompareToggle = useCallback(() => {
+    if (isComparisonMode) {
+      canvasRef.current?.exitComparisonMode();
+    } else {
+      canvasRef.current?.enterComparisonMode();
+    }
+  }, [isComparisonMode]);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
@@ -70,12 +74,14 @@ export default function Home() {
           >
             Clear
           </button>
-          {ballCount >= 2 && !isComparisonMode && (
+          {ballCount >= 2 && (
             <button
-              onClick={handleCompare}
-              className="px-6 py-2 bg-amber-600 text-white rounded-lg hover:opacity-90 transition-opacity font-medium"
+              onClick={handleCompareToggle}
+              className={`px-6 py-2 text-white rounded-lg hover:opacity-90 transition-opacity font-medium ${
+                isComparisonMode ? "bg-amber-700" : "bg-amber-600"
+              }`}
             >
-              Compare Sizes
+              {isComparisonMode ? "Exit Comparison" : "Compare Sizes"}
             </button>
           )}
         </div>

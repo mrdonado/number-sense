@@ -135,18 +135,12 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
               </span>
             </div>
           )}
-          {/* Comparison mode indicator and controls */}
+          {/* Comparison mode indicator */}
           {isComparisonMode && (
-            <div className="absolute left-2 top-8 bg-black/50 backdrop-blur-sm rounded-lg px-3 py-2 flex flex-col gap-2">
+            <div className="absolute left-2 top-8 bg-black/50 backdrop-blur-sm rounded-lg px-3 py-2">
               <span className="text-amber-400 text-sm font-medium">
                 Comparison Mode
               </span>
-              <button
-                onClick={exitComparisonMode}
-                className="text-xs bg-amber-600 hover:bg-amber-500 text-white px-2 py-1 rounded transition-colors"
-              >
-                Exit
-              </button>
             </div>
           )}
         </div>
