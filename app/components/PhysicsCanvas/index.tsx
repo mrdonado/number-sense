@@ -92,6 +92,14 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle>(function PhysicsCanvas(
           onRemove={removeBall}
           onToggleVisibility={toggleBallVisibility}
         />
+        {/* Zoom mode indicator */}
+        {zoomLevel < 1.0 && (
+          <div className="absolute left-2 top-8 bg-black/50 backdrop-blur-sm rounded-lg px-3 py-2">
+            <span className="text-green-400 text-sm font-medium">
+              Zoom Mode
+            </span>
+          </div>
+        )}
       </div>
     </div>
   );
