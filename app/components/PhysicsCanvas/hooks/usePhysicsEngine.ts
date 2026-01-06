@@ -68,6 +68,7 @@ export function usePhysicsEngine(
   );
   const savedRunnerEnabledRef = useRef(true);
   const zoomOnBallByIdRef = useRef<((id: number) => void) | null>(null);
+  const ballOpacitiesRef = useRef<Map<number, number>>(new Map());
 
   // Keep ref in sync with state for use in render callback
   useEffect(() => {
@@ -154,9 +155,9 @@ export function usePhysicsEngine(
     });
     const updateCursor = createCursorUpdateHandler(engine, mouse, canvas);
 
-    // Track current opacity for each ball (for smooth transitions)
-    const ballOpacities = new Map<number, number>();
+    // Opacity transition speed for smooth hover effects
     const OPACITY_TRANSITION_SPEED = 0.08; // ~0.5 seconds at 60fps
+    const ballOpacities = ballOpacitiesRef.current;
 
     // Handler to make non-hovered balls translucent when a ball is hovered
     const updateBallOpacity = () => {
@@ -485,6 +486,11 @@ export function usePhysicsEngine(
   const toggleBallVisibility = useCallback(
     (id: number) => {
       if (!physicsRefs.current.engine) return;
+
+      // Reset ball opacities and hovered state so all balls return to normal opacity
+      ballOpacitiesRef.current.clear();
+      hoveredBallIdRef.current = null;
+      setHoveredBallId(null);
 
       // Calculate new hidden set
       const newHiddenSet = new Set(hiddenBallIdsRef.current);
