@@ -545,11 +545,11 @@ export function usePhysicsEngine(
     [balls]
   );
 
-  const enterComparisonMode = useCallback(() => {
-    if (!physicsRefs.current.engine || !physicsRefs.current.runner) return;
+  // Helper function to arrange balls in comparison layout
+  const arrangeComparisonLayout = useCallback(() => {
+    if (!physicsRefs.current.engine) return;
 
     const engine = physicsRefs.current.engine;
-    const runner = physicsRefs.current.runner;
     const { width, height } = dimensionsRef.current;
 
     // Get all visible ball bodies
@@ -559,16 +559,6 @@ export function usePhysicsEngine(
     ) as BallBody[];
 
     if (ballBodies.length === 0) return;
-
-    // Save current positions and runner state
-    savedPositionsRef.current.clear();
-    ballBodies.forEach((ball) => {
-      savedPositionsRef.current.set(ball.id, {
-        x: ball.position.x,
-        y: ball.position.y,
-      });
-    });
-    savedRunnerEnabledRef.current = runner.enabled;
 
     // Find the largest ball by original radius
     let largestBall = ballBodies[0];
@@ -605,12 +595,51 @@ export function usePhysicsEngine(
       Matter.Body.setVelocity(ball, { x: 0, y: 0 });
       Matter.Body.setAngularVelocity(ball, 0);
     });
+  }, []);
+
+  const enterComparisonMode = useCallback(() => {
+    if (!physicsRefs.current.engine || !physicsRefs.current.runner) return;
+
+    const engine = physicsRefs.current.engine;
+    const runner = physicsRefs.current.runner;
+
+    // Get all visible ball bodies
+    const bodies = Matter.Composite.allBodies(engine.world);
+    const ballBodies = bodies.filter(
+      (b) => !b.isStatic && !hiddenBallIdsRef.current.has(b.id)
+    ) as BallBody[];
+
+    if (ballBodies.length === 0) return;
+
+    // Save current positions and runner state
+    savedPositionsRef.current.clear();
+    ballBodies.forEach((ball) => {
+      savedPositionsRef.current.set(ball.id, {
+        x: ball.position.x,
+        y: ball.position.y,
+      });
+    });
+    savedRunnerEnabledRef.current = runner.enabled;
+
+    // Arrange balls in comparison layout
+    arrangeComparisonLayout();
 
     // Freeze the simulation
     runner.enabled = false;
 
     setIsComparisonMode(true);
-  }, []);
+  }, [arrangeComparisonLayout]);
+
+  // Re-arrange balls when they change during comparison mode
+  useEffect(() => {
+    if (isComparisonMode && physicsRefs.current.engine) {
+      // Small delay to ensure new ball is fully added to physics world
+      const timeoutId = setTimeout(() => {
+        arrangeComparisonLayout();
+      }, 50);
+      return () => clearTimeout(timeoutId);
+    }
+  }, [balls, isComparisonMode, arrangeComparisonLayout]);
 
   const exitComparisonMode = useCallback(() => {
     if (!physicsRefs.current.engine || !physicsRefs.current.runner) return;
