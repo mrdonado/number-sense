@@ -62,23 +62,17 @@ export default function Home() {
             placeholder="Enter area"
             className="px-4 py-2 border border-zinc-300 dark:border-zinc-700 rounded-lg bg-white dark:bg-zinc-900 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-physics-ball"
           />
-          <button
-            onClick={handleSubmit}
-            className="px-6 py-2 bg-physics-ball text-white rounded-lg hover:opacity-90 transition-opacity font-medium"
-          >
+          <button onClick={handleSubmit} className="btn btn-primary">
             Drop Ball
           </button>
-          <button
-            onClick={handleClear}
-            className="px-6 py-2 bg-zinc-600 text-white rounded-lg hover:opacity-90 transition-opacity font-medium"
-          >
+          <button onClick={handleClear} className="btn btn-secondary">
             Clear
           </button>
           {ballCount >= 2 && (
             <button
               onClick={handleCompareToggle}
-              className={`px-6 py-2 text-white rounded-lg hover:opacity-90 transition-opacity font-medium ${
-                isComparisonMode ? "bg-amber-700" : "bg-amber-600"
+              className={`btn ${
+                isComparisonMode ? "btn-compare-active" : "btn-compare"
               }`}
             >
               {isComparisonMode ? "Exit Comparison" : "Compare Sizes"}
