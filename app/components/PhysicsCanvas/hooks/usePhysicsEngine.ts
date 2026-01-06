@@ -7,8 +7,7 @@ import { createMouseConstraint } from "../physics/createMouseConstraint";
 import { createEscapeDetectionHandler } from "../physics/escapeDetection";
 import { createCursorUpdateHandler } from "../physics/cursorManager";
 import { BallManager } from "../physics/ballManager";
-import { useZoom } from "./useZoom";
-import { usePanning } from "./usePanning";
+import { createZoomHandlers, createPanningHandlers } from "../handlers";
 import type {
   BallBody,
   BallInfo,
@@ -77,10 +76,6 @@ export function usePhysicsEngine(
     }));
     localStorage.setItem(STORAGE_KEY, JSON.stringify(persistedBalls));
   }, [balls]);
-
-  // These refs will be populated after physics initialization
-  const zoomHookRef = useRef<ReturnType<typeof useZoom> | null>(null);
-  const panningHookRef = useRef<ReturnType<typeof usePanning> | null>(null);
 
   useEffect(() => {
     if (!containerRef.current || !canvasRef.current) return;
@@ -206,6 +201,9 @@ export function usePhysicsEngine(
       handleDoubleClick,
       handleClick,
       handleWheel,
+      handleTouchStart,
+      handleTouchMove,
+      handleTouchEnd,
       updateZoomedView,
       cleanup: zoomCleanup,
     } = createZoomHandlers(zoomOptions);
@@ -236,6 +234,10 @@ export function usePhysicsEngine(
     canvas.addEventListener("mouseup", handleMouseUp);
     canvas.addEventListener("mouseleave", handleMouseUp);
     canvas.addEventListener("contextmenu", handleContextMenu);
+    // Touch events for pinch-to-zoom
+    canvas.addEventListener("touchstart", handleTouchStart, { passive: false });
+    canvas.addEventListener("touchmove", handleTouchMove, { passive: false });
+    canvas.addEventListener("touchend", handleTouchEnd);
     Matter.Events.on(render, "beforeRender", updateZoomedView);
 
     // Restore persisted balls from localStorage
@@ -274,6 +276,10 @@ export function usePhysicsEngine(
       canvas.removeEventListener("mouseup", handleMouseUp);
       canvas.removeEventListener("mouseleave", handleMouseUp);
       canvas.removeEventListener("contextmenu", handleContextMenu);
+      // Remove touch event listeners
+      canvas.removeEventListener("touchstart", handleTouchStart);
+      canvas.removeEventListener("touchmove", handleTouchMove);
+      canvas.removeEventListener("touchend", handleTouchEnd);
       Matter.Events.off(render, "beforeRender", updateZoomedView);
       Matter.Events.off(engine, "afterUpdate", checkEscapedBalls);
       Matter.Events.off(render, "afterRender", updateCursor);
@@ -491,357 +497,5 @@ export function usePhysicsEngine(
     hoveredBallId,
     setHoveredBallId,
     getBallAtPoint,
-  };
-}
-
-// Helper functions that mirror the hook logic but work within useEffect
-import {
-  ZOOM_DURATION,
-  BALL_VISIBLE_RATIO,
-  WHEEL_ZOOM_FACTOR,
-  MIN_ZOOM,
-  MAX_ZOOM,
-  MOUSE_STIFFNESS,
-} from "../constants";
-import { screenToWorld, findClosestBody } from "../utils";
-import type { Bounds } from "../types";
-
-interface ZoomHandlerOptions {
-  dimensions: Dimensions;
-  render: Matter.Render;
-  engine: Matter.Engine;
-  runner: Matter.Runner;
-  mouseConstraint: Matter.MouseConstraint;
-  canvas: HTMLCanvasElement;
-  onZoomChange: (zoomLevel: number) => void;
-}
-
-function createZoomHandlers(options: ZoomHandlerOptions) {
-  const {
-    dimensions,
-    render,
-    engine,
-    runner,
-    mouseConstraint,
-    canvas,
-    onZoomChange,
-  } = options;
-  const { width, height } = dimensions;
-
-  let zoomAnimationFrame: number | null = null;
-  const isZoomedRef = { current: false };
-  const zoomTargetRef = { current: null as Bounds | null };
-  const isPanningRef = { current: false };
-
-  const fullBounds: Bounds = {
-    minX: 0,
-    minY: 0,
-    maxX: width,
-    maxY: height,
-  };
-
-  const animateZoom = (from: Bounds, to: Bounds, startTime: number) => {
-    const elapsed = Date.now() - startTime;
-    const progress = Math.min(elapsed / ZOOM_DURATION, 1);
-    const eased = 1 - Math.pow(1 - progress, 3);
-
-    render.bounds.min.x = from.minX + (to.minX - from.minX) * eased;
-    render.bounds.min.y = from.minY + (to.minY - from.minY) * eased;
-    render.bounds.max.x = from.maxX + (to.maxX - from.maxX) * eased;
-    render.bounds.max.y = from.maxY + (to.maxY - from.maxY) * eased;
-
-    const currentWidth = render.bounds.max.x - render.bounds.min.x;
-    onZoomChange(currentWidth / width);
-
-    if (progress < 1) {
-      zoomAnimationFrame = requestAnimationFrame(() =>
-        animateZoom(from, to, startTime)
-      );
-    } else {
-      zoomAnimationFrame = null;
-    }
-  };
-
-  const getCurrentBounds = (): Bounds => ({
-    minX: render.bounds.min.x,
-    minY: render.bounds.min.y,
-    maxX: render.bounds.max.x,
-    maxY: render.bounds.max.y,
-  });
-
-  const getWorldPosition = (e: MouseEvent) => {
-    const rect = canvas.getBoundingClientRect();
-    return screenToWorld(
-      e.clientX,
-      e.clientY,
-      rect,
-      getCurrentBounds(),
-      dimensions
-    );
-  };
-
-  const handleDoubleClick = (e: MouseEvent) => {
-    const worldPos = getWorldPosition(e);
-    const bodies = Matter.Composite.allBodies(engine.world);
-    const clickedBodies = Matter.Query.point(bodies, worldPos);
-    const clickedBall = clickedBodies.find((b) => !b.isStatic);
-
-    if (!clickedBall) return;
-
-    if (zoomAnimationFrame) {
-      cancelAnimationFrame(zoomAnimationFrame);
-    }
-
-    const currentBounds = getCurrentBounds();
-    const ballRadius = (clickedBall as BallBody).circleRadius || 20;
-    const ballDiameter = ballRadius * 2;
-
-    const aspectRatio = width / height;
-    let viewHeight = ballDiameter / BALL_VISIBLE_RATIO;
-    let viewWidth = viewHeight * aspectRatio;
-
-    if (aspectRatio < 1) {
-      viewWidth = ballDiameter / BALL_VISIBLE_RATIO;
-      viewHeight = viewWidth / aspectRatio;
-    }
-
-    const targetBounds: Bounds = {
-      minX: clickedBall.position.x - viewWidth / 2,
-      minY: clickedBall.position.y - viewHeight / 2,
-      maxX: clickedBall.position.x + viewWidth / 2,
-      maxY: clickedBall.position.y + viewHeight / 2,
-    };
-
-    zoomTargetRef.current = targetBounds;
-    isZoomedRef.current = true;
-    runner.enabled = false;
-    mouseConstraint.constraint.stiffness = 0;
-
-    animateZoom(currentBounds, targetBounds, Date.now());
-  };
-
-  const handleClick = (e: MouseEvent) => {
-    if (!isZoomedRef.current) return;
-
-    const worldPos = getWorldPosition(e);
-    const bodies = Matter.Composite.allBodies(engine.world);
-    const clickedBodies = Matter.Query.point(bodies, worldPos);
-    const clickedBall = clickedBodies.find((b) => !b.isStatic);
-
-    if (clickedBall) return;
-
-    if (zoomAnimationFrame) {
-      cancelAnimationFrame(zoomAnimationFrame);
-    }
-
-    const currentBounds = getCurrentBounds();
-    isZoomedRef.current = false;
-    zoomTargetRef.current = null;
-    runner.enabled = true;
-    mouseConstraint.constraint.stiffness = MOUSE_STIFFNESS;
-
-    animateZoom(currentBounds, fullBounds, Date.now());
-  };
-
-  const handleWheel = (e: WheelEvent) => {
-    e.preventDefault();
-
-    if (zoomAnimationFrame) {
-      cancelAnimationFrame(zoomAnimationFrame);
-      zoomAnimationFrame = null;
-    }
-
-    const currentWidth = render.bounds.max.x - render.bounds.min.x;
-    const currentHeight = render.bounds.max.y - render.bounds.min.y;
-    const currentZoom = currentWidth / width;
-
-    let newZoom =
-      e.deltaY > 0
-        ? currentZoom * WHEEL_ZOOM_FACTOR
-        : currentZoom / WHEEL_ZOOM_FACTOR;
-
-    newZoom = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, newZoom));
-
-    if (newZoom === currentZoom) return;
-
-    const rect = canvas.getBoundingClientRect();
-    const mouseCanvasX = e.clientX - rect.left;
-    const mouseCanvasY = e.clientY - rect.top;
-
-    const mouseRatioX = mouseCanvasX / width;
-    const mouseRatioY = mouseCanvasY / height;
-
-    const mouseWorldX = render.bounds.min.x + mouseRatioX * currentWidth;
-    const mouseWorldY = render.bounds.min.y + mouseRatioY * currentHeight;
-
-    const newWidth = width * newZoom;
-    const newHeight = height * newZoom;
-
-    let newMinX = mouseWorldX - mouseRatioX * newWidth;
-    let newMinY = mouseWorldY - mouseRatioY * newHeight;
-    let newMaxX = newMinX + newWidth;
-    let newMaxY = newMinY + newHeight;
-
-    if (newZoom >= MAX_ZOOM) {
-      newMinX = 0;
-      newMinY = 0;
-      newMaxX = width;
-      newMaxY = height;
-    }
-
-    render.bounds.min.x = newMinX;
-    render.bounds.min.y = newMinY;
-    render.bounds.max.x = newMaxX;
-    render.bounds.max.y = newMaxY;
-
-    onZoomChange(newZoom);
-
-    if (newZoom >= MAX_ZOOM) {
-      isZoomedRef.current = false;
-      zoomTargetRef.current = null;
-      runner.enabled = true;
-      mouseConstraint.constraint.stiffness = MOUSE_STIFFNESS;
-    } else {
-      isZoomedRef.current = true;
-      zoomTargetRef.current = null;
-      runner.enabled = false;
-      mouseConstraint.constraint.stiffness = 0;
-    }
-  };
-
-  const updateZoomedView = () => {
-    if (!isZoomedRef.current || isPanningRef.current) return;
-    if (!zoomTargetRef.current) return;
-
-    const centerX = (render.bounds.min.x + render.bounds.max.x) / 2;
-    const centerY = (render.bounds.min.y + render.bounds.max.y) / 2;
-
-    const bodies = Matter.Composite.allBodies(engine.world);
-    const closestBall = findClosestBody(bodies, { x: centerX, y: centerY });
-
-    if (!closestBall) return;
-
-    if (!zoomAnimationFrame) {
-      const viewWidth = render.bounds.max.x - render.bounds.min.x;
-      const viewHeight = render.bounds.max.y - render.bounds.min.y;
-
-      render.bounds.min.x = closestBall.position.x - viewWidth / 2;
-      render.bounds.min.y = closestBall.position.y - viewHeight / 2;
-      render.bounds.max.x = closestBall.position.x + viewWidth / 2;
-      render.bounds.max.y = closestBall.position.y + viewHeight / 2;
-    }
-  };
-
-  const cleanup = () => {
-    if (zoomAnimationFrame) {
-      cancelAnimationFrame(zoomAnimationFrame);
-    }
-  };
-
-  return {
-    isZoomedRef,
-    zoomTargetRef,
-    isPanningRef,
-    handleDoubleClick,
-    handleClick,
-    handleWheel,
-    updateZoomedView,
-    cleanup,
-  };
-}
-
-interface PanningHandlerOptions {
-  dimensions: Dimensions;
-  render: Matter.Render;
-  canvas: HTMLCanvasElement;
-  isZoomedRef: { current: boolean };
-  zoomTargetRef: { current: Bounds | null };
-  isPanningRef: { current: boolean };
-}
-
-function createPanningHandlers(options: PanningHandlerOptions) {
-  const {
-    dimensions,
-    render,
-    canvas,
-    isZoomedRef,
-    zoomTargetRef,
-    isPanningRef,
-  } = options;
-  const { width, height } = dimensions;
-
-  let panStart: { x: number; y: number } | null = null;
-  let panBoundsStart: { minX: number; minY: number } | null = null;
-
-  const handleMouseDown = (e: MouseEvent) => {
-    if (e.button === 1 && isZoomedRef.current) {
-      e.preventDefault();
-      isPanningRef.current = true;
-      panStart = { x: e.clientX, y: e.clientY };
-      panBoundsStart = {
-        minX: render.bounds.min.x,
-        minY: render.bounds.min.y,
-      };
-      canvas.style.cursor = "grabbing";
-    }
-  };
-
-  const handleMouseMove = (e: MouseEvent) => {
-    if (!isPanningRef.current || !panStart || !panBoundsStart) return;
-
-    const deltaX = e.clientX - panStart.x;
-    const deltaY = e.clientY - panStart.y;
-
-    const currentWidth = render.bounds.max.x - render.bounds.min.x;
-    const currentHeight = render.bounds.max.y - render.bounds.min.y;
-    const worldDeltaX = -(deltaX / width) * currentWidth;
-    const worldDeltaY = -(deltaY / height) * currentHeight;
-
-    let newMinX = panBoundsStart.minX + worldDeltaX;
-    let newMinY = panBoundsStart.minY + worldDeltaY;
-
-    const extraWidth = width * 0.5;
-    const extraHeight = height * 0.5;
-
-    newMinX = Math.max(-extraWidth, newMinX);
-    newMinY = Math.max(-extraHeight, newMinY);
-    newMinX = Math.min(width + extraWidth - currentWidth, newMinX);
-    newMinY = Math.min(height + extraHeight - currentHeight, newMinY);
-
-    render.bounds.min.x = newMinX;
-    render.bounds.min.y = newMinY;
-    render.bounds.max.x = newMinX + currentWidth;
-    render.bounds.max.y = newMinY + currentHeight;
-
-    if (zoomTargetRef.current) {
-      zoomTargetRef.current = {
-        minX: render.bounds.min.x,
-        minY: render.bounds.min.y,
-        maxX: render.bounds.max.x,
-        maxY: render.bounds.max.y,
-      };
-    }
-  };
-
-  const handleMouseUp = (e: MouseEvent) => {
-    if (e.button === 1 && isPanningRef.current) {
-      isPanningRef.current = false;
-      panStart = null;
-      panBoundsStart = null;
-      canvas.style.cursor = "default";
-    }
-  };
-
-  const handleContextMenu = (e: MouseEvent) => {
-    if (isPanningRef.current) {
-      e.preventDefault();
-    }
-  };
-
-  return {
-    handleMouseDown,
-    handleMouseMove,
-    handleMouseUp,
-    handleContextMenu,
   };
 }
