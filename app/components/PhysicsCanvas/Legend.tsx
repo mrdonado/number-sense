@@ -46,8 +46,12 @@ export function Legend({
                     : "none",
                 opacity: isHidden ? 0.4 : 1,
               }}
-              onMouseEnter={() => onHover(ball.id)}
-              onMouseLeave={() => onHover(null)}
+              onPointerEnter={(e) => {
+                if (e.pointerType !== "touch") onHover(ball.id);
+              }}
+              onPointerLeave={(e) => {
+                if (e.pointerType !== "touch") onHover(null);
+              }}
               onClick={() => !isHidden && onZoom(ball.id)}
             >
               <span

@@ -71,9 +71,12 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
       exitComparisonMode,
     }));
 
-    // Handle mouse move on canvas to detect hover over balls
+    // Handle mouse move on canvas to detect hover over balls (only for devices with hover capability)
     const handleCanvasMouseMove = useCallback(
       (e: React.MouseEvent<HTMLCanvasElement>) => {
+        // Skip hover effects for touch events (pointerType check)
+        if ((e.nativeEvent as PointerEvent).pointerType === "touch") return;
+
         const canvas = canvasRef.current;
         if (!canvas) return;
 

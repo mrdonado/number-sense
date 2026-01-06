@@ -505,6 +505,13 @@ export function createZoomHandlers(
             zoomInOnBall(tappedBall);
           } else if (isZoomedRef.current) {
             zoomOut();
+          } else if (isComparisonModeRef?.current && onExitComparisonMode) {
+            // Tapped on background at 1x zoom in comparison mode - exit comparison mode
+            const currentZoom =
+              (render.bounds.max.x - render.bounds.min.x) / width;
+            if (Math.abs(currentZoom - 1.0) < 0.01) {
+              onExitComparisonMode();
+            }
           }
         }
       }
