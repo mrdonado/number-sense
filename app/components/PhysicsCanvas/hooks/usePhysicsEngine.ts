@@ -154,41 +154,77 @@ export function usePhysicsEngine(
     });
     const updateCursor = createCursorUpdateHandler(engine, mouse, canvas);
 
-    // Handler to draw highlight border on hovered balls
-    const drawHoverHighlight = () => {
-      const ctx = canvas.getContext("2d");
-      if (!ctx || hoveredBallIdRef.current === null) return;
+    // Track current opacity for each ball (for smooth transitions)
+    const ballOpacities = new Map<number, number>();
+    const OPACITY_TRANSITION_SPEED = 0.08; // ~0.5 seconds at 60fps
 
-      // Don't draw highlight for hidden balls
-      if (hiddenBallIdsRef.current.has(hoveredBallIdRef.current)) return;
-
+    // Handler to make non-hovered balls translucent when a ball is hovered
+    const updateBallOpacity = () => {
       const bodies = Matter.Composite.allBodies(engine.world);
-      const hoveredBall = bodies.find(
-        (b) => b.id === hoveredBallIdRef.current
-      ) as BallBody | undefined;
+      const ballBodies = bodies.filter((b) => !b.isStatic) as BallBody[];
+      const hoveredId = hoveredBallIdRef.current;
+      const hasValidHover =
+        hoveredId !== null && !hiddenBallIdsRef.current.has(hoveredId);
 
-      if (hoveredBall && hoveredBall.circleRadius) {
-        // Account for current zoom/pan by using render bounds
-        const scaleX = width / (render.bounds.max.x - render.bounds.min.x);
-        const scaleY = height / (render.bounds.max.y - render.bounds.min.y);
-        const offsetX = render.bounds.min.x;
-        const offsetY = render.bounds.min.y;
+      ballBodies.forEach((ball) => {
+        // Skip hidden balls
+        if (hiddenBallIdsRef.current.has(ball.id)) return;
 
-        const screenX = (hoveredBall.position.x - offsetX) * scaleX;
-        const screenY = (hoveredBall.position.y - offsetY) * scaleY;
-        const screenRadius = hoveredBall.circleRadius * scaleX;
+        const originalColor = ball.ballColor || "#ef4444";
 
-        ctx.beginPath();
-        ctx.arc(screenX, screenY, screenRadius + 3, 0, Math.PI * 2);
-        ctx.strokeStyle = "#ffffff";
-        ctx.lineWidth = 3;
-        ctx.stroke();
+        // Determine target opacity
+        const targetOpacity =
+          hasValidHover && ball.id !== hoveredId ? 0.3 : 1.0;
+
+        // Get current opacity (default to 1.0 if not tracked)
+        let currentOpacity = ballOpacities.get(ball.id) ?? 1.0;
+
+        // Lerp towards target opacity
+        if (Math.abs(currentOpacity - targetOpacity) > 0.01) {
+          currentOpacity +=
+            (targetOpacity - currentOpacity) * OPACITY_TRANSITION_SPEED;
+          ballOpacities.set(ball.id, currentOpacity);
+        } else {
+          currentOpacity = targetOpacity;
+          ballOpacities.set(ball.id, currentOpacity);
+        }
+
+        // Apply the interpolated opacity
+        ball.render.fillStyle = addAlphaToColor(originalColor, currentOpacity);
+      });
+
+      // Clean up opacity tracking for removed balls
+      for (const id of ballOpacities.keys()) {
+        if (!ballBodies.some((b) => b.id === id)) {
+          ballOpacities.delete(id);
+        }
       }
+    };
+
+    // Helper to add alpha to a color
+    const addAlphaToColor = (color: string, alpha: number): string => {
+      // Handle hex colors
+      if (color.startsWith("#")) {
+        const hex = color.slice(1);
+        const r = parseInt(hex.slice(0, 2), 16);
+        const g = parseInt(hex.slice(2, 4), 16);
+        const b = parseInt(hex.slice(4, 6), 16);
+        return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+      }
+      // Handle rgb/rgba
+      if (color.startsWith("rgb")) {
+        const match = color.match(/[\d.]+/g);
+        if (match) {
+          const [r, g, b] = match;
+          return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+        }
+      }
+      return color;
     };
 
     Matter.Events.on(engine, "afterUpdate", checkEscapedBalls);
     Matter.Events.on(render, "afterRender", updateCursor);
-    Matter.Events.on(render, "afterRender", drawHoverHighlight);
+    Matter.Events.on(render, "beforeRender", updateBallOpacity);
 
     // Run the renderer
     Matter.Render.run(render);
@@ -304,7 +340,7 @@ export function usePhysicsEngine(
       Matter.Events.off(render, "beforeRender", updateZoomedView);
       Matter.Events.off(engine, "afterUpdate", checkEscapedBalls);
       Matter.Events.off(render, "afterRender", updateCursor);
-      Matter.Events.off(render, "afterRender", drawHoverHighlight);
+      Matter.Events.off(render, "beforeRender", updateBallOpacity);
       Matter.Render.stop(render);
       Matter.Runner.stop(runner);
       Matter.Mouse.clearSourceEvents(mouse);
