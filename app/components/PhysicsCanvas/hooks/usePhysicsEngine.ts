@@ -68,6 +68,7 @@ export function usePhysicsEngine(
   );
   const savedRunnerEnabledRef = useRef(true);
   const zoomOnBallByIdRef = useRef<((id: number) => void) | null>(null);
+  const exitComparisonModeRef = useRef<(() => void) | null>(null);
   const ballOpacitiesRef = useRef<Map<number, number>>(new Map());
 
   // Keep ref in sync with state for use in render callback
@@ -245,6 +246,7 @@ export function usePhysicsEngine(
       canvas,
       onZoomChange: setZoomLevel,
       isComparisonModeRef,
+      onExitComparisonMode: () => exitComparisonModeRef.current?.(),
     };
 
     // We need to create the zoom handlers inline since we can't use hooks conditionally
@@ -712,6 +714,11 @@ export function usePhysicsEngine(
     savedPositionsRef.current.clear();
     setIsComparisonMode(false);
   }, []);
+
+  // Store exitComparisonMode in ref for access from zoom handlers
+  useEffect(() => {
+    exitComparisonModeRef.current = exitComparisonMode;
+  }, [exitComparisonMode]);
 
   return {
     zoomLevel,

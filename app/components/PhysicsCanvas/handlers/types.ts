@@ -10,6 +10,7 @@ export interface ZoomHandlerOptions {
   canvas: HTMLCanvasElement;
   onZoomChange: (zoomLevel: number) => void;
   isComparisonModeRef?: { current: boolean };
+  onExitComparisonMode?: () => void;
 }
 
 export interface ZoomHandlerResult {

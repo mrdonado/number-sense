@@ -36,6 +36,7 @@ export function createZoomHandlers(
     canvas,
     onZoomChange,
     isComparisonModeRef,
+    onExitComparisonMode,
   } = options;
   const { width, height } = dimensions;
 
@@ -222,15 +223,24 @@ export function createZoomHandlers(
   };
 
   const handleClick = (e: MouseEvent) => {
-    if (!isZoomedRef.current) return;
-
     const worldPos = getWorldPosition(e.clientX, e.clientY);
     const bodies = Matter.Composite.allBodies(engine.world);
     const clickedBodies = Matter.Query.point(bodies, worldPos);
     const clickedBall = clickedBodies.find((b) => !b.isStatic);
 
+    // If clicked on background (not a ball)
     if (!clickedBall) {
-      zoomOut();
+      // If zoomed in, zoom out
+      if (isZoomedRef.current) {
+        zoomOut();
+      }
+      // If in comparison mode at 1x zoom, exit comparison mode
+      else if (isComparisonModeRef?.current && onExitComparisonMode) {
+        const currentZoom = (render.bounds.max.x - render.bounds.min.x) / width;
+        if (Math.abs(currentZoom - 1.0) < 0.01) {
+          onExitComparisonMode();
+        }
+      }
     }
   };
 
