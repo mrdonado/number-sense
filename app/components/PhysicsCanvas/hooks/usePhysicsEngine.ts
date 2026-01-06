@@ -1,6 +1,6 @@
 import { useEffect, useRef, useCallback, useState } from "react";
 import Matter from "matter-js";
-import { ZOOM_INDICATOR_HEIGHT } from "../constants";
+import { ZOOM_INDICATOR_HEIGHT, MOUSE_STIFFNESS } from "../constants";
 import { getCSSVariable } from "../utils";
 import { createBoundaries } from "../physics/createBoundaries";
 import { createMouseConstraint } from "../physics/createMouseConstraint";
@@ -708,8 +708,14 @@ export function usePhysicsEngine(
       }
     });
 
-    // Restore runner state
-    runner.enabled = savedRunnerEnabledRef.current;
+    // Always re-enable the runner when exiting comparison mode
+    runner.enabled = true;
+
+    // Restore mouse constraint stiffness so balls can be dragged
+    if (physicsRefs.current.mouseConstraint) {
+      physicsRefs.current.mouseConstraint.constraint.stiffness =
+        MOUSE_STIFFNESS;
+    }
 
     savedPositionsRef.current.clear();
     setIsComparisonMode(false);
