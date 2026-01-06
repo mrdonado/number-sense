@@ -177,9 +177,9 @@ export class BallManager {
 
   /**
    * Spawn a ball at the current scale factor without recalculating
-   * Used for hidden balls that shouldn't affect the visible scaling
+   * Used when adding a ball that shouldn't trigger rescaling (e.g., unhiding a ball)
    */
-  private spawnBallAtCurrentScale(
+  spawnBallAtCurrentScale(
     engine: Matter.Engine,
     persistedBall: PersistedBall,
     dimensions: Dimensions
@@ -377,26 +377,19 @@ export class BallManager {
       newBallInfoMap.set(ballInfo.id, newBallInfo);
     }
 
-    // Spawn hidden balls at the same scale, but hidden
+    // Hidden balls are NOT spawned in the physics world - they're completely removed
+    // We just preserve their info for the legend, using a new unique ID
     for (const ballInfo of hiddenBallInfos) {
-      const newBallInfo = this.spawnBallAtCurrentScale(
-        engine,
-        {
-          name: ballInfo.name,
-          color: ballInfo.color,
-          originalRadius: ballInfo.originalRadius,
-        },
-        dimensions
-      );
-      idMapping.set(ballInfo.id, newBallInfo.id);
+      // Generate a new unique ID for the hidden ball (negative to avoid collision with Matter.js IDs)
+      const newId = -Date.now() - Math.random();
+      const newBallInfo: BallInfo = {
+        id: newId,
+        name: ballInfo.name,
+        color: ballInfo.color,
+        originalRadius: ballInfo.originalRadius,
+      };
+      idMapping.set(ballInfo.id, newId);
       newBallInfoMap.set(ballInfo.id, newBallInfo);
-
-      // Hide the newly created ball
-      const newBodies = Matter.Composite.allBodies(engine.world);
-      const newBall = newBodies.find((b) => b.id === newBallInfo.id);
-      if (newBall) {
-        newBall.render.visible = false;
-      }
     }
 
     // Reconstruct newBalls array in the original order
