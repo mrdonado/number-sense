@@ -701,15 +701,12 @@ export function usePhysicsEngine(
   const exitComparisonMode = useCallback(() => {
     if (!physicsRefs.current.engine || !physicsRefs.current.runner) return;
 
-    const engine = physicsRefs.current.engine;
     const runner = physicsRefs.current.runner;
 
-    // Restore saved positions
-    const bodies = Matter.Composite.allBodies(engine.world);
+    // Keep balls in their current comparison positions - just reset velocities
+    const bodies = Matter.Composite.allBodies(physicsRefs.current.engine.world);
     bodies.forEach((body) => {
-      const savedPos = savedPositionsRef.current.get(body.id);
-      if (savedPos) {
-        Matter.Body.setPosition(body, savedPos);
+      if (!body.isStatic) {
         Matter.Body.setVelocity(body, { x: 0, y: 0 });
         Matter.Body.setAngularVelocity(body, 0);
       }
