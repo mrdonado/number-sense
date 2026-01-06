@@ -11,6 +11,7 @@ import { ZOOM_INDICATOR_HEIGHT } from "./constants";
 import { usePhysicsEngine } from "./hooks/usePhysicsEngine";
 import { Legend } from "./Legend";
 import type { PhysicsCanvasHandle } from "./types";
+import styles from "./PhysicsCanvas.module.css";
 
 export type { PhysicsCanvasHandle } from "./types";
 
@@ -91,19 +92,14 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
     }, [setHoveredBallId]);
 
     return (
-      <div
-        ref={containerRef}
-        className="w-full flex-1 rounded-lg overflow-hidden bg-physics-canvas-bg relative flex flex-col"
-      >
+      <div ref={containerRef} className={styles.container}>
         {/* Zoom indicator */}
         <div
-          className="w-full shrink-0 bg-zinc-700"
-          style={{
-            height: ZOOM_INDICATOR_HEIGHT,
-          }}
+          className={styles.zoomIndicator}
+          style={{ height: ZOOM_INDICATOR_HEIGHT }}
         >
           <div
-            className="bg-zinc-400"
+            className={styles.zoomIndicatorBar}
             style={{
               height: "100%",
               width: `${zoomLevel * 100}%`,
@@ -111,10 +107,10 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
             }}
           />
         </div>
-        <div className="flex-1 relative">
+        <div className={styles.canvasWrapper}>
           <canvas
             ref={canvasRef}
-            className="w-full h-full"
+            className={styles.canvas}
             onMouseMove={handleCanvasMouseMove}
             onMouseLeave={handleCanvasMouseLeave}
           />
@@ -129,18 +125,14 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
           />
           {/* Zoom mode indicator */}
           {zoomLevel < 1.0 && !isComparisonMode && (
-            <div className="absolute left-2 top-8 bg-black/50 backdrop-blur-sm rounded-lg px-3 py-2">
-              <span className="text-green-400 text-sm font-medium">
-                Zoom Mode
-              </span>
+            <div className={styles.modeIndicator}>
+              <span className={styles.zoomModeText}>Zoom Mode</span>
             </div>
           )}
           {/* Comparison mode indicator */}
           {isComparisonMode && (
-            <div className="absolute left-2 top-8 bg-black/50 backdrop-blur-sm rounded-lg px-3 py-2">
-              <span className="text-amber-400 text-sm font-medium">
-                Comparison Mode
-              </span>
+            <div className={styles.modeIndicator}>
+              <span className={styles.comparisonModeText}>Comparison Mode</span>
             </div>
           )}
         </div>

@@ -1,0 +1,67 @@
+@reference "tailwindcss";
+@reference "../../globals.css";
+
+/* PhysicsCanvas container */
+.container {
+  @apply w-full flex-1 rounded-lg overflow-hidden bg-physics-canvas-bg relative flex flex-col;
+}
+
+/* Zoom indicator */
+.zoomIndicator {
+  @apply w-full shrink-0 bg-zinc-700;
+}
+
+.zoomIndicatorBar {
+  @apply bg-zinc-400;
+}
+
+/* Canvas area */
+.canvasWrapper {
+  @apply flex-1 relative;
+}
+
+.canvas {
+  @apply w-full h-full;
+}
+
+/* Mode indicators */
+.modeIndicator {
+  @apply absolute left-2 top-8 bg-black/50 backdrop-blur-sm rounded-lg px-3 py-2;
+}
+
+.zoomModeText {
+  @apply text-green-400 text-sm font-medium;
+}
+
+.comparisonModeText {
+  @apply text-amber-400 text-sm font-medium;
+}
+
+/* Legend */
+.legend {
+  @apply absolute right-2 top-8 max-h-[calc(100%-4rem)] overflow-y-auto bg-black/50 backdrop-blur-sm rounded-lg p-2 min-w-30;
+}
+
+.legendList {
+  @apply flex flex-col gap-1;
+}
+
+.legendItem {
+  @apply flex items-center gap-2 px-2 py-1 rounded cursor-pointer transition-all;
+}
+
+.ballIndicator {
+  @apply w-3 h-3 rounded-full shrink-0;
+}
+
+.ballName {
+  @apply text-sm truncate flex-1;
+}
+
+.checkbox {
+  @apply w-4 h-4 cursor-pointer accent-white;
+}
+
+.removeButton {
+  @apply text-white/60 hover:text-white transition-colors text-sm cursor-pointer;
+}

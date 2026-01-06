@@ -40,19 +40,17 @@ export default function Home() {
   };
 
   return (
-    <div className="flex h-screen bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex h-full w-full flex-col p-6 bg-white dark:bg-black gap-6">
-        <h1 className="text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-          Number Sense
-        </h1>
-        <div className="flex gap-3">
+    <div className="app-container">
+      <main className="main-content">
+        <h1 className="page-title">Number Sense</h1>
+        <div className="toolbar">
           <input
             type="text"
             value={nameValue}
             onChange={(e) => setNameValue(e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder="Enter name"
-            className="px-4 py-2 border border-zinc-300 dark:border-zinc-700 rounded-lg bg-white dark:bg-zinc-900 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-physics-ball"
+            className="input"
           />
           <input
             type="number"
@@ -60,7 +58,7 @@ export default function Home() {
             onChange={(e) => setInputValue(e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder="Enter area"
-            className="px-4 py-2 border border-zinc-300 dark:border-zinc-700 rounded-lg bg-white dark:bg-zinc-900 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-physics-ball"
+            className="input"
           />
           <button onClick={handleSubmit} className="btn btn-primary">
             Drop Ball
