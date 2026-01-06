@@ -65,6 +65,10 @@ export function createZoomHandlers(
   let touchStartTime: number | null = null;
   let touchStartPosition: { x: number; y: number } | null = null;
 
+  // Mouse drag detection state
+  let mouseDownPosition: { x: number; y: number } | null = null;
+  const DRAG_THRESHOLD = 5; // pixels - if mouse moves more than this, it's a drag
+
   // ============ Helper Functions ============
 
   const getCurrentBounds = (): Bounds => ({
@@ -222,14 +226,34 @@ export function createZoomHandlers(
     }
   };
 
+  const handleMouseDown = (e: MouseEvent) => {
+    mouseDownPosition = { x: e.clientX, y: e.clientY };
+  };
+
   const handleClick = (e: MouseEvent) => {
+    // Check if this was a drag (mouse moved significantly since mousedown)
+    if (mouseDownPosition) {
+      const dx = e.clientX - mouseDownPosition.x;
+      const dy = e.clientY - mouseDownPosition.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      if (distance > DRAG_THRESHOLD) {
+        // This was a drag, not a click - don't zoom
+        mouseDownPosition = null;
+        return;
+      }
+    }
+    mouseDownPosition = null;
+
     const worldPos = getWorldPosition(e.clientX, e.clientY);
     const bodies = Matter.Composite.allBodies(engine.world);
     const clickedBodies = Matter.Query.point(bodies, worldPos);
     const clickedBall = clickedBodies.find((b) => !b.isStatic);
 
-    // If clicked on background (not a ball)
-    if (!clickedBall) {
+    if (clickedBall) {
+      // Clicked on a ball - zoom in on it
+      zoomInOnBall(clickedBall);
+    } else {
+      // Clicked on background (not a ball)
       // If zoomed in, zoom out
       if (isZoomedRef.current) {
         zoomOut();
@@ -530,6 +554,7 @@ export function createZoomHandlers(
     isPanningRef,
     handleDoubleClick,
     handleClick,
+    handleMouseDown,
     handleWheel,
     handleTouchStart,
     handleTouchMove,

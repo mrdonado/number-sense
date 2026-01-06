@@ -256,6 +256,7 @@ export function usePhysicsEngine(
       isPanningRef,
       handleDoubleClick,
       handleClick,
+      handleMouseDown: zoomHandleMouseDown,
       handleWheel,
       handleTouchStart,
       handleTouchMove,
@@ -279,11 +280,17 @@ export function usePhysicsEngine(
     };
 
     const {
-      handleMouseDown,
+      handleMouseDown: panningHandleMouseDown,
       handleMouseMove,
       handleMouseUp,
       handleContextMenu,
     } = createPanningHandlers(panningOptions);
+
+    // Combine zoom and panning mousedown handlers
+    const handleMouseDown = (e: MouseEvent) => {
+      zoomHandleMouseDown(e);
+      panningHandleMouseDown(e);
+    };
 
     // Add event listeners
     canvas.addEventListener("dblclick", handleDoubleClick);

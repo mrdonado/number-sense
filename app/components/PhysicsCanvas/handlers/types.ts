@@ -19,6 +19,7 @@ export interface ZoomHandlerResult {
   isPanningRef: { current: boolean };
   handleDoubleClick: (e: MouseEvent) => void;
   handleClick: (e: MouseEvent) => void;
+  handleMouseDown: (e: MouseEvent) => void;
   handleWheel: (e: WheelEvent) => void;
   handleTouchStart: (e: TouchEvent) => void;
   handleTouchMove: (e: TouchEvent) => void;
