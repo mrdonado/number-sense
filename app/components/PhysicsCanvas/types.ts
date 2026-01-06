@@ -53,6 +53,7 @@ export interface PhysicsRefs {
   render: Matter.Render | null;
   runner: Matter.Runner | null;
   mouseConstraint: Matter.MouseConstraint | null;
+  boundaries: Matter.Body[] | null;
 }
 
 // Zoom state

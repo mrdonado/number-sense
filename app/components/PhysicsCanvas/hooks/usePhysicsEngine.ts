@@ -50,10 +50,12 @@ export function usePhysicsEngine(
     render: null,
     runner: null,
     mouseConstraint: null,
+    boundaries: null,
   });
 
   const ballManagerRef = useRef<BallManager>(new BallManager());
   const dimensionsRef = useRef<Dimensions>({ width: 0, height: 0 });
+  const [resizeKey, setResizeKey] = useState(0);
   const [zoomLevel, setZoomLevel] = useState(1.0);
   const [balls, setBalls] = useState<BallInfo[]>([]);
   const [hoveredBallId, setHoveredBallId] = useState<number | null>(null);
@@ -149,6 +151,34 @@ export function usePhysicsEngine(
     // Create boundaries
     const boundaries = createBoundaries({ width, height });
     Matter.Composite.add(engine.world, boundaries);
+    physicsRefs.current.boundaries = boundaries;
+
+    // Handle resize - trigger full re-initialization
+    const handleResize = () => {
+      if (!containerRef.current) return;
+
+      const newWidth = containerRef.current.clientWidth;
+      const newHeight =
+        containerRef.current.clientHeight - ZOOM_INDICATOR_HEIGHT;
+
+      // Skip if dimensions haven't actually changed
+      if (
+        newWidth === dimensionsRef.current.width &&
+        newHeight === dimensionsRef.current.height
+      ) {
+        return;
+      }
+
+      // Trigger full re-initialization by incrementing resizeKey
+      // Balls are persisted to localStorage, so they'll be restored automatically
+      setResizeKey((k) => k + 1);
+    };
+
+    // Set up ResizeObserver
+    const resizeObserver = new ResizeObserver(() => {
+      handleResize();
+    });
+    resizeObserver.observe(container);
 
     // Create event handlers
     const checkEscapedBalls = createEscapeDetectionHandler(engine, {
@@ -337,6 +367,7 @@ export function usePhysicsEngine(
 
     // Cleanup
     return () => {
+      resizeObserver.disconnect();
       zoomCleanup();
       canvas.removeEventListener("dblclick", handleDoubleClick);
       canvas.removeEventListener("click", handleClick);
@@ -359,7 +390,7 @@ export function usePhysicsEngine(
       Matter.Mouse.clearSourceEvents(mouse);
       Matter.Engine.clear(engine);
     };
-  }, [containerRef, canvasRef]);
+  }, [containerRef, canvasRef, resizeKey]);
 
   const spawnBall = useCallback(
     (radius: number, name?: string) => {
