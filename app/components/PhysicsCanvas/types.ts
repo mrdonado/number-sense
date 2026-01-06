@@ -27,6 +27,10 @@ export interface PersistedBall {
 export interface PhysicsCanvasHandle {
   spawnBall: (radius: number, name?: string) => void;
   clearBalls: () => void;
+  isComparisonMode: boolean;
+  canEnterComparisonMode: boolean;
+  enterComparisonMode: () => void;
+  exitComparisonMode: () => void;
 }
 
 // Bounds rectangle for zoom/pan calculations

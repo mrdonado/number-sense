@@ -34,6 +34,9 @@ interface UsePhysicsEngineReturn {
   hoveredBallId: number | null;
   setHoveredBallId: (id: number | null) => void;
   getBallAtPoint: (x: number, y: number) => number | null;
+  isComparisonMode: boolean;
+  enterComparisonMode: () => void;
+  exitComparisonMode: () => void;
 }
 
 export function usePhysicsEngine(
@@ -57,11 +60,22 @@ export function usePhysicsEngine(
   const [hiddenBallIds, setHiddenBallIds] = useState<Set<number>>(new Set());
   const hiddenBallIdsRef = useRef<Set<number>>(new Set());
   const hasRestoredBalls = useRef(false);
+  const [isComparisonMode, setIsComparisonMode] = useState(false);
+  const isComparisonModeRef = useRef(false);
+  const savedPositionsRef = useRef<Map<number, { x: number; y: number }>>(
+    new Map()
+  );
+  const savedRunnerEnabledRef = useRef(true);
 
   // Keep ref in sync with state for use in render callback
   useEffect(() => {
     hoveredBallIdRef.current = hoveredBallId;
   }, [hoveredBallId]);
+
+  // Keep comparison mode ref in sync with state
+  useEffect(() => {
+    isComparisonModeRef.current = isComparisonMode;
+  }, [isComparisonMode]);
 
   // Persist balls to localStorage whenever they change
   useEffect(() => {
@@ -191,6 +205,7 @@ export function usePhysicsEngine(
       mouseConstraint,
       canvas,
       onZoomChange: setZoomLevel,
+      isComparisonModeRef,
     };
 
     // We need to create the zoom handlers inline since we can't use hooks conditionally
@@ -530,6 +545,97 @@ export function usePhysicsEngine(
     [balls]
   );
 
+  const enterComparisonMode = useCallback(() => {
+    if (!physicsRefs.current.engine || !physicsRefs.current.runner) return;
+
+    const engine = physicsRefs.current.engine;
+    const runner = physicsRefs.current.runner;
+    const { width, height } = dimensionsRef.current;
+
+    // Get all visible ball bodies
+    const bodies = Matter.Composite.allBodies(engine.world);
+    const ballBodies = bodies.filter(
+      (b) => !b.isStatic && !hiddenBallIdsRef.current.has(b.id)
+    ) as BallBody[];
+
+    if (ballBodies.length === 0) return;
+
+    // Save current positions and runner state
+    savedPositionsRef.current.clear();
+    ballBodies.forEach((ball) => {
+      savedPositionsRef.current.set(ball.id, {
+        x: ball.position.x,
+        y: ball.position.y,
+      });
+    });
+    savedRunnerEnabledRef.current = runner.enabled;
+
+    // Find the largest ball by original radius
+    let largestBall = ballBodies[0];
+    ballBodies.forEach((ball) => {
+      if ((ball.originalRadius || 0) > (largestBall.originalRadius || 0)) {
+        largestBall = ball;
+      }
+    });
+
+    // Center the largest ball
+    const centerX = width / 2;
+    const centerY = height / 2;
+    Matter.Body.setPosition(largestBall, { x: centerX, y: centerY });
+    Matter.Body.setVelocity(largestBall, { x: 0, y: 0 });
+    Matter.Body.setAngularVelocity(largestBall, 0);
+
+    // Get the display radius of the largest ball
+    const largestRadius = largestBall.circleRadius || 50;
+
+    // Distribute other balls around the largest one
+    const otherBalls = ballBodies.filter((b) => b.id !== largestBall.id);
+    const angleStep = (2 * Math.PI) / Math.max(otherBalls.length, 1);
+
+    otherBalls.forEach((ball, index) => {
+      const ballRadius = ball.circleRadius || 10;
+      // Position so balls almost touch the largest ball (with small gap)
+      const distance = largestRadius + ballRadius + 5;
+      const angle = angleStep * index - Math.PI / 2; // Start from top
+
+      const x = centerX + Math.cos(angle) * distance;
+      const y = centerY + Math.sin(angle) * distance;
+
+      Matter.Body.setPosition(ball, { x, y });
+      Matter.Body.setVelocity(ball, { x: 0, y: 0 });
+      Matter.Body.setAngularVelocity(ball, 0);
+    });
+
+    // Freeze the simulation
+    runner.enabled = false;
+
+    setIsComparisonMode(true);
+  }, []);
+
+  const exitComparisonMode = useCallback(() => {
+    if (!physicsRefs.current.engine || !physicsRefs.current.runner) return;
+
+    const engine = physicsRefs.current.engine;
+    const runner = physicsRefs.current.runner;
+
+    // Restore saved positions
+    const bodies = Matter.Composite.allBodies(engine.world);
+    bodies.forEach((body) => {
+      const savedPos = savedPositionsRef.current.get(body.id);
+      if (savedPos) {
+        Matter.Body.setPosition(body, savedPos);
+        Matter.Body.setVelocity(body, { x: 0, y: 0 });
+        Matter.Body.setAngularVelocity(body, 0);
+      }
+    });
+
+    // Restore runner state
+    runner.enabled = savedRunnerEnabledRef.current;
+
+    savedPositionsRef.current.clear();
+    setIsComparisonMode(false);
+  }, []);
+
   return {
     zoomLevel,
     spawnBall,
@@ -541,5 +647,8 @@ export function usePhysicsEngine(
     hoveredBallId,
     setHoveredBallId,
     getBallAtPoint,
+    isComparisonMode,
+    enterComparisonMode,
+    exitComparisonMode,
   };
 }

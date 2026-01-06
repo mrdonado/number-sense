@@ -9,6 +9,7 @@ export interface ZoomHandlerOptions {
   mouseConstraint: Matter.MouseConstraint;
   canvas: HTMLCanvasElement;
   onZoomChange: (zoomLevel: number) => void;
+  isComparisonModeRef?: { current: boolean };
 }
 
 export interface ZoomHandlerResult {

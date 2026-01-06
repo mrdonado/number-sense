@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useCallback } from "react";
 import PhysicsCanvas, {
   PhysicsCanvasHandle,
 } from "./components/PhysicsCanvas/index";
@@ -9,6 +9,8 @@ export default function Home() {
   const canvasRef = useRef<PhysicsCanvasHandle>(null);
   const [inputValue, setInputValue] = useState("");
   const [nameValue, setNameValue] = useState("");
+  const [ballCount, setBallCount] = useState(0);
+  const [isComparisonMode, setIsComparisonMode] = useState(false);
 
   const handleSubmit = () => {
     const area = parseFloat(inputValue);
@@ -18,6 +20,14 @@ export default function Home() {
       canvasRef.current?.spawnBall(radius, nameValue || undefined);
     }
   };
+
+  const handleClear = useCallback(() => {
+    canvasRef.current?.clearBalls();
+  }, []);
+
+  const handleCompare = useCallback(() => {
+    canvasRef.current?.enterComparisonMode();
+  }, []);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
@@ -55,13 +65,25 @@ export default function Home() {
             Drop Ball
           </button>
           <button
-            onClick={() => canvasRef.current?.clearBalls()}
+            onClick={handleClear}
             className="px-6 py-2 bg-zinc-600 text-white rounded-lg hover:opacity-90 transition-opacity font-medium"
           >
             Clear
           </button>
+          {ballCount >= 2 && !isComparisonMode && (
+            <button
+              onClick={handleCompare}
+              className="px-6 py-2 bg-amber-600 text-white rounded-lg hover:opacity-90 transition-opacity font-medium"
+            >
+              Compare Sizes
+            </button>
+          )}
         </div>
-        <PhysicsCanvas ref={canvasRef} />
+        <PhysicsCanvas
+          ref={canvasRef}
+          onBallCountChange={setBallCount}
+          onComparisonModeChange={setIsComparisonMode}
+        />
       </main>
     </div>
   );

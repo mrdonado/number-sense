@@ -35,6 +35,7 @@ export function createZoomHandlers(
     mouseConstraint,
     canvas,
     onZoomChange,
+    isComparisonModeRef,
   } = options;
   const { width, height } = dimensions;
 
@@ -153,8 +154,11 @@ export function createZoomHandlers(
     const currentBounds = getCurrentBounds();
     isZoomedRef.current = false;
     zoomTargetRef.current = null;
-    runner.enabled = true;
-    mouseConstraint.constraint.stiffness = MOUSE_STIFFNESS;
+    // Only re-enable runner if not in comparison mode
+    if (!isComparisonModeRef?.current) {
+      runner.enabled = true;
+      mouseConstraint.constraint.stiffness = MOUSE_STIFFNESS;
+    }
 
     animateZoom(currentBounds, fullBounds, Date.now());
   };
@@ -191,8 +195,11 @@ export function createZoomHandlers(
     if (newZoom >= MAX_ZOOM) {
       isZoomedRef.current = false;
       zoomTargetRef.current = null;
-      runner.enabled = true;
-      mouseConstraint.constraint.stiffness = MOUSE_STIFFNESS;
+      // Only re-enable runner if not in comparison mode
+      if (!isComparisonModeRef?.current) {
+        runner.enabled = true;
+        mouseConstraint.constraint.stiffness = MOUSE_STIFFNESS;
+      }
     } else {
       isZoomedRef.current = true;
       zoomTargetRef.current = null;
