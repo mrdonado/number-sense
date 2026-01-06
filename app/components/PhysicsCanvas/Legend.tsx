@@ -47,7 +47,7 @@ export function Legend({
               }}
               onMouseEnter={() => onHover(ball.id)}
               onMouseLeave={() => onHover(null)}
-              onClick={() => onToggleVisibility(ball.id)}
+              onClick={() => !isHidden && onZoom(ball.id)}
             >
               <span
                 className="w-3 h-3 rounded-full shrink-0"
@@ -64,18 +64,17 @@ export function Legend({
               >
                 {ball.name}
               </span>
-              {!isHidden && (
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onZoom(ball.id);
-                  }}
-                  className="text-white/60 hover:text-white transition-colors text-sm cursor-pointer"
-                  title="Zoom to ball"
-                >
-                  🔍
-                </button>
-              )}
+              <input
+                type="checkbox"
+                checked={!isHidden}
+                onChange={(e) => {
+                  e.stopPropagation();
+                  onToggleVisibility(ball.id);
+                }}
+                onClick={(e) => e.stopPropagation()}
+                className="w-4 h-4 cursor-pointer accent-white"
+                title={isHidden ? "Show ball" : "Hide ball"}
+              />
               <button
                 onClick={(e) => {
                   e.stopPropagation();
