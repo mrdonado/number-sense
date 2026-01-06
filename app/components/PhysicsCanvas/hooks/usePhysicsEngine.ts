@@ -68,6 +68,7 @@ export function usePhysicsEngine(
   );
   const savedRunnerEnabledRef = useRef(true);
   const zoomOnBallByIdRef = useRef<((id: number) => void) | null>(null);
+  const resetZoomRef = useRef<(() => void) | null>(null);
   const exitComparisonModeRef = useRef<(() => void) | null>(null);
   const ballOpacitiesRef = useRef<Map<number, number>>(new Map());
 
@@ -263,11 +264,13 @@ export function usePhysicsEngine(
       handleTouchEnd,
       updateZoomedView,
       zoomOnBallById,
+      resetZoom,
       cleanup: zoomCleanup,
     } = createZoomHandlers(zoomOptions);
 
-    // Store zoomOnBallById in ref for external access
+    // Store zoomOnBallById and resetZoom in refs for external access
     zoomOnBallByIdRef.current = zoomOnBallById;
+    resetZoomRef.current = resetZoom;
 
     // Set up panning functionality
     const panningOptions = {
@@ -678,6 +681,9 @@ export function usePhysicsEngine(
     });
     savedRunnerEnabledRef.current = runner.enabled;
 
+    // Reset zoom to 1x before arranging
+    resetZoomRef.current?.();
+
     // Arrange balls in comparison layout
     arrangeComparisonLayout();
 
@@ -702,6 +708,9 @@ export function usePhysicsEngine(
     if (!physicsRefs.current.engine || !physicsRefs.current.runner) return;
 
     const runner = physicsRefs.current.runner;
+
+    // Reset zoom to 1x
+    resetZoomRef.current?.();
 
     // Keep balls in their current comparison positions - just reset velocities
     const bodies = Matter.Composite.allBodies(physicsRefs.current.engine.world);

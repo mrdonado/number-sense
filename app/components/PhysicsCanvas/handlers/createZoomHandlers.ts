@@ -168,6 +168,18 @@ export function createZoomHandlers(
     animateZoom(currentBounds, fullBounds, Date.now());
   };
 
+  // Reset zoom to 1x without affecting runner state (for use during comparison mode transitions)
+  const resetZoom = () => {
+    cancelZoomAnimation();
+
+    const currentBounds = getCurrentBounds();
+    isZoomedRef.current = false;
+    zoomTargetRef.current = null;
+
+    // Animate to full view
+    animateZoom(currentBounds, fullBounds, Date.now());
+  };
+
   const applyZoom = (
     newZoom: number,
     centerX: number,
@@ -561,6 +573,7 @@ export function createZoomHandlers(
     handleTouchEnd,
     updateZoomedView,
     zoomOnBallById,
+    resetZoom,
     cleanup,
   };
 }
