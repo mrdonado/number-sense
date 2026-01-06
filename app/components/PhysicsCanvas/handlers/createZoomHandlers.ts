@@ -500,6 +500,14 @@ export function createZoomHandlers(
     }
   };
 
+  const zoomOnBallById = (ballId: number) => {
+    const bodies = Matter.Composite.allBodies(engine.world);
+    const ball = bodies.find((b) => b.id === ballId && !b.isStatic);
+    if (ball) {
+      zoomInOnBall(ball);
+    }
+  };
+
   // ============ Cleanup ============
 
   const cleanup = () => {
@@ -517,6 +525,7 @@ export function createZoomHandlers(
     handleTouchMove,
     handleTouchEnd,
     updateZoomedView,
+    zoomOnBallById,
     cleanup,
   };
 }

@@ -23,6 +23,7 @@ export interface ZoomHandlerResult {
   handleTouchMove: (e: TouchEvent) => void;
   handleTouchEnd: (e: TouchEvent) => void;
   updateZoomedView: () => void;
+  zoomOnBallById: (ballId: number) => void;
   cleanup: () => void;
 }
 

@@ -39,6 +39,7 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
       isComparisonMode,
       enterComparisonMode,
       exitComparisonMode,
+      zoomOnBall,
     } = usePhysicsEngine({
       containerRef,
       canvasRef,
@@ -124,6 +125,7 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
             onHover={setHoveredBallId}
             onRemove={removeBall}
             onToggleVisibility={toggleBallVisibility}
+            onZoom={zoomOnBall}
           />
           {/* Zoom mode indicator */}
           {zoomLevel < 1.0 && !isComparisonMode && (

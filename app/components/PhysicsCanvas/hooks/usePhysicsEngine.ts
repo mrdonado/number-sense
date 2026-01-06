@@ -37,6 +37,7 @@ interface UsePhysicsEngineReturn {
   isComparisonMode: boolean;
   enterComparisonMode: () => void;
   exitComparisonMode: () => void;
+  zoomOnBall: (id: number) => void;
 }
 
 export function usePhysicsEngine(
@@ -66,6 +67,7 @@ export function usePhysicsEngine(
     new Map()
   );
   const savedRunnerEnabledRef = useRef(true);
+  const zoomOnBallByIdRef = useRef<((id: number) => void) | null>(null);
 
   // Keep ref in sync with state for use in render callback
   useEffect(() => {
@@ -220,8 +222,12 @@ export function usePhysicsEngine(
       handleTouchMove,
       handleTouchEnd,
       updateZoomedView,
+      zoomOnBallById,
       cleanup: zoomCleanup,
     } = createZoomHandlers(zoomOptions);
+
+    // Store zoomOnBallById in ref for external access
+    zoomOnBallByIdRef.current = zoomOnBallById;
 
     // Set up panning functionality
     const panningOptions = {
@@ -679,5 +685,8 @@ export function usePhysicsEngine(
     isComparisonMode,
     enterComparisonMode,
     exitComparisonMode,
+    zoomOnBall: useCallback((id: number) => {
+      zoomOnBallByIdRef.current?.(id);
+    }, []),
   };
 }

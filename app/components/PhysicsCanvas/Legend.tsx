@@ -9,6 +9,7 @@ interface LegendProps {
   onHover: (id: number | null) => void;
   onRemove: (id: number) => void;
   onToggleVisibility: (id: number) => void;
+  onZoom: (id: number) => void;
 }
 
 export function Legend({
@@ -18,6 +19,7 @@ export function Legend({
   onHover,
   onRemove,
   onToggleVisibility,
+  onZoom,
 }: LegendProps) {
   if (balls.length === 0) {
     return null;
@@ -62,6 +64,18 @@ export function Legend({
               >
                 {ball.name}
               </span>
+              {!isHidden && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onZoom(ball.id);
+                  }}
+                  className="text-white/60 hover:text-white transition-colors text-sm cursor-pointer"
+                  title="Zoom to ball"
+                >
+                  🔍
+                </button>
+              )}
               <button
                 onClick={(e) => {
                   e.stopPropagation();
