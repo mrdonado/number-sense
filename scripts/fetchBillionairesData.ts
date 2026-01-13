@@ -1,6 +1,5 @@
 /**
- * Script to fetch billionaire net worth data from Forbes
- * and generate a JSON file with the same structure as other datasets.
+ * Data source to fetch billionaire net worth data from Forbes.
  *
  * Usage: npx tsx scripts/fetchBillionairesData.ts
  * Or add to package.json scripts and run: npm run fetch-billionaires
@@ -8,13 +7,14 @@
 
 import * as fs from "fs";
 import * as path from "path";
+import { DataSource } from "./types";
 
 interface ForbesBillionaire {
   personName: string;
-  finalWorth: number; // in millions USD
+  finalWorth: number;
   country: string;
   city: string;
-  source: string; // source of wealth (company/industry)
+  source: string;
   industries: string[];
   countryOfCitizenship: string;
   rank: number;
@@ -24,9 +24,9 @@ interface ForbesBillionaire {
 interface BillionaireEntry {
   rank: number;
   name: string;
-  value: number; // net worth in USD
+  value: number;
   country: string;
-  source: string; // source of wealth
+  source: string;
 }
 
 interface BillionairesDataset {
@@ -73,13 +73,12 @@ async function fetchBillionairesData(): Promise<void> {
 
   console.log(`Received ${rawData.length} billionaires\n`);
 
-  // Transform to our standard format
   const billionairesArray: BillionaireEntry[] = rawData
     .filter((person) => person.finalWorth && person.finalWorth > 0)
     .map((person) => ({
       rank: person.rank,
       name: person.personName,
-      value: person.finalWorth * 1_000_000, // Convert from millions to absolute USD
+      value: person.finalWorth * 1_000_000,
       country: person.countryOfCitizenship || person.country,
       source: person.source,
     }))
@@ -87,7 +86,6 @@ async function fetchBillionairesData(): Promise<void> {
 
   const currentYear = new Date().getFullYear();
 
-  // Build the output structure
   const output: BillionairesDataset = {
     metadata: {
       source: "Forbes Real-Time Billionaires",
@@ -102,12 +100,10 @@ async function fetchBillionairesData(): Promise<void> {
     data: billionairesArray,
   };
 
-  // Ensure output directory exists
   if (!fs.existsSync(OUTPUT_DIR)) {
     fs.mkdirSync(OUTPUT_DIR, { recursive: true });
   }
 
-  // Write to file
   fs.writeFileSync(OUTPUT_FILE, JSON.stringify(output, null, 2));
 
   console.log(`✅ Billionaires data saved to ${OUTPUT_FILE}`);
@@ -121,14 +117,23 @@ async function fetchBillionairesData(): Promise<void> {
     );
   });
 
-  // Calculate total wealth of all billionaires
   const totalWealth = billionairesArray.reduce((sum, p) => sum + p.value, 0);
   const totalInTrillions = (totalWealth / 1e12).toFixed(2);
   console.log(`\n   Combined net worth: $${totalInTrillions}T`);
 }
 
-// Run the script
-fetchBillionairesData().catch((error) => {
-  console.error("Error fetching billionaires data:", error);
-  process.exit(1);
-});
+const dataSource: DataSource = {
+  name: "Billionaires Data",
+  units: "USD",
+  fetch: fetchBillionairesData,
+};
+
+export default dataSource;
+
+// Run directly if this is the main module
+if (require.main === module) {
+  dataSource.fetch().catch((error) => {
+    console.error("Error fetching billionaires data:", error);
+    process.exit(1);
+  });
+}

@@ -1,13 +1,13 @@
 /**
- * Script to fetch GDP data for all countries from the World Bank API
- * and generate a JSON file organized by units.
+ * Data source to fetch GDP data for all countries from the World Bank API.
  *
- * Usage: npx ts-node scripts/fetchGdpData.ts
+ * Usage: npx tsx scripts/fetchGdpData.ts
  * Or add to package.json scripts and run: npm run fetch-gdp
  */
 
 import * as fs from "fs";
 import * as path from "path";
+import { DataSource } from "./types";
 
 interface WorldBankDataPoint {
   indicator: { id: string; value: string };
@@ -42,7 +42,6 @@ interface GdpDataset {
 }
 
 const WORLD_BANK_API_BASE = "https://api.worldbank.org/v2";
-// GDP (current US$) indicator
 const GDP_INDICATOR = "NY.GDP.MKTP.CD";
 const OUTPUT_DIR = path.join(__dirname, "..", "data");
 const OUTPUT_FILE = path.join(OUTPUT_DIR, "gdp-by-country.json");
@@ -63,7 +62,6 @@ async function fetchAllPages<T>(baseUrl: string): Promise<T[]> {
 
     const json = await response.json();
 
-    // World Bank API returns [metadata, data] array
     if (Array.isArray(json) && json.length === 2) {
       const [metadata, data] = json;
       totalPages = metadata.pages || 1;
@@ -82,7 +80,6 @@ async function fetchAllPages<T>(baseUrl: string): Promise<T[]> {
 async function fetchGdpData(): Promise<void> {
   console.log("Fetching GDP data from World Bank API...\n");
 
-  // Fetch the most recent 5 years of data to ensure we have the latest available
   const currentYear = new Date().getFullYear();
   const startYear = currentYear - 5;
 
@@ -92,11 +89,9 @@ async function fetchGdpData(): Promise<void> {
 
   console.log(`Received ${rawData.length} data points\n`);
 
-  // Group by country and get the most recent non-null value
   const countryLatestGdp = new Map<string, CountryGdp>();
 
   for (const item of rawData) {
-    // Skip null values and aggregates (country codes starting with numbers or special codes)
     if (
       item.value === null ||
       !item.countryiso3code ||
@@ -105,58 +100,57 @@ async function fetchGdpData(): Promise<void> {
       continue;
     }
 
-    // Skip regional aggregates and special groupings
     const aggregateCodes = [
-      "WLD", // World
-      "LIC", // Low income
-      "MIC", // Middle income
-      "HIC", // High income
-      "LMC", // Lower middle income
-      "UMC", // Upper middle income
-      "LMY", // Low & middle income
-      "MNA", // Middle East & North Africa
-      "SSF", // Sub-Saharan Africa
-      "EAS", // East Asia & Pacific
-      "ECS", // Europe & Central Asia
-      "LCN", // Latin America & Caribbean
-      "NAC", // North America
-      "SAS", // South Asia
-      "SSA", // Sub-Saharan Africa (excluding high income)
-      "EAP", // East Asia & Pacific (excluding high income)
-      "ECA", // Europe & Central Asia (excluding high income)
-      "LAC", // Latin America & Caribbean (excluding high income)
-      "MEA", // Middle East & North Africa
-      "OED", // OECD members
-      "PST", // Post-demographic dividend
-      "TSS", // Small states
-      "EMU", // Euro area
-      "EUU", // European Union
-      "ARB", // Arab World
-      "CSS", // Caribbean small states
-      "OSS", // Other small states
-      "PSS", // Pacific island small states
-      "TEA", // East Asia & Pacific (IDA & IBRD)
-      "TEC", // Europe & Central Asia (IDA & IBRD)
-      "TLA", // Latin America & Caribbean (IDA & IBRD)
-      "TMN", // Middle East & North Africa (IDA & IBRD)
-      "TSA", // South Asia (IDA & IBRD)
-      "CEB", // Central Europe and the Baltics
-      "FCS", // Fragile and conflict affected situations
-      "HPC", // Heavily indebted poor countries (HIPC)
-      "IBD", // IBRD only
-      "IBT", // IDA & IBRD total
-      "IDA", // IDA total
-      "IDB", // IDA blend
-      "IDX", // IDA only
-      "LDC", // Least developed countries
-      "PRE", // Pre-demographic dividend
-      "INX", // Not classified
-      "LTE", // Late-demographic dividend
-      "EAR", // Early-demographic dividend
-      "SST", // Small states
-      "AFE", // Africa Eastern and Southern
-      "AFW", // Africa Western and Central
-      "XZN", // Sub-Saharan Africa excluding South Africa
+      "WLD",
+      "LIC",
+      "MIC",
+      "HIC",
+      "LMC",
+      "UMC",
+      "LMY",
+      "MNA",
+      "SSF",
+      "EAS",
+      "ECS",
+      "LCN",
+      "NAC",
+      "SAS",
+      "SSA",
+      "EAP",
+      "ECA",
+      "LAC",
+      "MEA",
+      "OED",
+      "PST",
+      "TSS",
+      "EMU",
+      "EUU",
+      "ARB",
+      "CSS",
+      "OSS",
+      "PSS",
+      "TEA",
+      "TEC",
+      "TLA",
+      "TMN",
+      "TSA",
+      "CEB",
+      "FCS",
+      "HPC",
+      "IBD",
+      "IBT",
+      "IDA",
+      "IDB",
+      "IDX",
+      "LDC",
+      "PRE",
+      "INX",
+      "LTE",
+      "EAR",
+      "SST",
+      "AFE",
+      "AFW",
+      "XZN",
     ];
 
     if (aggregateCodes.includes(item.countryiso3code)) {
@@ -166,7 +160,6 @@ async function fetchGdpData(): Promise<void> {
     const year = parseInt(item.date, 10);
     const existing = countryLatestGdp.get(item.countryiso3code);
 
-    // Keep the most recent year's data
     if (!existing || year > existing.year) {
       countryLatestGdp.set(item.countryiso3code, {
         countryCode: item.countryiso3code,
@@ -177,12 +170,10 @@ async function fetchGdpData(): Promise<void> {
     }
   }
 
-  // Convert to array and sort by GDP descending
   const gdpArray = Array.from(countryLatestGdp.values()).sort(
     (a, b) => b.value - a.value
   );
 
-  // Find the most common (latest) year in the data
   const yearCounts = new Map<number, number>();
   for (const item of gdpArray) {
     yearCounts.set(item.year, (yearCounts.get(item.year) || 0) + 1);
@@ -191,7 +182,6 @@ async function fetchGdpData(): Promise<void> {
     (a, b) => b[0] - a[0]
   )[0]?.[0];
 
-  // Build the output structure
   const output: GdpDataset = {
     metadata: {
       source: "World Bank Open Data",
@@ -206,12 +196,10 @@ async function fetchGdpData(): Promise<void> {
     data: gdpArray,
   };
 
-  // Ensure output directory exists
   if (!fs.existsSync(OUTPUT_DIR)) {
     fs.mkdirSync(OUTPUT_DIR, { recursive: true });
   }
 
-  // Write to file
   fs.writeFileSync(OUTPUT_FILE, JSON.stringify(output, null, 2));
 
   console.log(`✅ GDP data saved to ${OUTPUT_FILE}`);
@@ -227,8 +215,18 @@ async function fetchGdpData(): Promise<void> {
   });
 }
 
-// Run the script
-fetchGdpData().catch((error) => {
-  console.error("Error fetching GDP data:", error);
-  process.exit(1);
-});
+const dataSource: DataSource = {
+  name: "GDP Data",
+  units: "USD",
+  fetch: fetchGdpData,
+};
+
+export default dataSource;
+
+// Run directly if this is the main module
+if (require.main === module) {
+  dataSource.fetch().catch((error) => {
+    console.error("Error fetching GDP data:", error);
+    process.exit(1);
+  });
+}
