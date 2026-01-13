@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "fetch-gdp": "npx tsx scripts/fetchGdpData.ts"
   },
   "dependencies": {
     "matter-js": "^0.20.0",
