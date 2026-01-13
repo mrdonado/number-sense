@@ -9,7 +9,8 @@
     "lint": "eslint",
     "test": "vitest run",
     "test:watch": "vitest",
-    "fetch-gdp": "npx tsx scripts/fetchGdpData.ts"
+    "fetch-gdp": "npx tsx scripts/fetchGdpData.ts",
+    "fetch-billionaires": "npx tsx scripts/fetchBillionairesData.ts"
   },
   "dependencies": {
     "matter-js": "^0.20.0",
