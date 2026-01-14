@@ -1,11 +1,15 @@
 "use client";
 
 import { useRef, useState, useCallback } from "react";
+import { useSearchParams } from "next/navigation";
 import PhysicsCanvas, {
   PhysicsCanvasHandle,
 } from "./components/PhysicsCanvas/index";
 
 export default function Home() {
+  const searchParams = useSearchParams();
+  const isDebugMode = searchParams.get("debugMode") === "true";
+
   const canvasRef = useRef<PhysicsCanvasHandle>(null);
   const [inputValue, setInputValue] = useState("");
   const [nameValue, setNameValue] = useState("");
@@ -44,25 +48,29 @@ export default function Home() {
       <main className="main-content">
         <h1 className="page-title">Number Sense</h1>
         <div className="toolbar">
-          <input
-            type="text"
-            value={nameValue}
-            onChange={(e) => setNameValue(e.target.value)}
-            onKeyDown={handleKeyDown}
-            placeholder="Enter name"
-            className="input"
-          />
-          <input
-            type="number"
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            onKeyDown={handleKeyDown}
-            placeholder="Enter area"
-            className="input"
-          />
-          <button onClick={handleSubmit} className="btn btn-primary">
-            Drop Ball
-          </button>
+          {isDebugMode && (
+            <>
+              <input
+                type="text"
+                value={nameValue}
+                onChange={(e) => setNameValue(e.target.value)}
+                onKeyDown={handleKeyDown}
+                placeholder="Enter name"
+                className="input"
+              />
+              <input
+                type="number"
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                onKeyDown={handleKeyDown}
+                placeholder="Enter area"
+                className="input"
+              />
+              <button onClick={handleSubmit} className="btn btn-primary">
+                Drop Ball
+              </button>
+            </>
+          )}
           <button onClick={handleClear} className="btn btn-secondary">
             Clear
           </button>
