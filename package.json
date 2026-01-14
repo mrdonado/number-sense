@@ -11,6 +11,7 @@
     "test:watch": "vitest",
     "fetch-gdp": "npx tsx scripts/fetchGdpData.ts",
     "fetch-billionaires": "npx tsx scripts/fetchBillionairesData.ts",
+    "fetch-marketcap": "npx tsx scripts/fetchMarketCapData.ts",
     "fetch-all": "npx tsx scripts/fetchAllData.ts"
   },
   "dependencies": {

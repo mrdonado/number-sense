@@ -1,0 +1,7014 @@
+{
+  "metadata": {
+    "source": "CompaniesMarketCap.com",
+    "indicator": "MARKET.CAP.COMPANIES",
+    "indicatorName": "Company Market Capitalization",
+    "description": "Market capitalization of publicly traded companies in US Dollars",
+    "units": "USD",
+    "fetchedAt": "2026-01-14T20:08:05.372Z",
+    "totalCompanies": 1000,
+    "year": 2026
+  },
+  "data": [
+    {
+      "rank": 1,
+      "name": "NVIDIA",
+      "value": 4443084423168,
+      "symbol": "NVDA",
+      "country": "USA"
+    },
+    {
+      "rank": 2,
+      "name": "Alphabet (Google)",
+      "value": 4061085564928,
+      "symbol": "GOOG",
+      "country": "USA"
+    },
+    {
+      "rank": 3,
+      "name": "Apple",
+      "value": 3832838356992,
+      "symbol": "AAPL",
+      "country": "USA"
+    },
+    {
+      "rank": 4,
+      "name": "Microsoft",
+      "value": 3411042893824,
+      "symbol": "MSFT",
+      "country": "USA"
+    },
+    {
+      "rank": 5,
+      "name": "Amazon",
+      "value": 2542133313536,
+      "symbol": "AMZN",
+      "country": "USA"
+    },
+    {
+      "rank": 6,
+      "name": "TSMC",
+      "value": 1693393747968,
+      "symbol": "TSM",
+      "country": "Taiwan"
+    },
+    {
+      "rank": 7,
+      "name": "Saudi Aramco",
+      "value": 1610988735024,
+      "symbol": "2222.SR",
+      "country": "S. Arabia"
+    },
+    {
+      "rank": 8,
+      "name": "Broadcom",
+      "value": 1605869371392,
+      "symbol": "AVGO",
+      "country": "USA"
+    },
+    {
+      "rank": 9,
+      "name": "Meta Platforms (Facebook)",
+      "value": 1561239879680,
+      "symbol": "META",
+      "country": "USA"
+    },
+    {
+      "rank": 10,
+      "name": "Tesla",
+      "value": 1457540300800,
+      "symbol": "TSLA",
+      "country": "USA"
+    },
+    {
+      "rank": 11,
+      "name": "Berkshire Hathaway",
+      "value": 1067395317760,
+      "symbol": "BRK-B",
+      "country": "USA"
+    },
+    {
+      "rank": 12,
+      "name": "Eli Lilly",
+      "value": 960436895744,
+      "symbol": "LLY",
+      "country": "USA"
+    },
+    {
+      "rank": 13,
+      "name": "Walmart",
+      "value": 955147616256,
+      "symbol": "WMT",
+      "country": "USA"
+    },
+    {
+      "rank": 14,
+      "name": "JPMorgan Chase",
+      "value": 840199045120,
+      "symbol": "JPM",
+      "country": "USA"
+    },
+    {
+      "rank": 15,
+      "name": "Tencent",
+      "value": 731386085376,
+      "symbol": "TCEHY",
+      "country": "China"
+    },
+    {
+      "rank": 16,
+      "name": "Samsung",
+      "value": 640627074746,
+      "symbol": "005930.KS",
+      "country": "S. Korea"
+    },
+    {
+      "rank": 17,
+      "name": "Visa",
+      "value": 634743160832,
+      "symbol": "V",
+      "country": "USA"
+    },
+    {
+      "rank": 18,
+      "name": "Exxon Mobil",
+      "value": 553412067328,
+      "symbol": "XOM",
+      "country": "USA"
+    },
+    {
+      "rank": 19,
+      "name": "Oracle",
+      "value": 552158101504,
+      "symbol": "ORCL",
+      "country": "USA"
+    },
+    {
+      "rank": 20,
+      "name": "Johnson & Johnson",
+      "value": 526190051328,
+      "symbol": "JNJ",
+      "country": "USA"
+    },
+    {
+      "rank": 21,
+      "name": "Mastercard",
+      "value": 494042480640,
+      "symbol": "MA",
+      "country": "USA"
+    },
+    {
+      "rank": 22,
+      "name": "ASML",
+      "value": 486663454720,
+      "symbol": "ASML",
+      "country": "Netherlands"
+    },
+    {
+      "rank": 23,
+      "name": "Palantir",
+      "value": 423823605760,
+      "symbol": "PLTR",
+      "country": "USA"
+    },
+    {
+      "rank": 24,
+      "name": "Costco",
+      "value": 421981782016,
+      "symbol": "COST",
+      "country": "USA"
+    },
+    {
+      "rank": 25,
+      "name": "Alibaba",
+      "value": 408411504640,
+      "symbol": "BABA",
+      "country": "China"
+    },
+    {
+      "rank": 26,
+      "name": "Bank of America",
+      "value": 396640649216,
+      "symbol": "BAC",
+      "country": "USA"
+    },
+    {
+      "rank": 27,
+      "name": "AbbVie",
+      "value": 390874791936,
+      "symbol": "ABBV",
+      "country": "USA"
+    },
+    {
+      "rank": 28,
+      "name": "Agricultural Bank of China",
+      "value": 375456913019,
+      "symbol": "601288.SS",
+      "country": "China"
+    },
+    {
+      "rank": 29,
+      "name": "Netflix",
+      "value": 374815817728,
+      "symbol": "NFLX",
+      "country": "USA"
+    },
+    {
+      "rank": 30,
+      "name": "Micron Technology",
+      "value": 373593079808,
+      "symbol": "MU",
+      "country": "USA"
+    },
+    {
+      "rank": 31,
+      "name": "Home Depot",
+      "value": 373416361984,
+      "symbol": "HD",
+      "country": "USA"
+    },
+    {
+      "rank": 32,
+      "name": "LVMH",
+      "value": 368636440694,
+      "symbol": "MC.PA",
+      "country": "France"
+    },
+    {
+      "rank": 33,
+      "name": "AMD",
+      "value": 363313758208,
+      "symbol": "AMD",
+      "country": "USA"
+    },
+    {
+      "rank": 34,
+      "name": "ICBC",
+      "value": 357594120883,
+      "symbol": "1398.HK",
+      "country": "China"
+    },
+    {
+      "rank": 35,
+      "name": "SK Hynix",
+      "value": 349876946508,
+      "symbol": "000660.KS",
+      "country": "S. Korea"
+    },
+    {
+      "rank": 36,
+      "name": "Roche",
+      "value": 344996459169,
+      "symbol": "ROG.SW",
+      "country": "Switzerland"
+    },
+    {
+      "rank": 37,
+      "name": "Procter & Gamble",
+      "value": 341693300736,
+      "symbol": "PG",
+      "country": "USA"
+    },
+    {
+      "rank": 38,
+      "name": "China Construction Bank",
+      "value": 340296230252,
+      "symbol": "601939.SS",
+      "country": "China"
+    },
+    {
+      "rank": 39,
+      "name": "General Electric",
+      "value": 337887789056,
+      "symbol": "GE",
+      "country": "USA"
+    },
+    {
+      "rank": 40,
+      "name": "Chevron",
+      "value": 336475324416,
+      "symbol": "CVX",
+      "country": "USA"
+    },
+    {
+      "rank": 41,
+      "name": "Coca-Cola",
+      "value": 308121042944,
+      "symbol": "KO",
+      "country": "USA"
+    },
+    {
+      "rank": 42,
+      "name": "UnitedHealth",
+      "value": 306218729472,
+      "symbol": "UNH",
+      "country": "USA"
+    },
+    {
+      "rank": 43,
+      "name": "Caterpillar",
+      "value": 299187830784,
+      "symbol": "CAT",
+      "country": "USA"
+    },
+    {
+      "rank": 44,
+      "name": "AstraZeneca",
+      "value": 298290053120,
+      "symbol": "AZN",
+      "country": "UK"
+    },
+    {
+      "rank": 45,
+      "name": "Toyota",
+      "value": 297516171264,
+      "symbol": "TM",
+      "country": "Japan"
+    },
+    {
+      "rank": 46,
+      "name": "Cisco",
+      "value": 292697079808,
+      "symbol": "CSCO",
+      "country": "USA"
+    },
+    {
+      "rank": 47,
+      "name": "Morgan Stanley",
+      "value": 288721272832,
+      "symbol": "MS",
+      "country": "USA"
+    },
+    {
+      "rank": 48,
+      "name": "IBM",
+      "value": 287889096704,
+      "symbol": "IBM",
+      "country": "USA"
+    },
+    {
+      "rank": 49,
+      "name": "Wells Fargo",
+      "value": 285939171328,
+      "symbol": "WFC",
+      "country": "USA"
+    },
+    {
+      "rank": 50,
+      "name": "Goldman Sachs",
+      "value": 282847444992,
+      "symbol": "GS",
+      "country": "USA"
+    },
+    {
+      "rank": 51,
+      "name": "Prosus",
+      "value": 282209575328,
+      "symbol": "PRX.AS",
+      "country": "Netherlands"
+    },
+    {
+      "rank": 52,
+      "name": "HSBC",
+      "value": 280903352320,
+      "symbol": "HSBC",
+      "country": "UK"
+    },
+    {
+      "rank": 53,
+      "name": "Novartis",
+      "value": 279337762816,
+      "symbol": "NVS",
+      "country": "Switzerland"
+    },
+    {
+      "rank": 54,
+      "name": "SAP",
+      "value": 278245441536,
+      "symbol": "SAP",
+      "country": "Germany"
+    },
+    {
+      "rank": 55,
+      "name": "Merck",
+      "value": 276529577984,
+      "symbol": "MRK",
+      "country": "USA"
+    },
+    {
+      "rank": 56,
+      "name": "Hermès",
+      "value": 273379390875,
+      "symbol": "RMS.PA",
+      "country": "France"
+    },
+    {
+      "rank": 57,
+      "name": "Philip Morris International",
+      "value": 265733799936,
+      "symbol": "PM",
+      "country": "USA"
+    },
+    {
+      "rank": 58,
+      "name": "RTX",
+      "value": 263930970112,
+      "symbol": "RTX",
+      "country": "USA"
+    },
+    {
+      "rank": 59,
+      "name": "Lam Research",
+      "value": 262824361984,
+      "symbol": "LRCX",
+      "country": "USA"
+    },
+    {
+      "rank": 60,
+      "name": "Novo Nordisk",
+      "value": 262054199296,
+      "symbol": "NVO",
+      "country": "Denmark"
+    },
+    {
+      "rank": 61,
+      "name": "PetroChina",
+      "value": 260126543321,
+      "symbol": "0857.HK",
+      "country": "China"
+    },
+    {
+      "rank": 62,
+      "name": "Bank of China",
+      "value": 252775396029,
+      "symbol": "601988.SS",
+      "country": "China"
+    },
+    {
+      "rank": 63,
+      "name": "Kweichow Moutai",
+      "value": 251084442450,
+      "symbol": "600519.SS",
+      "country": "China"
+    },
+    {
+      "rank": 64,
+      "name": "American Express",
+      "value": 249219792896,
+      "symbol": "AXP",
+      "country": "USA"
+    },
+    {
+      "rank": 65,
+      "name": "Nestlé",
+      "value": 246124383305,
+      "symbol": "NESN.SW",
+      "country": "Switzerland"
+    },
+    {
+      "rank": 66,
+      "name": "L'Oréal",
+      "value": 243247232201,
+      "symbol": "OR.PA",
+      "country": "France"
+    },
+    {
+      "rank": 67,
+      "name": "Applied Materials",
+      "value": 239371141120,
+      "symbol": "AMAT",
+      "country": "USA"
+    },
+    {
+      "rank": 68,
+      "name": "International Holding Company",
+      "value": 238656753091,
+      "symbol": "IHC.AE",
+      "country": "UAE"
+    },
+    {
+      "rank": 69,
+      "name": "Royal Bank Of Canada",
+      "value": 236956647424,
+      "symbol": "RY",
+      "country": "Canada"
+    },
+    {
+      "rank": 70,
+      "name": "Siemens",
+      "value": 236196123395,
+      "symbol": "SIE.DE",
+      "country": "Germany"
+    },
+    {
+      "rank": 71,
+      "name": "CATL",
+      "value": 233575986235,
+      "symbol": "300750.SZ",
+      "country": "China"
+    },
+    {
+      "rank": 72,
+      "name": "Thermo Fisher Scientific",
+      "value": 233487548416,
+      "symbol": "TMO",
+      "country": "USA"
+    },
+    {
+      "rank": 73,
+      "name": "Intel",
+      "value": 231344996352,
+      "symbol": "INTC",
+      "country": "USA"
+    },
+    {
+      "rank": 74,
+      "name": "China Mobile",
+      "value": 226853386225,
+      "symbol": "0941.HK",
+      "country": "China"
+    },
+    {
+      "rank": 75,
+      "name": "Salesforce",
+      "value": 226828271616,
+      "symbol": "CRM",
+      "country": "USA"
+    },
+    {
+      "rank": 76,
+      "name": "McDonald",
+      "value": 218910146560,
+      "symbol": "MCD",
+      "country": "USA"
+    },
+    {
+      "rank": 77,
+      "name": "Reliance Industries",
+      "value": 218773471694,
+      "symbol": "RELIANCE.NS",
+      "country": "India"
+    },
+    {
+      "rank": 78,
+      "name": "Abbott Laboratories",
+      "value": 217305022464,
+      "symbol": "ABT",
+      "country": "USA"
+    },
+    {
+      "rank": 79,
+      "name": "T-Mobile US",
+      "value": 214782279680,
+      "symbol": "TMUS",
+      "country": "USA"
+    },
+    {
+      "rank": 80,
+      "name": "Shell",
+      "value": 210246352896,
+      "symbol": "SHEL",
+      "country": "UK"
+    },
+    {
+      "rank": 81,
+      "name": "AppLovin",
+      "value": 209216045056,
+      "symbol": "APP",
+      "country": "USA"
+    },
+    {
+      "rank": 82,
+      "name": "Mitsubishi UFJ Financial",
+      "value": 208049340416,
+      "symbol": "MUFG",
+      "country": "Japan"
+    },
+    {
+      "rank": 83,
+      "name": "Citigroup",
+      "value": 206309425152,
+      "symbol": "C",
+      "country": "USA"
+    },
+    {
+      "rank": 84,
+      "name": "Linde",
+      "value": 205851279360,
+      "symbol": "LIN",
+      "country": "UK"
+    },
+    {
+      "rank": 85,
+      "name": "Shopify",
+      "value": 205587038208,
+      "symbol": "SHOP",
+      "country": "Canada"
+    },
+    {
+      "rank": 86,
+      "name": "Inditex",
+      "value": 204105685779,
+      "symbol": "ITX.MC",
+      "country": "Spain"
+    },
+    {
+      "rank": 87,
+      "name": "Walt Disney",
+      "value": 203191336960,
+      "symbol": "DIS",
+      "country": "USA"
+    },
+    {
+      "rank": 88,
+      "name": "China Life Insurance",
+      "value": 200984446313,
+      "symbol": "601628.SS",
+      "country": "China"
+    },
+    {
+      "rank": 89,
+      "name": "Pepsico",
+      "value": 199399260160,
+      "symbol": "PEP",
+      "country": "USA"
+    },
+    {
+      "rank": 90,
+      "name": "Airbus",
+      "value": 197988159770,
+      "symbol": "AIR.PA",
+      "country": "Netherlands"
+    },
+    {
+      "rank": 91,
+      "name": "Intuitive Surgical",
+      "value": 195450339328,
+      "symbol": "ISRG",
+      "country": "USA"
+    },
+    {
+      "rank": 92,
+      "name": "Blackstone Group",
+      "value": 194071625728,
+      "symbol": "BX",
+      "country": "USA"
+    },
+    {
+      "rank": 93,
+      "name": "Boeing",
+      "value": 189832134656,
+      "symbol": "BA",
+      "country": "USA"
+    },
+    {
+      "rank": 94,
+      "name": "KLA",
+      "value": 187385757696,
+      "symbol": "KLAC",
+      "country": "USA"
+    },
+    {
+      "rank": 95,
+      "name": "Charles Schwab",
+      "value": 183990632448,
+      "symbol": "SCHW",
+      "country": "USA"
+    },
+    {
+      "rank": 96,
+      "name": "Santander",
+      "value": 180777517056,
+      "symbol": "SAN",
+      "country": "Spain"
+    },
+    {
+      "rank": 97,
+      "name": "Amphenol",
+      "value": 180291141632,
+      "symbol": "APH",
+      "country": "USA"
+    },
+    {
+      "rank": 98,
+      "name": "Accenture",
+      "value": 179871268864,
+      "symbol": "ACN",
+      "country": "Ireland"
+    },
+    {
+      "rank": 99,
+      "name": "QUALCOMM",
+      "value": 176902062080,
+      "symbol": "QCOM",
+      "country": "USA"
+    },
+    {
+      "rank": 100,
+      "name": "Amgen",
+      "value": 176180084736,
+      "symbol": "AMGN",
+      "country": "USA"
+    },
+    {
+      "rank": 101,
+      "name": "Uber",
+      "value": 175321137152,
+      "symbol": "UBER",
+      "country": "USA"
+    },
+    {
+      "rank": 102,
+      "name": "GE Vernova",
+      "value": 174897070080,
+      "symbol": "GEV",
+      "country": "USA"
+    },
+    {
+      "rank": 103,
+      "name": "Texas Instruments",
+      "value": 174836170752,
+      "symbol": "TXN",
+      "country": "USA"
+    },
+    {
+      "rank": 104,
+      "name": "Ping An Insurance",
+      "value": 173999573583,
+      "symbol": "601318.SS",
+      "country": "China"
+    },
+    {
+      "rank": 105,
+      "name": "TJX Companies",
+      "value": 172271779840,
+      "symbol": "TJX",
+      "country": "USA"
+    },
+    {
+      "rank": 106,
+      "name": "Nextera Energy",
+      "value": 171742396416,
+      "symbol": "NEE",
+      "country": "USA"
+    },
+    {
+      "rank": 107,
+      "name": "Foxconn Industrial Internet",
+      "value": 170884449346,
+      "symbol": "601138.SS",
+      "country": "China"
+    },
+    {
+      "rank": 108,
+      "name": "Commonwealth Bank",
+      "value": 170785838400,
+      "symbol": "CBA.AX",
+      "country": "Australia"
+    },
+    {
+      "rank": 109,
+      "name": "Danaher",
+      "value": 170130276352,
+      "symbol": "DHR",
+      "country": "USA"
+    },
+    {
+      "rank": 110,
+      "name": "Allianz SE",
+      "value": 170064484118,
+      "symbol": "ALV.DE",
+      "country": "Germany"
+    },
+    {
+      "rank": 111,
+      "name": "AT&T",
+      "value": 169463414784,
+      "symbol": "T",
+      "country": "USA"
+    },
+    {
+      "rank": 112,
+      "name": "BHP Group",
+      "value": 169069690880,
+      "symbol": "BHP",
+      "country": "Australia"
+    },
+    {
+      "rank": 113,
+      "name": "BlackRock",
+      "value": 168870920192,
+      "symbol": "BLK",
+      "country": "USA"
+    },
+    {
+      "rank": 114,
+      "name": "HDFC Bank",
+      "value": 168537276416,
+      "symbol": "HDB",
+      "country": "India"
+    },
+    {
+      "rank": 115,
+      "name": "Verizon",
+      "value": 167581827072,
+      "symbol": "VZ",
+      "country": "USA"
+    },
+    {
+      "rank": 116,
+      "name": "Booking Holdings (Booking.com)",
+      "value": 166671728640,
+      "symbol": "BKNG",
+      "country": "USA"
+    },
+    {
+      "rank": 117,
+      "name": "S&P Global",
+      "value": 166235848704,
+      "symbol": "SPGI",
+      "country": "USA"
+    },
+    {
+      "rank": 118,
+      "name": "Deutsche Telekom",
+      "value": 162920697951,
+      "symbol": "DTE.DE",
+      "country": "Germany"
+    },
+    {
+      "rank": 119,
+      "name": "Toronto Dominion Bank",
+      "value": 158231560192,
+      "symbol": "TD",
+      "country": "Canada"
+    },
+    {
+      "rank": 120,
+      "name": "Arista Networks",
+      "value": 156888039424,
+      "symbol": "ANET",
+      "country": "USA"
+    },
+    {
+      "rank": 121,
+      "name": "Intuit",
+      "value": 156835233792,
+      "symbol": "INTU",
+      "country": "USA"
+    },
+    {
+      "rank": 122,
+      "name": "CM Bank",
+      "value": 156485286755,
+      "symbol": "3968.HK",
+      "country": "China"
+    },
+    {
+      "rank": 123,
+      "name": "Safran",
+      "value": 155408529285,
+      "symbol": "SAF.PA",
+      "country": "France"
+    },
+    {
+      "rank": 124,
+      "name": "Lowe's Companies",
+      "value": 154317750272,
+      "symbol": "LOW",
+      "country": "USA"
+    },
+    {
+      "rank": 125,
+      "name": "Hitachi",
+      "value": 153999900459,
+      "symbol": "6501.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 126,
+      "name": "SoftBank",
+      "value": 153622032135,
+      "symbol": "9984.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 127,
+      "name": "Gilead Sciences",
+      "value": 153500221440,
+      "symbol": "GILD",
+      "country": "USA"
+    },
+    {
+      "rank": 128,
+      "name": "PDD Holdings (Pinduoduo)",
+      "value": 153279234048,
+      "symbol": "PDD",
+      "country": "China"
+    },
+    {
+      "rank": 129,
+      "name": "Schneider Electric",
+      "value": 151191489996,
+      "symbol": "SU.PA",
+      "country": "France"
+    },
+    {
+      "rank": 130,
+      "name": "EssilorLuxottica",
+      "value": 150657894223,
+      "symbol": "EL.PA",
+      "country": "France"
+    },
+    {
+      "rank": 131,
+      "name": "Capital One",
+      "value": 149234565120,
+      "symbol": "COF",
+      "country": "USA"
+    },
+    {
+      "rank": 132,
+      "name": "UBS",
+      "value": 148500316160,
+      "symbol": "UBS",
+      "country": "Switzerland"
+    },
+    {
+      "rank": 133,
+      "name": "Southern Copper",
+      "value": 147183271936,
+      "symbol": "SCCO",
+      "country": "USA"
+    },
+    {
+      "rank": 134,
+      "name": "Zijin Mining",
+      "value": 146820325161,
+      "symbol": "601899.SS",
+      "country": "China"
+    },
+    {
+      "rank": 135,
+      "name": "Pfizer",
+      "value": 145411981312,
+      "symbol": "PFE",
+      "country": "USA"
+    },
+    {
+      "rank": 136,
+      "name": "Sony",
+      "value": 144570236928,
+      "symbol": "SONY",
+      "country": "Japan"
+    },
+    {
+      "rank": 137,
+      "name": "Analog Devices",
+      "value": 144462659584,
+      "symbol": "ADI",
+      "country": "USA"
+    },
+    {
+      "rank": 138,
+      "name": "Honeywell",
+      "value": 143278178304,
+      "symbol": "HON",
+      "country": "USA"
+    },
+    {
+      "rank": 139,
+      "name": "TotalEnergies",
+      "value": 142930296832,
+      "symbol": "TTE",
+      "country": "France"
+    },
+    {
+      "rank": 140,
+      "name": "Iberdrola",
+      "value": 142802481721,
+      "symbol": "IBE.MC",
+      "country": "Spain"
+    },
+    {
+      "rank": 141,
+      "name": "Unilever",
+      "value": 142294695936,
+      "symbol": "UL",
+      "country": "UK"
+    },
+    {
+      "rank": 142,
+      "name": "Rolls-Royce Holdings",
+      "value": 141260823611,
+      "symbol": "RR.L",
+      "country": "UK"
+    },
+    {
+      "rank": 143,
+      "name": "ServiceNow",
+      "value": 140829933568,
+      "symbol": "NOW",
+      "country": "USA"
+    },
+    {
+      "rank": 144,
+      "name": "Deere &amp; Company (John Deere)",
+      "value": 139519590400,
+      "symbol": "DE",
+      "country": "USA"
+    },
+    {
+      "rank": 145,
+      "name": "Rio Tinto",
+      "value": 139126226944,
+      "symbol": "RIO",
+      "country": "UK"
+    },
+    {
+      "rank": 146,
+      "name": "Banco Bilbao Vizcaya Argentaria",
+      "value": 138670997504,
+      "symbol": "BBVA",
+      "country": "Spain"
+    },
+    {
+      "rank": 147,
+      "name": "Boston Scientific",
+      "value": 138482319360,
+      "symbol": "BSX",
+      "country": "USA"
+    },
+    {
+      "rank": 148,
+      "name": "CNOOC",
+      "value": 137122945280,
+      "symbol": "0883.HK",
+      "country": "China"
+    },
+    {
+      "rank": 149,
+      "name": "ABB",
+      "value": 136761834004,
+      "symbol": "ABBN.SW",
+      "country": "Switzerland"
+    },
+    {
+      "rank": 150,
+      "name": "Stryker Corporation",
+      "value": 136727928832,
+      "symbol": "SYK",
+      "country": "USA"
+    },
+    {
+      "rank": 151,
+      "name": "Bharti Airtel",
+      "value": 136517569833,
+      "symbol": "BHARTIARTL.NS",
+      "country": "India"
+    },
+    {
+      "rank": 152,
+      "name": "Union Pacific Corporation",
+      "value": 134350946304,
+      "symbol": "UNP",
+      "country": "USA"
+    },
+    {
+      "rank": 153,
+      "name": "Lockheed Martin",
+      "value": 133845516288,
+      "symbol": "LMT",
+      "country": "USA"
+    },
+    {
+      "rank": 154,
+      "name": "Anheuser-Busch Inbev",
+      "value": 133724815360,
+      "symbol": "BUD",
+      "country": "Belgium"
+    },
+    {
+      "rank": 155,
+      "name": "Sumitomo Mitsui Financial Group",
+      "value": 133063876608,
+      "symbol": "SMFG",
+      "country": "Japan"
+    },
+    {
+      "rank": 156,
+      "name": "Palo Alto Networks",
+      "value": 132360298496,
+      "symbol": "PANW",
+      "country": "USA"
+    },
+    {
+      "rank": 157,
+      "name": "Adobe",
+      "value": 128944070656,
+      "symbol": "ADBE",
+      "country": "USA"
+    },
+    {
+      "rank": 158,
+      "name": "DBS Group",
+      "value": 128484112275,
+      "symbol": "D05.SI",
+      "country": "Singapore"
+    },
+    {
+      "rank": 159,
+      "name": "Compagnie Financière Richemont",
+      "value": 128437663735,
+      "symbol": "CFR.SW",
+      "country": "Switzerland"
+    },
+    {
+      "rank": 160,
+      "name": "Welltower",
+      "value": 128418840576,
+      "symbol": "WELL",
+      "country": "USA"
+    },
+    {
+      "rank": 161,
+      "name": "BYD",
+      "value": 128348581367,
+      "symbol": "002594.SZ",
+      "country": "China"
+    },
+    {
+      "rank": 162,
+      "name": "Eaton",
+      "value": 128169246720,
+      "symbol": "ETN",
+      "country": "Ireland"
+    },
+    {
+      "rank": 163,
+      "name": "Tata Consultancy Services",
+      "value": 128001687966,
+      "symbol": "TCS.NS",
+      "country": "India"
+    },
+    {
+      "rank": 164,
+      "name": "Fast Retailing",
+      "value": 126195497779,
+      "symbol": "9983.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 165,
+      "name": "ConocoPhillips",
+      "value": 125943341056,
+      "symbol": "COP",
+      "country": "USA"
+    },
+    {
+      "rank": 166,
+      "name": "Medtronic",
+      "value": 125670727680,
+      "symbol": "MDT",
+      "country": "Ireland"
+    },
+    {
+      "rank": 167,
+      "name": "Siemens Energy",
+      "value": 125662901393,
+      "symbol": "ENR.F",
+      "country": "Germany"
+    },
+    {
+      "rank": 168,
+      "name": "Newmont",
+      "value": 125662748672,
+      "symbol": "NEM",
+      "country": "USA"
+    },
+    {
+      "rank": 169,
+      "name": "Xiaomi",
+      "value": 125659938816,
+      "symbol": "XIACF",
+      "country": "China"
+    },
+    {
+      "rank": 170,
+      "name": "Dior",
+      "value": 125384297108,
+      "symbol": "CDI.PA",
+      "country": "France"
+    },
+    {
+      "rank": 171,
+      "name": "UniCredit",
+      "value": 124935520480,
+      "symbol": "UCG.MI",
+      "country": "Italy"
+    },
+    {
+      "rank": 172,
+      "name": "British American Tobacco",
+      "value": 124693463040,
+      "symbol": "BTI",
+      "country": "UK"
+    },
+    {
+      "rank": 173,
+      "name": "Tokyo Electron",
+      "value": 122420904828,
+      "symbol": "8035.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 174,
+      "name": "Prologis",
+      "value": 122266771456,
+      "symbol": "PLD",
+      "country": "USA"
+    },
+    {
+      "rank": 175,
+      "name": "KKR & Co.",
+      "value": 121934667776,
+      "symbol": "KKR",
+      "country": "USA"
+    },
+    {
+      "rank": 176,
+      "name": "Intesa Sanpaolo",
+      "value": 120875845787,
+      "symbol": "ISP.MI",
+      "country": "Italy"
+    },
+    {
+      "rank": 177,
+      "name": "Progressive",
+      "value": 120376172544,
+      "symbol": "PGR",
+      "country": "USA"
+    },
+    {
+      "rank": 178,
+      "name": "Interactive Brokers",
+      "value": 120262082560,
+      "symbol": "IBKR",
+      "country": "USA"
+    },
+    {
+      "rank": 179,
+      "name": "Constellation Energy",
+      "value": 119666221056,
+      "symbol": "CEG",
+      "country": "USA"
+    },
+    {
+      "rank": 180,
+      "name": "Chubb",
+      "value": 119625039872,
+      "symbol": "CB",
+      "country": "Switzerland"
+    },
+    {
+      "rank": 181,
+      "name": "China Shenhua Energy",
+      "value": 118940421926,
+      "symbol": "601088.SS",
+      "country": "China"
+    },
+    {
+      "rank": 182,
+      "name": "Parker-Hannifin",
+      "value": 117653086208,
+      "symbol": "PH",
+      "country": "USA"
+    },
+    {
+      "rank": 183,
+      "name": "Sanofi",
+      "value": 116160397312,
+      "symbol": "SNY",
+      "country": "France"
+    },
+    {
+      "rank": 184,
+      "name": "CrowdStrike",
+      "value": 115902251008,
+      "symbol": "CRWD",
+      "country": "USA"
+    },
+    {
+      "rank": 185,
+      "name": "Bristol-Myers Squibb",
+      "value": 115386482688,
+      "symbol": "BMY",
+      "country": "USA"
+    },
+    {
+      "rank": 186,
+      "name": "Vertex Pharmaceuticals",
+      "value": 115301441536,
+      "symbol": "VRTX",
+      "country": "USA"
+    },
+    {
+      "rank": 187,
+      "name": "Investor AB",
+      "value": 113901191460,
+      "symbol": "INVE-B.ST",
+      "country": "Sweden"
+    },
+    {
+      "rank": 188,
+      "name": "AIA",
+      "value": 113643831598,
+      "symbol": "1299.HK",
+      "country": "Hong Kong"
+    },
+    {
+      "rank": 189,
+      "name": "ICICI Bank",
+      "value": 113461616640,
+      "symbol": "IBN",
+      "country": "India"
+    },
+    {
+      "rank": 190,
+      "name": "BNP Paribas",
+      "value": 113215820585,
+      "symbol": "BNP.PA",
+      "country": "France"
+    },
+    {
+      "rank": 191,
+      "name": "HCA Healthcare",
+      "value": 111839535104,
+      "symbol": "HCA",
+      "country": "USA"
+    },
+    {
+      "rank": 192,
+      "name": "Comcast",
+      "value": 111554666496,
+      "symbol": "CMCSA",
+      "country": "USA"
+    },
+    {
+      "rank": 193,
+      "name": "Arm Holdings",
+      "value": 110625013760,
+      "symbol": "ARM",
+      "country": "UK"
+    },
+    {
+      "rank": 194,
+      "name": "Al Rajhi Bank",
+      "value": 110394108333,
+      "symbol": "1120.SR",
+      "country": "S. Arabia"
+    },
+    {
+      "rank": 195,
+      "name": "Enel",
+      "value": 108869340071,
+      "symbol": "ENEL.MI",
+      "country": "Italy"
+    },
+    {
+      "rank": 196,
+      "name": "Air Liquide",
+      "value": 108858668537,
+      "symbol": "AI.PA",
+      "country": "France"
+    },
+    {
+      "rank": 197,
+      "name": "Spotify",
+      "value": 107064885248,
+      "symbol": "SPOT",
+      "country": "Sweden"
+    },
+    {
+      "rank": 198,
+      "name": "Robinhood",
+      "value": 106700808192,
+      "symbol": "HOOD",
+      "country": "USA"
+    },
+    {
+      "rank": 199,
+      "name": "Brookfield Corporation",
+      "value": 106205134848,
+      "symbol": "BN",
+      "country": "Canada"
+    },
+    {
+      "rank": 200,
+      "name": "MercadoLibre",
+      "value": 106079797248,
+      "symbol": "MELI",
+      "country": "Argentina"
+    },
+    {
+      "rank": 201,
+      "name": "Advantest",
+      "value": 105721616152,
+      "symbol": "6857.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 202,
+      "name": "State Bank of India",
+      "value": 105190723635,
+      "symbol": "SBIN.NS",
+      "country": "India"
+    },
+    {
+      "rank": 203,
+      "name": "Automatic Data Processing",
+      "value": 104126234624,
+      "symbol": "ADP",
+      "country": "USA"
+    },
+    {
+      "rank": 204,
+      "name": "Zurich Insurance Group",
+      "value": 103938816114,
+      "symbol": "ZURN.SW",
+      "country": "Switzerland"
+    },
+    {
+      "rank": 205,
+      "name": "Foxconn (Hon Hai Precision Industry)",
+      "value": 103760369162,
+      "symbol": "2317.TW",
+      "country": "Taiwan"
+    },
+    {
+      "rank": 206,
+      "name": "McKesson",
+      "value": 103709220864,
+      "symbol": "MCK",
+      "country": "USA"
+    },
+    {
+      "rank": 207,
+      "name": "Mizuho Financial Group",
+      "value": 103631388672,
+      "symbol": "MFG",
+      "country": "Japan"
+    },
+    {
+      "rank": 208,
+      "name": "Sinopec",
+      "value": 103581001403,
+      "symbol": "600028.SS",
+      "country": "China"
+    },
+    {
+      "rank": 209,
+      "name": "Altria Group",
+      "value": 103069704192,
+      "symbol": "MO",
+      "country": "USA"
+    },
+    {
+      "rank": 210,
+      "name": "Starbucks",
+      "value": 103004209152,
+      "symbol": "SBUX",
+      "country": "USA"
+    },
+    {
+      "rank": 211,
+      "name": "GlaxoSmithKline",
+      "value": 102531907584,
+      "symbol": "GSK",
+      "country": "UK"
+    },
+    {
+      "rank": 212,
+      "name": "Enbridge",
+      "value": 101826035712,
+      "symbol": "ENB",
+      "country": "Canada"
+    },
+    {
+      "rank": 213,
+      "name": "CVS Health",
+      "value": 101059518464,
+      "symbol": "CVS",
+      "country": "USA"
+    },
+    {
+      "rank": 214,
+      "name": "Mitsubishi Heavy Industries",
+      "value": 99894242214,
+      "symbol": "7011.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 215,
+      "name": "CME Group",
+      "value": 98944974848,
+      "symbol": "CME",
+      "country": "USA"
+    },
+    {
+      "rank": 216,
+      "name": "Agnico Eagle Mines",
+      "value": 98852962304,
+      "symbol": "AEM",
+      "country": "Canada"
+    },
+    {
+      "rank": 217,
+      "name": "General Dynamics",
+      "value": 98399477760,
+      "symbol": "GD",
+      "country": "USA"
+    },
+    {
+      "rank": 218,
+      "name": "Intercontinental Exchange",
+      "value": 98316533760,
+      "symbol": "ICE",
+      "country": "USA"
+    },
+    {
+      "rank": 219,
+      "name": "Carvana",
+      "value": 98309521408,
+      "symbol": "CVNA",
+      "country": "USA"
+    },
+    {
+      "rank": 220,
+      "name": "Rheinmetall",
+      "value": 98207628837,
+      "symbol": "RHM.F",
+      "country": "Germany"
+    },
+    {
+      "rank": 221,
+      "name": "Southern Company",
+      "value": 97535877120,
+      "symbol": "SO",
+      "country": "USA"
+    },
+    {
+      "rank": 222,
+      "name": "Nike",
+      "value": 96701161472,
+      "symbol": "NKE",
+      "country": "USA"
+    },
+    {
+      "rank": 223,
+      "name": "Synopsys",
+      "value": 96489422848,
+      "symbol": "SNPS",
+      "country": "USA"
+    },
+    {
+      "rank": 224,
+      "name": "SMIC",
+      "value": 95941455597,
+      "symbol": "0981.HK",
+      "country": "China"
+    },
+    {
+      "rank": 225,
+      "name": "Moody's",
+      "value": 95696797696,
+      "symbol": "MCO",
+      "country": "USA"
+    },
+    {
+      "rank": 226,
+      "name": "Bank of Montreal",
+      "value": 95474606080,
+      "symbol": "BMO",
+      "country": "Canada"
+    },
+    {
+      "rank": 227,
+      "name": "Mitsubishi Corporation",
+      "value": 95256301022,
+      "symbol": "8058.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 228,
+      "name": "AXA",
+      "value": 95136677968,
+      "symbol": "CS.PA",
+      "country": "France"
+    },
+    {
+      "rank": 229,
+      "name": "Zhongji Innolight",
+      "value": 94498844210,
+      "symbol": "300308.SZ",
+      "country": "China"
+    },
+    {
+      "rank": 230,
+      "name": "China Yangtze Power",
+      "value": 94082882109,
+      "symbol": "600900.SS",
+      "country": "China"
+    },
+    {
+      "rank": 231,
+      "name": "Northrop Grumman",
+      "value": 92821233664,
+      "symbol": "NOC",
+      "country": "USA"
+    },
+    {
+      "rank": 232,
+      "name": "Duke Energy",
+      "value": 92701114368,
+      "symbol": "DUK",
+      "country": "USA"
+    },
+    {
+      "rank": 233,
+      "name": "DoorDash",
+      "value": 92044042240,
+      "symbol": "DASH",
+      "country": "USA"
+    },
+    {
+      "rank": 234,
+      "name": "TAQA",
+      "value": 91838037496,
+      "symbol": "TAQA.AE",
+      "country": "UAE"
+    },
+    {
+      "rank": 235,
+      "name": "BP",
+      "value": 91451875328,
+      "symbol": "BP",
+      "country": "UK"
+    },
+    {
+      "rank": 236,
+      "name": "Itōchū Shōji",
+      "value": 91096473260,
+      "symbol": "8001.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 237,
+      "name": "United Parcel Service",
+      "value": 91082678272,
+      "symbol": "UPS",
+      "country": "USA"
+    },
+    {
+      "rank": 238,
+      "name": "Mitsui Bussan",
+      "value": 91001834096,
+      "symbol": "8031.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 239,
+      "name": "Postal Savings Bank of China",
+      "value": 90943263528,
+      "symbol": "601658.SS",
+      "country": "China"
+    },
+    {
+      "rank": 240,
+      "name": "Scotiabank",
+      "value": 90863058944,
+      "symbol": "BNS",
+      "country": "Canada"
+    },
+    {
+      "rank": 241,
+      "name": "3M",
+      "value": 90104963072,
+      "symbol": "MMM",
+      "country": "USA"
+    },
+    {
+      "rank": 242,
+      "name": "Keyence",
+      "value": 90057732485,
+      "symbol": "6861.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 243,
+      "name": "NetEase",
+      "value": 89998221312,
+      "symbol": "NTES",
+      "country": "China"
+    },
+    {
+      "rank": 244,
+      "name": "Atlas Copco",
+      "value": 89980166990,
+      "symbol": "ATCO-B.ST",
+      "country": "Sweden"
+    },
+    {
+      "rank": 245,
+      "name": "Marsh & McLennan Companies",
+      "value": 89819709440,
+      "symbol": "MMC",
+      "country": "USA"
+    },
+    {
+      "rank": 246,
+      "name": "Barclays",
+      "value": 89314000896,
+      "symbol": "BCS",
+      "country": "UK"
+    },
+    {
+      "rank": 247,
+      "name": "Bank of Communications",
+      "value": 89219231977,
+      "symbol": "601328.SS",
+      "country": "China"
+    },
+    {
+      "rank": 248,
+      "name": "Chugai Pharmaceutical",
+      "value": 88585785386,
+      "symbol": "4519.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 249,
+      "name": "Sherwin-Williams",
+      "value": 88441020416,
+      "symbol": "SHW",
+      "country": "USA"
+    },
+    {
+      "rank": 250,
+      "name": "CaixaBank",
+      "value": 88130763442,
+      "symbol": "CABK.MC",
+      "country": "Spain"
+    },
+    {
+      "rank": 251,
+      "name": "Howmet Aerospace",
+      "value": 88058945536,
+      "symbol": "HWM",
+      "country": "USA"
+    },
+    {
+      "rank": 252,
+      "name": "Waste Management",
+      "value": 87555096576,
+      "symbol": "WM",
+      "country": "USA"
+    },
+    {
+      "rank": 253,
+      "name": "Westpac Banking",
+      "value": 87429572828,
+      "symbol": "WBC.AX",
+      "country": "Australia"
+    },
+    {
+      "rank": 254,
+      "name": "Delta Electronics",
+      "value": 87254277186,
+      "symbol": "2308.TW",
+      "country": "Taiwan"
+    },
+    {
+      "rank": 255,
+      "name": "Cambricon Technologies",
+      "value": 87035578988,
+      "symbol": "688256.SS",
+      "country": "China"
+    },
+    {
+      "rank": 256,
+      "name": "Freeport-McMoRan",
+      "value": 86737387520,
+      "symbol": "FCX",
+      "country": "USA"
+    },
+    {
+      "rank": 257,
+      "name": "Grupo México",
+      "value": 86569197568,
+      "symbol": "GMBXF",
+      "country": "Mexico"
+    },
+    {
+      "rank": 258,
+      "name": "Marriott International",
+      "value": 86383312896,
+      "symbol": "MAR",
+      "country": "USA"
+    },
+    {
+      "rank": 259,
+      "name": "BNY Mellon (Bank of New York Mellon)",
+      "value": 86296952832,
+      "symbol": "BK",
+      "country": "USA"
+    },
+    {
+      "rank": 260,
+      "name": "Barrick Gold",
+      "value": 85781782528,
+      "symbol": "B",
+      "country": "Canada"
+    },
+    {
+      "rank": 261,
+      "name": "Trane Technologies",
+      "value": 85650612224,
+      "symbol": "TT",
+      "country": "Ireland"
+    },
+    {
+      "rank": 262,
+      "name": "National Australia Bank",
+      "value": 85560809492,
+      "symbol": "NAB.AX",
+      "country": "Australia"
+    },
+    {
+      "rank": 263,
+      "name": "ING",
+      "value": 85398265856,
+      "symbol": "ING",
+      "country": "Netherlands"
+    },
+    {
+      "rank": 264,
+      "name": "CIBC",
+      "value": 85299380224,
+      "symbol": "CM",
+      "country": "Canada"
+    },
+    {
+      "rank": 265,
+      "name": "Cadence Design Systems",
+      "value": 84965097472,
+      "symbol": "CDNS",
+      "country": "USA"
+    },
+    {
+      "rank": 266,
+      "name": "Elevance Health",
+      "value": 84686184448,
+      "symbol": "ELV",
+      "country": "USA"
+    },
+    {
+      "rank": 267,
+      "name": "Midea",
+      "value": 84061640306,
+      "symbol": "000333.SZ",
+      "country": "China"
+    },
+    {
+      "rank": 268,
+      "name": "Apollo Global Management",
+      "value": 83784007680,
+      "symbol": "APO",
+      "country": "USA"
+    },
+    {
+      "rank": 269,
+      "name": "Brookfield Asset Management",
+      "value": 83725475840,
+      "symbol": "BAM",
+      "country": "Canada"
+    },
+    {
+      "rank": 270,
+      "name": "PNC Financial Services",
+      "value": 83624853504,
+      "symbol": "PNC",
+      "country": "USA"
+    },
+    {
+      "rank": 271,
+      "name": "U.S. Bancorp",
+      "value": 83590717440,
+      "symbol": "USB",
+      "country": "USA"
+    },
+    {
+      "rank": 272,
+      "name": "American Tower",
+      "value": 83119276032,
+      "symbol": "AMT",
+      "country": "USA"
+    },
+    {
+      "rank": 273,
+      "name": "Emerson",
+      "value": 82905817088,
+      "symbol": "EMR",
+      "country": "USA"
+    },
+    {
+      "rank": 274,
+      "name": "Sberbank",
+      "value": 82432899736,
+      "symbol": "SBER.ME",
+      "country": "Russia"
+    },
+    {
+      "rank": 275,
+      "name": "China Telecom",
+      "value": 82093855064,
+      "symbol": "0728.HK",
+      "country": "China"
+    },
+    {
+      "rank": 276,
+      "name": "NTT (Nippon Telegraph &amp; Telephone)",
+      "value": 82046873719,
+      "symbol": "9432.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 277,
+      "name": "Petrobras",
+      "value": 81779007488,
+      "symbol": "PBR",
+      "country": "Brazil"
+    },
+    {
+      "rank": 278,
+      "name": "BTG Pactual",
+      "value": 81544988331,
+      "symbol": "BPAC3.SA",
+      "country": "Brazil"
+    },
+    {
+      "rank": 279,
+      "name": "Cement Roadstone Holding",
+      "value": 81439997952,
+      "symbol": "CRH",
+      "country": "Ireland"
+    },
+    {
+      "rank": 280,
+      "name": "Recruit",
+      "value": 81061425800,
+      "symbol": "6098.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 281,
+      "name": "Itaú Unibanco",
+      "value": 80989814784,
+      "symbol": "ITUB",
+      "country": "Brazil"
+    },
+    {
+      "rank": 282,
+      "name": "Munich RE (Münchener Rück)",
+      "value": 80710146811,
+      "symbol": "MUV2.DE",
+      "country": "Germany"
+    },
+    {
+      "rank": 283,
+      "name": "Lloyds Banking Group",
+      "value": 80280567808,
+      "symbol": "LYG",
+      "country": "UK"
+    },
+    {
+      "rank": 284,
+      "name": "Nu Holdings",
+      "value": 80218505216,
+      "symbol": "NU",
+      "country": "Brazil"
+    },
+    {
+      "rank": 285,
+      "name": "Airbnb",
+      "value": 80193683456,
+      "symbol": "ABNB",
+      "country": "USA"
+    },
+    {
+      "rank": 286,
+      "name": "Regeneron Pharmaceuticals",
+      "value": 80149815296,
+      "symbol": "REGN",
+      "country": "USA"
+    },
+    {
+      "rank": 287,
+      "name": "O'Reilly Automotive",
+      "value": 79950053376,
+      "symbol": "ORLY",
+      "country": "USA"
+    },
+    {
+      "rank": 288,
+      "name": "BAE Systems",
+      "value": 79849909386,
+      "symbol": "BA.L",
+      "country": "UK"
+    },
+    {
+      "rank": 289,
+      "name": "Dell",
+      "value": 79767224320,
+      "symbol": "DELL",
+      "country": "USA"
+    },
+    {
+      "rank": 290,
+      "name": "TransDigm Group",
+      "value": 79610552320,
+      "symbol": "TDG",
+      "country": "USA"
+    },
+    {
+      "rank": 291,
+      "name": "Meituan",
+      "value": 79496825319,
+      "symbol": "3690.HK",
+      "country": "China"
+    },
+    {
+      "rank": 292,
+      "name": "National Grid",
+      "value": 78494859264,
+      "symbol": "NGG",
+      "country": "UK"
+    },
+    {
+      "rank": 293,
+      "name": "Equinix",
+      "value": 77971038208,
+      "symbol": "EQIX",
+      "country": "USA"
+    },
+    {
+      "rank": 294,
+      "name": "Infosys",
+      "value": 77857120256,
+      "symbol": "INFY",
+      "country": "India"
+    },
+    {
+      "rank": 295,
+      "name": "Cintas",
+      "value": 77845528576,
+      "symbol": "CTAS",
+      "country": "USA"
+    },
+    {
+      "rank": 296,
+      "name": "Ecolab",
+      "value": 77839433728,
+      "symbol": "ECL",
+      "country": "USA"
+    },
+    {
+      "rank": 297,
+      "name": "Cummins",
+      "value": 77751681024,
+      "symbol": "CMI",
+      "country": "USA"
+    },
+    {
+      "rank": 298,
+      "name": "General Motors",
+      "value": 77551501312,
+      "symbol": "GM",
+      "country": "USA"
+    },
+    {
+      "rank": 299,
+      "name": "Corning",
+      "value": 77055262720,
+      "symbol": "GLW",
+      "country": "USA"
+    },
+    {
+      "rank": 300,
+      "name": "Glencore",
+      "value": 76320473088,
+      "symbol": "GLCNF",
+      "country": "Switzerland"
+    },
+    {
+      "rank": 301,
+      "name": "Monster Beverage",
+      "value": 76246736896,
+      "symbol": "MNST",
+      "country": "USA"
+    },
+    {
+      "rank": 302,
+      "name": "Royal Caribbean Group",
+      "value": 76224634880,
+      "symbol": "RCL",
+      "country": "USA"
+    },
+    {
+      "rank": 303,
+      "name": "MediaTek",
+      "value": 75871523731,
+      "symbol": "2454.TW",
+      "country": "Taiwan"
+    },
+    {
+      "rank": 304,
+      "name": "RELX",
+      "value": 75677843456,
+      "symbol": "RELX",
+      "country": "UK"
+    },
+    {
+      "rank": 305,
+      "name": "Vinci",
+      "value": 75571431257,
+      "symbol": "DG.PA",
+      "country": "France"
+    },
+    {
+      "rank": 306,
+      "name": "Nintendo",
+      "value": 75357286257,
+      "symbol": "7974.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 307,
+      "name": "Illinois Tool Works",
+      "value": 75081654272,
+      "symbol": "ITW",
+      "country": "USA"
+    },
+    {
+      "rank": 308,
+      "name": "Deutsche Bank",
+      "value": 74741850112,
+      "symbol": "DB",
+      "country": "Germany"
+    },
+    {
+      "rank": 309,
+      "name": "Williams Companies",
+      "value": 74732486656,
+      "symbol": "WMB",
+      "country": "USA"
+    },
+    {
+      "rank": 310,
+      "name": "Aon",
+      "value": 74669334528,
+      "symbol": "AON",
+      "country": "UK"
+    },
+    {
+      "rank": 311,
+      "name": "Ma'aden",
+      "value": 73991815735,
+      "symbol": "1211.SR",
+      "country": "S. Arabia"
+    },
+    {
+      "rank": 312,
+      "name": "Sea Limited",
+      "value": 73949208576,
+      "symbol": "SE",
+      "country": "Singapore"
+    },
+    {
+      "rank": 313,
+      "name": "Western Digital",
+      "value": 73790160896,
+      "symbol": "WDC",
+      "country": "USA"
+    },
+    {
+      "rank": 314,
+      "name": "Mondelez International",
+      "value": 73780772864,
+      "symbol": "MDLZ",
+      "country": "USA"
+    },
+    {
+      "rank": 315,
+      "name": "FedEx",
+      "value": 73313746944,
+      "symbol": "FDX",
+      "country": "USA"
+    },
+    {
+      "rank": 316,
+      "name": "Johnson Controls",
+      "value": 73245368320,
+      "symbol": "JCI",
+      "country": "Ireland"
+    },
+    {
+      "rank": 317,
+      "name": "The Cigna Group",
+      "value": 73165758464,
+      "symbol": "CI",
+      "country": "USA"
+    },
+    {
+      "rank": 318,
+      "name": "Hyundai",
+      "value": 73149985947,
+      "symbol": "005380.KS",
+      "country": "S. Korea"
+    },
+    {
+      "rank": 319,
+      "name": "Nongfu Spring",
+      "value": 73128937063,
+      "symbol": "9633.HK",
+      "country": "China"
+    },
+    {
+      "rank": 320,
+      "name": "Tokio Marine",
+      "value": 72711377729,
+      "symbol": "8766.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 321,
+      "name": "ANZ Bank",
+      "value": 72525486271,
+      "symbol": "ANZ.AX",
+      "country": "Australia"
+    },
+    {
+      "rank": 322,
+      "name": "ADNOC Gas",
+      "value": 72513458325,
+      "symbol": "ADNOCGAS.AE",
+      "country": "UAE"
+    },
+    {
+      "rank": 323,
+      "name": "Canadian Natural Resources",
+      "value": 71969120256,
+      "symbol": "CNQ",
+      "country": "Canada"
+    },
+    {
+      "rank": 324,
+      "name": "Warner Bros. Discovery",
+      "value": 71519305728,
+      "symbol": "WBD",
+      "country": "USA"
+    },
+    {
+      "rank": 325,
+      "name": "Hong Kong Exchanges & Clearing",
+      "value": 70480661156,
+      "symbol": "0388.HK",
+      "country": "Hong Kong"
+    },
+    {
+      "rank": 326,
+      "name": "SLB (Schlumberger)",
+      "value": 70401146880,
+      "symbol": "SLB",
+      "country": "USA"
+    },
+    {
+      "rank": 327,
+      "name": "Enterprise Products",
+      "value": 70392193024,
+      "symbol": "EPD",
+      "country": "USA"
+    },
+    {
+      "rank": 328,
+      "name": "Hilton Worldwide",
+      "value": 70214746112,
+      "symbol": "HLT",
+      "country": "USA"
+    },
+    {
+      "rank": 329,
+      "name": "OCBC Bank",
+      "value": 70170288812,
+      "symbol": "O39.SI",
+      "country": "Singapore"
+    },
+    {
+      "rank": 330,
+      "name": "Snowflake",
+      "value": 70140731392,
+      "symbol": "SNOW",
+      "country": "USA"
+    },
+    {
+      "rank": 331,
+      "name": "Simon Property Group",
+      "value": 70122782720,
+      "symbol": "SPG",
+      "country": "USA"
+    },
+    {
+      "rank": 332,
+      "name": "TE Connectivity",
+      "value": 69875081216,
+      "symbol": "TEL",
+      "country": "Switzerland"
+    },
+    {
+      "rank": 333,
+      "name": "CMOC",
+      "value": 69464765042,
+      "symbol": "3993.HK",
+      "country": "China"
+    },
+    {
+      "rank": 334,
+      "name": "Marvell Technology",
+      "value": 68765401088,
+      "symbol": "MRVL",
+      "country": "USA"
+    },
+    {
+      "rank": 335,
+      "name": "Coinbase",
+      "value": 68723589120,
+      "symbol": "COIN",
+      "country": "USA"
+    },
+    {
+      "rank": 336,
+      "name": "NatWest Group",
+      "value": 68184047616,
+      "symbol": "NWG",
+      "country": "UK"
+    },
+    {
+      "rank": 337,
+      "name": "Colgate-Palmolive",
+      "value": 68100685824,
+      "symbol": "CL",
+      "country": "USA"
+    },
+    {
+      "rank": 338,
+      "name": "Mercedes-Benz",
+      "value": 68042201489,
+      "symbol": "MBG.DE",
+      "country": "Germany"
+    },
+    {
+      "rank": 339,
+      "name": "Volvo Group",
+      "value": 68011607616,
+      "symbol": "VOLV-A.ST",
+      "country": "Sweden"
+    },
+    {
+      "rank": 340,
+      "name": "Seagate Technology",
+      "value": 67972808704,
+      "symbol": "STX",
+      "country": "Ireland"
+    },
+    {
+      "rank": 341,
+      "name": "Cencora",
+      "value": 67746390016,
+      "symbol": "COR",
+      "country": "USA"
+    },
+    {
+      "rank": 342,
+      "name": "The Saudi National Bank",
+      "value": 67678737559,
+      "symbol": "1180.SR",
+      "country": "S. Arabia"
+    },
+    {
+      "rank": 343,
+      "name": "ENGIE",
+      "value": 67210942395,
+      "symbol": "ENGI.PA",
+      "country": "France"
+    },
+    {
+      "rank": 344,
+      "name": "CSX Corporation",
+      "value": 66936864768,
+      "symbol": "CSX",
+      "country": "USA"
+    },
+    {
+      "rank": 345,
+      "name": "Mitsubishi Electric",
+      "value": 66494155825,
+      "symbol": "6503.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 346,
+      "name": "Nordea Bank",
+      "value": 66301234652,
+      "symbol": "NDA-FI.HE",
+      "country": "Finland"
+    },
+    {
+      "rank": 347,
+      "name": "CPKC (Canadian Pacific Kansas City)",
+      "value": 66197098496,
+      "symbol": "CP",
+      "country": "Canada"
+    },
+    {
+      "rank": 348,
+      "name": "Arthur J. Gallagher & Co.",
+      "value": 66025848832,
+      "symbol": "AJG",
+      "country": "USA"
+    },
+    {
+      "rank": 349,
+      "name": "KDDI",
+      "value": 65758605866,
+      "symbol": "9433.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 350,
+      "name": "Shin-Etsu Chemical",
+      "value": 65659293980,
+      "symbol": "4063.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 351,
+      "name": "Cloudflare",
+      "value": 65393987584,
+      "symbol": "NET",
+      "country": "USA"
+    },
+    {
+      "rank": 352,
+      "name": "Republic Services",
+      "value": 65298374656,
+      "symbol": "RSG",
+      "country": "USA"
+    },
+    {
+      "rank": 353,
+      "name": "Japan Tobacco",
+      "value": 65291254256,
+      "symbol": "2914.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 354,
+      "name": "Bajaj Finance",
+      "value": 65151507398,
+      "symbol": "BAJFINANCE.NS",
+      "country": "India"
+    },
+    {
+      "rank": 355,
+      "name": "Vertiv Holdings",
+      "value": 64901926912,
+      "symbol": "VRT",
+      "country": "USA"
+    },
+    {
+      "rank": 356,
+      "name": "Quanta Services",
+      "value": 64870629376,
+      "symbol": "PWR",
+      "country": "USA"
+    },
+    {
+      "rank": 357,
+      "name": "Motorola Solutions",
+      "value": 64780587008,
+      "symbol": "MSI",
+      "country": "USA"
+    },
+    {
+      "rank": 358,
+      "name": "Truist Financial",
+      "value": 64523333632,
+      "symbol": "TFC",
+      "country": "USA"
+    },
+    {
+      "rank": 359,
+      "name": "BMW",
+      "value": 64476378495,
+      "symbol": "BMW.DE",
+      "country": "Germany"
+    },
+    {
+      "rank": 360,
+      "name": "Merck KGaA",
+      "value": 64280314092,
+      "symbol": "MRK.DE",
+      "country": "Germany"
+    },
+    {
+      "rank": 361,
+      "name": "Norfolk Southern",
+      "value": 64174575616,
+      "symbol": "NSC",
+      "country": "USA"
+    },
+    {
+      "rank": 362,
+      "name": "DSV",
+      "value": 64071980762,
+      "symbol": "DSV.VI",
+      "country": "Denmark"
+    },
+    {
+      "rank": 363,
+      "name": "DHL Group (Deutsche Post)",
+      "value": 64051166979,
+      "symbol": "DHL.DE",
+      "country": "Germany"
+    },
+    {
+      "rank": 364,
+      "name": "L3Harris Technologies",
+      "value": 63788101632,
+      "symbol": "LHX",
+      "country": "USA"
+    },
+    {
+      "rank": 365,
+      "name": "Equinor",
+      "value": 63772749824,
+      "symbol": "EQNR",
+      "country": "Norway"
+    },
+    {
+      "rank": 366,
+      "name": "Rocket Companies",
+      "value": 63718236160,
+      "symbol": "RKT",
+      "country": "USA"
+    },
+    {
+      "rank": 367,
+      "name": "Delta Electronics (Thailand)",
+      "value": 63479977849,
+      "symbol": "DELTA.BK",
+      "country": "Thailand"
+    },
+    {
+      "rank": 368,
+      "name": "American Electric Power",
+      "value": 63461089280,
+      "symbol": "AEP",
+      "country": "USA"
+    },
+    {
+      "rank": 369,
+      "name": "Ferrari",
+      "value": 63063379968,
+      "symbol": "RACE",
+      "country": "Italy"
+    },
+    {
+      "rank": 370,
+      "name": "Thales",
+      "value": 62937150381,
+      "symbol": "HO.PA",
+      "country": "France"
+    },
+    {
+      "rank": 371,
+      "name": "Manulife Financial",
+      "value": 62881439744,
+      "symbol": "MFC",
+      "country": "Canada"
+    },
+    {
+      "rank": 372,
+      "name": "Infineon",
+      "value": 62757379379,
+      "symbol": "IFX.DE",
+      "country": "Germany"
+    },
+    {
+      "rank": 373,
+      "name": "Paccar",
+      "value": 62541336576,
+      "symbol": "PCAR",
+      "country": "USA"
+    },
+    {
+      "rank": 374,
+      "name": "China Pacific Insurance",
+      "value": 62488208647,
+      "symbol": "601601.SS",
+      "country": "China"
+    },
+    {
+      "rank": 375,
+      "name": "Vale",
+      "value": 62430908416,
+      "symbol": "VALE",
+      "country": "Brazil"
+    },
+    {
+      "rank": 376,
+      "name": "Wesfarmers",
+      "value": 62418927475,
+      "symbol": "WES.AX",
+      "country": "Australia"
+    },
+    {
+      "rank": 377,
+      "name": "Industrial Bank",
+      "value": 62251724290,
+      "symbol": "601166.SS",
+      "country": "China"
+    },
+    {
+      "rank": 378,
+      "name": "LG Energy Solution",
+      "value": 62244240069,
+      "symbol": "373220.KS",
+      "country": "S. Korea"
+    },
+    {
+      "rank": 379,
+      "name": "Crédit Agricole",
+      "value": 62236000080,
+      "symbol": "ACA.PA",
+      "country": "France"
+    },
+    {
+      "rank": 380,
+      "name": "Société Générale",
+      "value": 62209640723,
+      "symbol": "GLE.PA",
+      "country": "France"
+    },
+    {
+      "rank": 381,
+      "name": "America Movil",
+      "value": 62165774336,
+      "symbol": "AMX",
+      "country": "Mexico"
+    },
+    {
+      "rank": 382,
+      "name": "Ross Stores",
+      "value": 62062931968,
+      "symbol": "ROST",
+      "country": "USA"
+    },
+    {
+      "rank": 383,
+      "name": "Kinder Morgan",
+      "value": 61603614720,
+      "symbol": "KMI",
+      "country": "USA"
+    },
+    {
+      "rank": 384,
+      "name": "Volkswagen",
+      "value": 61462461683,
+      "symbol": "VOW3.DE",
+      "country": "Germany"
+    },
+    {
+      "rank": 385,
+      "name": "Siemens Healthineers",
+      "value": 61430957293,
+      "symbol": "SHL.DE",
+      "country": "Germany"
+    },
+    {
+      "rank": 386,
+      "name": "London Stock Exchange",
+      "value": 61397979836,
+      "symbol": "LSEG.L",
+      "country": "UK"
+    },
+    {
+      "rank": 387,
+      "name": "Canadian National Railway",
+      "value": 61304139776,
+      "symbol": "CNI",
+      "country": "Canada"
+    },
+    {
+      "rank": 388,
+      "name": "Hindustan Unilever",
+      "value": 61280297067,
+      "symbol": "HINDUNILVR.NS",
+      "country": "India"
+    },
+    {
+      "rank": 389,
+      "name": "Generali",
+      "value": 60952755268,
+      "symbol": "G.MI",
+      "country": "Italy"
+    },
+    {
+      "rank": 390,
+      "name": "Samsung Biologics",
+      "value": 60919127848,
+      "symbol": "207940.KS",
+      "country": "S. Korea"
+    },
+    {
+      "rank": 391,
+      "name": "The People's Insurance Company (PICC)",
+      "value": 60889256903,
+      "symbol": "601319.SS",
+      "country": "China"
+    },
+    {
+      "rank": 392,
+      "name": "EOG Resources",
+      "value": 60714467328,
+      "symbol": "EOG",
+      "country": "USA"
+    },
+    {
+      "rank": 393,
+      "name": "The Travelers Companies",
+      "value": 60690456576,
+      "symbol": "TRV",
+      "country": "USA"
+    },
+    {
+      "rank": 394,
+      "name": "CITIC Bank",
+      "value": 60653031223,
+      "symbol": "601998.SS",
+      "country": "China"
+    },
+    {
+      "rank": 395,
+      "name": "Wheaton Precious Metals",
+      "value": 60609847296,
+      "symbol": "WPM",
+      "country": "Canada"
+    },
+    {
+      "rank": 396,
+      "name": "Jiangsu Hengrui Medicine",
+      "value": 60551063878,
+      "symbol": "600276.SS",
+      "country": "China"
+    },
+    {
+      "rank": 397,
+      "name": "Suncor Energy",
+      "value": 60293406720,
+      "symbol": "SU",
+      "country": "Canada"
+    },
+    {
+      "rank": 398,
+      "name": "NXP Semiconductors",
+      "value": 60048650240,
+      "symbol": "NXPI",
+      "country": "Netherlands"
+    },
+    {
+      "rank": 399,
+      "name": "CITIC Securities",
+      "value": 60004880403,
+      "symbol": "600030.SS",
+      "country": "China"
+    },
+    {
+      "rank": 400,
+      "name": "Energy Transfer Partners",
+      "value": 59861094400,
+      "symbol": "ET",
+      "country": "USA"
+    },
+    {
+      "rank": 401,
+      "name": "Sempra Energy",
+      "value": 59677933568,
+      "symbol": "SRE",
+      "country": "USA"
+    },
+    {
+      "rank": 402,
+      "name": "Wuliangye Yibin",
+      "value": 59589435260,
+      "symbol": "000858.SZ",
+      "country": "China"
+    },
+    {
+      "rank": 403,
+      "name": "Air Products and Chemicals",
+      "value": 59434229760,
+      "symbol": "APD",
+      "country": "USA"
+    },
+    {
+      "rank": 404,
+      "name": "Walmex",
+      "value": 59357204480,
+      "symbol": "WMMVF",
+      "country": "Mexico"
+    },
+    {
+      "rank": 405,
+      "name": "Saudi Telecom Company",
+      "value": 59155837804,
+      "symbol": "7010.SR",
+      "country": "S. Arabia"
+    },
+    {
+      "rank": 406,
+      "name": "United Rentals",
+      "value": 59152101376,
+      "symbol": "URI",
+      "country": "USA"
+    },
+    {
+      "rank": 407,
+      "name": "Becton Dickinson",
+      "value": 59147288576,
+      "symbol": "BDX",
+      "country": "USA"
+    },
+    {
+      "rank": 408,
+      "name": "Aflac",
+      "value": 58935754752,
+      "symbol": "AFL",
+      "country": "USA"
+    },
+    {
+      "rank": 409,
+      "name": "Larsen &amp; Toubro",
+      "value": 58929300601,
+      "symbol": "LT.NS",
+      "country": "India"
+    },
+    {
+      "rank": 410,
+      "name": "Roblox",
+      "value": 58510192640,
+      "symbol": "RBLX",
+      "country": "USA"
+    },
+    {
+      "rank": 411,
+      "name": "Valero Energy",
+      "value": 58464657408,
+      "symbol": "VLO",
+      "country": "USA"
+    },
+    {
+      "rank": 412,
+      "name": "Bank Central Asia",
+      "value": 58459257190,
+      "symbol": "BBCA.JK",
+      "country": "Indonesia"
+    },
+    {
+      "rank": 413,
+      "name": "Fortinet",
+      "value": 58420121600,
+      "symbol": "FTNT",
+      "country": "USA"
+    },
+    {
+      "rank": 414,
+      "name": "Life Insurance Corporation of India (LIC)",
+      "value": 57944746047,
+      "symbol": "LICI.NS",
+      "country": "India"
+    },
+    {
+      "rank": 415,
+      "name": "KBC",
+      "value": 57844072448,
+      "symbol": "KBCSF",
+      "country": "Belgium"
+    },
+    {
+      "rank": 416,
+      "name": "ENI",
+      "value": 57781116928,
+      "symbol": "E",
+      "country": "Italy"
+    },
+    {
+      "rank": 417,
+      "name": "Singtel",
+      "value": 57749501822,
+      "symbol": "Z74.SI",
+      "country": "Singapore"
+    },
+    {
+      "rank": 418,
+      "name": "AutoZone",
+      "value": 57589100544,
+      "symbol": "AZO",
+      "country": "USA"
+    },
+    {
+      "rank": 419,
+      "name": "Phillips 66",
+      "value": 57544626176,
+      "symbol": "PSX",
+      "country": "USA"
+    },
+    {
+      "rank": 420,
+      "name": "Nasdaq",
+      "value": 57511501824,
+      "symbol": "NDAQ",
+      "country": "USA"
+    },
+    {
+      "rank": 421,
+      "name": "Vistra",
+      "value": 57419063296,
+      "symbol": "VST",
+      "country": "USA"
+    },
+    {
+      "rank": 422,
+      "name": "UCB",
+      "value": 57264281159,
+      "symbol": "UCB.VI",
+      "country": "Belgium"
+    },
+    {
+      "rank": 423,
+      "name": "Japan Post Bank",
+      "value": 57219583921,
+      "symbol": "7182.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 424,
+      "name": "TC Energy",
+      "value": 57213702144,
+      "symbol": "TRP",
+      "country": "Canada"
+    },
+    {
+      "rank": 425,
+      "name": "Danone",
+      "value": 57186380868,
+      "symbol": "BN.PA",
+      "country": "France"
+    },
+    {
+      "rank": 426,
+      "name": "Thomson Reuters",
+      "value": 57114071040,
+      "symbol": "TRI",
+      "country": "Canada"
+    },
+    {
+      "rank": 427,
+      "name": "IDEXX Laboratories",
+      "value": 56902537216,
+      "symbol": "IDXX",
+      "country": "USA"
+    },
+    {
+      "rank": 428,
+      "name": "MPLX",
+      "value": 56598921216,
+      "symbol": "MPLX",
+      "country": "USA"
+    },
+    {
+      "rank": 429,
+      "name": "Maruti Suzuki India",
+      "value": 56275336211,
+      "symbol": "MARUTI.NS",
+      "country": "India"
+    },
+    {
+      "rank": 430,
+      "name": "CSL",
+      "value": 56236329436,
+      "symbol": "CSL.AX",
+      "country": "Australia"
+    },
+    {
+      "rank": 431,
+      "name": "Sandisk",
+      "value": 56225128448,
+      "symbol": "SNDK",
+      "country": "USA"
+    },
+    {
+      "rank": 432,
+      "name": "East Money Information",
+      "value": 56030954921,
+      "symbol": "300059.SZ",
+      "country": "China"
+    },
+    {
+      "rank": 433,
+      "name": "Luxshare Precision",
+      "value": 55987727948,
+      "symbol": "002475.SZ",
+      "country": "China"
+    },
+    {
+      "rank": 434,
+      "name": "Reckitt Benckiser",
+      "value": 55803828864,
+      "symbol": "RKT.L",
+      "country": "UK"
+    },
+    {
+      "rank": 435,
+      "name": "Standard Chartered",
+      "value": 55674308990,
+      "symbol": "STAN.L",
+      "country": "UK"
+    },
+    {
+      "rank": 436,
+      "name": "Zoetis",
+      "value": 55533105152,
+      "symbol": "ZTS",
+      "country": "USA"
+    },
+    {
+      "rank": 437,
+      "name": "Autodesk",
+      "value": 55517384704,
+      "symbol": "ADSK",
+      "country": "USA"
+    },
+    {
+      "rank": 438,
+      "name": "Digital Realty",
+      "value": 55501611008,
+      "symbol": "DLR",
+      "country": "USA"
+    },
+    {
+      "rank": 439,
+      "name": "Ares Management",
+      "value": 55499608064,
+      "symbol": "ARES",
+      "country": "USA"
+    },
+    {
+      "rank": 440,
+      "name": "Hoya",
+      "value": 55438502517,
+      "symbol": "7741.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 441,
+      "name": "Marathon Petroleum",
+      "value": 55365140480,
+      "symbol": "MPC",
+      "country": "USA"
+    },
+    {
+      "rank": 442,
+      "name": "Realty Income",
+      "value": 55214882816,
+      "symbol": "O",
+      "country": "USA"
+    },
+    {
+      "rank": 443,
+      "name": "Ford",
+      "value": 55125540864,
+      "symbol": "F",
+      "country": "USA"
+    },
+    {
+      "rank": 444,
+      "name": "PayPal",
+      "value": 55025115136,
+      "symbol": "PYPL",
+      "country": "USA"
+    },
+    {
+      "rank": 445,
+      "name": "Takeda Pharmaceutical",
+      "value": 54808055808,
+      "symbol": "TAK",
+      "country": "Japan"
+    },
+    {
+      "rank": 446,
+      "name": "Eoptolink Technology",
+      "value": 54739301193,
+      "symbol": "300502.SZ",
+      "country": "China"
+    },
+    {
+      "rank": 447,
+      "name": "Holcim Group",
+      "value": 54442538823,
+      "symbol": "HOLN.SW",
+      "country": "Switzerland"
+    },
+    {
+      "rank": 448,
+      "name": "Bank of China (Hong Kong)",
+      "value": 54374938884,
+      "symbol": "2388.HK",
+      "country": "Hong Kong"
+    },
+    {
+      "rank": 449,
+      "name": "Chipotle Mexican Grill",
+      "value": 54044368896,
+      "symbol": "CMG",
+      "country": "USA"
+    },
+    {
+      "rank": 450,
+      "name": "Naspers",
+      "value": 53698826240,
+      "symbol": "NPSNY",
+      "country": "South Africa"
+    },
+    {
+      "rank": 451,
+      "name": "Shanghai Pudong Development Bank",
+      "value": 53690588882,
+      "symbol": "600000.SS",
+      "country": "China"
+    },
+    {
+      "rank": 452,
+      "name": "First Abu Dhabi Bank",
+      "value": 53661894717,
+      "symbol": "FAB.AE",
+      "country": "UAE"
+    },
+    {
+      "rank": 453,
+      "name": "Loblaw Companies",
+      "value": 53444002715,
+      "symbol": "L.TO",
+      "country": "Canada"
+    },
+    {
+      "rank": 454,
+      "name": "Rosneft",
+      "value": 53389619209,
+      "symbol": "ROSN.ME",
+      "country": "Russia"
+    },
+    {
+      "rank": 455,
+      "name": "Macquarie",
+      "value": 53308703474,
+      "symbol": "MQG.AX",
+      "country": "Australia"
+    },
+    {
+      "rank": 456,
+      "name": "Jardine Matheson",
+      "value": 53101650000,
+      "symbol": "J36.SI",
+      "country": "Hong Kong"
+    },
+    {
+      "rank": 457,
+      "name": "Compass Group",
+      "value": 52984610385,
+      "symbol": "CPG.L",
+      "country": "UK"
+    },
+    {
+      "rank": 458,
+      "name": "Baidu",
+      "value": 52719624192,
+      "symbol": "BIDU",
+      "country": "China"
+    },
+    {
+      "rank": 459,
+      "name": "Grayscale Bitcoin Trust",
+      "value": 52717051904,
+      "symbol": "GBTC",
+      "country": "USA"
+    },
+    {
+      "rank": 460,
+      "name": "Guotai Junan Securities",
+      "value": 52488566033,
+      "symbol": "601211.SS",
+      "country": "China"
+    },
+    {
+      "rank": 461,
+      "name": "Marubeni",
+      "value": 52405601573,
+      "symbol": "8002.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 462,
+      "name": "MetLife",
+      "value": 52237799424,
+      "symbol": "MET",
+      "country": "USA"
+    },
+    {
+      "rank": 463,
+      "name": "Strategy \n (MicroStrategy)",
+      "value": 51928969216,
+      "symbol": "MSTR",
+      "country": "USA"
+    },
+    {
+      "rank": 464,
+      "name": "Workday",
+      "value": 51753947136,
+      "symbol": "WDAY",
+      "country": "USA"
+    },
+    {
+      "rank": 465,
+      "name": "Dominion Energy",
+      "value": 51631865856,
+      "symbol": "D",
+      "country": "USA"
+    },
+    {
+      "rank": 466,
+      "name": "E.ON",
+      "value": 51516267744,
+      "symbol": "EOAN.DE",
+      "country": "Germany"
+    },
+    {
+      "rank": 467,
+      "name": "Fujitsu",
+      "value": 51506585771,
+      "symbol": "6702.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 468,
+      "name": "Allstate",
+      "value": 51442827264,
+      "symbol": "ALL",
+      "country": "USA"
+    },
+    {
+      "rank": 469,
+      "name": "NAURA Technology Group",
+      "value": 51256221329,
+      "symbol": "002371.SZ",
+      "country": "China"
+    },
+    {
+      "rank": 470,
+      "name": "Emirates NBD Bank PJSC",
+      "value": 51252384566,
+      "symbol": "EMIRATESNBD.AE",
+      "country": "UAE"
+    },
+    {
+      "rank": 471,
+      "name": "Electronic Arts",
+      "value": 51101687808,
+      "symbol": "EA",
+      "country": "USA"
+    },
+    {
+      "rank": 472,
+      "name": "Adyen",
+      "value": 50745065831,
+      "symbol": "ADYEN.AS",
+      "country": "Netherlands"
+    },
+    {
+      "rank": 473,
+      "name": "Diageo",
+      "value": 50724691968,
+      "symbol": "DEO",
+      "country": "UK"
+    },
+    {
+      "rank": 474,
+      "name": "Cardinal Health",
+      "value": 50671894528,
+      "symbol": "CAH",
+      "country": "USA"
+    },
+    {
+      "rank": 475,
+      "name": "W. W. Grainger",
+      "value": 50272886784,
+      "symbol": "GWW",
+      "country": "USA"
+    },
+    {
+      "rank": 476,
+      "name": "QNB (Qatar National Bank)",
+      "value": 50211876812,
+      "symbol": "QNBK.QA",
+      "country": "Qatar"
+    },
+    {
+      "rank": 477,
+      "name": "Public Storage",
+      "value": 50168385536,
+      "symbol": "PSA",
+      "country": "USA"
+    },
+    {
+      "rank": 478,
+      "name": "AngloGold Ashanti",
+      "value": 50095017984,
+      "symbol": "AU",
+      "country": "South Africa"
+    },
+    {
+      "rank": 479,
+      "name": "Imperial Oil",
+      "value": 50061565952,
+      "symbol": "IMO",
+      "country": "Canada"
+    },
+    {
+      "rank": 480,
+      "name": "Axon Enterprise",
+      "value": 50044284928,
+      "symbol": "AXON",
+      "country": "USA"
+    },
+    {
+      "rank": 481,
+      "name": "Alimentation Couche-Tard",
+      "value": 50043100470,
+      "symbol": "ATD.TO",
+      "country": "Canada"
+    },
+    {
+      "rank": 482,
+      "name": "HCL Technologies",
+      "value": 50026943773,
+      "symbol": "HCLTECH.NS",
+      "country": "India"
+    },
+    {
+      "rank": 483,
+      "name": "NEC Corp",
+      "value": 49966983484,
+      "symbol": "6701.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 484,
+      "name": "Target",
+      "value": 49715810304,
+      "symbol": "TGT",
+      "country": "USA"
+    },
+    {
+      "rank": 485,
+      "name": "Argenx",
+      "value": 49670410240,
+      "symbol": "ARGX",
+      "country": "Netherlands"
+    },
+    {
+      "rank": 486,
+      "name": "Sungrow Power Supply",
+      "value": 49260514971,
+      "symbol": "300274.SZ",
+      "country": "China"
+    },
+    {
+      "rank": 487,
+      "name": "Ferguson Enterprises",
+      "value": 49115099136,
+      "symbol": "FERG",
+      "country": "UK"
+    },
+    {
+      "rank": 488,
+      "name": "Lonza",
+      "value": 48916125376,
+      "symbol": "LONN.SW",
+      "country": "Switzerland"
+    },
+    {
+      "rank": 489,
+      "name": "Fastenal",
+      "value": 48912060416,
+      "symbol": "FAST",
+      "country": "USA"
+    },
+    {
+      "rank": 490,
+      "name": "CBRE Group",
+      "value": 48888578048,
+      "symbol": "CBRE",
+      "country": "USA"
+    },
+    {
+      "rank": 491,
+      "name": "Baker Hughes",
+      "value": 48835440640,
+      "symbol": "BKR",
+      "country": "USA"
+    },
+    {
+      "rank": 492,
+      "name": "Compagnie de Saint-Gobain",
+      "value": 48749961037,
+      "symbol": "SGO.PA",
+      "country": "France"
+    },
+    {
+      "rank": 493,
+      "name": "HEICO",
+      "value": 48729501696,
+      "symbol": "HEI",
+      "country": "USA"
+    },
+    {
+      "rank": 494,
+      "name": "Cameco",
+      "value": 48564436992,
+      "symbol": "CCJ",
+      "country": "Canada"
+    },
+    {
+      "rank": 495,
+      "name": "Mahindra &amp; Mahindra",
+      "value": 48532996888,
+      "symbol": "M&M.NS",
+      "country": "India"
+    },
+    {
+      "rank": 496,
+      "name": "Ametek",
+      "value": 48421806080,
+      "symbol": "AME",
+      "country": "USA"
+    },
+    {
+      "rank": 497,
+      "name": "Ferrovial",
+      "value": 48407222645,
+      "symbol": "FER.MC",
+      "country": "Spain"
+    },
+    {
+      "rank": 498,
+      "name": "Rocket Lab",
+      "value": 48309100544,
+      "symbol": "RKLB",
+      "country": "USA"
+    },
+    {
+      "rank": 499,
+      "name": "Alnylam Pharmaceuticals",
+      "value": 48287600640,
+      "symbol": "ALNY",
+      "country": "USA"
+    },
+    {
+      "rank": 500,
+      "name": "Edwards Lifesciences",
+      "value": 48186232832,
+      "symbol": "EW",
+      "country": "USA"
+    },
+    {
+      "rank": 501,
+      "name": "Oneok",
+      "value": 48075567104,
+      "symbol": "OKE",
+      "country": "USA"
+    },
+    {
+      "rank": 502,
+      "name": "National Bank of Canada",
+      "value": 48061425491,
+      "symbol": "NA.TO",
+      "country": "Canada"
+    },
+    {
+      "rank": 503,
+      "name": "HeidelbergCement",
+      "value": 48003897787,
+      "symbol": "HEI.DE",
+      "country": "Germany"
+    },
+    {
+      "rank": 504,
+      "name": "Galderma Group",
+      "value": 47945856044,
+      "symbol": "GALD.SW",
+      "country": "Switzerland"
+    },
+    {
+      "rank": 505,
+      "name": "Reddit",
+      "value": 47932952576,
+      "symbol": "RDDT",
+      "country": "USA"
+    },
+    {
+      "rank": 506,
+      "name": "Banco Santander Brasil",
+      "value": 47905312768,
+      "symbol": "BSBR",
+      "country": "Brazil"
+    },
+    {
+      "rank": 507,
+      "name": "Ameriprise Financial",
+      "value": 47745720320,
+      "symbol": "AMP",
+      "country": "USA"
+    },
+    {
+      "rank": 508,
+      "name": "Bayer",
+      "value": 47657282739,
+      "symbol": "BAYN.DE",
+      "country": "Germany"
+    },
+    {
+      "rank": 509,
+      "name": "Lukoil",
+      "value": 47632862079,
+      "symbol": "LKOH.ME",
+      "country": "Russia"
+    },
+    {
+      "rank": 510,
+      "name": "BASF",
+      "value": 47608106899,
+      "symbol": "BAS.DE",
+      "country": "Germany"
+    },
+    {
+      "rank": 511,
+      "name": "Corteva",
+      "value": 47492857856,
+      "symbol": "CTVA",
+      "country": "USA"
+    },
+    {
+      "rank": 512,
+      "name": "Antofagasta",
+      "value": 47332557122,
+      "symbol": "ANTO.L",
+      "country": "UK"
+    },
+    {
+      "rank": 513,
+      "name": "PICC Property and Casualty Company Limited",
+      "value": 47297534614,
+      "symbol": "2328.HK",
+      "country": "China"
+    },
+    {
+      "rank": 514,
+      "name": "Commerzbank",
+      "value": 47293268036,
+      "symbol": "CBK.F",
+      "country": "Germany"
+    },
+    {
+      "rank": 515,
+      "name": "Erste Group Bank",
+      "value": 47244731152,
+      "symbol": "EBO.F",
+      "country": "Austria"
+    },
+    {
+      "rank": 516,
+      "name": "UOB",
+      "value": 47054768530,
+      "symbol": "U11.SI",
+      "country": "Singapore"
+    },
+    {
+      "rank": 517,
+      "name": "Anglo American",
+      "value": 46913421309,
+      "symbol": "AAL.L",
+      "country": "UK"
+    },
+    {
+      "rank": 518,
+      "name": "Swiss Re",
+      "value": 46894344456,
+      "symbol": "SREN.SW",
+      "country": "Switzerland"
+    },
+    {
+      "rank": 519,
+      "name": "Carrier Global",
+      "value": 46891356160,
+      "symbol": "CARR",
+      "country": "USA"
+    },
+    {
+      "rank": 520,
+      "name": "Universal Music Group",
+      "value": 46861228263,
+      "symbol": "UMG.AS",
+      "country": "Netherlands"
+    },
+    {
+      "rank": 521,
+      "name": "Monolithic Power Systems",
+      "value": 46765375488,
+      "symbol": "MPWR",
+      "country": "USA"
+    },
+    {
+      "rank": 522,
+      "name": "Rockwell Automation",
+      "value": 46726107136,
+      "symbol": "ROK",
+      "country": "USA"
+    },
+    {
+      "rank": 523,
+      "name": "Fortescue",
+      "value": 46594876119,
+      "symbol": "FMG.AX",
+      "country": "Australia"
+    },
+    {
+      "rank": 524,
+      "name": "D. R. Horton",
+      "value": 46507720704,
+      "symbol": "DHI",
+      "country": "USA"
+    },
+    {
+      "rank": 525,
+      "name": "ITC",
+      "value": 46477345635,
+      "symbol": "ITC.NS",
+      "country": "India"
+    },
+    {
+      "rank": 526,
+      "name": "Kotak Mahindra Bank",
+      "value": 46391529125,
+      "symbol": "KOTAKBANK.NS",
+      "country": "India"
+    },
+    {
+      "rank": 527,
+      "name": "Porsche",
+      "value": 46239346765,
+      "symbol": "P911.DE",
+      "country": "Germany"
+    },
+    {
+      "rank": 528,
+      "name": "WuXi AppTec",
+      "value": 46063180407,
+      "symbol": "2359.HK",
+      "country": "China"
+    },
+    {
+      "rank": 529,
+      "name": "Constellation Software",
+      "value": 45935627675,
+      "symbol": "CSU.TO",
+      "country": "Canada"
+    },
+    {
+      "rank": 530,
+      "name": "MSCI",
+      "value": 45896151040,
+      "symbol": "MSCI",
+      "country": "USA"
+    },
+    {
+      "rank": 531,
+      "name": "Franco-Nevada",
+      "value": 45798604800,
+      "symbol": "FNV",
+      "country": "Canada"
+    },
+    {
+      "rank": 532,
+      "name": "Kuaishou Technology",
+      "value": 45710487964,
+      "symbol": "1024.HK",
+      "country": "China"
+    },
+    {
+      "rank": 533,
+      "name": "Kuwait Finance House",
+      "value": 45685532390,
+      "symbol": "KFH.KW",
+      "country": "Kuwait"
+    },
+    {
+      "rank": 534,
+      "name": "Roper Technologies",
+      "value": 45597908992,
+      "symbol": "ROP",
+      "country": "USA"
+    },
+    {
+      "rank": 535,
+      "name": "Vingroup Company",
+      "value": 45431414259,
+      "symbol": "VIC.VN",
+      "country": "Vietnam"
+    },
+    {
+      "rank": 536,
+      "name": "CITIC limited",
+      "value": 45330356930,
+      "symbol": "0267.HK",
+      "country": "China"
+    },
+    {
+      "rank": 537,
+      "name": "Deutsche Börse",
+      "value": 45249273502,
+      "symbol": "DB1.DE",
+      "country": "Germany"
+    },
+    {
+      "rank": 538,
+      "name": "Sumitomo",
+      "value": 45249208905,
+      "symbol": "8053.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 539,
+      "name": "Sun Pharmaceutical",
+      "value": 45219348398,
+      "symbol": "SUNPHARMA.NS",
+      "country": "India"
+    },
+    {
+      "rank": 540,
+      "name": "Xcel Energy",
+      "value": 45051670528,
+      "symbol": "XEL",
+      "country": "USA"
+    },
+    {
+      "rank": 541,
+      "name": "Orange",
+      "value": 44985732388,
+      "symbol": "ORA.PA",
+      "country": "France"
+    },
+    {
+      "rank": 542,
+      "name": "EQT",
+      "value": 44966281711,
+      "symbol": "EQT.ST",
+      "country": "Sweden"
+    },
+    {
+      "rank": 543,
+      "name": "Diamondback Energy",
+      "value": 44919558144,
+      "symbol": "FANG",
+      "country": "USA"
+    },
+    {
+      "rank": 544,
+      "name": "Take-Two Interactive",
+      "value": 44775608320,
+      "symbol": "TTWO",
+      "country": "USA"
+    },
+    {
+      "rank": 545,
+      "name": "Delta Air Lines",
+      "value": 44760600576,
+      "symbol": "DAL",
+      "country": "USA"
+    },
+    {
+      "rank": 546,
+      "name": "Gold Fields",
+      "value": 44742385664,
+      "symbol": "GFI",
+      "country": "South Africa"
+    },
+    {
+      "rank": 547,
+      "name": "Axis Bank",
+      "value": 44684035926,
+      "symbol": "AXISBANK.BO",
+      "country": "India"
+    },
+    {
+      "rank": 548,
+      "name": "Hanwha Aerospace",
+      "value": 44587448843,
+      "symbol": "012450.KS",
+      "country": "S. Korea"
+    },
+    {
+      "rank": 549,
+      "name": "SABIC",
+      "value": 44437630521,
+      "symbol": "2010.SR",
+      "country": "S. Arabia"
+    },
+    {
+      "rank": 550,
+      "name": "Kering",
+      "value": 44430249956,
+      "symbol": "KER.PA",
+      "country": "France"
+    },
+    {
+      "rank": 551,
+      "name": "Polyus",
+      "value": 44421685258,
+      "symbol": "PLZL.ME",
+      "country": "Russia"
+    },
+    {
+      "rank": 552,
+      "name": "CoreWeave",
+      "value": 44410355712,
+      "symbol": "CRWV",
+      "country": "USA"
+    },
+    {
+      "rank": 553,
+      "name": "Emirates Telecom (Etisalat Group)",
+      "value": 44374092550,
+      "symbol": "EAND.AE",
+      "country": "UAE"
+    },
+    {
+      "rank": 554,
+      "name": "Cheniere Energy",
+      "value": 44357992448,
+      "symbol": "LNG",
+      "country": "USA"
+    },
+    {
+      "rank": 555,
+      "name": "Novatek",
+      "value": 44346097039,
+      "symbol": "NVTK.ME",
+      "country": "Russia"
+    },
+    {
+      "rank": 556,
+      "name": "Haleon",
+      "value": 44151787520,
+      "symbol": "HLN",
+      "country": "UK"
+    },
+    {
+      "rank": 557,
+      "name": "Exelon Corporation",
+      "value": 44151595008,
+      "symbol": "EXC",
+      "country": "USA"
+    },
+    {
+      "rank": 558,
+      "name": "Jingdong Mall",
+      "value": 44136775680,
+      "symbol": "JD",
+      "country": "China"
+    },
+    {
+      "rank": 559,
+      "name": "Heineken",
+      "value": 44122802013,
+      "symbol": "HEIA.AS",
+      "country": "Netherlands"
+    },
+    {
+      "rank": 560,
+      "name": "Sandvik",
+      "value": 44093266140,
+      "symbol": "SAND.ST",
+      "country": "Sweden"
+    },
+    {
+      "rank": 561,
+      "name": "HD Hyundai Heavy Industries",
+      "value": 44083884888,
+      "symbol": "329180.KS",
+      "country": "S. Korea"
+    },
+    {
+      "rank": 562,
+      "name": "Occidental Petroleum",
+      "value": 43812311040,
+      "symbol": "OXY",
+      "country": "USA"
+    },
+    {
+      "rank": 563,
+      "name": "Great-West Lifeco",
+      "value": 43569092863,
+      "symbol": "GWO.TO",
+      "country": "Canada"
+    },
+    {
+      "rank": 564,
+      "name": "Yum! Brands",
+      "value": 43377700864,
+      "symbol": "YUM",
+      "country": "USA"
+    },
+    {
+      "rank": 565,
+      "name": "Assa Abloy",
+      "value": 43291083028,
+      "symbol": "ASSA-B.ST",
+      "country": "Sweden"
+    },
+    {
+      "rank": 566,
+      "name": "Skandinaviska Enskilda Banken",
+      "value": 43228175008,
+      "symbol": "SEB-A.ST",
+      "country": "Sweden"
+    },
+    {
+      "rank": 567,
+      "name": "eBay",
+      "value": 43136229376,
+      "symbol": "EBAY",
+      "country": "USA"
+    },
+    {
+      "rank": 568,
+      "name": "Aena",
+      "value": 42991853056,
+      "symbol": "AENA.MC",
+      "country": "Spain"
+    },
+    {
+      "rank": 569,
+      "name": "Entergy",
+      "value": 42524958720,
+      "symbol": "ETR",
+      "country": "USA"
+    },
+    {
+      "rank": 570,
+      "name": "RWE",
+      "value": 42487110479,
+      "symbol": "RWE.DE",
+      "country": "Germany"
+    },
+    {
+      "rank": 571,
+      "name": "Datadog",
+      "value": 42448695296,
+      "symbol": "DDOG",
+      "country": "USA"
+    },
+    {
+      "rank": 572,
+      "name": "Cognizant Technology Solutions",
+      "value": 42299973632,
+      "symbol": "CTSH",
+      "country": "USA"
+    },
+    {
+      "rank": 573,
+      "name": "Waste Connections",
+      "value": 42202664960,
+      "symbol": "WCN",
+      "country": "USA"
+    },
+    {
+      "rank": 574,
+      "name": "Estee Lauder",
+      "value": 42097283072,
+      "symbol": "EL",
+      "country": "USA"
+    },
+    {
+      "rank": 575,
+      "name": "Goodman Group",
+      "value": 42051668708,
+      "symbol": "GMG.AX",
+      "country": "Australia"
+    },
+    {
+      "rank": 576,
+      "name": "Experian",
+      "value": 41945907200,
+      "symbol": "EXPGF",
+      "country": "Ireland"
+    },
+    {
+      "rank": 577,
+      "name": "Fubon Financial",
+      "value": 41636801369,
+      "symbol": "2881.TW",
+      "country": "Taiwan"
+    },
+    {
+      "rank": 578,
+      "name": "Agilent Technologies",
+      "value": 41590927360,
+      "symbol": "A",
+      "country": "USA"
+    },
+    {
+      "rank": 579,
+      "name": "Titan Company",
+      "value": 41497152782,
+      "symbol": "TITAN.NS",
+      "country": "India"
+    },
+    {
+      "rank": 580,
+      "name": "Prudential Financial",
+      "value": 41479995392,
+      "symbol": "PRU",
+      "country": "USA"
+    },
+    {
+      "rank": 581,
+      "name": "Kroger",
+      "value": 41457147904,
+      "symbol": "KR",
+      "country": "USA"
+    },
+    {
+      "rank": 582,
+      "name": "Hikvision",
+      "value": 41312574715,
+      "symbol": "002415.SZ",
+      "country": "China"
+    },
+    {
+      "rank": 583,
+      "name": "IQVIA",
+      "value": 41254322176,
+      "symbol": "IQV",
+      "country": "USA"
+    },
+    {
+      "rank": 584,
+      "name": "Fairfax Financial",
+      "value": 41169417680,
+      "symbol": "FFH.TO",
+      "country": "Canada"
+    },
+    {
+      "rank": 585,
+      "name": "Danske Bank",
+      "value": 41148524370,
+      "symbol": "DANS.VI",
+      "country": "Denmark"
+    },
+    {
+      "rank": 586,
+      "name": "Disco Corp.",
+      "value": 41064660724,
+      "symbol": "6146.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 587,
+      "name": "DNB",
+      "value": 41064163227,
+      "symbol": "DNB.OL",
+      "country": "Norway"
+    },
+    {
+      "rank": 588,
+      "name": "ASE Group",
+      "value": 40937734144,
+      "symbol": "ASX",
+      "country": "Taiwan"
+    },
+    {
+      "rank": 589,
+      "name": "Ambev",
+      "value": 40904626176,
+      "symbol": "ABEV",
+      "country": "Brazil"
+    },
+    {
+      "rank": 590,
+      "name": "Las Vegas Sands",
+      "value": 40895475712,
+      "symbol": "LVS",
+      "country": "USA"
+    },
+    {
+      "rank": 591,
+      "name": "Kinross Gold",
+      "value": 40868966400,
+      "symbol": "KGC",
+      "country": "Canada"
+    },
+    {
+      "rank": 592,
+      "name": "Fanuc",
+      "value": 40847700159,
+      "symbol": "6954.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 593,
+      "name": "Coca-Cola European Partners",
+      "value": 40714805248,
+      "symbol": "CCEP",
+      "country": "UK"
+    },
+    {
+      "rank": 594,
+      "name": "Swedbank",
+      "value": 40714366413,
+      "symbol": "SWED-A.ST",
+      "country": "Sweden"
+    },
+    {
+      "rank": 595,
+      "name": "Prudential",
+      "value": 40593784832,
+      "symbol": "PUK",
+      "country": "UK"
+    },
+    {
+      "rank": 596,
+      "name": "Trip.com",
+      "value": 40592044032,
+      "symbol": "TCOM",
+      "country": "China"
+    },
+    {
+      "rank": 597,
+      "name": "The Hershey Company",
+      "value": 40481992704,
+      "symbol": "HSY",
+      "country": "USA"
+    },
+    {
+      "rank": 598,
+      "name": "American International Group",
+      "value": 40469983232,
+      "symbol": "AIG",
+      "country": "USA"
+    },
+    {
+      "rank": 599,
+      "name": "Symbotic",
+      "value": 40458080256,
+      "symbol": "SYM",
+      "country": "USA"
+    },
+    {
+      "rank": 600,
+      "name": "SAAB AB",
+      "value": 40412433538,
+      "symbol": "SAAB-B.ST",
+      "country": "Sweden"
+    },
+    {
+      "rank": 601,
+      "name": "Garmin",
+      "value": 40407367680,
+      "symbol": "GRMN",
+      "country": "Switzerland"
+    },
+    {
+      "rank": 602,
+      "name": "Sun Hung Kai Properties",
+      "value": 40398029416,
+      "symbol": "0016.HK",
+      "country": "Hong Kong"
+    },
+    {
+      "rank": 603,
+      "name": "3i Group",
+      "value": 40198911332,
+      "symbol": "III.L",
+      "country": "UK"
+    },
+    {
+      "rank": 604,
+      "name": "Microchip Technology",
+      "value": 40030896128,
+      "symbol": "MCHP",
+      "country": "USA"
+    },
+    {
+      "rank": 605,
+      "name": "Targa Resources",
+      "value": 39972962304,
+      "symbol": "TRGP",
+      "country": "USA"
+    },
+    {
+      "rank": 606,
+      "name": "UltraTech Cement",
+      "value": 39945233781,
+      "symbol": "ULTRACEMCO.NS",
+      "country": "India"
+    },
+    {
+      "rank": 607,
+      "name": "Honda",
+      "value": 39885660160,
+      "symbol": "HMC",
+      "country": "Japan"
+    },
+    {
+      "rank": 608,
+      "name": "Toyota Tsusho",
+      "value": 39744312343,
+      "symbol": "8015.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 609,
+      "name": "Block",
+      "value": 39720497152,
+      "symbol": "XYZ",
+      "country": "USA"
+    },
+    {
+      "rank": 610,
+      "name": "Dubai Electricity and Water Authority (DEWA)",
+      "value": 39616630545,
+      "symbol": "DEWA.AE",
+      "country": "UAE"
+    },
+    {
+      "rank": 611,
+      "name": "Daiichi Sankyō",
+      "value": 39608158096,
+      "symbol": "4568.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 612,
+      "name": "Dollarama",
+      "value": 39606799571,
+      "symbol": "DOL.TO",
+      "country": "Canada"
+    },
+    {
+      "rank": 613,
+      "name": "Murata Manufacturing (Murata Seisakusho)",
+      "value": 39581955114,
+      "symbol": "6981.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 614,
+      "name": "Nucor",
+      "value": 39581126656,
+      "symbol": "NUE",
+      "country": "USA"
+    },
+    {
+      "rank": 615,
+      "name": "Vulcan Materials",
+      "value": 39501852672,
+      "symbol": "VMC",
+      "country": "USA"
+    },
+    {
+      "rank": 616,
+      "name": "Alcon",
+      "value": 39476412416,
+      "symbol": "ALC",
+      "country": "Switzerland"
+    },
+    {
+      "rank": 617,
+      "name": "Paychex",
+      "value": 39463088128,
+      "symbol": "PAYX",
+      "country": "USA"
+    },
+    {
+      "rank": 618,
+      "name": "PSEG",
+      "value": 39418191872,
+      "symbol": "PEG",
+      "country": "USA"
+    },
+    {
+      "rank": 619,
+      "name": "SK Square",
+      "value": 39222098069,
+      "symbol": "402340.KS",
+      "country": "S. Korea"
+    },
+    {
+      "rank": 620,
+      "name": "Carnival Corporation",
+      "value": 39199039488,
+      "symbol": "CCL",
+      "country": "USA"
+    },
+    {
+      "rank": 621,
+      "name": "Doosan Enerbility",
+      "value": 39190371821,
+      "symbol": "034020.KS",
+      "country": "S. Korea"
+    },
+    {
+      "rank": 622,
+      "name": "Schindler Group",
+      "value": 39155007347,
+      "symbol": "SCHN.SW",
+      "country": "Switzerland"
+    },
+    {
+      "rank": 623,
+      "name": "Leonardo",
+      "value": 39027821629,
+      "symbol": "LDO.MI",
+      "country": "Italy"
+    },
+    {
+      "rank": 624,
+      "name": "GE HealthCare Technologies",
+      "value": 38821470208,
+      "symbol": "GEHC",
+      "country": "USA"
+    },
+    {
+      "rank": 625,
+      "name": "FICO",
+      "value": 38791585792,
+      "symbol": "FICO",
+      "country": "USA"
+    },
+    {
+      "rank": 626,
+      "name": "QNB Finansbank",
+      "value": 38737406633,
+      "symbol": "QNBTR.IS",
+      "country": "Turkey"
+    },
+    {
+      "rank": 627,
+      "name": "Copart",
+      "value": 38691667968,
+      "symbol": "CPRT",
+      "country": "USA"
+    },
+    {
+      "rank": 628,
+      "name": "Crown Castle",
+      "value": 38670536704,
+      "symbol": "CCI",
+      "country": "USA"
+    },
+    {
+      "rank": 629,
+      "name": "China State Shipbuilding Corporation (CSSC)",
+      "value": 38564423889,
+      "symbol": "600150.SS",
+      "country": "China"
+    },
+    {
+      "rank": 630,
+      "name": "Swisscom",
+      "value": 38551879195,
+      "symbol": "SCMN.SW",
+      "country": "Switzerland"
+    },
+    {
+      "rank": 631,
+      "name": "Wabtec",
+      "value": 38503833600,
+      "symbol": "WAB",
+      "country": "USA"
+    },
+    {
+      "rank": 632,
+      "name": "Martin Marietta Materials",
+      "value": 38428164096,
+      "symbol": "MLM",
+      "country": "USA"
+    },
+    {
+      "rank": 633,
+      "name": "Legrand",
+      "value": 38411631139,
+      "symbol": "LR.PA",
+      "country": "France"
+    },
+    {
+      "rank": 634,
+      "name": "BeOne Medicines",
+      "value": 38270496768,
+      "symbol": "ONC",
+      "country": "USA"
+    },
+    {
+      "rank": 635,
+      "name": "Aeon",
+      "value": 38263549287,
+      "symbol": "8267.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 636,
+      "name": "State Street Corporation",
+      "value": 38149931008,
+      "symbol": "STT",
+      "country": "USA"
+    },
+    {
+      "rank": 637,
+      "name": "Keurig Dr Pepper",
+      "value": 38074294272,
+      "symbol": "KDP",
+      "country": "USA"
+    },
+    {
+      "rank": 638,
+      "name": "Coupang",
+      "value": 37985136640,
+      "symbol": "CPNG",
+      "country": "USA"
+    },
+    {
+      "rank": 639,
+      "name": "Muyuan Foods",
+      "value": 37920133796,
+      "symbol": "002714.SZ",
+      "country": "China"
+    },
+    {
+      "rank": 640,
+      "name": "ResMed",
+      "value": 37844676608,
+      "symbol": "RMD",
+      "country": "USA"
+    },
+    {
+      "rank": 641,
+      "name": "Kia",
+      "value": 37757233961,
+      "symbol": "000270.KS",
+      "country": "S. Korea"
+    },
+    {
+      "rank": 642,
+      "name": "Denso",
+      "value": 37660328031,
+      "symbol": "6902.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 643,
+      "name": "EchoStar",
+      "value": 37567860736,
+      "symbol": "SATS",
+      "country": "USA"
+    },
+    {
+      "rank": 644,
+      "name": "KONE",
+      "value": 37534197872,
+      "symbol": "KNEBV.HE",
+      "country": "Finland"
+    },
+    {
+      "rank": 645,
+      "name": "NTPC Limited",
+      "value": 37512676625,
+      "symbol": "NTPC.NS",
+      "country": "India"
+    },
+    {
+      "rank": 646,
+      "name": "Teva Pharmaceutical Industries",
+      "value": 37430091776,
+      "symbol": "TEVA",
+      "country": "Israel"
+    },
+    {
+      "rank": 647,
+      "name": "Fomento Económico Mexicano (FEMSA)",
+      "value": 37292313060,
+      "symbol": "FMX",
+      "country": "Mexico"
+    },
+    {
+      "rank": 648,
+      "name": "ArcelorMittal",
+      "value": 37231370240,
+      "symbol": "MT",
+      "country": "Luxembourg"
+    },
+    {
+      "rank": 649,
+      "name": "Comfort Systems USA",
+      "value": 37213466624,
+      "symbol": "FIX",
+      "country": "USA"
+    },
+    {
+      "rank": 650,
+      "name": "Fresnillo",
+      "value": 37213126656,
+      "symbol": "FNLPF",
+      "country": "Mexico"
+    },
+    {
+      "rank": 651,
+      "name": "Givaudan",
+      "value": 37139625067,
+      "symbol": "GIVN.SW",
+      "country": "Switzerland"
+    },
+    {
+      "rank": 652,
+      "name": "Hang Seng Bank",
+      "value": 37064183750,
+      "symbol": "0011.HK",
+      "country": "Hong Kong"
+    },
+    {
+      "rank": 653,
+      "name": "New China Life Insurance",
+      "value": 37045316294,
+      "symbol": "601336.SS",
+      "country": "China"
+    },
+    {
+      "rank": 654,
+      "name": "Sysco",
+      "value": 37020745728,
+      "symbol": "SYY",
+      "country": "USA"
+    },
+    {
+      "rank": 655,
+      "name": "SSE",
+      "value": 36984171100,
+      "symbol": "SSE.L",
+      "country": "UK"
+    },
+    {
+      "rank": 656,
+      "name": "Dassault Systèmes",
+      "value": 36980002890,
+      "symbol": "DSY.PA",
+      "country": "France"
+    },
+    {
+      "rank": 657,
+      "name": "Endesa",
+      "value": 36882716933,
+      "symbol": "ELE.MC",
+      "country": "Spain"
+    },
+    {
+      "rank": 658,
+      "name": "MS&amp;AD Insurance",
+      "value": 36881059000,
+      "symbol": "8725.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 659,
+      "name": "The Hartford",
+      "value": 36806471680,
+      "symbol": "HIG",
+      "country": "USA"
+    },
+    {
+      "rank": 660,
+      "name": "Consolidated Edison",
+      "value": 36772118528,
+      "symbol": "ED",
+      "country": "USA"
+    },
+    {
+      "rank": 661,
+      "name": "Gazprom",
+      "value": 36764743415,
+      "symbol": "GAZP.ME",
+      "country": "Russia"
+    },
+    {
+      "rank": 662,
+      "name": "Adani Ports & SEZ",
+      "value": 36514060742,
+      "symbol": "ADANIPORTS.NS",
+      "country": "India"
+    },
+    {
+      "rank": 663,
+      "name": "Daikin",
+      "value": 36412069291,
+      "symbol": "6367.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 664,
+      "name": "Daimler Truck",
+      "value": 36400497586,
+      "symbol": "DTG.F",
+      "country": "Germany"
+    },
+    {
+      "rank": 665,
+      "name": "Old Dominion Freight Line",
+      "value": 36332818432,
+      "symbol": "ODFL",
+      "country": "USA"
+    },
+    {
+      "rank": 666,
+      "name": "Bank Leumi",
+      "value": 36273621045,
+      "symbol": "LUMI.TA",
+      "country": "Israel"
+    },
+    {
+      "rank": 667,
+      "name": "Banco Bradesco",
+      "value": 36226265088,
+      "symbol": "BBD",
+      "country": "Brazil"
+    },
+    {
+      "rank": 668,
+      "name": "Teradyne",
+      "value": 36225814528,
+      "symbol": "TER",
+      "country": "USA"
+    },
+    {
+      "rank": 669,
+      "name": "Telstra",
+      "value": 36170407307,
+      "symbol": "TLS.AX",
+      "country": "Australia"
+    },
+    {
+      "rank": 670,
+      "name": "Mindray",
+      "value": 36127187226,
+      "symbol": "300760.SZ",
+      "country": "China"
+    },
+    {
+      "rank": 671,
+      "name": "WEG ON",
+      "value": 36048680176,
+      "symbol": "WEGE3.SA",
+      "country": "Brazil"
+    },
+    {
+      "rank": 672,
+      "name": "Maersk",
+      "value": 36034742538,
+      "symbol": "MAERSK-B.CO",
+      "country": "Denmark"
+    },
+    {
+      "rank": 673,
+      "name": "Nokia",
+      "value": 36016066560,
+      "symbol": "NOK",
+      "country": "Finland"
+    },
+    {
+      "rank": 674,
+      "name": "United Airlines Holdings",
+      "value": 35996426240,
+      "symbol": "UAL",
+      "country": "USA"
+    },
+    {
+      "rank": 675,
+      "name": "ACWA POWER Company",
+      "value": 35974107584,
+      "symbol": "2082.SR",
+      "country": "S. Arabia"
+    },
+    {
+      "rank": 676,
+      "name": "Tesco",
+      "value": 35964993998,
+      "symbol": "TSCO.L",
+      "country": "UK"
+    },
+    {
+      "rank": 677,
+      "name": "Keysight",
+      "value": 35961323520,
+      "symbol": "KEYS",
+      "country": "USA"
+    },
+    {
+      "rank": 678,
+      "name": "Ventas",
+      "value": 35887587328,
+      "symbol": "VTR",
+      "country": "USA"
+    },
+    {
+      "rank": 679,
+      "name": "Veeva Systems",
+      "value": 35799080960,
+      "symbol": "VEEV",
+      "country": "USA"
+    },
+    {
+      "rank": 680,
+      "name": "Ryanair",
+      "value": 35702075392,
+      "symbol": "RYAAY",
+      "country": "Ireland"
+    },
+    {
+      "rank": 681,
+      "name": "Celestica",
+      "value": 35515703296,
+      "symbol": "CLS",
+      "country": "Canada"
+    },
+    {
+      "rank": 682,
+      "name": "Ahold Delhaize",
+      "value": 35460792247,
+      "symbol": "AD.AS",
+      "country": "Netherlands"
+    },
+    {
+      "rank": 683,
+      "name": "Bajaj Finserv",
+      "value": 35402943047,
+      "symbol": "BAJAJFINSV.NS",
+      "country": "India"
+    },
+    {
+      "rank": 684,
+      "name": "Henkel",
+      "value": 35394328808,
+      "symbol": "HEN3.DE",
+      "country": "Germany"
+    },
+    {
+      "rank": 685,
+      "name": "Expedia Group",
+      "value": 35315228672,
+      "symbol": "EXPE",
+      "country": "USA"
+    },
+    {
+      "rank": 686,
+      "name": "Victory Giant Technology",
+      "value": 35190950578,
+      "symbol": "300476.SZ",
+      "country": "China"
+    },
+    {
+      "rank": 687,
+      "name": "Flutter Entertainment",
+      "value": 35090370560,
+      "symbol": "FLUT",
+      "country": "Ireland"
+    },
+    {
+      "rank": 688,
+      "name": "Otis Worldwide",
+      "value": 35075514368,
+      "symbol": "OTIS",
+      "country": "USA"
+    },
+    {
+      "rank": 689,
+      "name": "Quanta Computer",
+      "value": 34934472229,
+      "symbol": "2382.TW",
+      "country": "Taiwan"
+    },
+    {
+      "rank": 690,
+      "name": "Atlassian",
+      "value": 34933432320,
+      "symbol": "TEAM",
+      "country": "Australia"
+    },
+    {
+      "rank": 691,
+      "name": "Wanhua Chemical",
+      "value": 34930183557,
+      "symbol": "600309.SS",
+      "country": "China"
+    },
+    {
+      "rank": 692,
+      "name": "WEC Energy Group",
+      "value": 34894311424,
+      "symbol": "WEC",
+      "country": "USA"
+    },
+    {
+      "rank": 693,
+      "name": "Haier Smart Home",
+      "value": 34874425085,
+      "symbol": "600690.SS",
+      "country": "China"
+    },
+    {
+      "rank": 694,
+      "name": "Emaar Properties",
+      "value": 34775646263,
+      "symbol": "EMAAR.AE",
+      "country": "UAE"
+    },
+    {
+      "rank": 695,
+      "name": "ASM International",
+      "value": 34738317951,
+      "symbol": "ASM.AS",
+      "country": "Netherlands"
+    },
+    {
+      "rank": 696,
+      "name": "Cathay Financial Holding",
+      "value": 34725247571,
+      "symbol": "2882.TW",
+      "country": "Taiwan"
+    },
+    {
+      "rank": 697,
+      "name": "Pacific Gas and Electric",
+      "value": 34715996160,
+      "symbol": "PCG",
+      "country": "USA"
+    },
+    {
+      "rank": 698,
+      "name": "ČEZ Group",
+      "value": 34699447308,
+      "symbol": "CEZ.PR",
+      "country": "Czech Republic"
+    },
+    {
+      "rank": 699,
+      "name": "Cenovus Energy",
+      "value": 34653220864,
+      "symbol": "CVE",
+      "country": "Canada"
+    },
+    {
+      "rank": 700,
+      "name": "Oil &amp; Natural Gas",
+      "value": 34613135427,
+      "symbol": "ONGC.NS",
+      "country": "India"
+    },
+    {
+      "rank": 701,
+      "name": "Intact Financial",
+      "value": 34606056807,
+      "symbol": "IFC.TO",
+      "country": "Canada"
+    },
+    {
+      "rank": 702,
+      "name": "Sun Life Financial",
+      "value": 34548019200,
+      "symbol": "SLF",
+      "country": "Canada"
+    },
+    {
+      "rank": 703,
+      "name": "Insmed",
+      "value": 34494853120,
+      "symbol": "INSM",
+      "country": "USA"
+    },
+    {
+      "rank": 704,
+      "name": "AST SpaceMobile",
+      "value": 34486161408,
+      "symbol": "ASTS",
+      "country": "USA"
+    },
+    {
+      "rank": 705,
+      "name": "Hannover Rück",
+      "value": 34339999845,
+      "symbol": "HNR1.DE",
+      "country": "Germany"
+    },
+    {
+      "rank": 706,
+      "name": "Fiserv",
+      "value": 34314950656,
+      "symbol": "FI",
+      "country": "USA"
+    },
+    {
+      "rank": 707,
+      "name": "Toyota Industries",
+      "value": 34185921057,
+      "symbol": "6201.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 708,
+      "name": "Fresenius",
+      "value": 34082736244,
+      "symbol": "FRE.DE",
+      "country": "Germany"
+    },
+    {
+      "rank": 709,
+      "name": "Arch Capital",
+      "value": 34078744576,
+      "symbol": "ACGL",
+      "country": "Bermuda"
+    },
+    {
+      "rank": 710,
+      "name": "Medline",
+      "value": 34062532608,
+      "symbol": "MDLN",
+      "country": "USA"
+    },
+    {
+      "rank": 711,
+      "name": "Ingersoll Rand",
+      "value": 34021935104,
+      "symbol": "IR",
+      "country": "Ireland"
+    },
+    {
+      "rank": 712,
+      "name": "Raymond James",
+      "value": 33988519936,
+      "symbol": "RJF",
+      "country": "USA"
+    },
+    {
+      "rank": 713,
+      "name": "Live Nation",
+      "value": 33965248512,
+      "symbol": "LYV",
+      "country": "USA"
+    },
+    {
+      "rank": 714,
+      "name": "Bayan Resources",
+      "value": 33894622035,
+      "symbol": "BYAN.JK",
+      "country": "Indonesia"
+    },
+    {
+      "rank": 715,
+      "name": "Xylem",
+      "value": 33885437952,
+      "symbol": "XYL",
+      "country": "USA"
+    },
+    {
+      "rank": 716,
+      "name": "CRRC",
+      "value": 33847421738,
+      "symbol": "1766.HK",
+      "country": "China"
+    },
+    {
+      "rank": 717,
+      "name": "Ubiquiti",
+      "value": 33838061568,
+      "symbol": "UI",
+      "country": "USA"
+    },
+    {
+      "rank": 718,
+      "name": "Maybank",
+      "value": 33828433920,
+      "symbol": "MLYBY",
+      "country": "Malaysia"
+    },
+    {
+      "rank": 719,
+      "name": "Bharat Electronics",
+      "value": 33827545863,
+      "symbol": "BEL.NS",
+      "country": "India"
+    },
+    {
+      "rank": 720,
+      "name": "Zscaler",
+      "value": 33747294208,
+      "symbol": "ZS",
+      "country": "USA"
+    },
+    {
+      "rank": 721,
+      "name": "Chandra Asri Petrochemical",
+      "value": 33722470749,
+      "symbol": "TPIA.JK",
+      "country": "Indonesia"
+    },
+    {
+      "rank": 722,
+      "name": "ORIX",
+      "value": 33622624256,
+      "symbol": "IX",
+      "country": "Japan"
+    },
+    {
+      "rank": 723,
+      "name": "Sandoz Group",
+      "value": 33614836824,
+      "symbol": "SDZ.SW",
+      "country": "Switzerland"
+    },
+    {
+      "rank": 724,
+      "name": "Aluminum Corporation of China",
+      "value": 33536217063,
+      "symbol": "601600.SS",
+      "country": "China"
+    },
+    {
+      "rank": 725,
+      "name": "SoFi",
+      "value": 33436383232,
+      "symbol": "SOFI",
+      "country": "USA"
+    },
+    {
+      "rank": 726,
+      "name": "7-Eleven",
+      "value": 33430197647,
+      "symbol": "3382.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 727,
+      "name": "Bank Rakyat Indonesia",
+      "value": 33428168180,
+      "symbol": "BBRI.JK",
+      "country": "Indonesia"
+    },
+    {
+      "rank": 728,
+      "name": "Power Corporation of Canada",
+      "value": 33415565402,
+      "symbol": "POW.TO",
+      "country": "Canada"
+    },
+    {
+      "rank": 729,
+      "name": "Dollar General",
+      "value": 33403037696,
+      "symbol": "DG",
+      "country": "USA"
+    },
+    {
+      "rank": 730,
+      "name": "Ciena",
+      "value": 33402038272,
+      "symbol": "CIEN",
+      "country": "USA"
+    },
+    {
+      "rank": 731,
+      "name": "Humana",
+      "value": 33361344512,
+      "symbol": "HUM",
+      "country": "USA"
+    },
+    {
+      "rank": 732,
+      "name": "Elbit Systems",
+      "value": 33354289152,
+      "symbol": "ESLT",
+      "country": "Israel"
+    },
+    {
+      "rank": 733,
+      "name": "Fidelity National Information Services",
+      "value": 33322530816,
+      "symbol": "FIS",
+      "country": "USA"
+    },
+    {
+      "rank": 734,
+      "name": "Adidas",
+      "value": 33288281545,
+      "symbol": "ADS.DE",
+      "country": "Germany"
+    },
+    {
+      "rank": 735,
+      "name": "Talanx",
+      "value": 33097800862,
+      "symbol": "TLX.DE",
+      "country": "Germany"
+    },
+    {
+      "rank": 736,
+      "name": "Banca Monte dei Paschi di Siena",
+      "value": 33065345189,
+      "symbol": "BMPS.MI",
+      "country": "Italy"
+    },
+    {
+      "rank": 737,
+      "name": "Hindustan Aeronautics",
+      "value": 33064115613,
+      "symbol": "HAL.NS",
+      "country": "India"
+    },
+    {
+      "rank": 738,
+      "name": "Poste Italiane",
+      "value": 33038370717,
+      "symbol": "PST.MI",
+      "country": "Italy"
+    },
+    {
+      "rank": 739,
+      "name": "Natera",
+      "value": 32958799872,
+      "symbol": "NTRA",
+      "country": "USA"
+    },
+    {
+      "rank": 740,
+      "name": "M&T Bank",
+      "value": 32929067008,
+      "symbol": "MTB",
+      "country": "USA"
+    },
+    {
+      "rank": 741,
+      "name": "Partners Group",
+      "value": 32821144368,
+      "symbol": "PGHN.SW",
+      "country": "Switzerland"
+    },
+    {
+      "rank": 742,
+      "name": "Chunghwa Telecom",
+      "value": 32780316672,
+      "symbol": "CHT",
+      "country": "Taiwan"
+    },
+    {
+      "rank": 743,
+      "name": "Bank Hapoalim",
+      "value": 32778019738,
+      "symbol": "POLI.TA",
+      "country": "Israel"
+    },
+    {
+      "rank": 744,
+      "name": "Pop Mart International Group",
+      "value": 32751441413,
+      "symbol": "9992.HK",
+      "country": "China"
+    },
+    {
+      "rank": 745,
+      "name": "Hansoh Pharma",
+      "value": 32745293051,
+      "symbol": "3692.HK",
+      "country": "China"
+    },
+    {
+      "rank": 746,
+      "name": "Kimberly-Clark",
+      "value": 32737937408,
+      "symbol": "KMB",
+      "country": "USA"
+    },
+    {
+      "rank": 747,
+      "name": "Sompo Holdings",
+      "value": 32690094100,
+      "symbol": "8630.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 748,
+      "name": "Kenvue",
+      "value": 32663302144,
+      "symbol": "KVUE",
+      "country": "USA"
+    },
+    {
+      "rank": 749,
+      "name": "Mitsui Fudosan",
+      "value": 32624609808,
+      "symbol": "8801.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 750,
+      "name": "Japan Post Holdings",
+      "value": 32624318590,
+      "symbol": "6178.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 751,
+      "name": "Dai-ichi Life Holdings",
+      "value": 32322974360,
+      "symbol": "8750.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 752,
+      "name": "KB Financial Group",
+      "value": 32315832320,
+      "symbol": "KB",
+      "country": "S. Korea"
+    },
+    {
+      "rank": 753,
+      "name": "Gree Electric Appliances",
+      "value": 32294947807,
+      "symbol": "000651.SZ",
+      "country": "China"
+    },
+    {
+      "rank": 754,
+      "name": "COSCO Shipping",
+      "value": 32275202414,
+      "symbol": "601919.SS",
+      "country": "China"
+    },
+    {
+      "rank": 755,
+      "name": "Wipro",
+      "value": 32251899904,
+      "symbol": "WIT",
+      "country": "India"
+    },
+    {
+      "rank": 756,
+      "name": "Chocoladefabriken Lindt &amp; Sprüngli",
+      "value": 32226703010,
+      "symbol": "LISP.SW",
+      "country": "Switzerland"
+    },
+    {
+      "rank": 757,
+      "name": "Fifth Third Bank",
+      "value": 32212953088,
+      "symbol": "FITB",
+      "country": "USA"
+    },
+    {
+      "rank": 758,
+      "name": "Swire Pacific",
+      "value": 32174747685,
+      "symbol": "0019.HK",
+      "country": "Hong Kong"
+    },
+    {
+      "rank": 759,
+      "name": "Nutrien",
+      "value": 32159225856,
+      "symbol": "NTR",
+      "country": "Canada"
+    },
+    {
+      "rank": 760,
+      "name": "Imperial Brands",
+      "value": 32100875369,
+      "symbol": "IMB.L",
+      "country": "UK"
+    },
+    {
+      "rank": 761,
+      "name": "Abu Dhabi Commercial Bank (ADCB)",
+      "value": 32098512313,
+      "symbol": "ADCB.AE",
+      "country": "UAE"
+    },
+    {
+      "rank": 762,
+      "name": "Panasonic",
+      "value": 32081174241,
+      "symbol": "6752.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 763,
+      "name": "Willis Towers Watson",
+      "value": 32007446528,
+      "symbol": "WTW",
+      "country": "UK"
+    },
+    {
+      "rank": 764,
+      "name": "JSW Steel",
+      "value": 31988412735,
+      "symbol": "JSWSTEEL.NS",
+      "country": "India"
+    },
+    {
+      "rank": 765,
+      "name": "Advanced Info Service (AIS)",
+      "value": 31974646989,
+      "symbol": "ADVANC.BK",
+      "country": "Thailand"
+    },
+    {
+      "rank": 766,
+      "name": "Extra Space Storage",
+      "value": 31950495744,
+      "symbol": "EXR",
+      "country": "USA"
+    },
+    {
+      "rank": 767,
+      "name": "Restaurant Brands International",
+      "value": 31920445440,
+      "symbol": "QSR",
+      "country": "Canada"
+    },
+    {
+      "rank": 768,
+      "name": "Sumitomo Denki Kōgyō",
+      "value": 31895069524,
+      "symbol": "5802.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 769,
+      "name": "Woodside Energy",
+      "value": 31849072640,
+      "symbol": "WDS",
+      "country": "Australia"
+    },
+    {
+      "rank": 770,
+      "name": "Mitsubishi Estate",
+      "value": 31816831217,
+      "symbol": "8802.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 771,
+      "name": "MongoDB",
+      "value": 31774187520,
+      "symbol": "MDB",
+      "country": "USA"
+    },
+    {
+      "rank": 772,
+      "name": "Foshan Haitian Flavouring and Food",
+      "value": 31716097373,
+      "symbol": "603288.SS",
+      "country": "China"
+    },
+    {
+      "rank": 773,
+      "name": "AMEC",
+      "value": 31644473033,
+      "symbol": "688012.SS",
+      "country": "China"
+    },
+    {
+      "rank": 774,
+      "name": "Ping An Bank",
+      "value": 31617243517,
+      "symbol": "000001.SZ",
+      "country": "China"
+    },
+    {
+      "rank": 775,
+      "name": "Celltrion",
+      "value": 31599818333,
+      "symbol": "068270.KS",
+      "country": "S. Korea"
+    },
+    {
+      "rank": 776,
+      "name": "PKN Orlen",
+      "value": 31547494957,
+      "symbol": "PKN.WA",
+      "country": "Poland"
+    },
+    {
+      "rank": 777,
+      "name": "H&amp;M",
+      "value": 31541812073,
+      "symbol": "HM-B.ST",
+      "country": "Sweden"
+    },
+    {
+      "rank": 778,
+      "name": "Hochtief",
+      "value": 31498117411,
+      "symbol": "HOT.F",
+      "country": "Germany"
+    },
+    {
+      "rank": 779,
+      "name": "Viking Holdings",
+      "value": 31474149376,
+      "symbol": "VIK",
+      "country": "Bermuda"
+    },
+    {
+      "rank": 780,
+      "name": "Vodafone",
+      "value": 31392155648,
+      "symbol": "VOD",
+      "country": "UK"
+    },
+    {
+      "rank": 781,
+      "name": "Archer Daniels Midland (ADM)",
+      "value": 31381204992,
+      "symbol": "ADM",
+      "country": "USA"
+    },
+    {
+      "rank": 782,
+      "name": "EQT Corporation",
+      "value": 31303393280,
+      "symbol": "EQT",
+      "country": "USA"
+    },
+    {
+      "rank": 783,
+      "name": "China Unicom",
+      "value": 31197901869,
+      "symbol": "0762.HK",
+      "country": "Hong Kong"
+    },
+    {
+      "rank": 784,
+      "name": "Ericsson",
+      "value": 31182895104,
+      "symbol": "ERIC",
+      "country": "Sweden"
+    },
+    {
+      "rank": 785,
+      "name": "Hexagon AB",
+      "value": 31176174109,
+      "symbol": "HEXA-B.ST",
+      "country": "Sweden"
+    },
+    {
+      "rank": 786,
+      "name": "Verisk Analytics",
+      "value": 31164821504,
+      "symbol": "VRSK",
+      "country": "USA"
+    },
+    {
+      "rank": 787,
+      "name": "Fox Corporation",
+      "value": 31113199616,
+      "symbol": "FOX",
+      "country": "USA"
+    },
+    {
+      "rank": 788,
+      "name": "Swiss Life",
+      "value": 31075382871,
+      "symbol": "SLHN.SW",
+      "country": "Switzerland"
+    },
+    {
+      "rank": 789,
+      "name": "Amadeus IT Group",
+      "value": 30963455914,
+      "symbol": "AMS.MC",
+      "country": "Spain"
+    },
+    {
+      "rank": 790,
+      "name": "Bloom Energy",
+      "value": 30868793344,
+      "symbol": "BE",
+      "country": "USA"
+    },
+    {
+      "rank": 791,
+      "name": "Adani Enterprises",
+      "value": 30846231910,
+      "symbol": "ADANIENT.NS",
+      "country": "India"
+    },
+    {
+      "rank": 792,
+      "name": "Sampo",
+      "value": 30783150858,
+      "symbol": "SAMPO.HE",
+      "country": "Finland"
+    },
+    {
+      "rank": 793,
+      "name": "Komatsu",
+      "value": 30754015334,
+      "symbol": "6301.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 794,
+      "name": "Novonesis",
+      "value": 30745838636,
+      "symbol": "NZYM.VI",
+      "country": "Denmark"
+    },
+    {
+      "rank": 795,
+      "name": "CTBC Financial Holding",
+      "value": 30742691527,
+      "symbol": "2891.TW",
+      "country": "Taiwan"
+    },
+    {
+      "rank": 796,
+      "name": "FirstRand",
+      "value": 30664177800,
+      "symbol": "FSR.JO",
+      "country": "South Africa"
+    },
+    {
+      "rank": 797,
+      "name": "Shandong Gold Mining",
+      "value": 30644709464,
+      "symbol": "600547.SS",
+      "country": "China"
+    },
+    {
+      "rank": 798,
+      "name": "Hindustan Zinc",
+      "value": 30632029067,
+      "symbol": "HINDZINC.NS",
+      "country": "India"
+    },
+    {
+      "rank": 799,
+      "name": "Huatai Securities",
+      "value": 30618191939,
+      "symbol": "601688.SS",
+      "country": "China"
+    },
+    {
+      "rank": 800,
+      "name": "Nornickel",
+      "value": 30553182577,
+      "symbol": "GMKN.ME",
+      "country": "Russia"
+    },
+    {
+      "rank": 801,
+      "name": "Otsuka Holdings",
+      "value": 30529145559,
+      "symbol": "4578.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 802,
+      "name": "Adani Power",
+      "value": 30513063639,
+      "symbol": "ADANIPOWER.NS",
+      "country": "India"
+    },
+    {
+      "rank": 803,
+      "name": "Mettler Toledo",
+      "value": 30495848448,
+      "symbol": "MTD",
+      "country": "USA"
+    },
+    {
+      "rank": 804,
+      "name": "China State Construction Engineering",
+      "value": 30460640008,
+      "symbol": "601668.SS",
+      "country": "China"
+    },
+    {
+      "rank": 805,
+      "name": "Aselsan",
+      "value": 30417602558,
+      "symbol": "ASELS.IS",
+      "country": "Turkey"
+    },
+    {
+      "rank": 806,
+      "name": "Seres Group",
+      "value": 30405102418,
+      "symbol": "601127.SS",
+      "country": "China"
+    },
+    {
+      "rank": 807,
+      "name": "Svenska Handelsbanken",
+      "value": 30398625434,
+      "symbol": "SHB-A.ST",
+      "country": "Sweden"
+    },
+    {
+      "rank": 808,
+      "name": "Sika",
+      "value": 30267441923,
+      "symbol": "SIKA.SW",
+      "country": "Switzerland"
+    },
+    {
+      "rank": 809,
+      "name": "Shenzhen Inovance",
+      "value": 30263120280,
+      "symbol": "300124.SZ",
+      "country": "China"
+    },
+    {
+      "rank": 810,
+      "name": "Eternal (Zomato)",
+      "value": 30173603145,
+      "symbol": "ETERNAL.NS",
+      "country": "India"
+    },
+    {
+      "rank": 811,
+      "name": "Fujikura",
+      "value": 30122198476,
+      "symbol": "5803.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 812,
+      "name": "PKO Bank Polski",
+      "value": 30053949070,
+      "symbol": "PKO.WA",
+      "country": "Poland"
+    },
+    {
+      "rank": 813,
+      "name": "VICI Properties",
+      "value": 30028255232,
+      "symbol": "VICI",
+      "country": "USA"
+    },
+    {
+      "rank": 814,
+      "name": "Lennar",
+      "value": 29956339712,
+      "symbol": "LEN",
+      "country": "USA"
+    },
+    {
+      "rank": 815,
+      "name": "Oriental Land",
+      "value": 29943622402,
+      "symbol": "4661.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 816,
+      "name": "Asian Paints",
+      "value": 29891103828,
+      "symbol": "ASIANPAINT.NS",
+      "country": "India"
+    },
+    {
+      "rank": 817,
+      "name": "Prysmian Group",
+      "value": 29799889162,
+      "symbol": "PRY.MI",
+      "country": "Italy"
+    },
+    {
+      "rank": 818,
+      "name": "ABN AMRO",
+      "value": 29717661607,
+      "symbol": "ABN.AS",
+      "country": "Netherlands"
+    },
+    {
+      "rank": 819,
+      "name": "Hanwha Ocean (DSME)",
+      "value": 29713169284,
+      "symbol": "042660.KS",
+      "country": "S. Korea"
+    },
+    {
+      "rank": 820,
+      "name": "PT DCI Indonesia Tbk",
+      "value": 29708488498,
+      "symbol": "DCII.JK",
+      "country": "Indonesia"
+    },
+    {
+      "rank": 821,
+      "name": "LPL Financial",
+      "value": 29701160960,
+      "symbol": "LPLA",
+      "country": "USA"
+    },
+    {
+      "rank": 822,
+      "name": "Rollins",
+      "value": 29696612352,
+      "symbol": "ROL",
+      "country": "USA"
+    },
+    {
+      "rank": 823,
+      "name": "Bajaj Auto",
+      "value": 29641399020,
+      "symbol": "BAJAJ-AUTO.NS",
+      "country": "India"
+    },
+    {
+      "rank": 824,
+      "name": "Epiroc",
+      "value": 29631522288,
+      "symbol": "EPI-A.ST",
+      "country": "Sweden"
+    },
+    {
+      "rank": 825,
+      "name": "ULTA Beauty",
+      "value": 29552070656,
+      "symbol": "ULTA",
+      "country": "USA"
+    },
+    {
+      "rank": 826,
+      "name": "Coal India",
+      "value": 29516411533,
+      "symbol": "COALINDIA.NS",
+      "country": "India"
+    },
+    {
+      "rank": 827,
+      "name": "PTT PCL",
+      "value": 29504515147,
+      "symbol": "PTT-R.BK",
+      "country": "Thailand"
+    },
+    {
+      "rank": 828,
+      "name": "Capitec Bank",
+      "value": 29499211200,
+      "symbol": "CPI.JO",
+      "country": "South Africa"
+    },
+    {
+      "rank": 829,
+      "name": "East Japan Railway",
+      "value": 29472147413,
+      "symbol": "9020.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 830,
+      "name": "Ashtead",
+      "value": 29443015049,
+      "symbol": "AHT.L",
+      "country": "UK"
+    },
+    {
+      "rank": 831,
+      "name": "Emcor",
+      "value": 29382969344,
+      "symbol": "EME",
+      "country": "USA"
+    },
+    {
+      "rank": 832,
+      "name": "Tencent Music Entertainment",
+      "value": 29338787840,
+      "symbol": "TME",
+      "country": "China"
+    },
+    {
+      "rank": 833,
+      "name": "Stellantis",
+      "value": 29334990848,
+      "symbol": "STLA",
+      "country": "Netherlands"
+    },
+    {
+      "rank": 834,
+      "name": "Sany Heavy Industry",
+      "value": 29329066599,
+      "symbol": "600031.SS",
+      "country": "China"
+    },
+    {
+      "rank": 835,
+      "name": "OTP Bank",
+      "value": 29319721480,
+      "symbol": "OTP.BD",
+      "country": "Hungary"
+    },
+    {
+      "rank": 836,
+      "name": "Hewlett Packard Enterprise",
+      "value": 29299675136,
+      "symbol": "HPE",
+      "country": "USA"
+    },
+    {
+      "rank": 837,
+      "name": "Vedanta",
+      "value": 29244669419,
+      "symbol": "VEDL.NS",
+      "country": "India"
+    },
+    {
+      "rank": 838,
+      "name": "Vestas Wind Systems",
+      "value": 29135242707,
+      "symbol": "VWS.CO",
+      "country": "Denmark"
+    },
+    {
+      "rank": 839,
+      "name": "Synchrony",
+      "value": 29120942080,
+      "symbol": "SYF",
+      "country": "USA"
+    },
+    {
+      "rank": 840,
+      "name": "Transurban",
+      "value": 29114674661,
+      "symbol": "TCL.AX",
+      "country": "Australia"
+    },
+    {
+      "rank": 841,
+      "name": "CK Hutchison Holdings",
+      "value": 29104315024,
+      "symbol": "0001.HK",
+      "country": "Hong Kong"
+    },
+    {
+      "rank": 842,
+      "name": "Suzuki Motor",
+      "value": 29092128049,
+      "symbol": "7269.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 843,
+      "name": "Lens Technology",
+      "value": 29079905254,
+      "symbol": "300433.SZ",
+      "country": "China"
+    },
+    {
+      "rank": 844,
+      "name": "China Everbright Bank",
+      "value": 29066109561,
+      "symbol": "601818.SS",
+      "country": "China"
+    },
+    {
+      "rank": 845,
+      "name": "Kellanova \n (Kellogg's)",
+      "value": 29031499776,
+      "symbol": "K",
+      "country": "USA"
+    },
+    {
+      "rank": 846,
+      "name": "NRG Energy",
+      "value": 28996243456,
+      "symbol": "NRG",
+      "country": "USA"
+    },
+    {
+      "rank": 847,
+      "name": "Naturgy",
+      "value": 28960166273,
+      "symbol": "NTGY.MC",
+      "country": "Spain"
+    },
+    {
+      "rank": 848,
+      "name": "Coherent Corp.",
+      "value": 28919408640,
+      "symbol": "COHR",
+      "country": "USA"
+    },
+    {
+      "rank": 849,
+      "name": "Anta Sports",
+      "value": 28834461578,
+      "symbol": "2020.HK",
+      "country": "China"
+    },
+    {
+      "rank": 850,
+      "name": "Kraft Heinz",
+      "value": 28768749568,
+      "symbol": "KHC",
+      "country": "USA"
+    },
+    {
+      "rank": 851,
+      "name": "JD Health",
+      "value": 28598054300,
+      "symbol": "6618.HK",
+      "country": "China"
+    },
+    {
+      "rank": 852,
+      "name": "Dollar Tree",
+      "value": 28582014976,
+      "symbol": "DLTR",
+      "country": "USA"
+    },
+    {
+      "rank": 853,
+      "name": "Astera Labs",
+      "value": 28580182016,
+      "symbol": "ALAB",
+      "country": "USA"
+    },
+    {
+      "rank": 854,
+      "name": "Philips",
+      "value": 28576917504,
+      "symbol": "PHG",
+      "country": "Netherlands"
+    },
+    {
+      "rank": 855,
+      "name": "Capgemini",
+      "value": 28529087321,
+      "symbol": "CAP.PA",
+      "country": "France"
+    },
+    {
+      "rank": 856,
+      "name": "China Securities (CSC Financial)",
+      "value": 28456974868,
+      "symbol": "601066.SS",
+      "country": "China"
+    },
+    {
+      "rank": 857,
+      "name": "Grupo ACS",
+      "value": 28453618881,
+      "symbol": "ACS.MC",
+      "country": "Spain"
+    },
+    {
+      "rank": 858,
+      "name": "National Bank of Kuwait",
+      "value": 28443814241,
+      "symbol": "NBK.KW",
+      "country": "Kuwait"
+    },
+    {
+      "rank": 859,
+      "name": "Bridgestone",
+      "value": 28279613860,
+      "symbol": "5108.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 860,
+      "name": "Halliburton",
+      "value": 28238180352,
+      "symbol": "HAL",
+      "country": "USA"
+    },
+    {
+      "rank": 861,
+      "name": "Dassault Aviation",
+      "value": 28140375026,
+      "symbol": "AM.PA",
+      "country": "France"
+    },
+    {
+      "rank": 862,
+      "name": "Cboe Global Markets",
+      "value": 28051007488,
+      "symbol": "CBOE",
+      "country": "USA"
+    },
+    {
+      "rank": 863,
+      "name": "Exor",
+      "value": 28022594764,
+      "symbol": "EXO.AS",
+      "country": "Netherlands"
+    },
+    {
+      "rank": 864,
+      "name": "Dover Corporation",
+      "value": 27950452736,
+      "symbol": "DOV",
+      "country": "USA"
+    },
+    {
+      "rank": 865,
+      "name": "Nestlé India",
+      "value": 27931378474,
+      "symbol": "NESTLEIND.NS",
+      "country": "India"
+    },
+    {
+      "rank": 866,
+      "name": "China General Nuclear Power Group (CGN)",
+      "value": 27883778060,
+      "symbol": "003816.SZ",
+      "country": "China"
+    },
+    {
+      "rank": 867,
+      "name": "Banorte",
+      "value": 27877914849,
+      "symbol": "GFNORTEO.MX",
+      "country": "Mexico"
+    },
+    {
+      "rank": 868,
+      "name": "Standard Bank Group",
+      "value": 27875676400,
+      "symbol": "SBK.JO",
+      "country": "South Africa"
+    },
+    {
+      "rank": 869,
+      "name": "S.F. Express",
+      "value": 27857138346,
+      "symbol": "002352.SZ",
+      "country": "China"
+    },
+    {
+      "rank": 870,
+      "name": "Huntington Bancshares",
+      "value": 27850393600,
+      "symbol": "HBAN",
+      "country": "USA"
+    },
+    {
+      "rank": 871,
+      "name": "DTE Energy",
+      "value": 27843022848,
+      "symbol": "DTE",
+      "country": "USA"
+    },
+    {
+      "rank": 872,
+      "name": "Credo Technology",
+      "value": 27810060288,
+      "symbol": "CRDO",
+      "country": "USA"
+    },
+    {
+      "rank": 873,
+      "name": "Ameren",
+      "value": 27777122304,
+      "symbol": "AEE",
+      "country": "USA"
+    },
+    {
+      "rank": 874,
+      "name": "ZTE",
+      "value": 27709857403,
+      "symbol": "000063.SZ",
+      "country": "China"
+    },
+    {
+      "rank": 875,
+      "name": "Northern Trust",
+      "value": 27701075968,
+      "symbol": "NTRS",
+      "country": "USA"
+    },
+    {
+      "rank": 876,
+      "name": "Kühne + Nagel",
+      "value": 27695475200,
+      "symbol": "KNIN.SW",
+      "country": "Switzerland"
+    },
+    {
+      "rank": 877,
+      "name": "Charter Communications",
+      "value": 27645333504,
+      "symbol": "CHTR",
+      "country": "USA"
+    },
+    {
+      "rank": 878,
+      "name": "DMart",
+      "value": 27621127723,
+      "symbol": "DMART.NS",
+      "country": "India"
+    },
+    {
+      "rank": 879,
+      "name": "Tapestry",
+      "value": 27562780672,
+      "symbol": "TPR",
+      "country": "USA"
+    },
+    {
+      "rank": 880,
+      "name": "First Citizens BancShares",
+      "value": 27556022272,
+      "symbol": "FCNCA",
+      "country": "USA"
+    },
+    {
+      "rank": 881,
+      "name": "BPER Banca",
+      "value": 27545460847,
+      "symbol": "BPE.MI",
+      "country": "Italy"
+    },
+    {
+      "rank": 882,
+      "name": "Renesas Electronics",
+      "value": 27521069277,
+      "symbol": "6723.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 883,
+      "name": "Aviva",
+      "value": 27449964204,
+      "symbol": "AV.L",
+      "country": "UK"
+    },
+    {
+      "rank": 884,
+      "name": "Atmos Energy",
+      "value": 27445399552,
+      "symbol": "ATO",
+      "country": "USA"
+    },
+    {
+      "rank": 885,
+      "name": "Hyundai Mobis",
+      "value": 27440643588,
+      "symbol": "012330.KS",
+      "country": "S. Korea"
+    },
+    {
+      "rank": 886,
+      "name": "Constellation Brands",
+      "value": 27404118016,
+      "symbol": "STZ",
+      "country": "USA"
+    },
+    {
+      "rank": 887,
+      "name": "Ørsted",
+      "value": 27396903383,
+      "symbol": "ORSTED.CO",
+      "country": "Denmark"
+    },
+    {
+      "rank": 888,
+      "name": "Bank of Ningbo",
+      "value": 27370924190,
+      "symbol": "002142.SZ",
+      "country": "China"
+    },
+    {
+      "rank": 889,
+      "name": "BioNTech",
+      "value": 27266134016,
+      "symbol": "BNTX",
+      "country": "Germany"
+    },
+    {
+      "rank": 890,
+      "name": "Brown &amp; Brown",
+      "value": 27197581312,
+      "symbol": "BRO",
+      "country": "USA"
+    },
+    {
+      "rank": 891,
+      "name": "Nomura Holdings",
+      "value": 27156277248,
+      "symbol": "NMR",
+      "country": "Japan"
+    },
+    {
+      "rank": 892,
+      "name": "Cheniere Energy\nPartners",
+      "value": 27099684864,
+      "symbol": "CQP",
+      "country": "USA"
+    },
+    {
+      "rank": 893,
+      "name": "DexCom",
+      "value": 27078322176,
+      "symbol": "DXCM",
+      "country": "USA"
+    },
+    {
+      "rank": 894,
+      "name": "Equifax",
+      "value": 26984722432,
+      "symbol": "EFX",
+      "country": "USA"
+    },
+    {
+      "rank": 895,
+      "name": "CoStar Group",
+      "value": 26980558848,
+      "symbol": "CSGP",
+      "country": "USA"
+    },
+    {
+      "rank": 896,
+      "name": "Tractor Supply",
+      "value": 26927446016,
+      "symbol": "TSCO",
+      "country": "USA"
+    },
+    {
+      "rank": 897,
+      "name": "Iron Mountain",
+      "value": 26829180928,
+      "symbol": "IRM",
+      "country": "USA"
+    },
+    {
+      "rank": 898,
+      "name": "Bank Mandiri",
+      "value": 26783666477,
+      "symbol": "BMRI.JK",
+      "country": "Indonesia"
+    },
+    {
+      "rank": 899,
+      "name": "International Consolidated Airlines",
+      "value": 26755221504,
+      "symbol": "BABWF",
+      "country": "Spain"
+    },
+    {
+      "rank": 900,
+      "name": "Canon",
+      "value": 26742141103,
+      "symbol": "7751.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 901,
+      "name": "China Resources Land",
+      "value": 26723427755,
+      "symbol": "1109.HK",
+      "country": "Hong Kong"
+    },
+    {
+      "rank": 902,
+      "name": "China Tourism Group Duty Free",
+      "value": 26719363807,
+      "symbol": "601888.SS",
+      "country": "China"
+    },
+    {
+      "rank": 903,
+      "name": "Great Wall Motors",
+      "value": 26693715364,
+      "symbol": "601633.SS",
+      "country": "China"
+    },
+    {
+      "rank": 904,
+      "name": "FirstEnergy",
+      "value": 26636158976,
+      "symbol": "FE",
+      "country": "USA"
+    },
+    {
+      "rank": 905,
+      "name": "Bank of Jiangsu",
+      "value": 26635412400,
+      "symbol": "600919.SS",
+      "country": "China"
+    },
+    {
+      "rank": 906,
+      "name": "Powergrid Corporation of India",
+      "value": 26627191789,
+      "symbol": "POWERGRID.NS",
+      "country": "India"
+    },
+    {
+      "rank": 907,
+      "name": "George Weston",
+      "value": 26586104582,
+      "symbol": "WN.TO",
+      "country": "Canada"
+    },
+    {
+      "rank": 908,
+      "name": "Shinhan Financial Group",
+      "value": 26533083136,
+      "symbol": "SHG",
+      "country": "S. Korea"
+    },
+    {
+      "rank": 909,
+      "name": "Central Japan Railway",
+      "value": 26528263144,
+      "symbol": "9022.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 910,
+      "name": "Naver",
+      "value": 26491729160,
+      "symbol": "035420.KS",
+      "country": "S. Korea"
+    },
+    {
+      "rank": 911,
+      "name": "China Satellite Communications",
+      "value": 26439897054,
+      "symbol": "601698.SS",
+      "country": "China"
+    },
+    {
+      "rank": 912,
+      "name": "Markel Group",
+      "value": 26408015872,
+      "symbol": "MKL",
+      "country": "USA"
+    },
+    {
+      "rank": 913,
+      "name": "China National Nuclear Power",
+      "value": 26401379086,
+      "symbol": "601985.SS",
+      "country": "China"
+    },
+    {
+      "rank": 914,
+      "name": "Eversource Energy",
+      "value": 26308263936,
+      "symbol": "ES",
+      "country": "USA"
+    },
+    {
+      "rank": 915,
+      "name": "Kongsberg Gruppen",
+      "value": 26298573217,
+      "symbol": "KOG.OL",
+      "country": "Norway"
+    },
+    {
+      "rank": 916,
+      "name": "PPL",
+      "value": 26290331648,
+      "symbol": "PPL",
+      "country": "USA"
+    },
+    {
+      "rank": 917,
+      "name": "Fortis",
+      "value": 26280800256,
+      "symbol": "FTS",
+      "country": "Canada"
+    },
+    {
+      "rank": 918,
+      "name": "Teledyne Technologies",
+      "value": 26276120576,
+      "symbol": "TDY",
+      "country": "USA"
+    },
+    {
+      "rank": 919,
+      "name": "Geberit",
+      "value": 26257170928,
+      "symbol": "GEBN.SW",
+      "country": "Switzerland"
+    },
+    {
+      "rank": 920,
+      "name": "W. R. Berkley",
+      "value": 26251864064,
+      "symbol": "WRB",
+      "country": "USA"
+    },
+    {
+      "rank": 921,
+      "name": "EnBW Energie",
+      "value": 26209702360,
+      "symbol": "EBK.DE",
+      "country": "Germany"
+    },
+    {
+      "rank": 922,
+      "name": "Astellas Pharma",
+      "value": 26173645914,
+      "symbol": "4503.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 923,
+      "name": "Fujifilm",
+      "value": 26162837763,
+      "symbol": "4901.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 924,
+      "name": "Tata Steel",
+      "value": 26156065221,
+      "symbol": "TATASTEEL.NS",
+      "country": "India"
+    },
+    {
+      "rank": 925,
+      "name": "FTAI Aviation",
+      "value": 26075064320,
+      "symbol": "FTAI",
+      "country": "USA"
+    },
+    {
+      "rank": 926,
+      "name": "WSP Global",
+      "value": 26052493832,
+      "symbol": "WSP.TO",
+      "country": "Canada"
+    },
+    {
+      "rank": 927,
+      "name": "Hapag-Lloyd",
+      "value": 26005972858,
+      "symbol": "HLAG.DE",
+      "country": "Germany"
+    },
+    {
+      "rank": 928,
+      "name": "Steris",
+      "value": 25979852800,
+      "symbol": "STE",
+      "country": "Ireland"
+    },
+    {
+      "rank": 929,
+      "name": "Citizens Financial Group",
+      "value": 25919760384,
+      "symbol": "CFG",
+      "country": "USA"
+    },
+    {
+      "rank": 930,
+      "name": "American Water",
+      "value": 25905864704,
+      "symbol": "AWK",
+      "country": "USA"
+    },
+    {
+      "rank": 931,
+      "name": "China Tower",
+      "value": 25850309820,
+      "symbol": "0788.HK",
+      "country": "China"
+    },
+    {
+      "rank": 932,
+      "name": "China Northern Rare Earth (CNREHT)",
+      "value": 25835602955,
+      "symbol": "600111.SS",
+      "country": "China"
+    },
+    {
+      "rank": 933,
+      "name": "PulteGroup",
+      "value": 25786791936,
+      "symbol": "PHM",
+      "country": "USA"
+    },
+    {
+      "rank": 934,
+      "name": "Nebius Group",
+      "value": 25712035840,
+      "symbol": "NBIS",
+      "country": "Netherlands"
+    },
+    {
+      "rank": 935,
+      "name": "Broadridge Financial Solutions",
+      "value": 25628702720,
+      "symbol": "BR",
+      "country": "USA"
+    },
+    {
+      "rank": 936,
+      "name": "Beiersdorf",
+      "value": 25600790734,
+      "symbol": "BEI.DE",
+      "country": "Germany"
+    },
+    {
+      "rank": 937,
+      "name": "CenterPoint Energy",
+      "value": 25595703296,
+      "symbol": "CNP",
+      "country": "USA"
+    },
+    {
+      "rank": 938,
+      "name": "Alpha Dhabi",
+      "value": 25593552156,
+      "symbol": "ALPHADHABI.AE",
+      "country": "UAE"
+    },
+    {
+      "rank": 939,
+      "name": "Cincinnati Financial",
+      "value": 25592565760,
+      "symbol": "CINF",
+      "country": "USA"
+    },
+    {
+      "rank": 940,
+      "name": "AvalonBay Communities",
+      "value": 25564872704,
+      "symbol": "AVB",
+      "country": "USA"
+    },
+    {
+      "rank": 941,
+      "name": "Northern Star",
+      "value": 25551918312,
+      "symbol": "NST.AX",
+      "country": "Australia"
+    },
+    {
+      "rank": 942,
+      "name": "Jabil",
+      "value": 25546176512,
+      "symbol": "JBL",
+      "country": "USA"
+    },
+    {
+      "rank": 943,
+      "name": "SMC corp",
+      "value": 25536408434,
+      "symbol": "6273.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 944,
+      "name": "Omnicom Group",
+      "value": 25450602496,
+      "symbol": "OMC",
+      "country": "USA"
+    },
+    {
+      "rank": 945,
+      "name": "Teck Resources",
+      "value": 25429909504,
+      "symbol": "TECK",
+      "country": "Canada"
+    },
+    {
+      "rank": 946,
+      "name": "Veolia",
+      "value": 25428959009,
+      "symbol": "VIE.PA",
+      "country": "France"
+    },
+    {
+      "rank": 947,
+      "name": "First Solar",
+      "value": 25412724736,
+      "symbol": "FSLR",
+      "country": "USA"
+    },
+    {
+      "rank": 948,
+      "name": "AerCap",
+      "value": 25368129536,
+      "symbol": "AER",
+      "country": "Ireland"
+    },
+    {
+      "rank": 949,
+      "name": "Publicis Groupe",
+      "value": 25362152250,
+      "symbol": "PUB.PA",
+      "country": "France"
+    },
+    {
+      "rank": 950,
+      "name": "Verbund AG",
+      "value": 25360616846,
+      "symbol": "OEWA.F",
+      "country": "Austria"
+    },
+    {
+      "rank": 951,
+      "name": "Steel Dynamics",
+      "value": 25342742528,
+      "symbol": "STLD",
+      "country": "USA"
+    },
+    {
+      "rank": 952,
+      "name": "Regions Financial",
+      "value": 25238941696,
+      "symbol": "RF",
+      "country": "USA"
+    },
+    {
+      "rank": 953,
+      "name": "Veralto",
+      "value": 25210871808,
+      "symbol": "VLTO",
+      "country": "USA"
+    },
+    {
+      "rank": 954,
+      "name": "Itaúsa",
+      "value": 25152100227,
+      "symbol": "ITSA3.SA",
+      "country": "Brazil"
+    },
+    {
+      "rank": 955,
+      "name": "Sumitomo Realty &amp; Development",
+      "value": 25118120404,
+      "symbol": "8830.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 956,
+      "name": "Hubbell",
+      "value": 25091231744,
+      "symbol": "HUBB",
+      "country": "USA"
+    },
+    {
+      "rank": 957,
+      "name": "Credicorp",
+      "value": 25070233600,
+      "symbol": "BAP",
+      "country": "Bermuda"
+    },
+    {
+      "rank": 958,
+      "name": "China Galaxy Securities",
+      "value": 25060128069,
+      "symbol": "601881.SS",
+      "country": "China"
+    },
+    {
+      "rank": 959,
+      "name": "China Coal Energy Company Limited",
+      "value": 25024596700,
+      "symbol": "601898.SS",
+      "country": "China"
+    },
+    {
+      "rank": 960,
+      "name": "Biogen",
+      "value": 25021538304,
+      "symbol": "BIIB",
+      "country": "USA"
+    },
+    {
+      "rank": 961,
+      "name": "Michelin",
+      "value": 25011240932,
+      "symbol": "ML.PA",
+      "country": "France"
+    },
+    {
+      "rank": 962,
+      "name": "Ecopetrol",
+      "value": 24987740160,
+      "symbol": "EC",
+      "country": "Colombia"
+    },
+    {
+      "rank": 963,
+      "name": "TPG Capital",
+      "value": 24939788288,
+      "symbol": "TPG",
+      "country": "USA"
+    },
+    {
+      "rank": 964,
+      "name": "Zoom",
+      "value": 24935294976,
+      "symbol": "ZM",
+      "country": "USA"
+    },
+    {
+      "rank": 965,
+      "name": "Indian Oil",
+      "value": 24906486665,
+      "symbol": "IOC.NS",
+      "country": "India"
+    },
+    {
+      "rank": 966,
+      "name": "SAIC Motor",
+      "value": 24861783560,
+      "symbol": "600104.SS",
+      "country": "China"
+    },
+    {
+      "rank": 967,
+      "name": "Yili Group",
+      "value": 24856921818,
+      "symbol": "600887.SS",
+      "country": "China"
+    },
+    {
+      "rank": 968,
+      "name": "Williams-Sonoma",
+      "value": 24847900672,
+      "symbol": "WSM",
+      "country": "USA"
+    },
+    {
+      "rank": 969,
+      "name": "Centrais Electricas Brasileiras",
+      "value": 24816896000,
+      "symbol": "EBR",
+      "country": "Brazil"
+    },
+    {
+      "rank": 970,
+      "name": "ON Semiconductor",
+      "value": 24800182272,
+      "symbol": "ON",
+      "country": "USA"
+    },
+    {
+      "rank": 971,
+      "name": "First Quantum Minerals",
+      "value": 24796613062,
+      "symbol": "FM.TO",
+      "country": "Canada"
+    },
+    {
+      "rank": 972,
+      "name": "Klabin",
+      "value": 24769435774,
+      "symbol": "KLBN11.SA",
+      "country": "Brazil"
+    },
+    {
+      "rank": 973,
+      "name": "STMicroelectronics",
+      "value": 24684926976,
+      "symbol": "STM",
+      "country": "Switzerland"
+    },
+    {
+      "rank": 974,
+      "name": "MTR Corporation",
+      "value": 24678422641,
+      "symbol": "0066.HK",
+      "country": "Hong Kong"
+    },
+    {
+      "rank": 975,
+      "name": "Luzhou Laojiao",
+      "value": 24669938606,
+      "symbol": "000568.SZ",
+      "country": "China"
+    },
+    {
+      "rank": 976,
+      "name": "China International Capital Corporation",
+      "value": 24646875291,
+      "symbol": "601995.SS",
+      "country": "China"
+    },
+    {
+      "rank": 977,
+      "name": "Woolworths Group",
+      "value": 24583796027,
+      "symbol": "WOW.AX",
+      "country": "Australia"
+    },
+    {
+      "rank": 978,
+      "name": "Resona Holdings",
+      "value": 24543335904,
+      "symbol": "8308.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 979,
+      "name": "GF Securities",
+      "value": 24532874606,
+      "symbol": "000776.SZ",
+      "country": "China"
+    },
+    {
+      "rank": 980,
+      "name": "PPG Industries",
+      "value": 24490706944,
+      "symbol": "PPG",
+      "country": "USA"
+    },
+    {
+      "rank": 981,
+      "name": "TDK",
+      "value": 24474775624,
+      "symbol": "6762.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 982,
+      "name": "Helvetia Holding",
+      "value": 24470250818,
+      "symbol": "HELN.SW",
+      "country": "Switzerland"
+    },
+    {
+      "rank": 983,
+      "name": "BOE Technology",
+      "value": 24439427646,
+      "symbol": "000725.SZ",
+      "country": "China"
+    },
+    {
+      "rank": 984,
+      "name": "Weichai Power",
+      "value": 24384656561,
+      "symbol": "2338.HK",
+      "country": "China"
+    },
+    {
+      "rank": 985,
+      "name": "General Mills",
+      "value": 24376698880,
+      "symbol": "GIS",
+      "country": "USA"
+    },
+    {
+      "rank": 986,
+      "name": "AVIC Shenyang Aircraft Company Limited",
+      "value": 24307201890,
+      "symbol": "600760.SS",
+      "country": "China"
+    },
+    {
+      "rank": 987,
+      "name": "Dr. Sulaiman Al Habib Medical Services Group Company",
+      "value": 24302703026,
+      "symbol": "4013.SR",
+      "country": "S. Arabia"
+    },
+    {
+      "rank": 988,
+      "name": "Vonovia",
+      "value": 24302411226,
+      "symbol": "VNA.DE",
+      "country": "Germany"
+    },
+    {
+      "rank": 989,
+      "name": "GigaDevice Semiconductor",
+      "value": 24233185451,
+      "symbol": "603986.SS",
+      "country": "China"
+    },
+    {
+      "rank": 990,
+      "name": "Leidos",
+      "value": 24232802304,
+      "symbol": "LDOS",
+      "country": "USA"
+    },
+    {
+      "rank": 991,
+      "name": "Inpex",
+      "value": 24189296145,
+      "symbol": "1605.T",
+      "country": "Japan"
+    },
+    {
+      "rank": 992,
+      "name": "Darden Restaurants",
+      "value": 24174651392,
+      "symbol": "DRI",
+      "country": "USA"
+    },
+    {
+      "rank": 993,
+      "name": "Devon Energy",
+      "value": 24154138624,
+      "symbol": "DVN",
+      "country": "USA"
+    },
+    {
+      "rank": 994,
+      "name": "lululemon athletica",
+      "value": 24141195264,
+      "symbol": "LULU",
+      "country": "Canada"
+    },
+    {
+      "rank": 995,
+      "name": "Blue Owl Capital",
+      "value": 24131792896,
+      "symbol": "OWL",
+      "country": "USA"
+    },
+    {
+      "rank": 996,
+      "name": "Futu Holdings",
+      "value": 24119773184,
+      "symbol": "FUTU",
+      "country": "Hong Kong"
+    },
+    {
+      "rank": 997,
+      "name": "MTU Aero Engines",
+      "value": 24106308676,
+      "symbol": "MTX.DE",
+      "country": "Germany"
+    },
+    {
+      "rank": 998,
+      "name": "Expand Energy",
+      "value": 24098009088,
+      "symbol": "EXE",
+      "country": "USA"
+    },
+    {
+      "rank": 999,
+      "name": "Curtiss-Wright",
+      "value": 24094963712,
+      "symbol": "CW",
+      "country": "USA"
+    },
+    {
+      "rank": 1000,
+      "name": "BT Group",
+      "value": 24017695806,
+      "symbol": "BT-A.L",
+      "country": "UK"
+    }
+  ]
+}

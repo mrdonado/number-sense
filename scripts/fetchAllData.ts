@@ -7,9 +7,14 @@
 
 import gdpDataSource from "./fetchGdpData";
 import billionairesDataSource from "./fetchBillionairesData";
+import marketCapDataSource from "./fetchMarketCapData";
 import { DataSource } from "./types";
 
-const DATA_SOURCES: DataSource[] = [gdpDataSource, billionairesDataSource];
+const DATA_SOURCES: DataSource[] = [
+  gdpDataSource,
+  billionairesDataSource,
+  marketCapDataSource,
+];
 
 async function fetchAllData(): Promise<void> {
   console.log("🚀 Fetching all data sources...\n");
