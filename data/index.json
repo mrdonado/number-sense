@@ -1,0 +1,33 @@
+{
+  "generatedAt": "2026-01-14T20:19:43.717Z",
+  "totalSources": 3,
+  "sources": [
+    {
+      "id": "gdp",
+      "name": "GDP Data",
+      "description": "Gross Domestic Product in current US Dollars",
+      "units": "USD",
+      "file": "gdp-by-country.json",
+      "recordCount": 210,
+      "fetchedAt": "2026-01-14T20:19:42.621Z"
+    },
+    {
+      "id": "billionaires",
+      "name": "Billionaires Data",
+      "description": "Net worth of the world's billionaires in US Dollars",
+      "units": "USD",
+      "file": "billionaires-net-worth.json",
+      "recordCount": 3186,
+      "fetchedAt": "2026-01-14T20:19:43.308Z"
+    },
+    {
+      "id": "market-cap",
+      "name": "Market Cap Data",
+      "description": "Market capitalization of publicly traded companies in US Dollars",
+      "units": "USD",
+      "file": "companies-market-cap.json",
+      "recordCount": 1000,
+      "fetchedAt": "2026-01-14T20:19:43.710Z"
+    }
+  ]
+}

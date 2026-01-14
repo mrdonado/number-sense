@@ -12,7 +12,8 @@
     "fetch-gdp": "npx tsx scripts/fetchGdpData.ts",
     "fetch-billionaires": "npx tsx scripts/fetchBillionairesData.ts",
     "fetch-marketcap": "npx tsx scripts/fetchMarketCapData.ts",
-    "fetch-all": "npx tsx scripts/fetchAllData.ts"
+    "fetch-all": "npx tsx scripts/fetchAllData.ts",
+    "generate-index": "npx tsx scripts/generateDataIndex.ts"
   },
   "dependencies": {
     "matter-js": "^0.20.0",

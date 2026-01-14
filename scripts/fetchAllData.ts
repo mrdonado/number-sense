@@ -5,16 +5,12 @@
  * Or add to package.json scripts and run: npm run fetch-all
  */
 
-import gdpDataSource from "./fetchGdpData";
-import billionairesDataSource from "./fetchBillionairesData";
-import marketCapDataSource from "./fetchMarketCapData";
+import generateDataIndex from "./generateDataIndex";
 import { DataSource } from "./types";
+import { DATA_SOURCES } from "./dataSources";
 
-const DATA_SOURCES: DataSource[] = [
-  gdpDataSource,
-  billionairesDataSource,
-  marketCapDataSource,
-];
+// Run index generation after all data is fetched
+const POST_FETCH: DataSource[] = [generateDataIndex];
 
 async function fetchAllData(): Promise<void> {
   console.log("🚀 Fetching all data sources...\n");
@@ -23,22 +19,22 @@ async function fetchAllData(): Promise<void> {
   const startTime = Date.now();
   const results: { name: string; success: boolean; error?: string }[] = [];
 
-  for (const dataSource of DATA_SOURCES) {
-    console.log(`\n📊 Fetching ${dataSource.name}...`);
+  for (const { source } of DATA_SOURCES) {
+    console.log(`\n📊 Fetching ${source.name}...`);
     console.log("-".repeat(50));
 
     try {
-      await dataSource.fetch();
-      results.push({ name: dataSource.name, success: true });
+      await source.fetch();
+      results.push({ name: source.name, success: true });
     } catch (error) {
       const errorMessage =
         error instanceof Error ? error.message : String(error);
       results.push({
-        name: dataSource.name,
+        name: source.name,
         success: false,
         error: errorMessage,
       });
-      console.error(`❌ Failed to fetch ${dataSource.name}: ${errorMessage}`);
+      console.error(`❌ Failed to fetch ${source.name}: ${errorMessage}`);
     }
   }
 
@@ -60,6 +56,20 @@ async function fetchAllData(): Promise<void> {
   console.log(
     `   Total: ${successful} succeeded, ${failed} failed (${elapsed}s)`
   );
+
+  // Run post-fetch tasks (like generating index)
+  if (failed === 0 && POST_FETCH.length > 0) {
+    console.log("\n" + "=".repeat(50));
+    console.log("📝 Running post-fetch tasks...\n");
+
+    for (const task of POST_FETCH) {
+      try {
+        await task.fetch();
+      } catch (error) {
+        console.error(`❌ Failed to run ${task.name}:`, error);
+      }
+    }
+  }
 
   if (failed > 0) {
     process.exit(1);
