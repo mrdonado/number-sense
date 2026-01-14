@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-01-14T20:19:43.717Z",
+  "generatedAt": "2026-01-14T20:39:31.770Z",
   "totalSources": 3,
   "sources": [
     {
@@ -9,7 +9,7 @@
       "units": "USD",
       "file": "gdp-by-country.json",
       "recordCount": 210,
-      "fetchedAt": "2026-01-14T20:19:42.621Z"
+      "fetchedAt": "2026-01-14T20:39:29.979Z"
     },
     {
       "id": "billionaires",
@@ -18,7 +18,7 @@
       "units": "USD",
       "file": "billionaires-net-worth.json",
       "recordCount": 3186,
-      "fetchedAt": "2026-01-14T20:19:43.308Z"
+      "fetchedAt": "2026-01-14T20:39:31.320Z"
     },
     {
       "id": "market-cap",
@@ -27,7 +27,7 @@
       "units": "USD",
       "file": "companies-market-cap.json",
       "recordCount": 1000,
-      "fetchedAt": "2026-01-14T20:19:43.710Z"
+      "fetchedAt": "2026-01-14T20:39:31.763Z"
     }
   ]
 }

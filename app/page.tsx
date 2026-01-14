@@ -1,12 +1,13 @@
 "use client";
 
-import { useRef, useState, useCallback } from "react";
+import { useRef, useState, useCallback, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import PhysicsCanvas, {
   PhysicsCanvasHandle,
 } from "./components/PhysicsCanvas/index";
+import AddDataDialog from "./components/AddDataDialog";
 
-export default function Home() {
+function HomeContent() {
   const searchParams = useSearchParams();
   const isDebugMode = searchParams.get("debugMode") === "true";
 
@@ -15,6 +16,7 @@ export default function Home() {
   const [nameValue, setNameValue] = useState("");
   const [ballCount, setBallCount] = useState(0);
   const [isComparisonMode, setIsComparisonMode] = useState(false);
+  const [isAddDataDialogOpen, setIsAddDataDialogOpen] = useState(false);
 
   const handleSubmit = () => {
     const area = parseFloat(inputValue);
@@ -43,11 +45,23 @@ export default function Home() {
     }
   };
 
+  const handleAddData = useCallback((name: string, value: number) => {
+    // Calculate radius from area: A = πr² → r = √(A/π)
+    const radius = Math.sqrt(value / Math.PI);
+    canvasRef.current?.spawnBall(radius, name);
+  }, []);
+
   return (
     <div className="app-container">
       <main className="main-content">
         <h1 className="page-title">Number Sense</h1>
         <div className="toolbar">
+          <button
+            onClick={() => setIsAddDataDialogOpen(true)}
+            className="btn btn-primary"
+          >
+            + Add Data
+          </button>
           {isDebugMode && (
             <>
               <input
@@ -90,7 +104,28 @@ export default function Home() {
           onBallCountChange={setBallCount}
           onComparisonModeChange={setIsComparisonMode}
         />
+        <AddDataDialog
+          isOpen={isAddDataDialogOpen}
+          onClose={() => setIsAddDataDialogOpen(false)}
+          onSelect={handleAddData}
+        />
       </main>
     </div>
+  );
+}
+
+export default function Home() {
+  return (
+    <Suspense
+      fallback={
+        <div className="app-container">
+          <main className="main-content">
+            <h1 className="page-title">Number Sense</h1>
+          </main>
+        </div>
+      }
+    >
+      <HomeContent />
+    </Suspense>
   );
 }

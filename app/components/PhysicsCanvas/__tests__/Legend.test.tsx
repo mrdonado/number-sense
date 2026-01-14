@@ -17,6 +17,7 @@ describe("Legend", () => {
     onHover: vi.fn(),
     onRemove: vi.fn(),
     onToggleVisibility: vi.fn(),
+    onZoom: vi.fn(),
   };
 
   it("renders nothing when there are no balls", () => {
@@ -28,6 +29,7 @@ describe("Legend", () => {
         onHover={vi.fn()}
         onRemove={vi.fn()}
         onToggleVisibility={vi.fn()}
+        onZoom={vi.fn()}
       />
     );
     expect(container.firstChild).toBeNull();
@@ -147,16 +149,26 @@ describe("Legend", () => {
   });
 
   describe("visibility toggle", () => {
-    it("calls onToggleVisibility with ball id when list item is clicked", () => {
+    it("calls onToggleVisibility with ball id when checkbox is clicked", () => {
       const onToggleVisibility = vi.fn();
       render(
         <Legend {...defaultProps} onToggleVisibility={onToggleVisibility} />
       );
 
+      const checkboxes = screen.getAllByRole("checkbox");
+      fireEvent.click(checkboxes[1]);
+
+      expect(onToggleVisibility).toHaveBeenCalledWith(2);
+    });
+
+    it("calls onZoom with ball id when list item is clicked", () => {
+      const onZoom = vi.fn();
+      render(<Legend {...defaultProps} onZoom={onZoom} />);
+
       const listItems = screen.getAllByRole("listitem");
       fireEvent.click(listItems[1]);
 
-      expect(onToggleVisibility).toHaveBeenCalledWith(2);
+      expect(onZoom).toHaveBeenCalledWith(2);
     });
 
     it("shows grayed out style for hidden balls", () => {

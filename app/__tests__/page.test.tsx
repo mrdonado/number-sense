@@ -4,6 +4,20 @@ import userEvent from "@testing-library/user-event";
 import React from "react";
 import Home from "../page";
 
+// Mock next/navigation
+const mockSearchParams = new URLSearchParams();
+vi.mock("next/navigation", () => ({
+  useSearchParams: () => mockSearchParams,
+}));
+
+// Mock the AddDataDialog component
+vi.mock("../components/AddDataDialog", () => ({
+  default: function MockAddDataDialog() {
+    return null;
+  },
+  __esModule: true,
+}));
+
 // Mock the PhysicsCanvas component
 const mockSpawnBall = vi.fn();
 const mockClearBalls = vi.fn();
@@ -32,6 +46,8 @@ describe("Home Page", () => {
   beforeEach(() => {
     mockSpawnBall.mockClear();
     mockClearBalls.mockClear();
+    // Reset search params to debug mode for tests that need input fields
+    mockSearchParams.delete("debugMode");
   });
 
   it("renders the header", () => {
@@ -39,16 +55,10 @@ describe("Home Page", () => {
     expect(screen.getByText("Number Sense")).toBeInTheDocument();
   });
 
-  it("renders the input field with correct placeholder", () => {
-    render(<Home />);
-    expect(screen.getByPlaceholderText("Enter area")).toBeInTheDocument();
-    expect(screen.getByPlaceholderText("Enter name")).toBeInTheDocument();
-  });
-
-  it("renders the Drop Ball button", () => {
+  it("renders the Add Data button", () => {
     render(<Home />);
     expect(
-      screen.getByRole("button", { name: "Drop Ball" })
+      screen.getByRole("button", { name: "+ Add Data" })
     ).toBeInTheDocument();
   });
 
@@ -62,7 +72,24 @@ describe("Home Page", () => {
     expect(screen.getByTestId("physics-canvas")).toBeInTheDocument();
   });
 
-  describe("ball spawning", () => {
+  describe("debug mode", () => {
+    beforeEach(() => {
+      mockSearchParams.set("debugMode", "true");
+    });
+
+    it("renders the input fields in debug mode", () => {
+      render(<Home />);
+      expect(screen.getByPlaceholderText("Enter area")).toBeInTheDocument();
+      expect(screen.getByPlaceholderText("Enter name")).toBeInTheDocument();
+    });
+
+    it("renders the Drop Ball button in debug mode", () => {
+      render(<Home />);
+      expect(
+        screen.getByRole("button", { name: "Drop Ball" })
+      ).toBeInTheDocument();
+    });
+
     it("spawns a ball with radius calculated from area when clicking the button", async () => {
       const user = userEvent.setup();
       render(<Home />);
@@ -194,9 +221,7 @@ describe("Home Page", () => {
 
       expect(mockSpawnBall).toHaveBeenCalledWith(areaToRadius(3.14), undefined);
     });
-  });
 
-  describe("input field behavior", () => {
     it("updates the input value when typing", async () => {
       const user = userEvent.setup();
       render(<Home />);
@@ -223,18 +248,6 @@ describe("Home Page", () => {
 
       expect(input.value).toBe("");
     });
-  });
-
-  describe("clear balls", () => {
-    it("calls clearBalls when clicking the Clear button", async () => {
-      const user = userEvent.setup();
-      render(<Home />);
-
-      const clearButton = screen.getByRole("button", { name: "Clear" });
-      await user.click(clearButton);
-
-      expect(mockClearBalls).toHaveBeenCalledTimes(1);
-    });
 
     it("can clear after spawning balls", async () => {
       const user = userEvent.setup();
@@ -251,6 +264,41 @@ describe("Home Page", () => {
       expect(mockSpawnBall).toHaveBeenCalledTimes(1);
 
       // Clear all balls
+      await user.click(clearButton);
+
+      expect(mockClearBalls).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe("non-debug mode", () => {
+    beforeEach(() => {
+      mockSearchParams.delete("debugMode");
+    });
+
+    it("does not render input fields by default", () => {
+      render(<Home />);
+      expect(
+        screen.queryByPlaceholderText("Enter area")
+      ).not.toBeInTheDocument();
+      expect(
+        screen.queryByPlaceholderText("Enter name")
+      ).not.toBeInTheDocument();
+    });
+
+    it("does not render Drop Ball button by default", () => {
+      render(<Home />);
+      expect(
+        screen.queryByRole("button", { name: "Drop Ball" })
+      ).not.toBeInTheDocument();
+    });
+  });
+
+  describe("clear balls", () => {
+    it("calls clearBalls when clicking the Clear button", async () => {
+      const user = userEvent.setup();
+      render(<Home />);
+
+      const clearButton = screen.getByRole("button", { name: "Clear" });
       await user.click(clearButton);
 
       expect(mockClearBalls).toHaveBeenCalledTimes(1);

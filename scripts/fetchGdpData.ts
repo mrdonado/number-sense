@@ -43,7 +43,7 @@ interface GdpDataset {
 
 const WORLD_BANK_API_BASE = "https://api.worldbank.org/v2";
 const GDP_INDICATOR = "NY.GDP.MKTP.CD";
-const OUTPUT_DIR = path.join(__dirname, "..", "data");
+const OUTPUT_DIR = path.join(__dirname, "..", "public", "data");
 const OUTPUT_FILE = path.join(OUTPUT_DIR, "gdp-by-country.json");
 
 async function fetchAllPages<T>(baseUrl: string): Promise<T[]> {

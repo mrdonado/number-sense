@@ -45,7 +45,7 @@ interface BillionairesDataset {
 
 const FORBES_API_URL =
   "https://www.forbes.com/forbesapi/person/rtb/0/position/true.json";
-const OUTPUT_DIR = path.join(__dirname, "..", "data");
+const OUTPUT_DIR = path.join(__dirname, "..", "public", "data");
 const OUTPUT_FILE = path.join(OUTPUT_DIR, "billionaires-net-worth.json");
 
 async function fetchBillionairesData(): Promise<void> {

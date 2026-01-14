@@ -27,7 +27,7 @@ interface DataSourceIndex {
   sources: DataSourceIndexEntry[];
 }
 
-const DATA_DIR = path.join(__dirname, "..", "data");
+const DATA_DIR = path.join(__dirname, "..", "public", "data");
 const OUTPUT_FILE = path.join(DATA_DIR, "index.json");
 
 async function generateDataIndex(): Promise<void> {

@@ -40,7 +40,7 @@ interface MarketCapDataset {
 }
 
 const API_BASE_URL = "https://companiesmarketcap.com";
-const OUTPUT_DIR = path.join(__dirname, "..", "data");
+const OUTPUT_DIR = path.join(__dirname, "..", "public", "data");
 const OUTPUT_FILE = path.join(OUTPUT_DIR, "companies-market-cap.json");
 const MAX_PAGES = 10; // Fetch top 1000 companies (100 per page)
 
