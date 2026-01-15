@@ -45,11 +45,14 @@ function HomeContent() {
     }
   };
 
-  const handleAddData = useCallback((name: string, value: number) => {
-    // Calculate radius from area: A = πr² → r = √(A/π)
-    const radius = Math.sqrt(value / Math.PI);
-    canvasRef.current?.spawnBall(radius, name);
-  }, []);
+  const handleAddData = useCallback(
+    (name: string, value: number, units: string) => {
+      // Calculate radius from area: A = πr² → r = √(A/π)
+      const radius = Math.sqrt(value / Math.PI);
+      canvasRef.current?.spawnBall(radius, name, units);
+    },
+    []
+  );
 
   return (
     <div className="app-container">

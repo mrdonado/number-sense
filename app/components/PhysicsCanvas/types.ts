@@ -6,6 +6,7 @@ export interface BallBody extends Matter.Body {
   originalRadius?: number;
   ballName?: string;
   ballColor?: string;
+  ballUnits?: string;
 }
 
 // Ball info for the legend
@@ -14,6 +15,8 @@ export interface BallInfo {
   name: string;
   color: string;
   originalRadius: number;
+  value: number; // The original area (π × radius²)
+  units?: string;
 }
 
 // Persisted ball data for localStorage
@@ -21,11 +24,12 @@ export interface PersistedBall {
   name: string;
   color: string;
   originalRadius: number;
+  units?: string;
 }
 
 // Public handle exposed via ref
 export interface PhysicsCanvasHandle {
-  spawnBall: (radius: number, name?: string) => void;
+  spawnBall: (radius: number, name?: string, units?: string) => void;
   clearBalls: () => void;
   isComparisonMode: boolean;
   canEnterComparisonMode: boolean;

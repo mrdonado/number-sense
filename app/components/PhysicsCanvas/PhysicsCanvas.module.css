@@ -39,11 +39,27 @@
 
 /* Legend */
 .legend {
-  @apply absolute right-2 top-8 max-h-[calc(100%-4rem)] overflow-y-auto bg-black/50 backdrop-blur-sm rounded-lg p-2 min-w-30;
+  @apply absolute right-2 top-8 max-h-[calc(100%-4rem)] overflow-y-auto bg-black/50 backdrop-blur-sm rounded-lg min-w-30;
+}
+
+.legendHeader {
+  @apply flex items-center justify-between w-full px-2 py-1.5 text-white/80 text-sm font-medium cursor-pointer border-b border-white/10 bg-transparent;
+}
+
+.legendHeader:hover {
+  @apply text-white;
+}
+
+.legendTitle {
+  @apply text-xs uppercase tracking-wide;
+}
+
+.legendToggle {
+  @apply text-xs text-white/50;
 }
 
 .legendList {
-  @apply flex flex-col gap-1;
+  @apply flex flex-col gap-1 p-2;
 }
 
 .legendItem {
@@ -56,6 +72,10 @@
 
 .ballName {
   @apply text-sm truncate flex-1;
+}
+
+.ballValue {
+  @apply text-xs font-mono shrink-0;
 }
 
 .checkbox {

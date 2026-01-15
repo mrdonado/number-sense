@@ -40,7 +40,7 @@ interface DataFile {
 interface AddDataDialogProps {
   isOpen: boolean;
   onClose: () => void;
-  onSelect: (name: string, value: number) => void;
+  onSelect: (name: string, value: number, units: string) => void;
 }
 
 type Step = "units" | "source" | "values";
@@ -168,10 +168,11 @@ export function AddDataDialog({
 
   const handleSelectValue = useCallback(
     (item: DataItem) => {
-      onSelect(item.name, item.value);
+      const units = sourceData?.metadata?.units || "";
+      onSelect(item.name, item.value, units);
       onClose();
     },
-    [onSelect, onClose]
+    [onSelect, onClose, sourceData]
   );
 
   const handleBack = useCallback(() => {

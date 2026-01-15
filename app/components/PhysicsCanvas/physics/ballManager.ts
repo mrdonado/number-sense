@@ -23,7 +23,8 @@ export class BallManager {
     engine: Matter.Engine,
     radius: number,
     dimensions: Dimensions,
-    name?: string
+    name?: string,
+    units?: string
   ): BallInfo {
     const { width, height } = dimensions;
     const minDimension = Math.min(width, height);
@@ -83,19 +84,24 @@ export class BallManager {
       },
     }) as BallBody;
 
-    // Store the original radius, name, and color for future reference
+    // Store the original radius, name, color, and units for future reference
     ball.originalRadius = radius;
     ball.ballName = name;
     ball.ballColor = ballColor;
+    ball.ballUnits = units;
 
     Matter.Composite.add(engine.world, [ball]);
 
     // Return ball info for the legend
+    // Calculate value as area = π × radius²
+    const value = Math.PI * radius * radius;
     return {
       id: ball.id,
       name: name || `Ball ${ball.id}`,
       color: ballColor,
       originalRadius: radius,
+      value,
+      units,
     };
   }
 
@@ -110,7 +116,7 @@ export class BallManager {
   ): BallInfo {
     const { width, height } = dimensions;
     const minDimension = Math.min(width, height);
-    const { originalRadius, name, color } = persistedBall;
+    const { originalRadius, name, color, units } = persistedBall;
 
     // Target display radius
     const targetDisplayRadius = (minDimension * TARGET_BALL_RATIO) / 2;
@@ -160,18 +166,23 @@ export class BallManager {
       },
     }) as BallBody;
 
-    // Store the original radius, name, and color
+    // Store the original radius, name, color, and units
     ball.originalRadius = originalRadius;
     ball.ballName = name;
     ball.ballColor = color;
+    ball.ballUnits = units;
 
     Matter.Composite.add(engine.world, [ball]);
 
+    // Calculate value as area = π × radius²
+    const value = Math.PI * originalRadius * originalRadius;
     return {
       id: ball.id,
       name,
       color,
       originalRadius,
+      value,
+      units,
     };
   }
 
@@ -185,7 +196,7 @@ export class BallManager {
     dimensions: Dimensions
   ): BallInfo {
     const { width } = dimensions;
-    const { originalRadius, name, color } = persistedBall;
+    const { originalRadius, name, color, units } = persistedBall;
 
     // Calculate the display radius using current scale factor
     const displayRadius = originalRadius * this.scaleFactor;
@@ -202,18 +213,23 @@ export class BallManager {
       },
     }) as BallBody;
 
-    // Store the original radius, name, and color
+    // Store the original radius, name, color, and units
     ball.originalRadius = originalRadius;
     ball.ballName = name;
     ball.ballColor = color;
+    ball.ballUnits = units;
 
     Matter.Composite.add(engine.world, [ball]);
 
+    // Calculate value as area = π × radius²
+    const value = Math.PI * originalRadius * originalRadius;
     return {
       id: ball.id,
       name,
       color,
       originalRadius,
+      value,
+      units,
     };
   }
 
@@ -370,6 +386,7 @@ export class BallManager {
           name: ballInfo.name,
           color: ballInfo.color,
           originalRadius: ballInfo.originalRadius,
+          units: ballInfo.units,
         },
         dimensions
       );
@@ -382,11 +399,15 @@ export class BallManager {
     for (const ballInfo of hiddenBallInfos) {
       // Generate a new unique ID for the hidden ball (negative to avoid collision with Matter.js IDs)
       const newId = -Date.now() - Math.random();
+      // Calculate value as area = π × radius²
+      const value = Math.PI * ballInfo.originalRadius * ballInfo.originalRadius;
       const newBallInfo: BallInfo = {
         id: newId,
         name: ballInfo.name,
         color: ballInfo.color,
         originalRadius: ballInfo.originalRadius,
+        value,
+        units: ballInfo.units,
       };
       idMapping.set(ballInfo.id, newId);
       newBallInfoMap.set(ballInfo.id, newBallInfo);

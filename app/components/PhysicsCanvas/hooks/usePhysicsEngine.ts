@@ -25,7 +25,7 @@ interface UsePhysicsEngineOptions {
 
 interface UsePhysicsEngineReturn {
   zoomLevel: number;
-  spawnBall: (radius: number, name?: string) => void;
+  spawnBall: (radius: number, name?: string, units?: string) => void;
   clearBalls: () => void;
   removeBall: (id: number) => void;
   toggleBallVisibility: (id: number) => void;
@@ -94,6 +94,7 @@ export function usePhysicsEngine(
       name: ball.name,
       color: ball.color,
       originalRadius: ball.originalRadius,
+      units: ball.units,
     }));
     localStorage.setItem(STORAGE_KEY, JSON.stringify(persistedBalls));
   }, [balls]);
@@ -393,7 +394,7 @@ export function usePhysicsEngine(
   }, [containerRef, canvasRef, resizeKey]);
 
   const spawnBall = useCallback(
-    (radius: number, name?: string) => {
+    (radius: number, name?: string, units?: string) => {
       if (!containerRef.current || !physicsRefs.current.engine) return;
 
       const width = containerRef.current.clientWidth;
@@ -406,7 +407,8 @@ export function usePhysicsEngine(
           width,
           height,
         },
-        name
+        name,
+        units
       );
 
       setBalls((prev) => [...prev, ballInfo]);
