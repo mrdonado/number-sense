@@ -6,6 +6,7 @@
 import gdpDataSource from "./fetchGdpData";
 import billionairesDataSource from "./fetchBillionairesData";
 import marketCapDataSource from "./fetchMarketCapData";
+import populationDataSource from "./fetchPopulationData";
 import { DataSourceConfig } from "./types";
 
 export const DATA_SOURCES: DataSourceConfig[] = [
@@ -19,5 +20,10 @@ export const DATA_SOURCES: DataSourceConfig[] = [
     id: "market-cap",
     source: marketCapDataSource,
     file: "companies-market-cap.json",
+  },
+  {
+    id: "population",
+    source: populationDataSource,
+    file: "population-by-country.json",
   },
 ];

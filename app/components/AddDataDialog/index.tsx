@@ -125,18 +125,29 @@ export function AddDataDialog({
     return filtered;
   }, [sourceData, nameFilter, valueFilter, valueComparison]);
 
-  const formatValue = useCallback((value: number): string => {
-    if (value >= 1e12) {
-      return `$${(value / 1e12).toFixed(2)}T`;
-    } else if (value >= 1e9) {
-      return `$${(value / 1e9).toFixed(2)}B`;
-    } else if (value >= 1e6) {
-      return `$${(value / 1e6).toFixed(2)}M`;
-    } else if (value >= 1e3) {
-      return `$${(value / 1e3).toFixed(2)}K`;
-    }
-    return `$${value.toFixed(2)}`;
-  }, []);
+  const selectedSource = dataIndex?.sources.find(
+    (s) => s.id === selectedSourceId
+  );
+
+  const formatValue = useCallback(
+    (value: number): string => {
+      const isUSD = selectedSource?.units === "USD";
+      const prefix = isUSD ? "$" : "";
+      const suffix = isUSD ? "" : ` ${selectedSource?.units || ""}`;
+
+      if (value >= 1e12) {
+        return `${prefix}${(value / 1e12).toFixed(2)}T${suffix}`;
+      } else if (value >= 1e9) {
+        return `${prefix}${(value / 1e9).toFixed(2)}B${suffix}`;
+      } else if (value >= 1e6) {
+        return `${prefix}${(value / 1e6).toFixed(2)}M${suffix}`;
+      } else if (value >= 1e3) {
+        return `${prefix}${(value / 1e3).toFixed(2)}K${suffix}`;
+      }
+      return `${prefix}${value.toFixed(0)}${suffix}`;
+    },
+    [selectedSource]
+  );
 
   const handleSelect = useCallback(
     (item: DataItem) => {
@@ -172,10 +183,6 @@ export function AddDataDialog({
   }, [selectedSourceId]);
 
   if (!isOpen) return null;
-
-  const selectedSource = dataIndex?.sources.find(
-    (s) => s.id === selectedSourceId
-  );
 
   return (
     <div
