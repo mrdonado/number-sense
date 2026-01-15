@@ -43,7 +43,7 @@ interface AddDataDialogProps {
   onSelect: (name: string, value: number) => void;
 }
 
-type FilterComparison = "any" | "greater" | "less";
+type Step = "units" | "source" | "values";
 
 export function AddDataDialog({
   isOpen,
@@ -51,12 +51,11 @@ export function AddDataDialog({
   onSelect,
 }: AddDataDialogProps) {
   const [dataIndex, setDataIndex] = useState<DataIndex | null>(null);
+  const [step, setStep] = useState<Step>("units");
+  const [selectedUnits, setSelectedUnits] = useState<string | null>(null);
   const [selectedSourceId, setSelectedSourceId] = useState<string | null>(null);
   const [sourceData, setSourceData] = useState<DataFile | null>(null);
-  const [nameFilter, setNameFilter] = useState("");
-  const [valueFilter, setValueFilter] = useState("");
-  const [valueComparison, setValueComparison] =
-    useState<FilterComparison>("any");
+  const [searchFilter, setSearchFilter] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   // Load the data index on mount
@@ -66,15 +65,12 @@ export function AddDataDialog({
         .then((res) => res.json())
         .then((data: DataIndex) => {
           setDataIndex(data);
-          if (data.sources.length > 0) {
-            setSelectedSourceId(data.sources[0].id);
-          }
         })
         .catch(console.error);
     }
   }, [isOpen, dataIndex]);
 
-  // Load source data when source changes
+  // Load source data when source is selected
   useEffect(() => {
     if (!selectedSourceId || !dataIndex) return;
 
@@ -94,62 +90,83 @@ export function AddDataDialog({
       });
   }, [selectedSourceId, dataIndex]);
 
-  // Filter data based on user inputs
+  // Get unique units from data sources
+  const availableUnits = useMemo(() => {
+    if (!dataIndex) return [];
+    const units = new Set(dataIndex.sources.map((s) => s.units));
+    return Array.from(units);
+  }, [dataIndex]);
+
+  // Filter sources by selected units
+  const filteredSources = useMemo(() => {
+    if (!dataIndex) return [];
+    let sources = dataIndex.sources;
+
+    if (selectedUnits && selectedUnits !== "all") {
+      sources = sources.filter((s) => s.units === selectedUnits);
+    }
+
+    if (searchFilter.trim()) {
+      const term = searchFilter.toLowerCase();
+      sources = sources.filter(
+        (s) =>
+          s.name.toLowerCase().includes(term) ||
+          s.description.toLowerCase().includes(term)
+      );
+    }
+
+    return sources;
+  }, [dataIndex, selectedUnits, searchFilter]);
+
+  // Filter data items
   const filteredData = useMemo(() => {
     if (!sourceData) return [];
 
     let filtered = sourceData.data;
 
-    // Filter by name
-    if (nameFilter.trim()) {
-      const searchTerm = nameFilter.toLowerCase();
+    if (searchFilter.trim()) {
+      const term = searchFilter.toLowerCase();
       filtered = filtered.filter((item) =>
-        item.name.toLowerCase().includes(searchTerm)
+        item.name.toLowerCase().includes(term)
       );
     }
 
-    // Filter by value
-    if (valueFilter && valueComparison !== "any") {
-      const filterValue = parseFloat(valueFilter);
-      if (!isNaN(filterValue)) {
-        filtered = filtered.filter((item) => {
-          if (valueComparison === "greater") {
-            return item.value > filterValue;
-          } else {
-            return item.value < filterValue;
-          }
-        });
-      }
-    }
-
     return filtered;
-  }, [sourceData, nameFilter, valueFilter, valueComparison]);
+  }, [sourceData, searchFilter]);
 
   const selectedSource = dataIndex?.sources.find(
     (s) => s.id === selectedSourceId
   );
 
-  const formatValue = useCallback(
-    (value: number): string => {
-      const isUSD = selectedSource?.units === "USD";
-      const prefix = isUSD ? "$" : "";
-      const suffix = isUSD ? "" : ` ${selectedSource?.units || ""}`;
+  const formatValue = useCallback((value: number, units?: string): string => {
+    const isUSD = units === "USD";
+    const prefix = isUSD ? "$" : "";
 
-      if (value >= 1e12) {
-        return `${prefix}${(value / 1e12).toFixed(2)}T${suffix}`;
-      } else if (value >= 1e9) {
-        return `${prefix}${(value / 1e9).toFixed(2)}B${suffix}`;
-      } else if (value >= 1e6) {
-        return `${prefix}${(value / 1e6).toFixed(2)}M${suffix}`;
-      } else if (value >= 1e3) {
-        return `${prefix}${(value / 1e3).toFixed(2)}K${suffix}`;
-      }
-      return `${prefix}${value.toFixed(0)}${suffix}`;
-    },
-    [selectedSource]
-  );
+    if (value >= 1e12) {
+      return `${prefix}${(value / 1e12).toFixed(2)}T`;
+    } else if (value >= 1e9) {
+      return `${prefix}${(value / 1e9).toFixed(2)}B`;
+    } else if (value >= 1e6) {
+      return `${prefix}${(value / 1e6).toFixed(2)}M`;
+    } else if (value >= 1e3) {
+      return `${prefix}${(value / 1e3).toFixed(2)}K`;
+    }
+    return `${prefix}${value.toFixed(0)}`;
+  }, []);
 
-  const handleSelect = useCallback(
+  const handleSelectUnits = useCallback((units: string) => {
+    setSelectedUnits(units);
+    setSearchFilter("");
+    setStep("source");
+  }, []);
+
+  const handleSelectSource = useCallback((sourceId: string) => {
+    setSelectedSourceId(sourceId);
+    setSearchFilter("");
+    setStep("values");
+  }, []);
+
+  const handleSelectValue = useCallback(
     (item: DataItem) => {
       onSelect(item.name, item.value);
       onClose();
@@ -157,32 +174,56 @@ export function AddDataDialog({
     [onSelect, onClose]
   );
 
+  const handleBack = useCallback(() => {
+    if (step === "values") {
+      setSelectedSourceId(null);
+      setSourceData(null);
+      setSearchFilter("");
+      setStep("source");
+    } else if (step === "source") {
+      setSelectedUnits(null);
+      setSearchFilter("");
+      setStep("units");
+    }
+  }, [step]);
+
+  const handleClose = useCallback(() => {
+    onClose();
+    setTimeout(() => {
+      setStep("units");
+      setSelectedUnits(null);
+      setSelectedSourceId(null);
+      setSourceData(null);
+      setSearchFilter("");
+    }, 200);
+  }, [onClose]);
+
   const handleBackdropClick = useCallback(
     (e: React.MouseEvent) => {
       if (e.target === e.currentTarget) {
-        onClose();
+        handleClose();
       }
     },
-    [onClose]
+    [handleClose]
   );
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
       if (e.key === "Escape") {
-        onClose();
+        handleClose();
       }
     },
-    [onClose]
+    [handleClose]
   );
 
-  // Reset filters when source changes
-  useEffect(() => {
-    setNameFilter("");
-    setValueFilter("");
-    setValueComparison("any");
-  }, [selectedSourceId]);
-
   if (!isOpen) return null;
+
+  const getUnitsLabel = (units: string) => {
+    if (units === "all") return "All Units";
+    if (units === "USD") return "US Dollars";
+    if (units === "People") return "Population";
+    return units;
+  };
 
   return (
     <div
@@ -191,16 +232,59 @@ export function AddDataDialog({
       onKeyDown={handleKeyDown}
       role="dialog"
       aria-modal="true"
-      aria-labelledby="dialog-title"
       tabIndex={-1}
     >
       <div className={styles.dialog}>
         <div className={styles.header}>
-          <h2 id="dialog-title" className={styles.title}>
-            Add Data
-          </h2>
+          <div className={styles.headerLeft}>
+            {step !== "units" && (
+              <button
+                onClick={handleBack}
+                className={styles.backButton}
+                aria-label="Go back"
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M15 18l-6-6 6-6" />
+                </svg>
+              </button>
+            )}
+            <div className={styles.breadcrumb}>
+              {step === "units" && (
+                <span className={styles.breadcrumbActive}>Select Units</span>
+              )}
+              {step === "source" && (
+                <>
+                  <span className={styles.breadcrumbItem}>
+                    {getUnitsLabel(selectedUnits || "")}
+                  </span>
+                  <span className={styles.breadcrumbSeparator}>›</span>
+                  <span className={styles.breadcrumbActive}>Select Source</span>
+                </>
+              )}
+              {step === "values" && (
+                <>
+                  <span className={styles.breadcrumbItem}>
+                    {getUnitsLabel(selectedUnits || "")}
+                  </span>
+                  <span className={styles.breadcrumbSeparator}>›</span>
+                  <span className={styles.breadcrumbItem}>
+                    {selectedSource?.name}
+                  </span>
+                </>
+              )}
+            </div>
+          </div>
           <button
-            onClick={onClose}
+            onClick={handleClose}
             className={styles.closeButton}
             aria-label="Close dialog"
           >
@@ -221,105 +305,164 @@ export function AddDataDialog({
         </div>
 
         <div className={styles.content}>
-          {/* Source selector */}
-          <div className={styles.sourceSelector}>
-            <label className={styles.label}>Data Source</label>
-            <div className={styles.sourceTabs}>
-              {dataIndex?.sources.map((source) => (
-                <button
-                  key={source.id}
-                  onClick={() => setSelectedSourceId(source.id)}
-                  className={`${styles.sourceTab} ${
-                    selectedSourceId === source.id ? styles.sourceTabActive : ""
-                  }`}
-                >
-                  {source.name}
-                </button>
-              ))}
-            </div>
-            {selectedSource && (
-              <p className={styles.sourceDescription}>
-                {selectedSource.description}
+          {step === "units" && (
+            <div className={styles.stepContent}>
+              <p className={styles.stepDescription}>
+                Choose the type of data you want to explore
               </p>
-            )}
-          </div>
-
-          {/* Filters */}
-          <div className={styles.filters}>
-            <div className={styles.filterGroup}>
-              <label className={styles.label} htmlFor="name-filter">
-                Search by name
-              </label>
-              <input
-                id="name-filter"
-                type="text"
-                value={nameFilter}
-                onChange={(e) => setNameFilter(e.target.value)}
-                placeholder="Type to search..."
-                className={styles.filterInput}
-              />
-            </div>
-
-            <div className={styles.filterGroup}>
-              <label className={styles.label}>Filter by value</label>
-              <div className={styles.valueFilterRow}>
-                <select
-                  value={valueComparison}
-                  onChange={(e) =>
-                    setValueComparison(e.target.value as FilterComparison)
-                  }
-                  className={styles.filterSelect}
+              <div className={styles.optionsList}>
+                <button
+                  onClick={() => handleSelectUnits("all")}
+                  className={styles.optionItem}
                 >
-                  <option value="any">Any value</option>
-                  <option value="greater">Greater than</option>
-                  <option value="less">Less than</option>
-                </select>
-                {valueComparison !== "any" && (
-                  <input
-                    type="number"
-                    value={valueFilter}
-                    onChange={(e) => setValueFilter(e.target.value)}
-                    placeholder="Enter value..."
-                    className={styles.filterInput}
-                  />
+                  <div className={styles.optionIcon}>📊</div>
+                  <div className={styles.optionInfo}>
+                    <span className={styles.optionName}>All Units</span>
+                    <span className={styles.optionDescription}>
+                      Browse all {dataIndex?.sources.length || 0} data sources
+                    </span>
+                  </div>
+                  <svg
+                    className={styles.optionArrow}
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path d="M9 18l6-6-6-6" />
+                  </svg>
+                </button>
+                {availableUnits.map((units) => (
+                  <button
+                    key={units}
+                    onClick={() => handleSelectUnits(units)}
+                    className={styles.optionItem}
+                  >
+                    <div className={styles.optionIcon}>
+                      {units === "USD" ? "💵" : "👥"}
+                    </div>
+                    <div className={styles.optionInfo}>
+                      <span className={styles.optionName}>
+                        {getUnitsLabel(units)}
+                      </span>
+                      <span className={styles.optionDescription}>
+                        {
+                          dataIndex?.sources.filter((s) => s.units === units)
+                            .length
+                        }{" "}
+                        data source
+                        {dataIndex?.sources.filter((s) => s.units === units)
+                          .length !== 1
+                          ? "s"
+                          : ""}
+                      </span>
+                    </div>
+                    <svg
+                      className={styles.optionArrow}
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path d="M9 18l6-6-6-6" />
+                    </svg>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {step === "source" && (
+            <div className={styles.stepContent}>
+              <input
+                type="text"
+                value={searchFilter}
+                onChange={(e) => setSearchFilter(e.target.value)}
+                placeholder="Search data sources..."
+                className={styles.searchInput}
+                autoFocus
+              />
+              <div className={styles.optionsList}>
+                {filteredSources.map((source) => (
+                  <button
+                    key={source.id}
+                    onClick={() => handleSelectSource(source.id)}
+                    className={styles.optionItem}
+                  >
+                    <div className={styles.optionInfo}>
+                      <span className={styles.optionName}>{source.name}</span>
+                      <span className={styles.optionDescription}>
+                        {source.description}
+                      </span>
+                    </div>
+                    <div className={styles.optionMeta}>
+                      <span className={styles.optionCount}>
+                        {source.recordCount.toLocaleString()}
+                      </span>
+                      <svg
+                        className={styles.optionArrow}
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      >
+                        <path d="M9 18l6-6-6-6" />
+                      </svg>
+                    </div>
+                  </button>
+                ))}
+                {filteredSources.length === 0 && (
+                  <div className={styles.emptyState}>No data sources found</div>
                 )}
               </div>
             </div>
-          </div>
+          )}
 
-          {/* Results */}
-          <div className={styles.results}>
-            <div className={styles.resultsHeader}>
-              <span className={styles.resultsCount}>
-                {isLoading ? "Loading..." : `${filteredData.length} results`}
-              </span>
+          {step === "values" && (
+            <div className={styles.stepContent}>
+              <input
+                type="text"
+                value={searchFilter}
+                onChange={(e) => setSearchFilter(e.target.value)}
+                placeholder={`Search in ${selectedSource?.name}...`}
+                className={styles.searchInput}
+                autoFocus
+              />
+              <div className={styles.resultsInfo}>
+                {isLoading
+                  ? "Loading..."
+                  : `${filteredData.length.toLocaleString()} items`}
+              </div>
+              <div className={styles.valuesList}>
+                {isLoading ? (
+                  <div className={styles.loadingState}>
+                    <div className={styles.spinner} />
+                  </div>
+                ) : filteredData.length === 0 ? (
+                  <div className={styles.emptyState}>No items found</div>
+                ) : (
+                  filteredData.map((item, index) => (
+                    <button
+                      key={`${item.name}-${index}`}
+                      onClick={() => handleSelectValue(item)}
+                      className={styles.valueItem}
+                    >
+                      <span className={styles.valueName}>{item.name}</span>
+                      <span className={styles.valueAmount}>
+                        {formatValue(item.value, selectedSource?.units)}
+                      </span>
+                    </button>
+                  ))
+                )}
+              </div>
             </div>
-            <div className={styles.resultsList}>
-              {isLoading ? (
-                <div className={styles.loadingState}>
-                  <div className={styles.spinner} />
-                  <span>Loading data...</span>
-                </div>
-              ) : filteredData.length === 0 ? (
-                <div className={styles.emptyState}>
-                  No results found. Try adjusting your filters.
-                </div>
-              ) : (
-                filteredData.map((item, index) => (
-                  <button
-                    key={`${item.name}-${index}`}
-                    onClick={() => handleSelect(item)}
-                    className={styles.resultItem}
-                  >
-                    <span className={styles.resultName}>{item.name}</span>
-                    <span className={styles.resultValue}>
-                      {formatValue(item.value)}
-                    </span>
-                  </button>
-                ))
-              )}
-            </div>
-          </div>
+          )}
         </div>
       </div>
     </div>
