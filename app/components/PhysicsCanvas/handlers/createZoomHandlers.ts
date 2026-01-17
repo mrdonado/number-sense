@@ -436,6 +436,8 @@ export function createZoomHandlers(
       if (distance > TAP_MOVE_THRESHOLD) {
         isTouchPanning = true;
         touchStartTime = null;
+        // Clear zoom target so updateZoomedView won't snap back to the ball after panning
+        zoomTargetRef.current = null;
       }
     }
 
@@ -466,15 +468,6 @@ export function createZoomHandlers(
       render.bounds.min.y = newMinY;
       render.bounds.max.x = newMinX + currentWidth;
       render.bounds.max.y = newMinY + currentHeight;
-
-      if (zoomTargetRef.current) {
-        zoomTargetRef.current = {
-          minX: render.bounds.min.x,
-          minY: render.bounds.min.y,
-          maxX: render.bounds.max.x,
-          maxY: render.bounds.max.y,
-        };
-      }
     }
   };
 
