@@ -37,6 +37,24 @@
   @apply text-amber-400 text-sm font-medium;
 }
 
+/* Tooltip */
+.tooltip {
+  @apply absolute pointer-events-none z-10 flex items-center gap-2 px-3 py-2 bg-black/80 backdrop-blur-sm rounded-lg shadow-lg border border-white/10;
+  transform: translate(-50%, calc(-100% - 12px));
+}
+
+.tooltipIndicator {
+  @apply w-3 h-3 rounded-full shrink-0;
+}
+
+.tooltipName {
+  @apply text-sm text-white font-medium;
+}
+
+.tooltipValue {
+  @apply text-xs text-white/70 font-mono;
+}
+
 /* Legend */
 .legend {
   @apply absolute right-2 top-8 max-h-[calc(100%-4rem)] overflow-y-auto bg-black/50 backdrop-blur-sm rounded-lg min-w-30;

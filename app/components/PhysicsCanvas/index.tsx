@@ -6,12 +6,61 @@ import {
   useImperativeHandle,
   useCallback,
   useEffect,
+  useState,
+  useMemo,
 } from "react";
 import { ZOOM_INDICATOR_HEIGHT } from "./constants";
 import { usePhysicsEngine } from "./hooks/usePhysicsEngine";
 import { Legend } from "./Legend";
-import type { PhysicsCanvasHandle } from "./types";
+import type { PhysicsCanvasHandle, BallInfo } from "./types";
 import styles from "./PhysicsCanvas.module.css";
+
+/**
+ * Format a number with abbreviated suffix (K, M, B, T)
+ */
+function formatValue(value: number): string {
+  if (value >= 1e12) {
+    return `${(value / 1e12).toFixed(1)}T`;
+  }
+  if (value >= 1e9) {
+    return `${(value / 1e9).toFixed(1)}B`;
+  }
+  if (value >= 1e6) {
+    return `${(value / 1e6).toFixed(1)}M`;
+  }
+  if (value >= 1e3) {
+    return `${(value / 1e3).toFixed(1)}K`;
+  }
+  return value.toFixed(0);
+}
+
+interface TooltipProps {
+  ball: BallInfo;
+  x: number;
+  y: number;
+}
+
+function Tooltip({ ball, x, y }: TooltipProps) {
+  return (
+    <div
+      className={styles.tooltip}
+      style={{
+        left: x,
+        top: y,
+      }}
+    >
+      <span
+        className={styles.tooltipIndicator}
+        style={{ backgroundColor: ball.color }}
+      />
+      <span className={styles.tooltipName}>{ball.name}</span>
+      <span className={styles.tooltipValue}>
+        {formatValue(ball.value)}
+        {ball.units && ` ${ball.units}`}
+      </span>
+    </div>
+  );
+}
 
 export type { PhysicsCanvasHandle } from "./types";
 
@@ -25,6 +74,9 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
     const { onBallCountChange, onComparisonModeChange } = props;
     const containerRef = useRef<HTMLDivElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
+    const [mousePos, setMousePos] = useState<{ x: number; y: number } | null>(
+      null
+    );
 
     const {
       zoomLevel,
@@ -86,13 +138,27 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
 
         const ballId = getBallAtPoint(x, y);
         setHoveredBallId(ballId);
+
+        // Track mouse position for tooltip (relative to canvas wrapper)
+        if (ballId !== null) {
+          setMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+        } else {
+          setMousePos(null);
+        }
       },
       [getBallAtPoint, setHoveredBallId]
     );
 
     const handleCanvasMouseLeave = useCallback(() => {
       setHoveredBallId(null);
+      setMousePos(null);
     }, [setHoveredBallId]);
+
+    // Find the hovered ball info for tooltip
+    const hoveredBall = useMemo(() => {
+      if (hoveredBallId === null) return null;
+      return balls.find((b) => b.id === hoveredBallId) ?? null;
+    }, [balls, hoveredBallId]);
 
     return (
       <div ref={containerRef} className={styles.container}>
@@ -137,6 +203,10 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
             <div className={styles.modeIndicator}>
               <span className={styles.comparisonModeText}>Comparison Mode</span>
             </div>
+          )}
+          {/* Ball tooltip */}
+          {hoveredBall && mousePos && (
+            <Tooltip ball={hoveredBall} x={mousePos.x} y={mousePos.y} />
           )}
         </div>
       </div>
