@@ -44,20 +44,23 @@ vi.mock("matter-js", () => {
       MouseConstraint: {
         create: vi.fn(() => mockMouseConstraint),
       },
-      Bodies: {
-        rectangle: vi.fn(() => ({ id: "rect", isStatic: true })),
-        circle: vi.fn((x, y, radius, options) => ({
-          id: "circle",
-          x,
-          y,
-          radius,
-          circleRadius: radius,
-          options,
-          isStatic: false,
-          position: { x, y },
-          velocity: { x: 0, y: 0 },
-        })),
-      },
+      Bodies: (() => {
+        let circleIdCounter = 0;
+        return {
+          rectangle: vi.fn(() => ({ id: "rect", isStatic: true })),
+          circle: vi.fn((x, y, radius, options) => ({
+            id: `circle-${++circleIdCounter}`,
+            x,
+            y,
+            radius,
+            circleRadius: radius,
+            options,
+            isStatic: false,
+            position: { x, y },
+            velocity: { x: 0, y: 0 },
+          })),
+        };
+      })(),
       Body: {
         setPosition: vi.fn(),
         setVelocity: vi.fn(),
@@ -239,7 +242,9 @@ describe("PhysicsCanvas", () => {
       const lastCall = addCalls[addCalls.length - 1];
 
       expect(lastCall[1]).toEqual(
-        expect.arrayContaining([expect.objectContaining({ id: "circle" })])
+        expect.arrayContaining([
+          expect.objectContaining({ id: expect.stringMatching(/^circle-/) }),
+        ])
       );
     });
 
@@ -683,11 +688,8 @@ describe("PhysicsCanvas", () => {
       const { container } = render(<PhysicsCanvas />);
       const div = container.firstChild as HTMLElement;
 
-      expect(div).toHaveClass("w-full");
-      expect(div).toHaveClass("flex-1");
-      expect(div).toHaveClass("rounded-lg");
-      expect(div).toHaveClass("overflow-hidden");
-      expect(div).toHaveClass("bg-physics-canvas-bg");
+      // CSS Modules generates hashed class names, so we check for the module class pattern
+      expect(div.className).toMatch(/container/);
     });
   });
 });

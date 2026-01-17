@@ -49,8 +49,10 @@ global.requestAnimationFrame = vi.fn((cb) => {
 global.cancelAnimationFrame = vi.fn();
 
 // Mock ResizeObserver
-global.ResizeObserver = vi.fn().mockImplementation(() => ({
-  observe: vi.fn(),
-  unobserve: vi.fn(),
-  disconnect: vi.fn(),
-}));
+class ResizeObserverMock {
+  observe = vi.fn();
+  unobserve = vi.fn();
+  disconnect = vi.fn();
+  constructor() {}
+}
+global.ResizeObserver = ResizeObserverMock as unknown as typeof ResizeObserver;

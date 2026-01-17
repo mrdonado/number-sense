@@ -30,10 +30,16 @@ vi.mock("matter-js", () => ({
     MouseConstraint: {
       create: vi.fn(() => ({ body: null, constraint: { stiffness: 0.2 } })),
     },
-    Bodies: {
-      rectangle: vi.fn(() => ({ id: "rect", isStatic: true })),
-      circle: vi.fn(() => ({ id: "circle", isStatic: false })),
-    },
+    Bodies: (() => {
+      let circleIdCounter = 0;
+      return {
+        rectangle: vi.fn(() => ({ id: "rect", isStatic: true })),
+        circle: vi.fn(() => ({
+          id: `circle-${++circleIdCounter}`,
+          isStatic: false,
+        })),
+      };
+    })(),
     Body: {
       setPosition: vi.fn(),
       setVelocity: vi.fn(),
