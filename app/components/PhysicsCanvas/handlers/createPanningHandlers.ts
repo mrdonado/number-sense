@@ -36,6 +36,8 @@ export function createPanningHandlers(
       e.preventDefault();
       isPanningRef.current = true;
       isDragging = true;
+      // Clear zoom target so updateZoomedView won't snap back to the ball after panning
+      zoomTargetRef.current = null;
       panButton = 1;
       panStart = { x: e.clientX, y: e.clientY };
       panBoundsStart = {
@@ -70,6 +72,8 @@ export function createPanningHandlers(
       if (distance >= DRAG_THRESHOLD) {
         isDragging = true;
         isPanningRef.current = true;
+        // Clear zoom target so updateZoomedView won't snap back to the ball after panning
+        zoomTargetRef.current = null;
         canvas.style.cursor = "grabbing";
       } else {
         return; // Haven't exceeded threshold yet
@@ -98,15 +102,6 @@ export function createPanningHandlers(
     render.bounds.min.y = newMinY;
     render.bounds.max.x = newMinX + currentWidth;
     render.bounds.max.y = newMinY + currentHeight;
-
-    if (zoomTargetRef.current) {
-      zoomTargetRef.current = {
-        minX: render.bounds.min.x,
-        minY: render.bounds.min.y,
-        maxX: render.bounds.max.x,
-        maxY: render.bounds.max.y,
-      };
-    }
   };
 
   const handleMouseUp = (e: MouseEvent) => {
