@@ -675,11 +675,17 @@ export function usePhysicsEngine(
     const otherBalls = ballBodies.filter((b) => b.id !== largestBall.id);
     const angleStep = (2 * Math.PI) / Math.max(otherBalls.length, 1);
 
+    // Determine starting angle based on screen orientation:
+    // - Portrait mode (height > width): Start from top (-π/2) for vertical arrangement
+    // - Landscape mode (width > height): Start from left (π) for horizontal arrangement
+    const isLandscape = width > height;
+    const startAngle = isLandscape ? Math.PI : -Math.PI / 2;
+
     otherBalls.forEach((ball, index) => {
       const ballRadius = ball.circleRadius || 10;
       // Position so balls almost touch the largest ball (with small gap)
       const distance = largestRadius + ballRadius + 5;
-      const angle = angleStep * index - Math.PI / 2; // Start from top
+      const angle = angleStep * index + startAngle;
 
       const x = centerX + Math.cos(angle) * distance;
       const y = centerY + Math.sin(angle) * distance;
