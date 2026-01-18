@@ -88,6 +88,7 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
       hiddenBallIds,
       hoveredBallId,
       setHoveredBallId,
+      updateMousePosition,
       getBallAtPoint,
       isComparisonMode,
       enterComparisonMode,
@@ -136,6 +137,9 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
 
+        // Update mouse position for continuous hover detection
+        updateMousePosition(x, y);
+
         const ballId = getBallAtPoint(x, y);
         setHoveredBallId(ballId);
 
@@ -146,13 +150,21 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
           setMousePos(null);
         }
       },
-      [getBallAtPoint, setHoveredBallId]
+      [getBallAtPoint, setHoveredBallId, updateMousePosition]
     );
 
     const handleCanvasMouseLeave = useCallback(() => {
       setHoveredBallId(null);
+      updateMousePosition(null, null);
       setMousePos(null);
-    }, [setHoveredBallId]);
+    }, [setHoveredBallId, updateMousePosition]);
+
+    // Clear tooltip position when hover state is cleared (e.g., when ball moves away from cursor)
+    useEffect(() => {
+      if (hoveredBallId === null) {
+        setMousePos(null);
+      }
+    }, [hoveredBallId]);
 
     // Find the hovered ball info for tooltip
     const hoveredBall = useMemo(() => {

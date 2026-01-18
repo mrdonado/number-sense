@@ -33,6 +33,7 @@ interface UsePhysicsEngineReturn {
   hiddenBallIds: Set<number>;
   hoveredBallId: number | null;
   setHoveredBallId: (id: number | null) => void;
+  updateMousePosition: (x: number | null, y: number | null) => void;
   getBallAtPoint: (x: number, y: number) => number | null;
   isComparisonMode: boolean;
   enterComparisonMode: () => void;
@@ -73,6 +74,7 @@ export function usePhysicsEngine(
   const resetZoomRef = useRef<(() => void) | null>(null);
   const exitComparisonModeRef = useRef<(() => void) | null>(null);
   const ballOpacitiesRef = useRef<Map<number, number>>(new Map());
+  const mouseScreenPosRef = useRef<{ x: number; y: number } | null>(null);
 
   // Keep ref in sync with state for use in render callback
   useEffect(() => {
@@ -192,11 +194,53 @@ export function usePhysicsEngine(
     const OPACITY_TRANSITION_SPEED = 0.08; // ~0.5 seconds at 60fps
     const ballOpacities = ballOpacitiesRef.current;
 
+    // Helper to check if a ball is at a given screen position
+    const isBallAtScreenPos = (
+      ball: BallBody,
+      screenX: number,
+      screenY: number
+    ): boolean => {
+      // Convert screen coordinates to world coordinates accounting for zoom/pan
+      const bounds = {
+        minX: render.bounds.min.x,
+        minY: render.bounds.min.y,
+        maxX: render.bounds.max.x,
+        maxY: render.bounds.max.y,
+      };
+
+      const scaleX = (bounds.maxX - bounds.minX) / width;
+      const scaleY = (bounds.maxY - bounds.minY) / height;
+
+      const worldX = bounds.minX + screenX * scaleX;
+      const worldY = bounds.minY + screenY * scaleY;
+
+      const dx = worldX - ball.position.x;
+      const dy = worldY - ball.position.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+
+      return ball.circleRadius !== undefined && distance <= ball.circleRadius;
+    };
+
     // Handler to make non-hovered balls translucent when a ball is hovered
     const updateBallOpacity = () => {
       const bodies = Matter.Composite.allBodies(engine.world);
       const ballBodies = bodies.filter((b) => !b.isStatic) as BallBody[];
-      const hoveredId = hoveredBallIdRef.current;
+      let hoveredId = hoveredBallIdRef.current;
+
+      // Check if the hovered ball has moved away from the cursor
+      const mousePos = mouseScreenPosRef.current;
+      if (hoveredId !== null && mousePos !== null) {
+        const hoveredBall = ballBodies.find((b) => b.id === hoveredId);
+        if (
+          hoveredBall &&
+          !isBallAtScreenPos(hoveredBall, mousePos.x, mousePos.y)
+        ) {
+          // Ball moved away from cursor, clear hover state
+          setHoveredBallId(null);
+          hoveredId = null;
+        }
+      }
+
       const hasValidHover =
         hoveredId !== null && !hiddenBallIdsRef.current.has(hoveredId);
 
@@ -778,6 +822,18 @@ export function usePhysicsEngine(
     exitComparisonModeRef.current = exitComparisonMode;
   }, [exitComparisonMode]);
 
+  // Update mouse screen position for hover detection when ball moves away
+  const updateMousePosition = useCallback(
+    (x: number | null, y: number | null) => {
+      if (x === null || y === null) {
+        mouseScreenPosRef.current = null;
+      } else {
+        mouseScreenPosRef.current = { x, y };
+      }
+    },
+    []
+  );
+
   return {
     zoomLevel,
     spawnBall,
@@ -788,6 +844,7 @@ export function usePhysicsEngine(
     hiddenBallIds,
     hoveredBallId,
     setHoveredBallId,
+    updateMousePosition,
     getBallAtPoint,
     isComparisonMode,
     enterComparisonMode,
