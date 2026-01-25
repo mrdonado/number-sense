@@ -20,6 +20,15 @@ const timeSinceEventsDataSource: DataSource = {
   },
 };
 
+// Static data source for distances (no fetching required)
+const distancesDataSource: DataSource = {
+  name: "Distance Data",
+  units: "Meters",
+  fetch: async () => {
+    console.log("ℹ️  Distances is a static data source (no fetch needed)");
+  },
+};
+
 export const DATA_SOURCES: DataSourceConfig[] = [
   { id: "gdp", source: gdpDataSource, file: "gdp-by-country.json" },
   {
@@ -41,5 +50,10 @@ export const DATA_SOURCES: DataSourceConfig[] = [
     id: "time-since-events",
     source: timeSinceEventsDataSource,
     file: "time-since-events.json",
+  },
+  {
+    id: "distances",
+    source: distancesDataSource,
+    file: "distances.json",
   },
 ];

@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-01-15T20:18:02.427Z",
-  "totalSources": 5,
+  "generatedAt": "2026-01-25T16:21:04.181Z",
+  "totalSources": 6,
   "sources": [
     {
       "id": "gdp",
@@ -44,7 +44,16 @@
       "description": "Time elapsed since major events in Earth and cosmic history",
       "units": "Years",
       "file": "time-since-events.json",
-      "recordCount": 39,
+      "recordCount": 49,
+      "fetchedAt": "2026-01-25T00:00:00.000Z"
+    },
+    {
+      "id": "distances",
+      "name": "Distance Data",
+      "description": "Common distances from everyday to astronomical scales",
+      "units": "Meters",
+      "file": "distances.json",
+      "recordCount": 72,
       "fetchedAt": "2026-01-25T00:00:00.000Z"
     }
   ]

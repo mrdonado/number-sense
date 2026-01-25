@@ -1,0 +1,371 @@
+{
+  "metadata": {
+    "source": "Static data - Scientific consensus and common measurements",
+    "description": "Common distances from everyday to astronomical scales",
+    "units": "Meters",
+    "fetchedAt": "2026-01-25T00:00:00.000Z",
+    "totalDistances": 73
+  },
+  "data": [
+    {
+      "name": "Planck Length",
+      "value": 1.616255e-35,
+      "description": "Smallest meaningful length in physics"
+    },
+    {
+      "name": "String Theory Scale",
+      "value": 1e-34,
+      "description": "Theoretical size of fundamental strings"
+    },
+    {
+      "name": "Proton Diameter",
+      "value": 1.7e-15,
+      "description": "Size of a proton"
+    },
+    {
+      "name": "Atomic Nucleus (Carbon)",
+      "value": 7e-15,
+      "description": "Diameter of a carbon nucleus"
+    },
+    {
+      "name": "Hydrogen Atom",
+      "value": 1.06e-10,
+      "description": "Diameter of the simplest atom"
+    },
+    {
+      "name": "Carbon Atom",
+      "value": 1.54e-10,
+      "description": "Diameter of a carbon atom"
+    },
+    {
+      "name": "Water Molecule",
+      "value": 2.75e-10,
+      "description": "Size of H2O molecule"
+    },
+    {
+      "name": "Silicon Atom",
+      "value": 2.1e-10,
+      "description": "Basis of semiconductor technology"
+    },
+    {
+      "name": "DNA Double Helix Width",
+      "value": 2e-9,
+      "description": "Width of DNA molecule"
+    },
+    {
+      "name": "Glucose Molecule",
+      "value": 9e-10,
+      "description": "Size of a sugar molecule"
+    },
+    {
+      "name": "Hemoglobin Protein",
+      "value": 6.4e-9,
+      "description": "Oxygen-carrying protein in blood"
+    },
+    {
+      "name": "Small Virus (Poliovirus)",
+      "value": 3e-8,
+      "description": "One of the smallest viruses"
+    },
+    {
+      "name": "Ribosome",
+      "value": 2.5e-8,
+      "description": "Cellular protein factory"
+    },
+    {
+      "name": "COVID-19 Virus",
+      "value": 1e-7,
+      "description": "Size of SARS-CoV-2 virus particle"
+    },
+    {
+      "name": "Wavelength of Visible Light (Green)",
+      "value": 5.5e-7,
+      "description": "Mid-range of visible spectrum"
+    },
+    {
+      "name": "E. coli Bacterium",
+      "value": 2e-6,
+      "description": "Length of common bacteria"
+    },
+    {
+      "name": "Red Blood Cell",
+      "value": 7e-6,
+      "description": "Diameter of human red blood cell"
+    },
+    {
+      "name": "Human Cell (Average)",
+      "value": 1e-5,
+      "description": "Typical human cell size"
+    },
+    {
+      "name": "Width of Human Hair",
+      "value": 0.00007,
+      "description": "Average diameter of a human hair"
+    },
+    {
+      "name": "Height of Credit Card",
+      "value": 0.0538,
+      "description": "Standard credit card height"
+    },
+    {
+      "name": "Width of Credit Card",
+      "value": 0.0856,
+      "description": "Standard credit card width"
+    },
+    {
+      "name": "One Foot",
+      "value": 0.3048,
+      "description": "Imperial unit of length"
+    },
+    {
+      "name": "Height of Average Person",
+      "value": 1.7,
+      "description": "Average human height worldwide"
+    },
+    {
+      "name": "Basketball Court Length",
+      "value": 28.65,
+      "description": "NBA regulation basketball court"
+    },
+    {
+      "name": "American Football Field",
+      "value": 91.44,
+      "description": "100 yards including end zones"
+    },
+    {
+      "name": "Soccer Field Length (FIFA Standard)",
+      "value": 105,
+      "description": "Standard FIFA regulation field"
+    },
+    {
+      "name": "City Block (Average)",
+      "value": 100,
+      "description": "Average city block in major cities"
+    },
+    {
+      "name": "Eiffel Tower Height",
+      "value": 330,
+      "description": "Including antenna"
+    },
+    {
+      "name": "Empire State Building Height",
+      "value": 443,
+      "description": "Including antenna"
+    },
+    {
+      "name": "Burj Khalifa Height",
+      "value": 828,
+      "description": "World's tallest building"
+    },
+    {
+      "name": "One Mile",
+      "value": 1609.34,
+      "description": "Imperial unit of length"
+    },
+    {
+      "name": "Central Park Length",
+      "value": 4000,
+      "description": "Length of Central Park, NYC"
+    },
+    {
+      "name": "Mount Everest Height",
+      "value": 8849,
+      "description": "World's highest mountain above sea level"
+    },
+    {
+      "name": "Deepest Ocean Point (Mariana Trench)",
+      "value": 10994,
+      "description": "Challenger Deep"
+    },
+    {
+      "name": "Marathon Distance",
+      "value": 42195,
+      "description": "Standard marathon race distance"
+    },
+    {
+      "name": "English Channel Width",
+      "value": 33800,
+      "description": "Narrowest point between Dover and Calais"
+    },
+    {
+      "name": "Manhattan Length",
+      "value": 21600,
+      "description": "Length of Manhattan island"
+    },
+    {
+      "name": "New York City to Philadelphia",
+      "value": 130000,
+      "description": "Distance between the two cities"
+    },
+    {
+      "name": "Los Angeles to San Francisco",
+      "value": 559000,
+      "description": "Distance between California's major cities"
+    },
+    {
+      "name": "London to Paris",
+      "value": 344000,
+      "description": "Distance between the two capitals"
+    },
+    {
+      "name": "New York City to Los Angeles",
+      "value": 3944000,
+      "description": "Coast to coast USA distance"
+    },
+    {
+      "name": "Width of United States",
+      "value": 4500000,
+      "description": "Approximate width from east to west coast"
+    },
+    {
+      "name": "Great Wall of China",
+      "value": 21196000,
+      "description": "Total length including all branches"
+    },
+    {
+      "name": "Earth's Circumference at Equator",
+      "value": 40075000,
+      "description": "Circumference around the equator"
+    },
+    {
+      "name": "Earth's Diameter",
+      "value": 12742000,
+      "description": "Diameter at the equator"
+    },
+    {
+      "name": "Distance to International Space Station",
+      "value": 408000000,
+      "description": "Average orbital altitude"
+    },
+    {
+      "name": "Distance to Moon",
+      "value": 384400000,
+      "description": "Average Earth-Moon distance"
+    },
+    {
+      "name": "Moon's Diameter",
+      "value": 3474800,
+      "description": "Diameter of Earth's Moon"
+    },
+    {
+      "name": "Distance to Sun",
+      "value": 149600000000,
+      "description": "One Astronomical Unit (AU)"
+    },
+    {
+      "name": "Sun's Diameter",
+      "value": 1391000000,
+      "description": "Diameter of the Sun"
+    },
+    {
+      "name": "Distance to Mars (Closest Approach)",
+      "value": 54600000000,
+      "description": "Minimum Earth-Mars distance"
+    },
+    {
+      "name": "Distance to Jupiter",
+      "value": 778500000000,
+      "description": "Average distance from Sun"
+    },
+    {
+      "name": "Distance to Saturn",
+      "value": 1433000000000,
+      "description": "Average distance from Sun"
+    },
+    {
+      "name": "Distance to Neptune",
+      "value": 4495000000000,
+      "description": "Average distance from Sun"
+    },
+    {
+      "name": "Distance to Pluto",
+      "value": 5906000000000,
+      "description": "Average distance from Sun"
+    },
+    {
+      "name": "Diameter of Solar System (Heliopause)",
+      "value": 18000000000000,
+      "description": "Edge of Sun's influence"
+    },
+    {
+      "name": "One Light Year",
+      "value": 9460730000000000,
+      "description": "Distance light travels in one year"
+    },
+    {
+      "name": "Distance to Proxima Centauri",
+      "value": 39900000000000000,
+      "description": "Nearest star to our Solar System (4.22 light years)"
+    },
+    {
+      "name": "Diameter of Milky Way Galaxy",
+      "value": 946073000000000000000,
+      "description": "Approximately 100,000 light years"
+    },
+    {
+      "name": "Distance to Andromeda Galaxy",
+      "value": 23764935000000000000000,
+      "description": "Nearest major galaxy (2.51 million light years)"
+    },
+    {
+      "name": "Thickness of Milky Way Disk",
+      "value": 9460730000000000000,
+      "description": "Average thickness of galactic disk (1,000 light years)"
+    },
+    {
+      "name": "Distance to Large Magellanic Cloud",
+      "value": 1583361250000000000000,
+      "description": "Satellite galaxy of Milky Way (167,000 light years)"
+    },
+    {
+      "name": "Distance to Small Magellanic Cloud",
+      "value": 1892146000000000000000,
+      "description": "Satellite galaxy of Milky Way (200,000 light years)"
+    },
+    {
+      "name": "Diameter of Local Group",
+      "value": 94607300000000000000000,
+      "description": "Galaxy group containing Milky Way and Andromeda (10 million light years)"
+    },
+    {
+      "name": "Distance to Triangulum Galaxy (M33)",
+      "value": 28382205000000000000000,
+      "description": "Third-largest galaxy in Local Group (3 million light years)"
+    },
+    {
+      "name": "Distance to Virgo Cluster",
+      "value": 520280100000000000000000,
+      "description": "Nearest large galaxy cluster (55 million light years)"
+    },
+    {
+      "name": "Diameter of Virgo Cluster",
+      "value": 141910950000000000000000,
+      "description": "Size of the Virgo Cluster (15 million light years)"
+    },
+    {
+      "name": "Diameter of Virgo Supercluster",
+      "value": 1038079650000000000000000,
+      "description": "Our local supercluster (110 million light years)"
+    },
+    {
+      "name": "Diameter of Laniakea Supercluster",
+      "value": 4730365000000000000000000,
+      "description": "Contains Virgo Supercluster (500 million light years)"
+    },
+    {
+      "name": "Distance to Coma Cluster",
+      "value": 3000219000000000000000000,
+      "description": "Major galaxy cluster (317 million light years)"
+    },
+    {
+      "name": "Distance to Hercules-Corona Borealis Great Wall",
+      "value": 94607300000000000000000000,
+      "description": "Largest known structure (10 billion light years away)"
+    },
+    {
+      "name": "Diameter of Observable Universe",
+      "value": 829467600000000000000000000,
+      "description": "Farthest we can observe (93 billion light years)"
+    }
+  ]
+}
