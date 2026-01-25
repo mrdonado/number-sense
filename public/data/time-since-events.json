@@ -1,0 +1,256 @@
+{
+  "metadata": {
+    "source": "Static data - Scientific consensus",
+    "description": "Time elapsed since major events in Earth and cosmic history",
+    "units": "Years",
+    "fetchedAt": "2026-01-25T00:00:00.000Z",
+    "totalEvents": 39
+  },
+  "data": [
+    {
+      "name": "Big Bang (Beginning of Universe)",
+      "value": 13800000000,
+      "description": "Origin of the universe"
+    },
+    {
+      "name": "Formation of Milky Way Galaxy",
+      "value": 13600000000,
+      "description": "Our galaxy formed"
+    },
+    {
+      "name": "Formation of Solar System",
+      "value": 4600000000,
+      "description": "Sun and planets formed"
+    },
+    {
+      "name": "Formation of Earth",
+      "value": 4540000000,
+      "description": "Earth formed from solar nebula"
+    },
+    {
+      "name": "First Life on Earth",
+      "value": 3800000000,
+      "description": "Earliest evidence of life"
+    },
+    {
+      "name": "Photosynthesis Begins",
+      "value": 3500000000,
+      "description": "Oxygen-producing organisms appear"
+    },
+    {
+      "name": "Great Oxygenation Event",
+      "value": 2400000000,
+      "description": "Atmosphere becomes oxygen-rich"
+    },
+    {
+      "name": "First Multicellular Life",
+      "value": 2100000000,
+      "description": "Complex organisms emerge"
+    },
+    {
+      "name": "First Animals",
+      "value": 800000000,
+      "description": "Animal life begins"
+    },
+    {
+      "name": "First Vertebrates",
+      "value": 525000000,
+      "description": "Animals with backbones appear"
+    },
+    {
+      "name": "First Insects",
+      "value": 400000000,
+      "description": "Insects appear on land"
+    },
+    {
+      "name": "First Reptiles",
+      "value": 320000000,
+      "description": "Reptiles evolve from amphibians"
+    },
+    {
+      "name": "Permian-Triassic Extinction",
+      "value": 252000000,
+      "description": "Great Dying - largest mass extinction"
+    },
+    {
+      "name": "Age of Dinosaurs Begins",
+      "value": 230000000,
+      "description": "Triassic period begins"
+    },
+    {
+      "name": "FirstErectus Appears",
+      "value": 2000000,
+      "description": "Early human ancestor"
+    },
+    {
+      "name": "Control of Fire",
+      "value": 400000,
+      "description": "Humans master fire"
+    },
+    {
+      "name": "Homo Sapiens (Modern Humans)",
+      "value": 300000,
+      "description": "Anatomically modern humans appear"
+    },
+    {
+      "name": "Neanderthals Extinct",
+      "value": 40000,
+      "description": "Last Neanderthals die out"
+    },
+    {
+      "name": "Great Pyramid of Giza Built",
+      "value": 4500,
+      "description": "Ancient Egyptian monument"
+    },
+    {
+      "name": "Roman Republic Founded",
+      "value": 2535,
+      "description": "Rome established"
+    },
+    {
+      "name": "Birth of Jesus Christ",
+      "value": 2026,
+      "description": "Beginning of Common Eraegins"
+    },
+    {
+      "name": "Agricultural Revolution",
+      "value": 12000,
+      "description": "Farming begins"
+    },
+    {
+      "name": "First Cities",
+      "value": 6000,
+      "description": "Urban civilization emerges"
+    },
+    {
+      "name": "Invention of Writing",
+      "value": 5400,
+      "description": "Cuneiform in Mesopotamia"
+    },
+    {
+      "name": "Bronze Age Begins",
+      "value": 5300,
+      "description": "Metal working advances"
+    },
+    {
+      "name": "Iron Age Begins",
+      "value": 3200,
+      "description": "Iron tools and weapotion event"
+    },
+    {
+      "name": "First Birds",
+      "value": 150000000,
+      "description": "Birds evolve from dinosaurs"
+    },
+    {
+      "name": "First FlWestern Roman Empire",
+      "value": 1550,
+      "description": "End of ancient Rome"
+    },
+    {
+      "name": "Black Death Pandemic",
+      "value": 676,
+      "description": "Bubonic plague kills millions"
+    },
+    {
+      "name": "Gutenberg Printing Press",
+      "value": 576,
+      "description": "Movable type printing invented"
+    },
+    {
+      "name": "Columbus Reaches Americas",
+      "value": 534,
+      "description": "European discovery of New World"
+    },
+    {
+      "name": "Age of Dinosaurs Begins",
+      "value": 230000000,
+      "description": "Triassic period begins"
+    },
+    {
+      "name": "Dinosaur Extinction",
+      "value": 66000000,
+      "description": "Asteroid impact ends dinosaur era"
+    },
+    {
+      "name": "First Primates",
+      "value": 55000000,
+      "description": "Primate ancestors appear"
+    },
+    {
+      "name": "First Hominids",
+      "value": 7000000,
+      "description": "Human-chimpanzee lineage splits"
+    },
+    {
+      "name": "Homo Sapiens (Modern Humans)",
+      "value": 300000,
+      "description": "Anatomically modern humans appear"
+    },
+    {
+      "name": "Agricultural Revolution",
+      "value": 12000,
+      "description": "Farming begins"
+    },
+    {
+      "name": "Ancient Pyramids Built",
+      "value": 4500,
+      "description": "Great Pyramid of Giza constructed"
+    },
+    {
+      "name": "Roman Empire Founded",
+      "value": 2773,
+      "description": "Rome established"
+    },
+    {
+      "name": "Fall of Rome",
+      "value": 1568,
+      "description": "Western Roman Empire falls"
+    },
+    {
+      "name": "Printing Press Invented",
+      "value": 575,
+      "description": "Gutenberg's printing press"
+    },
+    {
+      "name": "Industrial Revolution",
+      "value": 260,
+      "description": "Modern industry begins"
+    },
+    {
+      "name": "First Radio Communication",
+      "value": 131,
+      "description": "Marconi's wireless transmission"
+    },
+    {
+      "name": "First Flight",
+      "value": 123,
+      "description": "Wright Brothers' first airplane"
+    },
+    {
+      "name": "World War II Ended",
+      "value": 81,
+      "description": "End of World War II"
+    },
+    {
+      "name": "Moon Landing",
+      "value": 57,
+      "description": "First humans on the Moon"
+    },
+    {
+      "name": "Internet Created",
+      "value": 55,
+      "description": "ARPANET established"
+    },
+    {
+      "name": "World Wide Web",
+      "value": 35,
+      "description": "Web invented by Tim Berners-Lee"
+    },
+    {
+      "name": "iPhone Released",
+      "value": 19,
+      "description": "Modern smartphone era begins"
+    }
+  ]
+}

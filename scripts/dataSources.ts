@@ -7,7 +7,18 @@ import gdpDataSource from "./fetchGdpData";
 import billionairesDataSource from "./fetchBillionairesData";
 import marketCapDataSource from "./fetchMarketCapData";
 import populationDataSource from "./fetchPopulationData";
-import { DataSourceConfig } from "./types";
+import { DataSourceConfig, DataSource } from "./types";
+
+// Static data source for time-since-events (no fetching required)
+const timeSinceEventsDataSource: DataSource = {
+  name: "Time Since Events",
+  units: "Years",
+  fetch: async () => {
+    console.log(
+      "ℹ️  Time Since Events is a static data source (no fetch needed)"
+    );
+  },
+};
 
 export const DATA_SOURCES: DataSourceConfig[] = [
   { id: "gdp", source: gdpDataSource, file: "gdp-by-country.json" },
@@ -25,5 +36,10 @@ export const DATA_SOURCES: DataSourceConfig[] = [
     id: "population",
     source: populationDataSource,
     file: "population-by-country.json",
+  },
+  {
+    id: "time-since-events",
+    source: timeSinceEventsDataSource,
+    file: "time-since-events.json",
   },
 ];
