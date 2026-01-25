@@ -73,6 +73,7 @@ export function AddDataDialog({
   const [sourceData, setSourceData] = useState<DataFile | null>(null);
   const [searchFilter, setSearchFilter] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
 
   // Auto-preselect units and source if all existing balls share them
   useEffect(() => {
@@ -180,9 +181,11 @@ export function AddDataDialog({
       );
     }
 
-    // Sort by value in descending order
-    return [...filtered].sort((a, b) => b.value - a.value);
-  }, [sourceData, searchFilter, excludedItems, selectedSourceId]);
+    // Sort by value based on selected order
+    return [...filtered].sort((a, b) =>
+      sortOrder === "desc" ? b.value - a.value : a.value - b.value
+    );
+  }, [sourceData, searchFilter, excludedItems, selectedSourceId, sortOrder]);
 
   const selectedSource = dataIndex?.sources.find(
     (s) => s.id === selectedSourceId
@@ -229,6 +232,7 @@ export function AddDataDialog({
       setSelectedSourceId(null);
       setSourceData(null);
       setSearchFilter("");
+      setSortOrder("desc");
       setStep("source");
     } else if (step === "source") {
       setSelectedUnits(null);
@@ -236,6 +240,10 @@ export function AddDataDialog({
       setStep("units");
     }
   }, [step]);
+
+  const toggleSortOrder = useCallback(() => {
+    setSortOrder((prev) => (prev === "desc" ? "asc" : "desc"));
+  }, []);
 
   const handleClose = useCallback(() => {
     onClose();
@@ -245,6 +253,7 @@ export function AddDataDialog({
       setSelectedSourceId(null);
       setSourceData(null);
       setSearchFilter("");
+      setSortOrder("desc");
     }, 200);
   }, [onClose]);
 
@@ -476,14 +485,52 @@ export function AddDataDialog({
 
           {step === "values" && (
             <div className={styles.stepContent}>
-              <input
-                type="text"
-                value={searchFilter}
-                onChange={(e) => setSearchFilter(e.target.value)}
-                placeholder={`Search in ${selectedSource?.name}...`}
-                className={styles.searchInput}
-                autoFocus
-              />
+              <div className={styles.searchRow}>
+                <input
+                  type="text"
+                  value={searchFilter}
+                  onChange={(e) => setSearchFilter(e.target.value)}
+                  placeholder={`Search in ${selectedSource?.name}...`}
+                  className={styles.searchInput}
+                  autoFocus
+                />
+                <button
+                  onClick={toggleSortOrder}
+                  className={styles.sortButton}
+                  title={
+                    sortOrder === "desc" ? "Sort ascending" : "Sort descending"
+                  }
+                  aria-label={
+                    sortOrder === "desc" ? "Sort ascending" : "Sort descending"
+                  }
+                >
+                  {sortOrder === "desc" ? (
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path d="M3 6h18M7 12h10M11 18h2" />
+                      <path d="M17 20l3-3-3-3" />
+                    </svg>
+                  ) : (
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path d="M11 6h2M7 12h10M3 18h18" />
+                      <path d="M17 4l3 3-3 3" />
+                    </svg>
+                  )}
+                </button>
+              </div>
               <div className={styles.resultsInfo}>
                 {isLoading
                   ? "Loading..."
