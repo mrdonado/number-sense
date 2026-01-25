@@ -455,7 +455,6 @@ export function AddDataDialog({
                 onChange={(e) => setSearchFilter(e.target.value)}
                 placeholder="Search data sources..."
                 className={styles.searchInput}
-                autoFocus={!isCustomMode}
               />
               {!isCustomMode && (
                 <button
@@ -563,7 +562,6 @@ export function AddDataDialog({
                   onChange={(e) => setSearchFilter(e.target.value)}
                   placeholder={`Search in ${selectedSource?.name}...`}
                   className={styles.searchInput}
-                  autoFocus
                 />
                 <button
                   onClick={toggleSortOrder}
