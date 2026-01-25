@@ -115,6 +115,12 @@ function HomeContent() {
             name: b.name,
             sourceId: b.sourceId || "",
           }))}
+          existingUnits={(canvasRef.current?.getBalls?.() || [])
+            .map((b) => b.units)
+            .filter((u): u is string => !!u)}
+          existingSourceIds={(canvasRef.current?.getBalls?.() || [])
+            .map((b) => b.sourceId)
+            .filter((s): s is string => !!s)}
         />
       </main>
     </div>

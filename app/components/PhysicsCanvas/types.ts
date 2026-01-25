@@ -31,6 +31,7 @@ export interface PersistedBall {
 export interface BallForExclusion {
   name: string;
   sourceId?: string;
+  units?: string;
 }
 
 export interface PhysicsCanvasHandle {

@@ -52,6 +52,8 @@ interface AddDataDialogProps {
     sourceId?: string
   ) => void;
   excludedItems?: ExcludedItem[]; // Items to exclude from selection
+  existingUnits?: string[]; // Units of existing balls in the simulation
+  existingSourceIds?: string[]; // Source IDs of existing balls in the simulation
 }
 
 type Step = "units" | "source" | "values";
@@ -61,6 +63,8 @@ export function AddDataDialog({
   onClose,
   onSelect,
   excludedItems = [],
+  existingUnits = [],
+  existingSourceIds = [],
 }: AddDataDialogProps) {
   const [dataIndex, setDataIndex] = useState<DataIndex | null>(null);
   const [step, setStep] = useState<Step>("units");
@@ -69,6 +73,27 @@ export function AddDataDialog({
   const [sourceData, setSourceData] = useState<DataFile | null>(null);
   const [searchFilter, setSearchFilter] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  // Auto-preselect units and source if all existing balls share them
+  useEffect(() => {
+    if (isOpen && existingUnits.length > 0) {
+      const uniqueUnits = new Set(existingUnits.filter((u) => u)); // Filter out undefined/empty
+      if (uniqueUnits.size === 1) {
+        const commonUnits = Array.from(uniqueUnits)[0];
+        setSelectedUnits(commonUnits);
+
+        // Check if all balls also share the same source
+        const uniqueSourceIds = new Set(existingSourceIds.filter((s) => s));
+        if (uniqueSourceIds.size === 1) {
+          const commonSourceId = Array.from(uniqueSourceIds)[0];
+          setSelectedSourceId(commonSourceId);
+          setStep("values");
+        } else {
+          setStep("source");
+        }
+      }
+    }
+  }, [isOpen, existingUnits, existingSourceIds]);
 
   // Load the data index on mount
   useEffect(() => {

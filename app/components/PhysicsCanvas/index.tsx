@@ -127,6 +127,7 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
         balls.map((b) => ({
           name: b.name,
           sourceId: b.sourceId || "",
+          units: b.units,
         })),
     }));
 
