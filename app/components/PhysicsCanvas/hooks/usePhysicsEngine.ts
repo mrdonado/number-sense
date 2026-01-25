@@ -25,7 +25,12 @@ interface UsePhysicsEngineOptions {
 
 interface UsePhysicsEngineReturn {
   zoomLevel: number;
-  spawnBall: (radius: number, name?: string, units?: string) => void;
+  spawnBall: (
+    radius: number,
+    name?: string,
+    units?: string,
+    sourceId?: string
+  ) => void;
   clearBalls: () => void;
   removeBall: (id: number) => void;
   toggleBallVisibility: (id: number) => void;

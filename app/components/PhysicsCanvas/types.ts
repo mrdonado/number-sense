@@ -1,6 +1,7 @@
 import Matter from "matter-js";
 
 // Extended Matter.Body with custom properties for ball tracking
+export interface ExtendedBody extends Matter.Body {
   circleRadius?: number;
   originalRadius?: number;
   ballName?: string;
@@ -9,7 +10,11 @@ import Matter from "matter-js";
   ballSourceId?: string;
 }
 
+// Alias for ExtendedBody - represents a ball body in the physics simulation
+export type BallBody = ExtendedBody;
+
 // Ball info for the legend
+export interface BallInfo {
   id: number;
   name: string;
   color: string;
@@ -35,7 +40,12 @@ export interface BallForExclusion {
 }
 
 export interface PhysicsCanvasHandle {
-  spawnBall: (radius: number, name?: string, units?: string) => void;
+  spawnBall: (
+    radius: number,
+    name?: string,
+    units?: string,
+    sourceId?: string
+  ) => void;
   clearBalls: () => void;
   isComparisonMode: boolean;
   canEnterComparisonMode: boolean;
