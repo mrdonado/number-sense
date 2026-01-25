@@ -156,6 +156,36 @@
       "value": 250000,
       "unit": "USD",
       "description": "Estimated price for a seat on a Blue Origin suborbital flight"
+    },
+    {
+      "name": "Median Wealth per Adult (United States)",
+      "value": 107739,
+      "unit": "USD",
+      "description": "Median net wealth per adult in the US (Credit Suisse Global Wealth Report 2023)"
+    },
+    {
+      "name": "Median Wealth per Adult (Germany)",
+      "value": 66800,
+      "unit": "USD",
+      "description": "Median net wealth per adult in Germany (Credit Suisse Global Wealth Report 2023)"
+    },
+    {
+      "name": "Median Wealth per Adult (India)",
+      "value": 3600,
+      "unit": "USD",
+      "description": "Median net wealth per adult in India (Credit Suisse Global Wealth Report 2023)"
+    },
+    {
+      "name": "Median Wealth per Adult (Brazil)",
+      "value": 4100,
+      "unit": "USD",
+      "description": "Median net wealth per adult in Brazil (Credit Suisse Global Wealth Report 2023)"
+    },
+    {
+      "name": "Median Wealth per Adult (Nigeria)",
+      "value": 1100,
+      "unit": "USD",
+      "description": "Median net wealth per adult in Nigeria (Credit Suisse Global Wealth Report 2023)"
     }
   ]
 }
