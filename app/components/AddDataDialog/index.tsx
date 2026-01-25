@@ -194,9 +194,8 @@ export function AddDataDialog({
     (item: DataItem) => {
       const units = sourceData?.metadata?.units || "";
       onSelect(item.name, item.value, units, selectedSourceId || undefined);
-      onClose();
     },
-    [onSelect, onClose, sourceData, selectedSourceId]
+    [onSelect, sourceData, selectedSourceId]
   );
 
   const handleBack = useCallback(() => {
