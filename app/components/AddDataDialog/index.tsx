@@ -37,10 +37,21 @@ interface DataFile {
   data: DataItem[];
 }
 
+interface ExcludedItem {
+  name: string;
+  sourceId: string;
+}
+
 interface AddDataDialogProps {
   isOpen: boolean;
   onClose: () => void;
-  onSelect: (name: string, value: number, units: string) => void;
+  onSelect: (
+    name: string,
+    value: number,
+    units: string,
+    sourceId?: string
+  ) => void;
+  excludedItems?: ExcludedItem[]; // Items to exclude from selection
 }
 
 type Step = "units" | "source" | "values";
@@ -49,6 +60,7 @@ export function AddDataDialog({
   isOpen,
   onClose,
   onSelect,
+  excludedItems = [],
 }: AddDataDialogProps) {
   const [dataIndex, setDataIndex] = useState<DataIndex | null>(null);
   const [step, setStep] = useState<Step>("units");
@@ -118,7 +130,7 @@ export function AddDataDialog({
     return sources;
   }, [dataIndex, selectedUnits, searchFilter]);
 
-  // Filter data items
+  // Filter data items, excluding already present ones (by name and sourceId)
   const filteredData = useMemo(() => {
     if (!sourceData) return [];
 
@@ -131,8 +143,20 @@ export function AddDataDialog({
       );
     }
 
+    // Exclude items whose name and sourceId match
+    if (excludedItems && excludedItems.length > 0 && selectedSourceId) {
+      const excludedSet = new Set(
+        excludedItems
+          .filter((ex) => ex.sourceId === selectedSourceId)
+          .map((ex) => ex.name.toLowerCase())
+      );
+      filtered = filtered.filter(
+        (item) => !excludedSet.has(item.name.toLowerCase())
+      );
+    }
+
     return filtered;
-  }, [sourceData, searchFilter]);
+  }, [sourceData, searchFilter, excludedItems, selectedSourceId]);
 
   const selectedSource = dataIndex?.sources.find(
     (s) => s.id === selectedSourceId
@@ -169,10 +193,10 @@ export function AddDataDialog({
   const handleSelectValue = useCallback(
     (item: DataItem) => {
       const units = sourceData?.metadata?.units || "";
-      onSelect(item.name, item.value, units);
+      onSelect(item.name, item.value, units, selectedSourceId || undefined);
       onClose();
     },
-    [onSelect, onClose, sourceData]
+    [onSelect, onClose, sourceData, selectedSourceId]
   );
 
   const handleBack = useCallback(() => {

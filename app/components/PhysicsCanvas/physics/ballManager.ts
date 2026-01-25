@@ -24,7 +24,8 @@ export class BallManager {
     radius: number,
     dimensions: Dimensions,
     name?: string,
-    units?: string
+    units?: string,
+    sourceId?: string
   ): BallInfo {
     const { width, height } = dimensions;
     const minDimension = Math.min(width, height);
@@ -89,6 +90,7 @@ export class BallManager {
     ball.ballName = name;
     ball.ballColor = ballColor;
     ball.ballUnits = units;
+    ball.ballSourceId = sourceId;
 
     Matter.Composite.add(engine.world, [ball]);
 
@@ -102,6 +104,7 @@ export class BallManager {
       originalRadius: radius,
       value,
       units,
+      sourceId,
     };
   }
 

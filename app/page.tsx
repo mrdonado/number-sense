@@ -46,10 +46,10 @@ function HomeContent() {
   };
 
   const handleAddData = useCallback(
-    (name: string, value: number, units: string) => {
+    (name: string, value: number, units: string, sourceId?: string) => {
       // Calculate radius from area: A = πr² → r = √(A/π)
       const radius = Math.sqrt(value / Math.PI);
-      canvasRef.current?.spawnBall(radius, name, units);
+      canvasRef.current?.spawnBall(radius, name, units, sourceId);
     },
     []
   );
@@ -111,6 +111,10 @@ function HomeContent() {
           isOpen={isAddDataDialogOpen}
           onClose={() => setIsAddDataDialogOpen(false)}
           onSelect={handleAddData}
+          excludedItems={(canvasRef.current?.getBalls?.() || []).map((b) => ({
+            name: b.name,
+            sourceId: b.sourceId || "",
+          }))}
         />
       </main>
     </div>

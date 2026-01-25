@@ -1,22 +1,22 @@
 import Matter from "matter-js";
 
 // Extended Matter.Body with custom properties for ball tracking
-export interface BallBody extends Matter.Body {
   circleRadius?: number;
   originalRadius?: number;
   ballName?: string;
   ballColor?: string;
   ballUnits?: string;
+  ballSourceId?: string;
 }
 
 // Ball info for the legend
-export interface BallInfo {
   id: number;
   name: string;
   color: string;
   originalRadius: number;
   value: number; // The original area (π × radius²)
   units?: string;
+  sourceId?: string;
 }
 
 // Persisted ball data for localStorage
@@ -28,6 +28,11 @@ export interface PersistedBall {
 }
 
 // Public handle exposed via ref
+export interface BallForExclusion {
+  name: string;
+  sourceId?: string;
+}
+
 export interface PhysicsCanvasHandle {
   spawnBall: (radius: number, name?: string, units?: string) => void;
   clearBalls: () => void;
@@ -35,6 +40,8 @@ export interface PhysicsCanvasHandle {
   canEnterComparisonMode: boolean;
   enterComparisonMode: () => void;
   exitComparisonMode: () => void;
+  getBallNames: () => string[];
+  getBalls?: () => BallForExclusion[];
 }
 
 // Bounds rectangle for zoom/pan calculations

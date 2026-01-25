@@ -438,7 +438,7 @@ export function usePhysicsEngine(
   }, [containerRef, canvasRef, resizeKey]);
 
   const spawnBall = useCallback(
-    (radius: number, name?: string, units?: string) => {
+    (radius: number, name?: string, units?: string, sourceId?: string) => {
       if (!containerRef.current || !physicsRefs.current.engine) return;
 
       const width = containerRef.current.clientWidth;
@@ -452,7 +452,8 @@ export function usePhysicsEngine(
           height,
         },
         name,
-        units
+        units,
+        sourceId
       );
 
       setBalls((prev) => [...prev, ballInfo]);

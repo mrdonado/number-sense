@@ -122,6 +122,12 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
       canEnterComparisonMode,
       enterComparisonMode,
       exitComparisonMode,
+      getBallNames: () => balls.map((b) => b.name),
+      getBalls: () =>
+        balls.map((b) => ({
+          name: b.name,
+          sourceId: b.sourceId || "",
+        })),
     }));
 
     // Handle mouse move on canvas to detect hover over balls (only for devices with hover capability)

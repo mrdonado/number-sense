@@ -523,4 +523,29 @@ describe("BallManager", () => {
       expect(remainingBall.circleRadius).toBe(targetDisplayRadius);
     });
   });
+
+  it("stores sourceId on the ball and BallInfo when provided", () => {
+    const result = ballManager.spawnBall(
+      mockEngine,
+      10,
+      dimensions,
+      "Test Ball",
+      "USD",
+      "gdp"
+    );
+
+    // Check BallInfo
+    expect(result.sourceId).toBe("gdp");
+
+    // Check BallBody
+    const addCall = vi.mocked(Matter.Composite.add).mock.calls[0];
+    const addedBalls = addCall[1] as BallBody[];
+    const addedBall = addedBalls[0];
+    expect(addedBall.ballSourceId).toBe("gdp");
+  });
+
+  it("returns BallInfo with undefined sourceId when not provided", () => {
+    const result = ballManager.spawnBall(mockEngine, 10, dimensions);
+    expect(result.sourceId).toBeUndefined();
+  });
 });
