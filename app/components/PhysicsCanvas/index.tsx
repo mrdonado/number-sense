@@ -165,6 +165,27 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
       setMousePos(null);
     }, [setHoveredBallId, updateMousePosition]);
 
+    // Handle touch on canvas to activate legend item
+    const handleCanvasTouchEnd = useCallback(
+      (e: React.TouchEvent<HTMLCanvasElement>) => {
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+
+        const touch = e.changedTouches[0];
+        if (!touch) return;
+
+        const rect = canvas.getBoundingClientRect();
+        const x = touch.clientX - rect.left;
+        const y = touch.clientY - rect.top;
+
+        const ballId = getBallAtPoint(x, y);
+
+        // Set the hovered state: activate if tapping a ball, deactivate if tapping background
+        setHoveredBallId(ballId);
+      },
+      [getBallAtPoint, setHoveredBallId]
+    );
+
     // Clear tooltip position when hover state is cleared (e.g., when ball moves away from cursor)
     useEffect(() => {
       if (hoveredBallId === null) {
@@ -200,6 +221,7 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
             className={styles.canvas}
             onMouseMove={handleCanvasMouseMove}
             onMouseLeave={handleCanvasMouseLeave}
+            onTouchEnd={handleCanvasTouchEnd}
           />
           <Legend
             balls={balls}

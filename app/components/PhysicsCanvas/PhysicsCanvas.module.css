@@ -26,7 +26,7 @@
 
 /* Mode indicators */
 .modeIndicator {
-  @apply absolute left-2 top-8 bg-black/50 backdrop-blur-sm rounded-lg px-3 py-2;
+  @apply absolute left-2 top-8 bg-black/50 backdrop-blur-sm rounded-lg px-3 py-2 z-10;
 }
 
 .zoomModeText {
@@ -57,7 +57,7 @@
 
 /* Legend */
 .legend {
-  @apply absolute right-2 top-8 max-h-[calc(100%-4rem)] overflow-y-auto bg-black/50 backdrop-blur-sm rounded-lg min-w-30;
+  @apply absolute right-2 top-8 max-h-[calc(100%-4rem)] overflow-y-auto bg-black/50 backdrop-blur-sm rounded-lg min-w-30 z-20;
 }
 
 .legendHeader {

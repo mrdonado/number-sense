@@ -84,6 +84,12 @@ export function Legend({
   // Sort balls by value in descending order
   const sortedBalls = [...balls].sort((a, b) => b.value - a.value);
 
+  // When collapsed, show only the hovered ball (if any)
+  const ballsToShow =
+    isCollapsed && hoveredBallId !== null
+      ? sortedBalls.filter((ball) => ball.id === hoveredBallId)
+      : sortedBalls;
+
   // Format units for display
   const unitsContent = isMixed ? (
     <span style={{ color: "#ef4444" }}> · mixed</span>
@@ -103,9 +109,9 @@ export function Legend({
         </span>
         <span className={styles.legendToggle}>{isCollapsed ? "▶" : "▼"}</span>
       </button>
-      {!isCollapsed && (
+      {(!isCollapsed || (isCollapsed && hoveredBallId !== null)) && (
         <ul className={styles.legendList}>
-          {sortedBalls.map((ball) => {
+          {ballsToShow.map((ball) => {
             const isHidden = hiddenBallIds.has(ball.id);
             return (
               <li
