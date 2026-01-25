@@ -155,7 +155,8 @@ export function AddDataDialog({
       );
     }
 
-    return filtered;
+    // Sort by value in descending order
+    return [...filtered].sort((a, b) => b.value - a.value);
   }, [sourceData, searchFilter, excludedItems, selectedSourceId]);
 
   const selectedSource = dataIndex?.sources.find(
