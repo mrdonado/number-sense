@@ -75,6 +75,9 @@ export function AddDataDialog({
   const [searchFilter, setSearchFilter] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
+  const [isCustomMode, setIsCustomMode] = useState(false);
+  const [customName, setCustomName] = useState("");
+  const [customValue, setCustomValue] = useState("");
 
   // Auto-preselect units and source if all existing balls share them
   useEffect(() => {
@@ -218,10 +221,16 @@ export function AddDataDialog({
       setSourceData(null);
       setSearchFilter("");
       setSortOrder("desc");
+      setIsCustomMode(false);
+      setCustomName("");
+      setCustomValue("");
       setStep("source");
     } else if (step === "source") {
       setSelectedUnits(null);
       setSearchFilter("");
+      setIsCustomMode(false);
+      setCustomName("");
+      setCustomValue("");
       setStep("units");
     }
   }, [step]);
@@ -229,6 +238,21 @@ export function AddDataDialog({
   const toggleSortOrder = useCallback(() => {
     setSortOrder((prev) => (prev === "desc" ? "asc" : "desc"));
   }, []);
+
+  const handleCustomSubmit = useCallback(
+    (e: React.FormEvent) => {
+      e.preventDefault();
+      const value = parseFloat(customValue);
+      if (customName.trim() && !isNaN(value) && value > 0 && selectedUnits) {
+        onSelect(customName.trim(), value, selectedUnits, "custom");
+        setCustomName("");
+        setCustomValue("");
+        setIsCustomMode(false);
+        setSearchFilter("");
+      }
+    },
+    [customName, customValue, selectedUnits, onSelect]
+  );
 
   const handleClose = useCallback(() => {
     onClose();
@@ -239,6 +263,9 @@ export function AddDataDialog({
       setSourceData(null);
       setSearchFilter("");
       setSortOrder("desc");
+      setIsCustomMode(false);
+      setCustomName("");
+      setCustomValue("");
     }, 200);
   }, [onClose]);
 
@@ -428,8 +455,67 @@ export function AddDataDialog({
                 onChange={(e) => setSearchFilter(e.target.value)}
                 placeholder="Search data sources..."
                 className={styles.searchInput}
-                autoFocus
+                autoFocus={!isCustomMode}
               />
+              {!isCustomMode && (
+                <button
+                  onClick={() => setIsCustomMode(true)}
+                  className={styles.customButton}
+                >
+                  <span className={styles.customButtonIcon}>✏️</span>
+                  <span>Add custom value</span>
+                </button>
+              )}
+              {isCustomMode && (
+                <form
+                  onSubmit={handleCustomSubmit}
+                  className={styles.customForm}
+                >
+                  <input
+                    type="text"
+                    value={customName}
+                    onChange={(e) => setCustomName(e.target.value)}
+                    placeholder="Name (e.g., My Item)"
+                    className={styles.customInput}
+                    autoFocus
+                    required
+                  />
+                  <input
+                    type="number"
+                    value={customValue}
+                    onChange={(e) => setCustomValue(e.target.value)}
+                    placeholder={`Value in ${selectedUnits || "units"}`}
+                    className={styles.customInput}
+                    step="any"
+                    min="0"
+                    required
+                  />
+                  <div className={styles.customFormButtons}>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setIsCustomMode(false);
+                        setCustomName("");
+                        setCustomValue("");
+                      }}
+                      className={styles.customFormButtonCancel}
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      className={styles.customFormButtonSubmit}
+                      disabled={
+                        !customName.trim() ||
+                        !customValue ||
+                        parseFloat(customValue) <= 0
+                      }
+                    >
+                      Add
+                    </button>
+                  </div>
+                </form>
+              )}
               <div className={styles.optionsList}>
                 {filteredSources.map((source) => (
                   <button
@@ -521,6 +607,65 @@ export function AddDataDialog({
                   ? "Loading..."
                   : `${filteredData.length.toLocaleString()} items`}
               </div>
+              {!isCustomMode && (
+                <button
+                  onClick={() => setIsCustomMode(true)}
+                  className={styles.customButton}
+                >
+                  <span className={styles.customButtonIcon}>✏️</span>
+                  <span>Add custom value</span>
+                </button>
+              )}
+              {isCustomMode && (
+                <form
+                  onSubmit={handleCustomSubmit}
+                  className={styles.customForm}
+                >
+                  <input
+                    type="text"
+                    value={customName}
+                    onChange={(e) => setCustomName(e.target.value)}
+                    placeholder="Name (e.g., My Item)"
+                    className={styles.customInput}
+                    autoFocus
+                    required
+                  />
+                  <input
+                    type="number"
+                    value={customValue}
+                    onChange={(e) => setCustomValue(e.target.value)}
+                    placeholder={`Value in ${selectedUnits || "units"}`}
+                    className={styles.customInput}
+                    step="any"
+                    min="0"
+                    required
+                  />
+                  <div className={styles.customFormButtons}>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setIsCustomMode(false);
+                        setCustomName("");
+                        setCustomValue("");
+                      }}
+                      className={styles.customFormButtonCancel}
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      className={styles.customFormButtonSubmit}
+                      disabled={
+                        !customName.trim() ||
+                        !customValue ||
+                        parseFloat(customValue) <= 0
+                      }
+                    >
+                      Add
+                    </button>
+                  </div>
+                </form>
+              )}
               <div className={styles.valuesList}>
                 {isLoading ? (
                   <div className={styles.loadingState}>

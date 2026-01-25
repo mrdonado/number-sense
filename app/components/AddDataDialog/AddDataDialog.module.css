@@ -449,3 +449,111 @@
   font-size: 0.875rem;
   text-align: center;
 }
+
+.customButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border-radius: 0.75rem;
+  background: #27272a;
+  border: 1px dashed #3f3f46;
+  color: #a1a1aa;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.customButton:hover {
+  background: #3f3f46;
+  border-color: #52525b;
+  color: #fafafa;
+}
+
+.customButtonIcon {
+  font-size: 1.125rem;
+}
+
+.customForm {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  background: #27272a;
+  border: 1px solid #3f3f46;
+  flex-shrink: 0;
+}
+
+.customInput {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  background: #18181b;
+  border: 1px solid #3f3f46;
+  color: #fafafa;
+  font-size: 0.9375rem;
+  outline: none;
+  transition: all 0.15s ease;
+}
+
+@media (min-width: 640px) {
+  .customInput {
+    background: #18181b;
+  }
+}
+
+.customInput:focus {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
+}
+
+.customInput::placeholder {
+  color: #52525b;
+}
+
+.customFormButtons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.customFormButtonCancel,
+.customFormButtonSubmit {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border: 1px solid transparent;
+}
+
+.customFormButtonCancel {
+  background: transparent;
+  border-color: #3f3f46;
+  color: #a1a1aa;
+}
+
+.customFormButtonCancel:hover {
+  background: #3f3f46;
+  color: #fafafa;
+}
+
+.customFormButtonSubmit {
+  background: #ef4444;
+  color: white;
+}
+
+.customFormButtonSubmit:hover:not(:disabled) {
+  background: #dc2626;
+}
+
+.customFormButtonSubmit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
