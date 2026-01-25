@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useMemo, useCallback } from "react";
+import { formatValue } from "@/app/utils/formatValue";
 import styles from "./AddDataDialog.module.css";
 
 interface DataSource {
@@ -190,22 +191,6 @@ export function AddDataDialog({
   const selectedSource = dataIndex?.sources.find(
     (s) => s.id === selectedSourceId
   );
-
-  const formatValue = useCallback((value: number, units?: string): string => {
-    const isUSD = units === "USD";
-    const prefix = isUSD ? "$" : "";
-
-    if (value >= 1e12) {
-      return `${prefix}${(value / 1e12).toFixed(2)}T`;
-    } else if (value >= 1e9) {
-      return `${prefix}${(value / 1e9).toFixed(2)}B`;
-    } else if (value >= 1e6) {
-      return `${prefix}${(value / 1e6).toFixed(2)}M`;
-    } else if (value >= 1e3) {
-      return `${prefix}${(value / 1e3).toFixed(2)}K`;
-    }
-    return `${prefix}${value.toFixed(0)}`;
-  }, []);
 
   const handleSelectUnits = useCallback((units: string) => {
     setSelectedUnits(units);
@@ -544,18 +529,30 @@ export function AddDataDialog({
                 ) : filteredData.length === 0 ? (
                   <div className={styles.emptyState}>No items found</div>
                 ) : (
-                  filteredData.map((item, index) => (
-                    <button
-                      key={`${item.name}-${index}`}
-                      onClick={() => handleSelectValue(item)}
-                      className={styles.valueItem}
-                    >
-                      <span className={styles.valueName}>{item.name}</span>
-                      <span className={styles.valueAmount}>
-                        {formatValue(item.value, selectedSource?.units)}
-                      </span>
-                    </button>
-                  ))
+                  filteredData.map((item, index) => {
+                    const formattedValue = formatValue(
+                      item.value,
+                      selectedSource?.units
+                    );
+                    // Only append units if they're not "Meters" (since formatValue handles meter conversions)
+                    const shouldAppendUnits =
+                      selectedSource?.units &&
+                      selectedSource.units !== "Meters";
+
+                    return (
+                      <button
+                        key={`${item.name}-${index}`}
+                        onClick={() => handleSelectValue(item)}
+                        className={styles.valueItem}
+                      >
+                        <span className={styles.valueName}>{item.name}</span>
+                        <span className={styles.valueAmount}>
+                          {formattedValue}
+                          {shouldAppendUnits && ` ${selectedSource.units}`}
+                        </span>
+                      </button>
+                    );
+                  })
                 )}
               </div>
             </div>
