@@ -156,10 +156,12 @@ describe("Legend", () => {
   it("displays abbreviated values for each ball", () => {
     render(<Legend {...defaultProps} />);
 
-    // Blue ball value = π × 20² ≈ 1256.64 → "1.3K"
-    // Green ball value = π × 15² ≈ 706.86 → "707"
-    // Red ball value = π × 10² ≈ 314.16 → "314"
-    expect(screen.getByText("1.3K")).toBeInTheDocument();
+    // Blue ball value = π × 20² ≈ 1256.64 → "$1.3K USD"
+    // Green ball value = π × 15² ≈ 706.86 → "$707 USD"
+    // Red ball value = π × 10² ≈ 314.16 → "$314 USD"
+    expect(screen.getByText("$1.3K", { exact: false })).toBeInTheDocument();
+    expect(screen.getByText("$707", { exact: false })).toBeInTheDocument();
+    expect(screen.getByText("$314", { exact: false })).toBeInTheDocument();
   });
 
   it("sorts balls by value in descending order", () => {
