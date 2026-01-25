@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-01-25T16:21:04.181Z",
-  "totalSources": 6,
+  "generatedAt": "2026-01-25T17:20:27.141Z",
+  "totalSources": 7,
   "sources": [
     {
       "id": "gdp",
@@ -54,6 +54,15 @@
       "units": "Meters",
       "file": "distances.json",
       "recordCount": 72,
+      "fetchedAt": "2026-01-25T00:00:00.000Z"
+    },
+    {
+      "id": "price-income",
+      "name": "Price & Income Data",
+      "description": "Typical prices of aircraft, ships, military vehicles, annual incomes, and other high-value items in US Dollars.",
+      "units": "USD",
+      "file": "price-income.json",
+      "recordCount": 18,
       "fetchedAt": "2026-01-25T00:00:00.000Z"
     }
   ]

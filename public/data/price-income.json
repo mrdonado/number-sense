@@ -1,0 +1,161 @@
+{
+  "metadata": {
+    "source": "Static data - Public sources, manufacturer data, World Bank, Forbes, etc.",
+    "description": "Typical prices of aircraft, ships, military vehicles, annual incomes, and other high-value items in US Dollars.",
+    "units": "USD",
+    "fetchedAt": "2026-01-25T00:00:00.000Z",
+    "totalItems": 18
+  },
+  "data": [
+    {
+      "name": "Commercial Airliner (Boeing 737)",
+      "value": 100000000,
+      "unit": "USD",
+      "description": "Typical price for a new Boeing 737"
+    },
+    {
+      "name": "Private Jet (Gulfstream G650)",
+      "value": 65000000,
+      "unit": "USD",
+      "description": "Typical price for a new Gulfstream G650"
+    },
+    {
+      "name": "Fighter Jet (F-35 Lightning II)",
+      "value": 80000000,
+      "unit": "USD",
+      "description": "Unit cost for F-35A variant"
+    },
+    {
+      "name": "Helicopter (Bell 206)",
+      "value": 1200000,
+      "unit": "USD",
+      "description": "Typical price for a new Bell 206"
+    },
+    {
+      "name": "Cargo Ship (Panamax)",
+      "value": 80000000,
+      "unit": "USD",
+      "description": "Typical price for a Panamax cargo ship"
+    },
+    {
+      "name": "Cruise Ship (Oasis Class)",
+      "value": 1200000000,
+      "unit": "USD",
+      "description": "Typical price for a large cruise ship"
+    },
+    {
+      "name": "Aircraft Carrier (Nimitz Class)",
+      "value": 13000000000,
+      "unit": "USD",
+      "description": "Estimated cost for a Nimitz-class aircraft carrier"
+    },
+    {
+      "name": "Submarine (Virginia Class)",
+      "value": 3400000000,
+      "unit": "USD",
+      "description": "Estimated cost for a Virginia-class submarine"
+    },
+    {
+      "name": "Median Annual Income (United States)",
+      "value": 74000,
+      "unit": "USD",
+      "description": "Median annual income in the US"
+    },
+    {
+      "name": "Median Annual Income (Germany)",
+      "value": 57000,
+      "unit": "USD",
+      "description": "Median annual income in Germany"
+    },
+    {
+      "name": "Median Annual Income (India)",
+      "value": 2500,
+      "unit": "USD",
+      "description": "Median annual income in India"
+    },
+    {
+      "name": "Median Annual Income (Brazil)",
+      "value": 9000,
+      "unit": "USD",
+      "description": "Median annual income in Brazil"
+    },
+    {
+      "name": "Median Annual Income (Nigeria)",
+      "value": 2200,
+      "unit": "USD",
+      "description": "Median annual income in Nigeria"
+    },
+    {
+      "name": "Average House Price (US)",
+      "value": 420000,
+      "unit": "USD",
+      "description": "Median price of a house in the US"
+    },
+    {
+      "name": "Luxury Car (Rolls-Royce Phantom)",
+      "value": 460000,
+      "unit": "USD",
+      "description": "Typical price for a Rolls-Royce Phantom"
+    },
+    {
+      "name": "SpaceX Falcon 9 Launch Cost",
+      "value": 67000000,
+      "unit": "USD",
+      "description": "Cost to launch a Falcon 9 rocket"
+    },
+    {
+      "name": "Superyacht (Azzam)",
+      "value": 600000000,
+      "unit": "USD",
+      "description": "Estimated cost of the world's largest private yacht"
+    },
+    {
+      "name": "NFL Team (Average Franchise Value)",
+      "value": 5000000000,
+      "unit": "USD",
+      "description": "Average value of an NFL franchise"
+    },
+    {
+      "name": "Sports Car (Porsche 911)",
+      "value": 120000,
+      "unit": "USD",
+      "description": "Typical price for a new Porsche 911 Carrera"
+    },
+    {
+      "name": "Skyscraper (One World Trade Center)",
+      "value": 3900000000,
+      "unit": "USD",
+      "description": "Estimated construction cost of One World Trade Center, NYC"
+    },
+    {
+      "name": "Commercial Satellite",
+      "value": 150000000,
+      "unit": "USD",
+      "description": "Typical cost to build and launch a commercial communications satellite"
+    },
+    {
+      "name": "iPhone (Flagship Model)",
+      "value": 1200,
+      "unit": "USD",
+      "description": "Typical price for a new flagship iPhone"
+    },
+    {
+      "name": "Private Island (Average)",
+      "value": 7000000,
+      "unit": "USD",
+      "description": "Average price for a private island (varies widely)"
+    },
+    {
+      "name": "Commercial Airliner (Airbus A380)",
+      "value": 445000000,
+      "unit": "USD",
+      "description": "Typical price for a new Airbus A380 (when in production)"
+    },
+    {
+      "name": "Space Tourism Ticket (Blue Origin)",
+      "value": 250000,
+      "unit": "USD",
+      "description": "Estimated price for a seat on a Blue Origin suborbital flight"
+    }
+  ]
+}

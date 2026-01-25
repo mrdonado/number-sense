@@ -29,6 +29,15 @@ const distancesDataSource: DataSource = {
   },
 };
 
+// Static data source for price/income (no fetching required)
+const priceIncomeDataSource: DataSource = {
+  name: "Price & Income Data",
+  units: "USD",
+  fetch: async () => {
+    console.log("ℹ️  Price & Income is a static data source (no fetch needed)");
+  },
+};
+
 export const DATA_SOURCES: DataSourceConfig[] = [
   { id: "gdp", source: gdpDataSource, file: "gdp-by-country.json" },
   {
@@ -55,5 +64,10 @@ export const DATA_SOURCES: DataSourceConfig[] = [
     id: "distances",
     source: distancesDataSource,
     file: "distances.json",
+  },
+  {
+    id: "price-income",
+    source: priceIncomeDataSource,
+    file: "price-income.json",
   },
 ];
