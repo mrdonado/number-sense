@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-01-25T17:20:27.141Z",
-  "totalSources": 7,
+  "generatedAt": "2026-01-25T17:50:49.060Z",
+  "totalSources": 8,
   "sources": [
     {
       "id": "gdp",
@@ -62,7 +62,16 @@
       "description": "Typical prices of aircraft, ships, military vehicles, annual incomes, and other high-value items in US Dollars.",
       "units": "USD",
       "file": "price-income.json",
-      "recordCount": 18,
+      "recordCount": 25,
+      "fetchedAt": "2026-01-25T00:00:00.000Z"
+    },
+    {
+      "id": "rich-nonbillionaires",
+      "name": "Rich Non-Billionaires Data",
+      "description": "Estimated net worth of well-known non-billionaire rich people in US Dollars.",
+      "units": "USD",
+      "file": "rich-nonbillionaires.json",
+      "recordCount": 10,
       "fetchedAt": "2026-01-25T00:00:00.000Z"
     }
   ]

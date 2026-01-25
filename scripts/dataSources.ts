@@ -1,3 +1,13 @@
+// Static data source for rich non-billionaires (no fetching required)
+const richNonBillionairesDataSource: DataSource = {
+  name: "Rich Non-Billionaires Data",
+  units: "USD",
+  fetch: async () => {
+    console.log(
+      "ℹ️  Rich Non-Billionaires is a static data source (no fetch needed)"
+    );
+  },
+};
 /**
  * Central registry of all data sources.
  * Add new data sources here - they will be automatically included in fetch-all and index generation.
@@ -69,5 +79,10 @@ export const DATA_SOURCES: DataSourceConfig[] = [
     id: "price-income",
     source: priceIncomeDataSource,
     file: "price-income.json",
+  },
+  {
+    id: "rich-nonbillionaires",
+    source: richNonBillionairesDataSource,
+    file: "rich-nonbillionaires.json",
   },
 ];

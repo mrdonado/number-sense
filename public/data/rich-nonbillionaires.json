@@ -1,0 +1,275 @@
+{
+  "metadata": {
+    "source": "Public sources, celebritynetworth.com, news articles, etc.",
+    "description": "Estimated net worth of well-known non-billionaire rich people in US Dollars.",
+    "units": "USD",
+    "fetchedAt": "2026-01-25T00:00:00.000Z",
+    "totalPeople": 10
+  },
+  "data": [
+    {
+      "name": "Taylor Swift",
+      "value": 1100000000,
+      "unit": "USD",
+      "description": "Singer-songwriter, pop star"
+    },
+    {
+      "name": "LeBron James",
+      "value": 1000000000,
+      "unit": "USD",
+      "description": "NBA player, entrepreneur"
+    },
+    {
+      "name": "Oprah Winfrey",
+      "value": 2800000000,
+      "unit": "USD",
+      "description": "Media mogul, TV host"
+    },
+    {
+      "name": "Rihanna",
+      "value": 1400000000,
+      "unit": "USD",
+      "description": "Singer, entrepreneur (Fenty Beauty)"
+    },
+    {
+      "name": "George Clooney",
+      "value": 500000000,
+      "unit": "USD",
+      "description": "Actor, producer"
+    },
+    {
+      "name": "Kim Kardashian",
+      "value": 1700000000,
+      "unit": "USD",
+      "description": "Media personality, entrepreneur"
+    },
+    {
+      "name": "Lionel Messi",
+      "value": 600000000,
+      "unit": "USD",
+      "description": "Footballer (soccer)"
+    },
+    {
+      "name": "Tom Cruise",
+      "value": 600000000,
+      "unit": "USD",
+      "description": "Actor, producer"
+    },
+    {
+      "name": "Serena Williams",
+      "value": 300000000,
+      "unit": "USD",
+      "description": "Tennis player, entrepreneur"
+    },
+    {
+      "name": "Ellen DeGeneres",
+      "value": 500000000,
+      "unit": "USD",
+      "description": "Comedian, TV host"
+    },
+    {
+      "name": "Shah Rukh Khan",
+      "value": 770000000,
+      "unit": "USD",
+      "description": "Indian actor, producer, Bollywood superstar"
+    },
+    {
+      "name": "David Beckham",
+      "value": 450000000,
+      "unit": "USD",
+      "description": "English footballer, businessman"
+    },
+    {
+      "name": "Jackie Chan",
+      "value": 400000000,
+      "unit": "USD",
+      "description": "Hong Kong actor, martial artist"
+    },
+    {
+      "name": "Akshay Kumar",
+      "value": 340000000,
+      "unit": "USD",
+      "description": "Indian actor, producer"
+    },
+    {
+      "name": "Celine Dion",
+      "value": 800000000,
+      "unit": "USD",
+      "description": "Canadian singer"
+    },
+    {
+      "name": "Cristiano Ronaldo",
+      "value": 600000000,
+      "unit": "USD",
+      "description": "Portuguese footballer"
+    },
+    {
+      "name": "Amitabh Bachchan",
+      "value": 410000000,
+      "unit": "USD",
+      "description": "Indian actor, Bollywood legend"
+    },
+    {
+      "name": "Zinedine Zidane",
+      "value": 120000000,
+      "unit": "USD",
+      "description": "French footballer, coach"
+    },
+    {
+      "name": "Gisele Bündchen",
+      "value": 400000000,
+      "unit": "USD",
+      "description": "Brazilian supermodel"
+    },
+    {
+      "name": "JK Rowling",
+      "value": 1000000000,
+      "unit": "USD",
+      "description": "British author, Harry Potter series"
+    },
+    {
+      "name": "Mansa Musa (historical)",
+      "value": 400000000,
+      "unit": "USD",
+      "description": "Malian emperor, considered one of the richest historical figures (modern estimate)"
+    },
+    {
+      "name": "Miuccia Prada",
+      "value": 4800000000,
+      "unit": "USD",
+      "description": "Italian fashion designer, businesswoman"
+    },
+    {
+      "name": "Roger Federer",
+      "value": 550000000,
+      "unit": "USD",
+      "description": "Swiss tennis player"
+    },
+    {
+      "name": "Shakira",
+      "value": 300000000,
+      "unit": "USD",
+      "description": "Colombian singer, songwriter"
+    },
+    {
+      "name": "King Willem-Alexander of the Netherlands",
+      "value": 500000000,
+      "unit": "USD",
+      "description": "Dutch monarch"
+    },
+    {
+      "name": "Zhou Qunfei",
+      "value": 900000000,
+      "unit": "USD",
+      "description": "Chinese tech entrepreneur, founder of Lens Technology"
+    },
+    {
+      "name": "Fernando Alonso",
+      "value": 260000000,
+      "unit": "USD",
+      "description": "Spanish Formula 1 driver"
+    },
+    {
+      "name": "A. R. Rahman",
+      "value": 280000000,
+      "unit": "USD",
+      "description": "Indian composer, music producer"
+    },
+    {
+      "name": "Mick Jagger",
+      "value": 500000000,
+      "unit": "USD",
+      "description": "British musician, The Rolling Stones"
+    },
+    {
+      "name": "Megan Rapinoe",
+      "value": 15000000,
+      "unit": "USD",
+      "description": "American soccer player, activist"
+    },
+    {
+      "name": "Yayoi Kusama",
+      "value": 100000000,
+      "unit": "USD",
+      "description": "Japanese contemporary artist"
+    },
+    {
+      "name": "Mo Salah",
+      "value": 90000000,
+      "unit": "USD",
+      "description": "Egyptian footballer"
+    },
+    {
+      "name": "Neymar Jr.",
+      "value": 250000000,
+      "unit": "USD",
+      "description": "Brazilian footballer"
+    },
+    {
+      "name": "Sundar Pichai",
+      "value": 600000000,
+      "unit": "USD",
+      "description": "Indian-American CEO of Alphabet (Google)"
+    },
+    {
+      "name": "Queen Rania of Jordan",
+      "value": 350000000,
+      "unit": "USD",
+      "description": "Queen consort of Jordan, philanthropist"
+    },
+    {
+      "name": "Tim Cook",
+      "value": 2000000000,
+      "unit": "USD",
+      "description": "CEO of Apple, United States"
+    },
+    {
+      "name": "Satya Nadella",
+      "value": 800000000,
+      "unit": "USD",
+      "description": "CEO of Microsoft, India/United States"
+    },
+    {
+      "name": "Mary Barra",
+      "value": 200000000,
+      "unit": "USD",
+      "description": "CEO of General Motors, United States"
+    },
+    {
+      "name": "Daniel Zhang",
+      "value": 100000000,
+      "unit": "USD",
+      "description": "Former CEO of Alibaba Group, China"
+    },
+    {
+      "name": "Ginni Rometty",
+      "value": 200000000,
+      "unit": "USD",
+      "description": "Former CEO of IBM, United States"
+    },
+    {
+      "name": "Carlos Tavares",
+      "value": 25000000,
+      "unit": "USD",
+      "description": "CEO of Stellantis, Portugal/France"
+    },
+    {
+      "name": "Andy Jassy",
+      "value": 400000000,
+      "unit": "USD",
+      "description": "CEO of Amazon, United States"
+    },
+    {
+      "name": "Jane Fraser",
+      "value": 100000000,
+      "unit": "USD",
+      "description": "CEO of Citigroup, United Kingdom/United States"
+    },
+    {
+      "name": "Masayoshi Son",
+      "value": 900000000,
+      "unit": "USD",
+      "description": "CEO of SoftBank, Japan"
+    }
+  ]
+}
