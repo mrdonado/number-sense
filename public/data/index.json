@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-01-25T17:50:49.060Z",
-  "totalSources": 8,
+  "generatedAt": "2026-01-25T18:35:00.620Z",
+  "totalSources": 9,
   "sources": [
     {
       "id": "gdp",
@@ -62,7 +62,7 @@
       "description": "Typical prices of aircraft, ships, military vehicles, annual incomes, and other high-value items in US Dollars.",
       "units": "USD",
       "file": "price-income.json",
-      "recordCount": 25,
+      "recordCount": 30,
       "fetchedAt": "2026-01-25T00:00:00.000Z"
     },
     {
@@ -71,7 +71,16 @@
       "description": "Estimated net worth of well-known non-billionaire rich people in US Dollars.",
       "units": "USD",
       "file": "rich-nonbillionaires.json",
-      "recordCount": 10,
+      "recordCount": 44,
+      "fetchedAt": "2026-01-25T00:00:00.000Z"
+    },
+    {
+      "id": "stellar-diameters",
+      "name": "Stellar Diameters Data",
+      "description": "Diameters of well-known planets, stars, and other stellar objects in meters.",
+      "units": "Meters",
+      "file": "stellar-diameters.json",
+      "recordCount": 15,
       "fetchedAt": "2026-01-25T00:00:00.000Z"
     }
   ]

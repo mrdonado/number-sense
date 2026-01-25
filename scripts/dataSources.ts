@@ -1,3 +1,13 @@
+// Static data source for stellar diameters (no fetching required)
+const stellarDiametersDataSource: DataSource = {
+  name: "Stellar Diameters Data",
+  units: "Meters",
+  fetch: async () => {
+    console.log(
+      "ℹ️  Stellar Diameters is a static data source (no fetch needed)"
+    );
+  },
+};
 // Static data source for rich non-billionaires (no fetching required)
 const richNonBillionairesDataSource: DataSource = {
   name: "Rich Non-Billionaires Data",
@@ -84,5 +94,10 @@ export const DATA_SOURCES: DataSourceConfig[] = [
     id: "rich-nonbillionaires",
     source: richNonBillionairesDataSource,
     file: "rich-nonbillionaires.json",
+  },
+  {
+    id: "stellar-diameters",
+    source: stellarDiametersDataSource,
+    file: "stellar-diameters.json",
   },
 ];

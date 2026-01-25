@@ -1,0 +1,141 @@
+{
+  "metadata": {
+    "source": "NASA, ESA, scientific literature",
+    "description": "Diameters of well-known planets, stars, and other stellar objects in meters.",
+    "units": "Meters",
+    "fetchedAt": "2026-01-25T00:00:00.000Z",
+    "totalObjects": 25
+  },
+  "data": [
+    {
+      "name": "Mercury",
+      "value": 4879000,
+      "description": "Diameter of Mercury (planet) (≈ 4879 km) :contentReference[oaicite:0]{index=0}"
+    },
+    {
+      "name": "Venus",
+      "value": 12104000,
+      "description": "Diameter of Venus (planet) (≈ 12104 km) :contentReference[oaicite:1]{index=1}"
+    },
+    {
+      "name": "Earth",
+      "value": 12756000,
+      "description": "Diameter of Earth (planet) (≈ 12756 km) :contentReference[oaicite:2]{index=2}"
+    },
+    {
+      "name": "Mars",
+      "value": 6792000,
+      "description": "Diameter of Mars (planet) (≈ 6792 km) :contentReference[oaicite:3]{index=3}"
+    },
+    {
+      "name": "Jupiter",
+      "value": 142984000,
+      "description": "Diameter of Jupiter (planet) (≈ 142984 km) :contentReference[oaicite:4]{index=4}"
+    },
+    {
+      "name": "Saturn",
+      "value": 120536000,
+      "description": "Diameter of Saturn (planet) (≈ 120536 km) :contentReference[oaicite:5]{index=5}"
+    },
+    {
+      "name": "Uranus",
+      "value": 51118000,
+      "description": "Diameter of Uranus (planet) (≈ 51118 km) :contentReference[oaicite:6]{index=6}"
+    },
+    {
+      "name": "Neptune",
+      "value": 49528000,
+      "description": "Diameter of Neptune (planet) (≈ 49528 km) :contentReference[oaicite:7]{index=7}"
+    },
+    {
+      "name": "Pluto",
+      "value": 2372000,
+      "description": "Diameter of Pluto (dwarf planet) (≈ 2372 km) :contentReference[oaicite:8]{index=8}"
+    },
+    {
+      "name": "Ceres",
+      "value": 964000,
+      "description": "Diameter of Ceres (dwarf planet) (≈ 964 km) :contentReference[oaicite:9]{index=9}"
+    },
+    {
+      "name": "Sun",
+      "value": 1392700000,
+      "description": "Diameter of the Sun (star) (≈ 1.3927×10⁹ m) :contentReference[oaicite:10]{index=10}"
+    },
+    {
+      "name": "Sirius A",
+      "value": 2383000000,
+      "description": "Diameter of Sirius A (≈ 1.71× Sun diameter) :contentReference[oaicite:11]{index=11}"
+    },
+    {
+      "name": "Alpha Centauri A",
+      "value": 1705000000,
+      "description": "Diameter of Alpha Centauri A (≈ 1.224× Sun diameter) :contentReference[oaicite:12]{index=12}"
+    },
+    {
+      "name": "Alpha Centauri B",
+      "value": 1200000000,
+      "description": "Diameter of Alpha Centauri B (≈ 0.863× Sun diameter) :contentReference[oaicite:13]{index=13}"
+    },
+    {
+      "name": "Proxima Centauri",
+      "value": 429000000,
+      "description": "Diameter of Proxima Centauri (~0.308× Sun diameter, approximate) :contentReference[oaicite:14]{index=14}"
+    },
+    {
+      "name": "Betelgeuse",
+      "value": 1235000000000,
+      "description": "Diameter of Betelgeuse (≈ 887× Sun diameter, variable) :contentReference[oaicite:15]{index=15}"
+    },
+    {
+      "name": "VY Canis Majoris",
+      "value": 1977000000000,
+      "description": "Diameter of VY Canis Majoris (≈ 1420× Sun diameter, very approximate) :contentReference[oaicite:16]{index=16}"
+    },
+    {
+      "name": "Polaris (North Star)",
+      "value": 52220000000,
+      "description": "Diameter of Polaris (~37.5× Sun diameter, approximate) :contentReference[oaicite:17]{index=17}"
+    },
+    {
+      "name": "Aldebaran",
+      "value": 61240000000,
+      "description": "Diameter of Aldebaran (~44× Sun diameter, approximate) :contentReference[oaicite:18]{index=18}"
+    },
+    {
+      "name": "Rigel",
+      "value": 108600000000,
+      "description": "Diameter of Rigel (~78× Sun diameter, approximate) :contentReference[oaicite:19]{index=19}"
+    },
+    {
+      "name": "Antares",
+      "value": 1114000000000,
+      "description": "Diameter of Antares (~800× Sun diameter, very approximate) :contentReference[oaicite:20]{index=20}"
+    },
+    {
+      "name": "Arcturus",
+      "value": 35380000000,
+      "description": "Diameter of Arcturus (~25.4× Sun diameter, approximate) :contentReference[oaicite:21]{index=21}"
+    },
+    {
+      "name": "Vega",
+      "value": 3288000000,
+      "description": "Diameter of Vega (~2.36× Sun diameter, approximate) :contentReference[oaicite:22]{index=22}"
+    },
+    {
+      "name": "Altair",
+      "value": 2493000000,
+      "description": "Diameter of Altair (~1.79× Sun diameter, approximate) :contentReference[oaicite:23]{index=23}"
+    },
+    {
+      "name": "Deneb",
+      "value": 2828000000000,
+      "description": "Diameter of Deneb (~2030× Sun diameter, highly uncertain) :contentReference[oaicite:24]{index=24}"
+    },
+    {
+      "name": "Sagittarius A* (Event Horizon)",
+      "value": 24000000,
+      "description": "Diameter of the event horizon of Sagittarius A* (≈ 24 million km) :contentReference[oaicite:25]{index=25}"
+    }
+  ]
+}
