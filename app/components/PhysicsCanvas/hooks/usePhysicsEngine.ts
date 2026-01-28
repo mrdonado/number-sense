@@ -390,10 +390,14 @@ export function usePhysicsEngine(
     canvas.addEventListener("mouseup", handleMouseUp);
     canvas.addEventListener("mouseleave", handleMouseUp);
     canvas.addEventListener("contextmenu", handleContextMenu);
-    // Touch events for pinch-to-zoom
-    canvas.addEventListener("touchstart", handleTouchStart, { passive: false });
-    canvas.addEventListener("touchmove", handleTouchMove, { passive: false });
-    canvas.addEventListener("touchend", handleTouchEnd);
+    // Touch events for pinch-to-zoom - attached to container to work over legend too
+    container.addEventListener("touchstart", handleTouchStart, {
+      passive: false,
+    });
+    container.addEventListener("touchmove", handleTouchMove, {
+      passive: false,
+    });
+    container.addEventListener("touchend", handleTouchEnd);
     Matter.Events.on(render, "beforeRender", updateZoomedView);
 
     // Restore persisted balls from localStorage
@@ -433,10 +437,10 @@ export function usePhysicsEngine(
       canvas.removeEventListener("mouseup", handleMouseUp);
       canvas.removeEventListener("mouseleave", handleMouseUp);
       canvas.removeEventListener("contextmenu", handleContextMenu);
-      // Remove touch event listeners
-      canvas.removeEventListener("touchstart", handleTouchStart);
-      canvas.removeEventListener("touchmove", handleTouchMove);
-      canvas.removeEventListener("touchend", handleTouchEnd);
+      // Remove touch event listeners from container
+      container.removeEventListener("touchstart", handleTouchStart);
+      container.removeEventListener("touchmove", handleTouchMove);
+      container.removeEventListener("touchend", handleTouchEnd);
       Matter.Events.off(render, "beforeRender", updateZoomedView);
       Matter.Events.off(engine, "afterUpdate", checkEscapedBalls);
       Matter.Events.off(render, "afterRender", updateCursor);

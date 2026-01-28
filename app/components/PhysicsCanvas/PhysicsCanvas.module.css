@@ -27,6 +27,7 @@
 /* Mode indicators */
 .modeIndicator {
   @apply absolute left-2 top-8 bg-black/50 backdrop-blur-sm rounded-lg px-3 py-2 z-10;
+  pointer-events: none;
 }
 
 .zoomModeText {
@@ -40,6 +41,7 @@
 /* Comparison ratio display */
 .comparisonRatio {
   @apply absolute right-2 bottom-2 bg-black/70 backdrop-blur-sm rounded-lg px-4 py-2 z-10 border border-amber-400/30;
+  pointer-events: none;
 }
 
 .comparisonRatioText {
@@ -68,6 +70,7 @@
 .legend {
   @apply absolute right-2 top-8 max-h-[calc(100%-4rem)] overflow-y-auto bg-black/50 backdrop-blur-sm rounded-lg min-w-30 z-20;
   max-width: 280px;
+  touch-action: none;
 }
 
 .legendHeader {
