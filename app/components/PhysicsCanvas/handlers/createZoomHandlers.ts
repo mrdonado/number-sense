@@ -3,6 +3,7 @@ import {
   ZOOM_DURATION,
   BALL_VISIBLE_RATIO,
   WHEEL_ZOOM_FACTOR,
+  TRACKPAD_ZOOM_FACTOR,
   MIN_ZOOM,
   MAX_ZOOM,
   MOUSE_STIFFNESS,
@@ -288,10 +289,14 @@ export function createZoomHandlers(
     const currentHeight = render.bounds.max.y - render.bounds.min.y;
     const currentZoom = currentWidth / width;
 
+    // Detect if this is a trackpad (smooth scrolling) or mouse wheel (discrete steps)
+    // Trackpads typically have smaller deltaY values and use deltaMode 0 (pixels)
+    // Mouse wheels have larger, discrete deltaY values
+    const isTrackpad = Math.abs(e.deltaY) < 50 && e.deltaMode === 0;
+    const zoomFactor = isTrackpad ? TRACKPAD_ZOOM_FACTOR : WHEEL_ZOOM_FACTOR;
+
     let newZoom =
-      e.deltaY > 0
-        ? currentZoom * WHEEL_ZOOM_FACTOR
-        : currentZoom / WHEEL_ZOOM_FACTOR;
+      e.deltaY > 0 ? currentZoom * zoomFactor : currentZoom / zoomFactor;
 
     newZoom = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, newZoom));
 

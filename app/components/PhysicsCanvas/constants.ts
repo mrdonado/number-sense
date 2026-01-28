@@ -11,6 +11,7 @@ export const ZOOM_INDICATOR_HEIGHT = 4;
 export const ZOOM_DURATION = 300; // ms
 export const BALL_VISIBLE_RATIO = 0.85; // Ball takes 85% of visible area
 export const WHEEL_ZOOM_FACTOR = 1.15; // Logarithmic zoom factor (15% per wheel tick)
+export const TRACKPAD_ZOOM_FACTOR = 1.03; // Slower zoom for trackpads (3% per tick)
 export const MIN_ZOOM = 0.01; // Maximum zoom in (1% of original view = 100x zoom)
 export const MAX_ZOOM = 1.0; // Maximum zoom out (100% = full view)
 
