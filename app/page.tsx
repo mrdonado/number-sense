@@ -63,7 +63,7 @@ function HomeContent() {
             onClick={() => setIsAddDataDialogOpen(true)}
             className="btn btn-primary"
           >
-            + Add Data
+            +
           </button>
           {isDebugMode && (
             <>
@@ -89,7 +89,7 @@ function HomeContent() {
             </>
           )}
           <button onClick={handleClear} className="btn btn-secondary">
-            Clear
+            🧹
           </button>
           {ballCount >= 2 && (
             <button
