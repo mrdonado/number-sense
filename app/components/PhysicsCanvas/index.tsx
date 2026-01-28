@@ -228,13 +228,11 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
             isComparisonMode={isComparisonMode}
           />
           {/* Comparison ratio display */}
-          {isComparisonMode && (
-            <ComparisonRatio
-              balls={balls}
-              hoveredBallId={hoveredBallId}
-              hiddenBallIds={hiddenBallIds}
-            />
-          )}
+          <ComparisonRatio
+            balls={balls}
+            hoveredBallId={hoveredBallId}
+            hiddenBallIds={hiddenBallIds}
+          />
           {/* Zoom mode indicator */}
           {zoomLevel < 1.0 && !isComparisonMode && (
             <div className={styles.modeIndicator}>

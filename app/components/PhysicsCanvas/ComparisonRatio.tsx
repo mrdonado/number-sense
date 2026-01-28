@@ -53,7 +53,7 @@ export function ComparisonRatio({
   return (
     <div className={styles.comparisonRatio}>
       <span className={styles.comparisonRatioText}>
-        1 {comparisonText.largestName} = {comparisonText.ratio} ×{" "}
+        {comparisonText.largestName} = {comparisonText.ratio} ×{" "}
         {comparisonText.hoveredName}
       </span>
     </div>
