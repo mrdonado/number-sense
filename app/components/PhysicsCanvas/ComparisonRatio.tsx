@@ -40,24 +40,18 @@ export function ComparisonRatio({
     // Don't show if the largest ball is hovered
     if (hoveredBall.id === largestBall.id) return null;
 
-    // Calculate the ratio based on comparison type
-    let ratio: number;
-    if (comparisonType === "area") {
-      // Area comparison: ratio of areas (π * r²)
-      const largestArea = Math.PI * largestBall.originalRadius ** 2;
-      const hoveredArea = Math.PI * hoveredBall.originalRadius ** 2;
-      ratio = largestArea / hoveredArea;
-    } else {
-      // Linear comparison: ratio of diameters (2 * r)
-      const largestDiameter = 2 * largestBall.originalRadius;
-      const hoveredDiameter = 2 * hoveredBall.originalRadius;
-      ratio = largestDiameter / hoveredDiameter;
-    }
+    // Calculate the area ratio (represents the input value comparison)
+    const largestArea = Math.PI * largestBall.originalRadius ** 2;
+    const hoveredArea = Math.PI * hoveredBall.originalRadius ** 2;
+    const valueRatio = largestArea / hoveredArea;
+    const valueRatioLinearAreas = valueRatio ** 2;
 
     return {
       largestName: largestBall.name,
       hoveredName: hoveredBall.name,
-      ratio: ratio.toFixed(1),
+      valueRatio: valueRatio.toFixed(1),
+      showAreaComparison: comparisonType === "linear",
+      valueRatioLinearAreas: valueRatioLinearAreas.toFixed(1),
     };
   }, [balls, hoveredBallId, hiddenBallIds, comparisonType]);
 
@@ -66,9 +60,16 @@ export function ComparisonRatio({
   return (
     <div className={styles.comparisonRatio}>
       <span className={styles.comparisonRatioText}>
-        {comparisonText.largestName} = {comparisonText.ratio} ×{" "}
+        {comparisonText.largestName} = {comparisonText.valueRatio} ×{" "}
         {comparisonText.hoveredName}
       </span>
+      {comparisonText.showAreaComparison && (
+        <span className={styles.comparisonRatioText}>
+          <br></br>
+          In current areas, {comparisonText.largestName} ={" "}
+          {comparisonText.valueRatioLinearAreas} × {comparisonText.hoveredName}
+        </span>
+      )}
     </div>
   );
 }
