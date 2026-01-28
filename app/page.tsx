@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useCallback, Suspense } from "react";
+import { useRef, useState, useCallback, Suspense, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import PhysicsCanvas, {
   PhysicsCanvasHandle,
@@ -18,6 +18,7 @@ function HomeContent() {
   const [ballCount, setBallCount] = useState(0);
   const [isComparisonMode, setIsComparisonMode] = useState(false);
   const [isAddDataDialogOpen, setIsAddDataDialogOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const [comparisonType, setComparisonType] = useState<ComparisonType>(() => {
     if (typeof window !== "undefined") {
       const stored = localStorage.getItem("comparisonType");
@@ -25,6 +26,10 @@ function HomeContent() {
     }
     return "area";
   });
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleSubmit = () => {
     const area = parseFloat(inputValue);
@@ -125,10 +130,12 @@ function HomeContent() {
                 onChange={handleComparisonTypeChange}
                 className="toggle-checkbox"
               />
-              <span className="toggle-text">
-                {comparisonType === "area"
-                  ? "Input as Area"
-                  : "Input as Diameter"}
+              <span className="toggle-text" suppressHydrationWarning>
+                {mounted
+                  ? comparisonType === "area"
+                    ? "Input as Area"
+                    : "Input as Diameter"
+                  : "Input as Area"}
               </span>
             </label>
           </div>
