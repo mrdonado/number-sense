@@ -81,6 +81,7 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
       enterComparisonMode,
       exitComparisonMode,
       zoomOnBall,
+      wasPinching,
     } = usePhysicsEngine({
       containerRef,
       canvasRef,
@@ -156,6 +157,11 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
     // Handle touch on canvas to activate legend item
     const handleCanvasTouchEnd = useCallback(
       (e: React.TouchEvent<HTMLCanvasElement>) => {
+        // Don't select balls if we were just pinching to zoom
+        if (wasPinching()) {
+          return;
+        }
+
         const canvas = canvasRef.current;
         if (!canvas) return;
 
@@ -171,7 +177,7 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
         // Set the hovered state: activate if tapping a ball, deactivate if tapping background
         setHoveredBallId(ballId);
       },
-      [getBallAtPoint, setHoveredBallId]
+      [getBallAtPoint, setHoveredBallId, wasPinching]
     );
 
     // Clear tooltip position when hover state is cleared (e.g., when ball moves away from cursor)

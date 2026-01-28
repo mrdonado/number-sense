@@ -66,6 +66,9 @@ export function createZoomHandlers(
   let touchStartTime: number | null = null;
   let touchStartPosition: { x: number; y: number } | null = null;
 
+  // Ref to track if a pinch gesture just occurred (to prevent ball selection after pinch)
+  const wasPinchingRef = { current: false };
+
   // Mouse drag detection state
   let mouseDownPosition: { x: number; y: number } | null = null;
   const DRAG_THRESHOLD = 5; // pixels - if mouse moves more than this, it's a drag
@@ -354,6 +357,7 @@ export function createZoomHandlers(
       resetTouchPanState();
       lastPinchDistance = getTouchDistance(e.touches[0], e.touches[1]);
       lastPinchCenter = getTouchCenter(e.touches[0], e.touches[1]);
+      wasPinchingRef.current = true; // Mark that a pinch is in progress
     } else if (e.touches.length === 1) {
       // Single finger - could be tap or pan
       touchStartTime = Date.now();
@@ -482,7 +486,8 @@ export function createZoomHandlers(
       touchStartTime !== null &&
       touchStartPosition !== null &&
       e.changedTouches.length === 1 &&
-      !isTouchPanning
+      !isTouchPanning &&
+      !wasPinchingRef.current // Don't process tap if we were pinching
     ) {
       const touchEndTime = Date.now();
       const touchDuration = touchEndTime - touchStartTime;
@@ -520,9 +525,13 @@ export function createZoomHandlers(
       resetPinchState();
     }
 
-    // Reset touch pan state
+    // Reset touch pan state and pinching flag
     if (e.touches.length === 0) {
       resetTouchPanState();
+      // Reset the pinching flag after a short delay to allow the touch end handler in PhysicsCanvas to check it
+      setTimeout(() => {
+        wasPinchingRef.current = false;
+      }, 50);
     }
   };
 
@@ -569,6 +578,7 @@ export function createZoomHandlers(
     isZoomedRef,
     zoomTargetRef,
     isPanningRef,
+    wasPinchingRef,
     handleDoubleClick,
     handleClick,
     handleMouseDown,

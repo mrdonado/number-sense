@@ -44,6 +44,7 @@ interface UsePhysicsEngineReturn {
   enterComparisonMode: () => void;
   exitComparisonMode: () => void;
   zoomOnBall: (id: number) => void;
+  wasPinching: () => boolean;
 }
 
 export function usePhysicsEngine(
@@ -80,6 +81,7 @@ export function usePhysicsEngine(
   const exitComparisonModeRef = useRef<(() => void) | null>(null);
   const ballOpacitiesRef = useRef<Map<number, number>>(new Map());
   const mouseScreenPosRef = useRef<{ x: number; y: number } | null>(null);
+  const wasPinchingRef = useRef<{ current: boolean } | null>(null);
 
   // Keep ref in sync with state for use in render callback
   useEffect(() => {
@@ -335,6 +337,7 @@ export function usePhysicsEngine(
       isZoomedRef,
       zoomTargetRef,
       isPanningRef,
+      wasPinchingRef: zoomWasPinchingRef,
       handleDoubleClick,
       handleClick,
       handleMouseDown: zoomHandleMouseDown,
@@ -347,6 +350,9 @@ export function usePhysicsEngine(
       resetZoom,
       cleanup: zoomCleanup,
     } = createZoomHandlers(zoomOptions);
+
+    // Store wasPinchingRef for external access
+    wasPinchingRef.current = zoomWasPinchingRef;
 
     // Store zoomOnBallById and resetZoom in refs for external access
     zoomOnBallByIdRef.current = zoomOnBallById;
@@ -857,6 +863,9 @@ export function usePhysicsEngine(
     exitComparisonMode,
     zoomOnBall: useCallback((id: number) => {
       zoomOnBallByIdRef.current?.(id);
+    }, []),
+    wasPinching: useCallback(() => {
+      return wasPinchingRef.current?.current ?? false;
     }, []),
   };
 }

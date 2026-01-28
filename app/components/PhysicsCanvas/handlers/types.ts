@@ -17,6 +17,7 @@ export interface ZoomHandlerResult {
   isZoomedRef: { current: boolean };
   zoomTargetRef: { current: Bounds | null };
   isPanningRef: { current: boolean };
+  wasPinchingRef: { current: boolean };
   handleDoubleClick: (e: MouseEvent) => void;
   handleClick: (e: MouseEvent) => void;
   handleMouseDown: (e: MouseEvent) => void;
