@@ -72,11 +72,17 @@ body {
 
 /* Form elements */
 .toolbar {
-  @apply flex flex-wrap gap-2 sm:gap-3;
+  @apply flex flex-wrap gap-2 sm:gap-3 items-center;
 }
 
 .input {
   @apply px-3 sm:px-4 py-2 border border-zinc-300 dark:border-zinc-700 rounded-lg bg-white dark:bg-zinc-900 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-physics-ball w-full sm:w-auto min-w-0 flex-1 sm:flex-none;
+}
+
+/* Comparison mode button with fixed width on mobile */
+.btn-compare,
+.btn-compare-active {
+  @apply min-w-[140px];
 }
 
 /* Comparison type toggle */
@@ -96,6 +102,6 @@ body {
   @apply px-4 sm:px-6 py-2 bg-blue-600 text-white rounded-lg hover:opacity-90 transition-opacity font-medium text-sm sm:text-base whitespace-nowrap;
 }
 
-.toggle-checkbox:checked + .toggle-text {
+.toggle-checkbox:checked+.toggle-text {
   @apply bg-green-600;
 }
