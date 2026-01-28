@@ -37,6 +37,15 @@
   @apply text-amber-400 text-sm font-medium;
 }
 
+/* Comparison ratio display */
+.comparisonRatio {
+  @apply absolute right-2 bottom-2 bg-black/70 backdrop-blur-sm rounded-lg px-4 py-2 z-10 border border-amber-400/30;
+}
+
+.comparisonRatioText {
+  @apply text-amber-300 text-sm font-medium;
+}
+
 /* Tooltip */
 .tooltip {
   @apply absolute pointer-events-none z-10 flex items-center gap-2 px-3 py-2 bg-black/80 backdrop-blur-sm rounded-lg shadow-lg border border-white/10;

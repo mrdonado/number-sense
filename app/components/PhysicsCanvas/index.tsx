@@ -12,6 +12,7 @@ import {
 import { ZOOM_INDICATOR_HEIGHT } from "./constants";
 import { usePhysicsEngine } from "./hooks/usePhysicsEngine";
 import { Legend } from "./Legend";
+import { ComparisonRatio } from "./ComparisonRatio";
 import { formatValue } from "@/app/utils/formatValue";
 import type { PhysicsCanvasHandle, BallInfo } from "./types";
 import styles from "./PhysicsCanvas.module.css";
@@ -218,7 +219,16 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
             onRemove={removeBall}
             onToggleVisibility={toggleBallVisibility}
             onZoom={zoomOnBall}
+            isComparisonMode={isComparisonMode}
           />
+          {/* Comparison ratio display */}
+          {isComparisonMode && (
+            <ComparisonRatio
+              balls={balls}
+              hoveredBallId={hoveredBallId}
+              hiddenBallIds={hiddenBallIds}
+            />
+          )}
           {/* Zoom mode indicator */}
           {zoomLevel < 1.0 && !isComparisonMode && (
             <div className={styles.modeIndicator}>

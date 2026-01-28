@@ -13,6 +13,7 @@ interface LegendProps {
   onRemove: (id: number) => void;
   onToggleVisibility: (id: number) => void;
   onZoom: (id: number) => void;
+  isComparisonMode?: boolean;
 }
 
 /**
@@ -50,6 +51,7 @@ export function Legend({
   onRemove,
   onToggleVisibility,
   onZoom,
+  isComparisonMode = false,
 }: LegendProps) {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
@@ -106,11 +108,15 @@ export function Legend({
                 style={{
                   backgroundColor:
                     hoveredBallId === ball.id
-                      ? "rgba(255, 255, 255, 0.2)"
+                      ? isComparisonMode
+                        ? "rgba(251, 191, 36, 0.25)" // Amber highlight in comparison mode
+                        : "rgba(255, 255, 255, 0.2)"
                       : "transparent",
                   boxShadow:
                     hoveredBallId === ball.id
-                      ? `0 0 0 2px ${ball.color}`
+                      ? isComparisonMode
+                        ? `0 0 0 2px rgba(251, 191, 36, 0.6)` // Amber border in comparison mode
+                        : `0 0 0 2px ${ball.color}`
                       : "none",
                   opacity: isHidden ? 0.4 : 1,
                 }}
