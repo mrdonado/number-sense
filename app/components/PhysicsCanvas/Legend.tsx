@@ -126,7 +126,12 @@ export function Legend({
                 onPointerLeave={(e) => {
                   if (e.pointerType !== "touch") onHover(null);
                 }}
-                onClick={() => !isHidden && onZoom(ball.id)}
+                onClick={() => {
+                  if (!isHidden) {
+                    onHover(ball.id); // Set hover state for touch devices
+                    onZoom(ball.id);
+                  }
+                }}
               >
                 <span
                   className={styles.ballIndicator}
