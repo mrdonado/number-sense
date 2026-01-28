@@ -6,13 +6,43 @@ import {
   BALL_FRICTION_AIR,
   BALL_COLORS,
 } from "../constants";
-import type { BallBody, BallInfo, Dimensions, PersistedBall } from "../types";
+import type {
+  BallBody,
+  BallInfo,
+  Dimensions,
+  PersistedBall,
+  ComparisonType,
+} from "../types";
 
 /**
  * Manages ball spawning and scaling
  */
 export class BallManager {
   private scaleFactor = 1.0;
+  private comparisonType: ComparisonType = "area";
+
+  /**
+   * Set the comparison type (area or linear)
+   */
+  setComparisonType(type: ComparisonType) {
+    this.comparisonType = type;
+  }
+
+  /**
+   * Get the effective radius for display based on comparison type
+   * In area mode: use radius as-is (proportional to √area)
+   * In linear mode: use radius² (proportional to diameter/linear dimension)
+   */
+  private getEffectiveRadius(originalRadius: number): number {
+    if (this.comparisonType === "linear") {
+      // For linear comparison, ball diameter should be proportional to the value
+      // Since originalRadius = √(value/π), we have value = π × originalRadius²
+      // Ball diameter ∝ value = π × originalRadius²
+      // So displayRadius ∝ originalRadius²
+      return originalRadius * originalRadius;
+    }
+    return originalRadius;
+  }
 
   /**
    * Spawn a new ball with the given radius
@@ -37,16 +67,19 @@ export class BallManager {
     const bodies = Matter.Composite.allBodies(engine.world);
     const balls = bodies.filter((b) => !b.isStatic) as BallBody[];
 
-    // Find the largest original radius among all balls (including the new one)
-    let maxOriginalRadius = radius;
+    // Find the largest effective radius among all balls (including the new one)
+    let maxEffectiveRadius = this.getEffectiveRadius(radius);
     balls.forEach((ball) => {
-      if (ball.originalRadius && ball.originalRadius > maxOriginalRadius) {
-        maxOriginalRadius = ball.originalRadius;
+      if (ball.originalRadius) {
+        const effectiveRadius = this.getEffectiveRadius(ball.originalRadius);
+        if (effectiveRadius > maxEffectiveRadius) {
+          maxEffectiveRadius = effectiveRadius;
+        }
       }
     });
 
     // Calculate scale factor so the largest ball fits the target size
-    const newScaleFactor = targetDisplayRadius / maxOriginalRadius;
+    const newScaleFactor = targetDisplayRadius / maxEffectiveRadius;
 
     // If scale factor changed, resize all existing balls
     if (newScaleFactor !== this.scaleFactor) {
@@ -54,7 +87,8 @@ export class BallManager {
 
       balls.forEach((ball) => {
         if (ball.originalRadius) {
-          const newRadius = ball.originalRadius * newScaleFactor;
+          const effectiveRadius = this.getEffectiveRadius(ball.originalRadius);
+          const newRadius = effectiveRadius * newScaleFactor;
           Matter.Body.scale(ball, scaleRatio, scaleRatio);
           ball.circleRadius = newRadius;
         }
@@ -64,7 +98,8 @@ export class BallManager {
     }
 
     // Calculate the display radius for the new ball
-    const displayRadius = radius * this.scaleFactor;
+    const effectiveRadius = this.getEffectiveRadius(radius);
+    const displayRadius = effectiveRadius * this.scaleFactor;
 
     const x = Math.random() * (width - displayRadius * 2) + displayRadius;
 
@@ -128,16 +163,19 @@ export class BallManager {
     const bodies = Matter.Composite.allBodies(engine.world);
     const balls = bodies.filter((b) => !b.isStatic) as BallBody[];
 
-    // Find the largest original radius among all balls (including the new one)
-    let maxOriginalRadius = originalRadius;
+    // Find the largest effective radius among all balls (including the new one)
+    let maxEffectiveRadius = this.getEffectiveRadius(originalRadius);
     balls.forEach((ball) => {
-      if (ball.originalRadius && ball.originalRadius > maxOriginalRadius) {
-        maxOriginalRadius = ball.originalRadius;
+      if (ball.originalRadius) {
+        const effectiveRadius = this.getEffectiveRadius(ball.originalRadius);
+        if (effectiveRadius > maxEffectiveRadius) {
+          maxEffectiveRadius = effectiveRadius;
+        }
       }
     });
 
     // Calculate scale factor
-    const newScaleFactor = targetDisplayRadius / maxOriginalRadius;
+    const newScaleFactor = targetDisplayRadius / maxEffectiveRadius;
 
     // If scale factor changed, resize all existing balls
     if (newScaleFactor !== this.scaleFactor) {
@@ -145,7 +183,8 @@ export class BallManager {
 
       balls.forEach((ball) => {
         if (ball.originalRadius) {
-          const newRadius = ball.originalRadius * newScaleFactor;
+          const effectiveRadius = this.getEffectiveRadius(ball.originalRadius);
+          const newRadius = effectiveRadius * newScaleFactor;
           Matter.Body.scale(ball, scaleRatio, scaleRatio);
           ball.circleRadius = newRadius;
         }
@@ -155,7 +194,8 @@ export class BallManager {
     }
 
     // Calculate the display radius for the new ball
-    const displayRadius = originalRadius * this.scaleFactor;
+    const effectiveRadius = this.getEffectiveRadius(originalRadius);
+    const displayRadius = effectiveRadius * this.scaleFactor;
 
     const x = Math.random() * (width - displayRadius * 2) + displayRadius;
 

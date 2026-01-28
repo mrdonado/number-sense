@@ -78,3 +78,24 @@ body {
 .input {
   @apply px-3 sm:px-4 py-2 border border-zinc-300 dark:border-zinc-700 rounded-lg bg-white dark:bg-zinc-900 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-physics-ball w-full sm:w-auto min-w-0 flex-1 sm:flex-none;
 }
+
+/* Comparison type toggle */
+.comparison-type-toggle {
+  @apply flex items-center;
+}
+
+.toggle-label {
+  @apply flex items-center gap-2 cursor-pointer;
+}
+
+.toggle-checkbox {
+  @apply sr-only;
+}
+
+.toggle-text {
+  @apply px-4 sm:px-6 py-2 bg-blue-600 text-white rounded-lg hover:opacity-90 transition-opacity font-medium text-sm sm:text-base whitespace-nowrap;
+}
+
+.toggle-checkbox:checked + .toggle-text {
+  @apply bg-green-600;
+}

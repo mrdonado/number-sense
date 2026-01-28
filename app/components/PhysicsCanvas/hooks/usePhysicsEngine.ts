@@ -14,6 +14,7 @@ import type {
   Dimensions,
   PersistedBall,
   PhysicsRefs,
+  ComparisonType,
 } from "../types";
 
 const STORAGE_KEY = "number-sense-balls";
@@ -21,6 +22,7 @@ const STORAGE_KEY = "number-sense-balls";
 interface UsePhysicsEngineOptions {
   containerRef: React.RefObject<HTMLDivElement | null>;
   canvasRef: React.RefObject<HTMLCanvasElement | null>;
+  comparisonType?: ComparisonType;
 }
 
 interface UsePhysicsEngineReturn {
@@ -50,7 +52,7 @@ interface UsePhysicsEngineReturn {
 export function usePhysicsEngine(
   options: UsePhysicsEngineOptions
 ): UsePhysicsEngineReturn {
-  const { containerRef, canvasRef } = options;
+  const { containerRef, canvasRef, comparisonType = "area" } = options;
 
   const physicsRefs = useRef<PhysicsRefs>({
     engine: null,
@@ -92,6 +94,11 @@ export function usePhysicsEngine(
   useEffect(() => {
     isComparisonModeRef.current = isComparisonMode;
   }, [isComparisonMode]);
+
+  // Set ball manager comparison type on initialization
+  useEffect(() => {
+    ballManagerRef.current.setComparisonType(comparisonType);
+  }, []);
 
   // Persist balls to localStorage whenever they change
   useEffect(() => {

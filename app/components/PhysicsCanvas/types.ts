@@ -39,6 +39,8 @@ export interface BallForExclusion {
   units?: string;
 }
 
+export type ComparisonType = "area" | "linear";
+
 export interface PhysicsCanvasHandle {
   spawnBall: (
     radius: number,

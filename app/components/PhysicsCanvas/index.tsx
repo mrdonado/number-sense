@@ -14,7 +14,7 @@ import { usePhysicsEngine } from "./hooks/usePhysicsEngine";
 import { Legend } from "./Legend";
 import { ComparisonRatio } from "./ComparisonRatio";
 import { formatValue } from "@/app/utils/formatValue";
-import type { PhysicsCanvasHandle, BallInfo } from "./types";
+import type { PhysicsCanvasHandle, BallInfo, ComparisonType } from "./types";
 import styles from "./PhysicsCanvas.module.css";
 
 export type { PhysicsCanvasHandle } from "./types";
@@ -54,11 +54,16 @@ function Tooltip({ ball, x, y }: TooltipProps) {
 interface PhysicsCanvasProps {
   onBallCountChange?: (count: number) => void;
   onComparisonModeChange?: (isComparisonMode: boolean) => void;
+  comparisonType?: ComparisonType;
 }
 
 const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
   function PhysicsCanvas(props, ref) {
-    const { onBallCountChange, onComparisonModeChange } = props;
+    const {
+      onBallCountChange,
+      onComparisonModeChange,
+      comparisonType = "area",
+    } = props;
     const containerRef = useRef<HTMLDivElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [mousePos, setMousePos] = useState<{ x: number; y: number } | null>(
@@ -85,6 +90,7 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
     } = usePhysicsEngine({
       containerRef,
       canvasRef,
+      comparisonType,
     });
 
     // Calculate visible ball count and notify parent
@@ -232,6 +238,7 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
             balls={balls}
             hoveredBallId={hoveredBallId}
             hiddenBallIds={hiddenBallIds}
+            comparisonType={comparisonType}
           />
           {/* Zoom mode indicator */}
           {zoomLevel < 1.0 && !isComparisonMode && (

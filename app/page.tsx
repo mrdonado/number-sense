@@ -6,6 +6,7 @@ import PhysicsCanvas, {
   PhysicsCanvasHandle,
 } from "./components/PhysicsCanvas/index";
 import AddDataDialog from "./components/AddDataDialog";
+import type { ComparisonType } from "./components/PhysicsCanvas/types";
 
 function HomeContent() {
   const searchParams = useSearchParams();
@@ -17,6 +18,13 @@ function HomeContent() {
   const [ballCount, setBallCount] = useState(0);
   const [isComparisonMode, setIsComparisonMode] = useState(false);
   const [isAddDataDialogOpen, setIsAddDataDialogOpen] = useState(false);
+  const [comparisonType, setComparisonType] = useState<ComparisonType>(() => {
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem("comparisonType");
+      return (stored === "linear" ? "linear" : "area") as ComparisonType;
+    }
+    return "area";
+  });
 
   const handleSubmit = () => {
     const area = parseFloat(inputValue);
@@ -39,6 +47,13 @@ function HomeContent() {
     }
   }, [isComparisonMode]);
 
+  const handleComparisonTypeChange = useCallback(() => {
+    const newType: ComparisonType =
+      comparisonType === "area" ? "linear" : "area";
+    localStorage.setItem("comparisonType", newType);
+    window.location.reload();
+  }, [comparisonType]);
+
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
       handleSubmit();
@@ -47,7 +62,8 @@ function HomeContent() {
 
   const handleAddData = useCallback(
     (name: string, value: number, units: string, sourceId?: string) => {
-      // Calculate radius from area: A = πr² → r = √(A/π)
+      // Always calculate radius from area: A = πr² → r = √(A/π)
+      // The comparison type only affects visual scaling, not the stored value
       const radius = Math.sqrt(value / Math.PI);
       canvasRef.current?.spawnBall(radius, name, units, sourceId);
     },
@@ -98,14 +114,30 @@ function HomeContent() {
                 isComparisonMode ? "btn-compare-active" : "btn-compare"
               }`}
             >
-              {isComparisonMode ? "Exit Comparison" : "Compare Sizes"}
+              {isComparisonMode ? "Comparison Mode" : "Normal Mode"}
             </button>
           )}
+          <div className="comparison-type-toggle">
+            <label className="toggle-label">
+              <input
+                type="checkbox"
+                checked={comparisonType === "linear"}
+                onChange={handleComparisonTypeChange}
+                className="toggle-checkbox"
+              />
+              <span className="toggle-text">
+                {comparisonType === "area"
+                  ? "Input as Area"
+                  : "Input as Diameter"}
+              </span>
+            </label>
+          </div>
         </div>
         <PhysicsCanvas
           ref={canvasRef}
           onBallCountChange={setBallCount}
           onComparisonModeChange={setIsComparisonMode}
+          comparisonType={comparisonType}
         />
         <AddDataDialog
           isOpen={isAddDataDialogOpen}
