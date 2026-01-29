@@ -7,7 +7,7 @@ interface ControlsProps {
   comparisonTypeDisplay: string;
   modeText: string;
   modeTextClass: string;
-  isModeClickable: boolean;
+  isModeClickable?: boolean;
   onAddData?: () => void;
   onClear?: () => void;
   onToggleComparisonMode?: () => void;

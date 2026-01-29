@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 import PhysicsCanvas, {
   PhysicsCanvasHandle,
 } from "./components/PhysicsCanvas/index";
-import AddDataDialog from "./components/AddDataDialog";
+import AddDataDialog from "./components/AddDataDialog/index";
 import type { ComparisonType } from "./components/PhysicsCanvas/types";
 
 function HomeContent() {
@@ -15,20 +15,34 @@ function HomeContent() {
   const canvasRef = useRef<PhysicsCanvasHandle>(null);
   const [inputValue, setInputValue] = useState("");
   const [nameValue, setNameValue] = useState("");
-  const [ballCount, setBallCount] = useState(0);
   const [isComparisonMode, setIsComparisonMode] = useState(false);
   const [isAddDataDialogOpen, setIsAddDataDialogOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
-  const [comparisonType, setComparisonType] = useState<ComparisonType>(() => {
+  const [comparisonType] = useState<ComparisonType>(() => {
     if (typeof window !== "undefined") {
       const stored = localStorage.getItem("comparisonType");
       return (stored === "linear" ? "linear" : "area") as ComparisonType;
     }
     return "area";
   });
+  const [excludedItems, setExcludedItems] = useState<
+    Array<{ name: string; sourceId: string }>
+  >([]);
+  const [existingUnits, setExistingUnits] = useState<string[]>([]);
+  const [existingSourceIds, setExistingSourceIds] = useState<string[]>([]);
 
-  useEffect(() => {
-    setMounted(true);
+  const handleOpenAddDataDialog = useCallback(() => {
+    const balls = canvasRef.current?.getBalls?.() || [];
+    setExcludedItems(
+      balls.map((b) => ({
+        name: b.name,
+        sourceId: b.sourceId || "",
+      }))
+    );
+    setExistingUnits(balls.map((b) => b.units).filter((u): u is string => !!u));
+    setExistingSourceIds(
+      balls.map((b) => b.sourceId).filter((s): s is string => !!s)
+    );
+    setIsAddDataDialogOpen(true);
   }, []);
 
   const handleSubmit = () => {
@@ -110,11 +124,10 @@ function HomeContent() {
         )}
         <PhysicsCanvas
           ref={canvasRef}
-          onBallCountChange={setBallCount}
           onComparisonModeChange={setIsComparisonMode}
           comparisonType={comparisonType}
           onComparisonTypeChange={handleComparisonTypeChange}
-          onAddData={() => setIsAddDataDialogOpen(true)}
+          onAddData={handleOpenAddDataDialog}
           onClear={handleClear}
           onToggleComparisonMode={handleCompareToggle}
         />
@@ -122,16 +135,9 @@ function HomeContent() {
           isOpen={isAddDataDialogOpen}
           onClose={() => setIsAddDataDialogOpen(false)}
           onSelect={handleAddData}
-          excludedItems={(canvasRef.current?.getBalls?.() || []).map((b) => ({
-            name: b.name,
-            sourceId: b.sourceId || "",
-          }))}
-          existingUnits={(canvasRef.current?.getBalls?.() || [])
-            .map((b) => b.units)
-            .filter((u): u is string => !!u)}
-          existingSourceIds={(canvasRef.current?.getBalls?.() || [])
-            .map((b) => b.sourceId)
-            .filter((s): s is string => !!s)}
+          excludedItems={excludedItems}
+          existingUnits={existingUnits}
+          existingSourceIds={existingSourceIds}
         />
       </main>
     </div>
