@@ -78,7 +78,13 @@ function HomeContent() {
   return (
     <div className="app-container">
       <main className="main-content">
-        <h1 className="page-title">Number Sense</h1>
+        <h1 className="page-title">
+          <span style={{ fontWeight: "200", color: "#3b82f6" }}>Number</span>
+          <span style={{ fontWeight: "800", color: "#3b82f6" }}>Sense </span>
+        </h1>
+        <a href="https://www.jdonado.com" className="page-subtitle">
+          by F. Javier R. Donado
+        </a>
         {isDebugMode && (
           <div className="toolbar">
             <input
