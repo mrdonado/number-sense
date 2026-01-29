@@ -96,7 +96,12 @@ function HomeContent() {
           <span style={{ fontWeight: "200", color: "#3b82f6" }}>Number</span>
           <span style={{ fontWeight: "800", color: "#3b82f6" }}>Sense </span>
         </h1>
-        <a href="https://www.jdonado.com" className="page-subtitle">
+        <a
+          href="https://www.jdonado.com"
+          className="page-subtitle"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           by F. Javier R. Donado
         </a>
         {isDebugMode && (
