@@ -72,7 +72,7 @@ body {
 
 /* Form elements */
 .toolbar {
-  @apply flex flex-wrap gap-2 sm:gap-3 items-center;
+  @apply flex flex-nowrap gap-2 sm:gap-3 items-center;
 }
 
 .input {

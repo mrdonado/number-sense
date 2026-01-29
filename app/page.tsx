@@ -119,7 +119,7 @@ function HomeContent() {
                 isComparisonMode ? "btn-compare-active" : "btn-compare"
               }`}
             >
-              {isComparisonMode ? "Comparison Mode" : "Normal Mode"}
+              {isComparisonMode ? "Stop Comparison" : "Start Comparison"}
             </button>
           )}
           <div className="comparison-type-toggle">

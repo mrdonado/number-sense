@@ -252,6 +252,12 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
               <span className={styles.comparisonModeText}>Comparison Mode</span>
             </div>
           )}
+          {/* Zoom mode indicator */}
+          {zoomLevel === 1.0 && !isComparisonMode && (
+            <div className={styles.modeIndicator}>
+              <span className={styles.normalModeText}>Normal Mode</span>
+            </div>
+          )}
           {/* Ball tooltip */}
           {hoveredBall && mousePos && (
             <Tooltip ball={hoveredBall} x={mousePos.x} y={mousePos.y} />
