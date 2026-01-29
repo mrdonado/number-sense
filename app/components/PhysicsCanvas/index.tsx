@@ -8,6 +8,7 @@ import {
   useEffect,
   useState,
   useMemo,
+  useSyncExternalStore,
 } from "react";
 import { ZOOM_INDICATOR_HEIGHT } from "./constants";
 import { usePhysicsEngine } from "./hooks/usePhysicsEngine";
@@ -55,6 +56,7 @@ interface PhysicsCanvasProps {
   onBallCountChange?: (count: number) => void;
   onComparisonModeChange?: (isComparisonMode: boolean) => void;
   comparisonType?: ComparisonType;
+  onComparisonTypeChange?: () => void;
 }
 
 const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
@@ -63,11 +65,20 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
       onBallCountChange,
       onComparisonModeChange,
       comparisonType = "area",
+      onComparisonTypeChange,
     } = props;
     const containerRef = useRef<HTMLDivElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [mousePos, setMousePos] = useState<{ x: number; y: number } | null>(
       null
+    );
+
+    // Use useSyncExternalStore to handle server/client hydration for comparison type display
+    const comparisonTypeDisplay = useSyncExternalStore(
+      () => () => {}, // subscribe (no-op since comparisonType is controlled by parent)
+      () =>
+        comparisonType === "area" ? "Comparing Area" : "Comparing Diameter", // client snapshot
+      () => "Comparing Area" // server snapshot
     );
 
     const {
@@ -258,6 +269,18 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
               <span className={styles.normalModeText}>Normal Mode</span>
             </div>
           )}
+          {/* Comparison type indicator */}
+          <div
+            className={styles.comparisonTypeIndicator}
+            onClick={(e) => {
+              e.stopPropagation();
+              onComparisonTypeChange?.();
+            }}
+          >
+            <span className={styles.comparisonTypeText}>
+              {comparisonTypeDisplay}
+            </span>
+          </div>
           {/* Ball tooltip */}
           {hoveredBall && mousePos && (
             <Tooltip ball={hoveredBall} x={mousePos.x} y={mousePos.y} />

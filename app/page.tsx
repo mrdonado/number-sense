@@ -122,29 +122,13 @@ function HomeContent() {
               {isComparisonMode ? "Stop Comparison" : "Start Comparison"}
             </button>
           )}
-          <div className="comparison-type-toggle">
-            <label className="toggle-label">
-              <input
-                type="checkbox"
-                checked={comparisonType === "linear"}
-                onChange={handleComparisonTypeChange}
-                className="toggle-checkbox"
-              />
-              <span className="toggle-text" suppressHydrationWarning>
-                {mounted
-                  ? comparisonType === "area"
-                    ? "Input as Area"
-                    : "Input as Diameter"
-                  : "Input as Area"}
-              </span>
-            </label>
-          </div>
         </div>
         <PhysicsCanvas
           ref={canvasRef}
           onBallCountChange={setBallCount}
           onComparisonModeChange={setIsComparisonMode}
           comparisonType={comparisonType}
+          onComparisonTypeChange={handleComparisonTypeChange}
         />
         <AddDataDialog
           isOpen={isAddDataDialogOpen}
