@@ -249,7 +249,14 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
             onTouchEnd={handleCanvasTouchEnd}
           />
           {/* Controls and Legend container */}
-          <div className={styles.rightPanel}>
+          <div
+            className={styles.rightPanel}
+            onClick={(e) => e.stopPropagation()}
+            onMouseDown={(e) => e.stopPropagation()}
+            onTouchStart={(e) => e.stopPropagation()}
+            onTouchMove={(e) => e.stopPropagation()}
+            onTouchEnd={(e) => e.stopPropagation()}
+          >
             {mounted && (
               <Controls
                 comparisonTypeDisplay={comparisonTypeDisplay}

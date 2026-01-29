@@ -82,10 +82,20 @@ export function Legend({
   ) : null;
 
   return (
-    <div className={styles.legend}>
+    <div
+      className={styles.legend}
+      onClick={(e) => e.stopPropagation()}
+      onMouseDown={(e) => e.stopPropagation()}
+      onTouchStart={(e) => e.stopPropagation()}
+      onTouchMove={(e) => e.stopPropagation()}
+      onTouchEnd={(e) => e.stopPropagation()}
+    >
       <button
         className={styles.legendHeader}
-        onClick={() => setIsCollapsed(!isCollapsed)}
+        onClick={(e) => {
+          e.stopPropagation();
+          setIsCollapsed(!isCollapsed);
+        }}
         title={isCollapsed ? "Expand legend" : "Collapse legend"}
       >
         <span className={styles.legendTitle}>

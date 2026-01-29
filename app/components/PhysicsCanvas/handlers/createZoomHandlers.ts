@@ -320,6 +320,13 @@ export function createZoomHandlers(
 
   // ============ Touch Helper Functions ============
 
+  const isEventInRightPanel = (clientX: number, clientY: number): boolean => {
+    const element = document.elementFromPoint(clientX, clientY);
+    if (!element) return false;
+    // Check if the element or any of its parents has the rightPanel class
+    return element.closest('[class*="rightPanel"]') !== null;
+  };
+
   const getTouchDistance = (touch1: Touch, touch2: Touch): number => {
     const dx = touch1.clientX - touch2.clientX;
     const dy = touch1.clientY - touch2.clientY;
@@ -351,6 +358,14 @@ export function createZoomHandlers(
   // ============ Touch Event Handlers ============
 
   const handleTouchStart = (e: TouchEvent) => {
+    // Ignore touches from the right panel (controls/legend)
+    if (
+      e.touches.length > 0 &&
+      isEventInRightPanel(e.touches[0].clientX, e.touches[0].clientY)
+    ) {
+      return;
+    }
+
     if (e.touches.length === 2) {
       // Two-finger pinch start
       e.preventDefault();
@@ -481,6 +496,17 @@ export function createZoomHandlers(
   };
 
   const handleTouchEnd = (e: TouchEvent) => {
+    // Ignore touches from the right panel (controls/legend)
+    if (
+      e.changedTouches.length > 0 &&
+      isEventInRightPanel(
+        e.changedTouches[0].clientX,
+        e.changedTouches[0].clientY
+      )
+    ) {
+      return;
+    }
+
     // Check for tap on ball (like double-click)
     if (
       touchStartTime !== null &&

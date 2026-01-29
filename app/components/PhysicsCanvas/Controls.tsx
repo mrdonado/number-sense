@@ -29,10 +29,20 @@ export function Controls({
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   return (
-    <div className={styles.controls}>
+    <div
+      className={styles.controls}
+      onClick={(e) => e.stopPropagation()}
+      onMouseDown={(e) => e.stopPropagation()}
+      onTouchStart={(e) => e.stopPropagation()}
+      onTouchMove={(e) => e.stopPropagation()}
+      onTouchEnd={(e) => e.stopPropagation()}
+    >
       <button
         className={styles.controlsHeader}
-        onClick={() => setIsCollapsed(!isCollapsed)}
+        onClick={(e) => {
+          e.stopPropagation();
+          setIsCollapsed(!isCollapsed);
+        }}
         title={isCollapsed ? "Expand controls" : "Collapse controls"}
       >
         <span className={styles.controlsTitle}>Controls</span>
