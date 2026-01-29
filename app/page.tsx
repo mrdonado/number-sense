@@ -117,7 +117,6 @@ function HomeContent() {
           onAddData={() => setIsAddDataDialogOpen(true)}
           onClear={handleClear}
           onToggleComparisonMode={handleCompareToggle}
-          canEnterComparison={ballCount >= 2}
         />
         <AddDataDialog
           isOpen={isAddDataDialogOpen}

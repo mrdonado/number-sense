@@ -7,7 +7,6 @@ interface ControlsProps {
   comparisonTypeDisplay: string;
   modeText: string;
   modeTextClass: string;
-  canEnterComparison: boolean;
   isModeClickable: boolean;
   onAddData?: () => void;
   onClear?: () => void;
@@ -19,8 +18,7 @@ export function Controls({
   comparisonTypeDisplay,
   modeText,
   modeTextClass,
-  canEnterComparison,
-  isModeClickable,
+  isModeClickable = true,
   onAddData,
   onClear,
   onToggleComparisonMode,

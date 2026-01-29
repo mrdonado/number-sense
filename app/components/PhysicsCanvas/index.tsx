@@ -61,7 +61,6 @@ interface PhysicsCanvasProps {
   onAddData?: () => void;
   onClear?: () => void;
   onToggleComparisonMode?: () => void;
-  canEnterComparison?: boolean;
 }
 
 const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
@@ -74,7 +73,6 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
       onAddData,
       onClear,
       onToggleComparisonMode,
-      canEnterComparison = false,
     } = props;
     const containerRef = useRef<HTMLDivElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -131,14 +129,10 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
       onComparisonModeChange?.(isComparisonMode);
     }, [isComparisonMode, onComparisonModeChange]);
 
-    // Calculate if comparison mode can be entered (need at least 2 visible balls)
-    const canEnterComparisonMode = visibleBallCount >= 2;
-
     useImperativeHandle(ref, () => ({
       spawnBall,
       clearBalls,
       isComparisonMode,
-      canEnterComparisonMode,
       enterComparisonMode,
       exitComparisonMode,
       getBallNames: () => balls.map((b) => b.name),
@@ -273,13 +267,6 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
                     : isComparisonMode
                     ? styles.comparisonModeText
                     : styles.normalModeText
-                }
-                canEnterComparison={canEnterComparison}
-                isModeClickable={
-                  (zoomLevel === 1.0 &&
-                    !isComparisonMode &&
-                    canEnterComparison) ||
-                  isComparisonMode
                 }
                 onAddData={onAddData}
                 onClear={onClear}

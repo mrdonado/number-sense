@@ -50,7 +50,6 @@ export interface PhysicsCanvasHandle {
   ) => void;
   clearBalls: () => void;
   isComparisonMode: boolean;
-  canEnterComparisonMode: boolean;
   enterComparisonMode: () => void;
   exitComparisonMode: () => void;
   getBallNames: () => string[];
