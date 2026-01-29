@@ -25,13 +25,8 @@
 }
 
 /* Mode indicators */
-.modeIndicator {
-  @apply absolute left-2 top-8 bg-black/50 backdrop-blur-sm rounded-lg px-3 py-2 z-10;
-  pointer-events: none;
-}
-
-.comparisonTypeIndicator {
-  @apply absolute left-2 top-20 bg-black/50 backdrop-blur-sm rounded-lg px-3 py-2 z-10 cursor-pointer hover:bg-black/70 transition-colors;
+.actionText {
+  @apply text-white text-sm font-medium;
 }
 
 .zoomModeText {
@@ -78,10 +73,51 @@
   @apply text-xs text-white/70 font-mono;
 }
 
+/* Right panel container for Controls and Legend */
+.rightPanel {
+  @apply absolute right-2 flex flex-col gap-2 z-20;
+  top: 0.5rem;
+  max-width: 280px;
+}
+
+/* Controls */
+.controls {
+  @apply bg-black/50 backdrop-blur-sm rounded-lg;
+  min-width: 200px;
+  touch-action: none;
+}
+
+.controlsHeader {
+  @apply flex items-center justify-between w-full px-2 py-1.5 text-white/80 text-sm font-medium cursor-pointer border-b border-white/10 bg-transparent;
+}
+
+.controlsHeader:hover {
+  @apply text-white;
+}
+
+.controlsTitle {
+  @apply text-xs uppercase tracking-wide;
+}
+
+.controlsToggle {
+  @apply text-xs text-white/50;
+}
+
+.controlsGrid {
+  @apply grid grid-cols-2 gap-2 p-2;
+}
+
+.controlButton {
+  @apply px-3 py-2 bg-black/50 backdrop-blur-sm rounded-lg cursor-pointer hover:bg-black/70 transition-colors text-center;
+}
+
+.controlButtonDisabled {
+  @apply px-3 py-2 bg-black/30 backdrop-blur-sm rounded-lg text-center cursor-not-allowed opacity-50;
+}
+
 /* Legend */
 .legend {
-  @apply absolute right-2 top-8 max-h-[calc(100%-4rem)] overflow-y-auto bg-black/50 backdrop-blur-sm rounded-lg min-w-30 z-20;
-  max-width: 280px;
+  @apply max-h-[calc(100vh-8rem)] overflow-y-auto bg-black/50 backdrop-blur-sm rounded-lg min-w-30;
   touch-action: none;
 }
 

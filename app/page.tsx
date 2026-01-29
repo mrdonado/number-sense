@@ -79,56 +79,39 @@ function HomeContent() {
     <div className="app-container">
       <main className="main-content">
         <h1 className="page-title">Number Sense</h1>
-        <div className="toolbar">
-          <button
-            onClick={() => setIsAddDataDialogOpen(true)}
-            className="btn btn-primary"
-          >
-            +
-          </button>
-          {isDebugMode && (
-            <>
-              <input
-                type="text"
-                value={nameValue}
-                onChange={(e) => setNameValue(e.target.value)}
-                onKeyDown={handleKeyDown}
-                placeholder="Enter name"
-                className="input"
-              />
-              <input
-                type="number"
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                onKeyDown={handleKeyDown}
-                placeholder="Enter area"
-                className="input"
-              />
-              <button onClick={handleSubmit} className="btn btn-primary">
-                Drop Ball
-              </button>
-            </>
-          )}
-          <button onClick={handleClear} className="btn btn-secondary">
-            🧹
-          </button>
-          {ballCount >= 2 && (
-            <button
-              onClick={handleCompareToggle}
-              className={`btn ${
-                isComparisonMode ? "btn-compare-active" : "btn-compare"
-              }`}
-            >
-              {isComparisonMode ? "Stop Comparison" : "Start Comparison"}
+        {isDebugMode && (
+          <div className="toolbar">
+            <input
+              type="text"
+              value={nameValue}
+              onChange={(e) => setNameValue(e.target.value)}
+              onKeyDown={handleKeyDown}
+              placeholder="Enter name"
+              className="input"
+            />
+            <input
+              type="number"
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              onKeyDown={handleKeyDown}
+              placeholder="Enter area"
+              className="input"
+            />
+            <button onClick={handleSubmit} className="btn btn-primary">
+              Drop Ball
             </button>
-          )}
-        </div>
+          </div>
+        )}
         <PhysicsCanvas
           ref={canvasRef}
           onBallCountChange={setBallCount}
           onComparisonModeChange={setIsComparisonMode}
           comparisonType={comparisonType}
           onComparisonTypeChange={handleComparisonTypeChange}
+          onAddData={() => setIsAddDataDialogOpen(true)}
+          onClear={handleClear}
+          onToggleComparisonMode={handleCompareToggle}
+          canEnterComparison={ballCount >= 2}
         />
         <AddDataDialog
           isOpen={isAddDataDialogOpen}

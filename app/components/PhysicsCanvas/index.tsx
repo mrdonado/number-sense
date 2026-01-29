@@ -14,6 +14,7 @@ import { ZOOM_INDICATOR_HEIGHT } from "./constants";
 import { usePhysicsEngine } from "./hooks/usePhysicsEngine";
 import { Legend } from "./Legend";
 import { ComparisonRatio } from "./ComparisonRatio";
+import { Controls } from "./Controls";
 import { formatValue } from "@/app/utils/formatValue";
 import type { PhysicsCanvasHandle, BallInfo, ComparisonType } from "./types";
 import styles from "./PhysicsCanvas.module.css";
@@ -57,6 +58,10 @@ interface PhysicsCanvasProps {
   onComparisonModeChange?: (isComparisonMode: boolean) => void;
   comparisonType?: ComparisonType;
   onComparisonTypeChange?: () => void;
+  onAddData?: () => void;
+  onClear?: () => void;
+  onToggleComparisonMode?: () => void;
+  canEnterComparison?: boolean;
 }
 
 const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
@@ -66,12 +71,21 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
       onComparisonModeChange,
       comparisonType = "area",
       onComparisonTypeChange,
+      onAddData,
+      onClear,
+      onToggleComparisonMode,
+      canEnterComparison = false,
     } = props;
     const containerRef = useRef<HTMLDivElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [mousePos, setMousePos] = useState<{ x: number; y: number } | null>(
       null
     );
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+      setMounted(true);
+    }, []);
 
     // Use useSyncExternalStore to handle server/client hydration for comparison type display
     const comparisonTypeDisplay = useSyncExternalStore(
@@ -234,16 +248,49 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
             onMouseLeave={handleCanvasMouseLeave}
             onTouchEnd={handleCanvasTouchEnd}
           />
-          <Legend
-            balls={balls}
-            hoveredBallId={hoveredBallId}
-            hiddenBallIds={hiddenBallIds}
-            onHover={setHoveredBallId}
-            onRemove={removeBall}
-            onToggleVisibility={toggleBallVisibility}
-            onZoom={zoomOnBall}
-            isComparisonMode={isComparisonMode}
-          />
+          {/* Controls and Legend container */}
+          <div className={styles.rightPanel}>
+            {mounted && (
+              <Controls
+                comparisonTypeDisplay={comparisonTypeDisplay}
+                modeText={
+                  zoomLevel < 1.0 && !isComparisonMode
+                    ? "Zoom Mode"
+                    : isComparisonMode
+                    ? "Comparison Mode"
+                    : "Normal Mode"
+                }
+                modeTextClass={
+                  zoomLevel < 1.0 && !isComparisonMode
+                    ? styles.zoomModeText
+                    : isComparisonMode
+                    ? styles.comparisonModeText
+                    : styles.normalModeText
+                }
+                canEnterComparison={canEnterComparison}
+                isModeClickable={
+                  (zoomLevel === 1.0 &&
+                    !isComparisonMode &&
+                    canEnterComparison) ||
+                  isComparisonMode
+                }
+                onAddData={onAddData}
+                onClear={onClear}
+                onToggleComparisonMode={onToggleComparisonMode}
+                onComparisonTypeChange={onComparisonTypeChange}
+              />
+            )}
+            <Legend
+              balls={balls}
+              hoveredBallId={hoveredBallId}
+              hiddenBallIds={hiddenBallIds}
+              onHover={setHoveredBallId}
+              onRemove={removeBall}
+              onToggleVisibility={toggleBallVisibility}
+              onZoom={zoomOnBall}
+              isComparisonMode={isComparisonMode}
+            />
+          </div>
           {/* Comparison ratio display */}
           <ComparisonRatio
             balls={balls}
@@ -251,36 +298,6 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
             hiddenBallIds={hiddenBallIds}
             comparisonType={comparisonType}
           />
-          {/* Zoom mode indicator */}
-          {zoomLevel < 1.0 && !isComparisonMode && (
-            <div className={styles.modeIndicator}>
-              <span className={styles.zoomModeText}>Zoom Mode</span>
-            </div>
-          )}
-          {/* Comparison mode indicator */}
-          {isComparisonMode && (
-            <div className={styles.modeIndicator}>
-              <span className={styles.comparisonModeText}>Comparison Mode</span>
-            </div>
-          )}
-          {/* Zoom mode indicator */}
-          {zoomLevel === 1.0 && !isComparisonMode && (
-            <div className={styles.modeIndicator}>
-              <span className={styles.normalModeText}>Normal Mode</span>
-            </div>
-          )}
-          {/* Comparison type indicator */}
-          <div
-            className={styles.comparisonTypeIndicator}
-            onClick={(e) => {
-              e.stopPropagation();
-              onComparisonTypeChange?.();
-            }}
-          >
-            <span className={styles.comparisonTypeText}>
-              {comparisonTypeDisplay}
-            </span>
-          </div>
           {/* Ball tooltip */}
           {hoveredBall && mousePos && (
             <Tooltip ball={hoveredBall} x={mousePos.x} y={mousePos.y} />
