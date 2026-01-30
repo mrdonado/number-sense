@@ -720,47 +720,63 @@ export function usePhysicsEngine(
 
     if (ballBodies.length === 0) return;
 
-    // Find the largest ball by original radius
-    let largestBall = ballBodies[0];
-    ballBodies.forEach((ball) => {
-      if ((ball.originalRadius || 0) > (largestBall.originalRadius || 0)) {
-        largestBall = ball;
-      }
-    });
+    // Sort balls by size (smallest to largest) based on original radius
+    const sortedBalls = [...ballBodies].sort(
+      (a, b) => (a.originalRadius || 0) - (b.originalRadius || 0)
+    );
 
-    // Center the largest ball
-    const centerX = width / 2;
-    const centerY = height / 2;
-    Matter.Body.setPosition(largestBall, { x: centerX, y: centerY });
-    Matter.Body.setVelocity(largestBall, { x: 0, y: 0 });
-    Matter.Body.setAngularVelocity(largestBall, 0);
+    // Minimal gap between balls - just enough to prevent overlap without visible separation
+    const gap = 1;
 
-    // Get the display radius of the largest ball
-    const largestRadius = largestBall.circleRadius || 50;
+    // Calculate total width needed for all balls in a row
+    const totalRadius = sortedBalls.reduce(
+      (sum, ball) => sum + (ball.circleRadius || 0) * 2 + gap,
+      0
+    );
 
-    // Distribute other balls around the largest one
-    const otherBalls = ballBodies.filter((b) => b.id !== largestBall.id);
-    const angleStep = (2 * Math.PI) / Math.max(otherBalls.length, 1);
-
-    // Determine starting angle based on screen orientation:
-    // - Portrait mode (height > width): Start from top (-π/2) for vertical arrangement
-    // - Landscape mode (width > height): Start from left (π) for horizontal arrangement
+    // Determine if we should arrange horizontally or vertically based on aspect ratio
     const isLandscape = width > height;
-    const startAngle = isLandscape ? Math.PI : -Math.PI / 2;
 
-    otherBalls.forEach((ball, index) => {
-      const ballRadius = ball.circleRadius || 10;
-      // Position so balls almost touch the largest ball (with small gap)
-      const distance = largestRadius + ballRadius + 5;
-      const angle = angleStep * index + startAngle;
+    if (isLandscape) {
+      // Horizontal arrangement (left to right)
+      // Start from the left, accounting for the first ball's radius
+      let currentX =
+        (width - totalRadius) / 2 + (sortedBalls[0].circleRadius || 0);
+      const centerY = height / 2;
 
-      const x = centerX + Math.cos(angle) * distance;
-      const y = centerY + Math.sin(angle) * distance;
+      sortedBalls.forEach((ball, index) => {
+        const ballRadius = ball.circleRadius || 10;
 
-      Matter.Body.setPosition(ball, { x, y });
-      Matter.Body.setVelocity(ball, { x: 0, y: 0 });
-      Matter.Body.setAngularVelocity(ball, 0);
-    });
+        Matter.Body.setPosition(ball, { x: currentX, y: centerY });
+        Matter.Body.setVelocity(ball, { x: 0, y: 0 });
+        Matter.Body.setAngularVelocity(ball, 0);
+
+        // Move to next position: current ball's radius + gap + next ball's radius
+        if (index < sortedBalls.length - 1) {
+          const nextRadius = sortedBalls[index + 1].circleRadius || 10;
+          currentX += ballRadius + gap + nextRadius;
+        }
+      });
+    } else {
+      // Vertical arrangement (bottom to top, with smallest at bottom)
+      const centerX = width / 2;
+      // Start from the bottom, accounting for the first ball's radius
+      let currentY = height - 50 - (sortedBalls[0].circleRadius || 0);
+
+      sortedBalls.forEach((ball, index) => {
+        const ballRadius = ball.circleRadius || 10;
+
+        Matter.Body.setPosition(ball, { x: centerX, y: currentY });
+        Matter.Body.setVelocity(ball, { x: 0, y: 0 });
+        Matter.Body.setAngularVelocity(ball, 0);
+
+        // Move to next position: current ball's radius + gap + next ball's radius
+        if (index < sortedBalls.length - 1) {
+          const nextRadius = sortedBalls[index + 1].circleRadius || 10;
+          currentY -= ballRadius + gap + nextRadius;
+        }
+      });
+    }
   }, []);
 
   const enterComparisonMode = useCallback(() => {
