@@ -725,12 +725,21 @@ export function usePhysicsEngine(
       (a, b) => (a.originalRadius || 0) - (b.originalRadius || 0)
     );
 
-    // Minimal gap between balls - just enough to prevent overlap without visible separation
-    const gap = 1;
+    // Find the smallest ball's radius to use as max gap
+    const smallestRadius = sortedBalls[0]?.circleRadius || 10;
+
+    // Use essentially zero gaps - elements should touch directly
+    // Just 0.5 pixel minimum to prevent rendering overlap
+    const gaps: number[] = [];
+    for (let i = 0; i < sortedBalls.length - 1; i++) {
+      const gap = 0.005;
+      gaps.push(gap);
+    }
 
     // Calculate total width needed for all balls in a row
     const totalRadius = sortedBalls.reduce(
-      (sum, ball) => sum + (ball.circleRadius || 0) * 2 + gap,
+      (sum, ball, index) =>
+        sum + (ball.circleRadius || 0) * 2 + (gaps[index] || 0),
       0
     );
 
@@ -754,7 +763,7 @@ export function usePhysicsEngine(
         // Move to next position: current ball's radius + gap + next ball's radius
         if (index < sortedBalls.length - 1) {
           const nextRadius = sortedBalls[index + 1].circleRadius || 10;
-          currentX += ballRadius + gap + nextRadius;
+          currentX += ballRadius + gaps[index] + nextRadius;
         }
       });
     } else {
@@ -773,7 +782,7 @@ export function usePhysicsEngine(
         // Move to next position: current ball's radius + gap + next ball's radius
         if (index < sortedBalls.length - 1) {
           const nextRadius = sortedBalls[index + 1].circleRadius || 10;
-          currentY -= ballRadius + gap + nextRadius;
+          currentY -= ballRadius + gaps[index] + nextRadius;
         }
       });
     }

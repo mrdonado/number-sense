@@ -227,14 +227,74 @@ export function useZoom(options: UseZoomOptions): UseZoomReturn {
       // Calculate current zoom level (1.0 = full view, smaller = zoomed in)
       const currentZoom = currentWidth / width;
 
-      // Calculate new zoom using logarithmic scaling
+      // Find the largest visible ball to base zoom step on its size
+      const viewCenter = {
+        x: (render.bounds.min.x + render.bounds.max.x) / 2,
+        y: (render.bounds.min.y + render.bounds.max.y) / 2,
+      };
+
+      const bodies = Matter.Composite.allBodies(engine.world);
+      const visibleBalls = bodies.filter((b) => {
+        if (b.isStatic) return false;
+        // Check if ball is within current view bounds
+        const ballRadius = (b as any).circleRadius || 10;
+        return (
+          b.position.x + ballRadius > render.bounds.min.x &&
+          b.position.x - ballRadius < render.bounds.max.x &&
+          b.position.y + ballRadius > render.bounds.min.y &&
+          b.position.y - ballRadius < render.bounds.max.y
+        );
+      });
+
+      // Find largest visible ball
+      let largestVisibleRadius = 0;
+      visibleBalls.forEach((ball) => {
+        const radius = (ball as any).circleRadius || 10;
+        if (radius > largestVisibleRadius) {
+          largestVisibleRadius = radius;
+        }
+      });
+
+      // Adaptive zoom step based on largest visible element size
+      // The step should be INVERSELY proportional to element size
+      // Smaller elements = much smaller steps (many more zoom levels)
+      const elementViewRatio =
+        largestVisibleRadius / Math.min(currentWidth, currentHeight);
+      // Much more aggressive inverse scaling for tiny elements
+      // Use exponential inverse: smaller elements get exponentially smaller steps
+      const inverseRatio =
+        elementViewRatio > 0
+          ? 1 / (Math.pow(elementViewRatio * 20, 1.5) + 1)
+          : 1;
+      // Base step: 8% of current zoom, scaled inversely by element size
+      const baseStep = currentZoom * 0.08;
+      const zoomStep = Math.max(baseStep * inverseRatio, currentZoom * 0.001);
+
       let newZoom =
         e.deltaY > 0
-          ? currentZoom * WHEEL_ZOOM_FACTOR
-          : currentZoom / WHEEL_ZOOM_FACTOR;
+          ? currentZoom + zoomStep // Zoom out: add step
+          : currentZoom - zoomStep; // Zoom in: subtract step
 
-      // Clamp zoom to min/max bounds
-      newZoom = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, newZoom));
+      // Calculate dynamic minimum zoom based on smallest ball in the world
+      // This ensures you can always zoom in enough to make the smallest element fill the screen
+      const allBalls = bodies.filter((b) => !b.isStatic);
+      let smallestRadius = Infinity;
+      allBalls.forEach((ball) => {
+        const radius = (ball as any).circleRadius || 10;
+        if (radius < smallestRadius) {
+          smallestRadius = radius;
+        }
+      });
+
+      // Calculate zoom level where smallest ball would fill 85% of the smaller dimension
+      const smallestDiameter = smallestRadius * 2;
+      const dynamicMinZoom =
+        allBalls.length > 0
+          ? smallestDiameter / BALL_VISIBLE_RATIO / Math.min(width, height)
+          : MIN_ZOOM;
+
+      // Clamp zoom to min/max bounds (using dynamic minimum)
+      newZoom = Math.max(dynamicMinZoom, Math.min(MAX_ZOOM, newZoom));
 
       // If zoom didn't change, nothing to do
       if (newZoom === currentZoom) return;

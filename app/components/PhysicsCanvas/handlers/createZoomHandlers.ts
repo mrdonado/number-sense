@@ -425,9 +425,30 @@ export function createZoomHandlers(
     const currentZoom = currentWidth / width;
 
     let newZoom = currentZoom / pinchRatio;
-    newZoom = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, newZoom));
 
-    if (Math.abs(newZoom - currentZoom) < 0.001) {
+    // Calculate dynamic minimum zoom based on smallest ball in the world
+    const bodies = Matter.Composite.allBodies(engine.world);
+    const allBalls = bodies.filter((b) => !b.isStatic);
+    let smallestRadius = Infinity;
+    allBalls.forEach((ball) => {
+      const radius = (ball as any).circleRadius || 10;
+      if (radius < smallestRadius) {
+        smallestRadius = radius;
+      }
+    });
+
+    // Calculate zoom level where smallest ball would fill 85% of the smaller dimension
+    const smallestDiameter = smallestRadius * 2;
+    const dynamicMinZoom =
+      allBalls.length > 0
+        ? smallestDiameter / BALL_VISIBLE_RATIO / Math.min(width, height)
+        : MIN_ZOOM;
+
+    newZoom = Math.max(dynamicMinZoom, Math.min(MAX_ZOOM, newZoom));
+
+    // Remove threshold check - allow even tiny zoom changes for smooth pinch zooming
+    // especially when zoomed in on small elements
+    if (newZoom === currentZoom) {
       lastPinchDistance = currentDistance;
       lastPinchCenter = currentCenter;
       return;
