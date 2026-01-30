@@ -85,6 +85,9 @@ function HomeContent() {
       // The comparison type only affects visual scaling, not the stored value
       const radius = Math.sqrt(value / Math.PI);
       canvasRef.current?.spawnBall(radius, name, units, sourceId);
+
+      // Update excludedItems to remove the newly added item from the dialog list
+      setExcludedItems((prev) => [...prev, { name, sourceId: sourceId || "" }]);
     },
     []
   );
