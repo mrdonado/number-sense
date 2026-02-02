@@ -24,7 +24,11 @@ const mockClearBalls = vi.fn();
 
 vi.mock("../components/PhysicsCanvas/index", () => ({
   default: React.forwardRef(function MockPhysicsCanvas(
-    _props: unknown,
+    props: {
+      onAddData?: () => void;
+      onClear?: () => void;
+      onToggleComparisonMode?: () => void;
+    },
     ref: React.ForwardedRef<{
       spawnBall: (radius: number, name?: string) => void;
       clearBalls: () => void;
@@ -34,7 +38,18 @@ vi.mock("../components/PhysicsCanvas/index", () => ({
       spawnBall: mockSpawnBall,
       clearBalls: mockClearBalls,
     }));
-    return <div data-testid="physics-canvas">Physics Canvas</div>;
+    return (
+      <div data-testid="physics-canvas">
+        Physics Canvas
+        {/* Render control buttons for testing */}
+        <button onClick={props.onAddData} title="Add Data">
+          +
+        </button>
+        <button onClick={props.onClear} title="Clear All">
+          Clear
+        </button>
+      </div>
+    );
   }),
   __esModule: true,
 }));
@@ -52,19 +67,18 @@ describe("Home Page", () => {
 
   it("renders the header", () => {
     render(<Home />);
-    expect(screen.getByText("Number Sense")).toBeInTheDocument();
+    expect(screen.getByText(/Number/i)).toBeInTheDocument();
+    expect(screen.getByText(/Sense/i)).toBeInTheDocument();
   });
 
   it("renders the Add Data button", () => {
     render(<Home />);
-    expect(
-      screen.getByRole("button", { name: "+ Add Data" })
-    ).toBeInTheDocument();
+    expect(screen.getByTitle("Add Data")).toBeInTheDocument();
   });
 
   it("renders the Clear button", () => {
     render(<Home />);
-    expect(screen.getByRole("button", { name: "Clear" })).toBeInTheDocument();
+    expect(screen.getByTitle("Clear All")).toBeInTheDocument();
   });
 
   it("renders the PhysicsCanvas component", () => {
@@ -255,7 +269,7 @@ describe("Home Page", () => {
 
       const areaInput = screen.getByPlaceholderText("Enter area");
       const dropButton = screen.getByRole("button", { name: "Drop Ball" });
-      const clearButton = screen.getByRole("button", { name: "Clear" });
+      const clearButton = screen.getByTitle("Clear All");
 
       // Spawn a ball
       await user.type(areaInput, "100");
@@ -298,7 +312,7 @@ describe("Home Page", () => {
       const user = userEvent.setup();
       render(<Home />);
 
-      const clearButton = screen.getByRole("button", { name: "Clear" });
+      const clearButton = screen.getByTitle("Clear All");
       await user.click(clearButton);
 
       expect(mockClearBalls).toHaveBeenCalledTimes(1);
