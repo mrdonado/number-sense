@@ -105,7 +105,7 @@ function HomeContent() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          by F. Javier R. Donado
+          by Javier Donado
         </a>
         {isDebugMode && (
           <div className="toolbar">
