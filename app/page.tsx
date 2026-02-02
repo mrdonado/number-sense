@@ -8,12 +8,14 @@ import PhysicsCanvas, {
 import AddDataDialog from "./components/AddDataDialog/index";
 import type { ComparisonType } from "./components/PhysicsCanvas/types";
 import { encodeStateToURL, decodeStateFromURL } from "./utils/shareState";
+import { useToast } from "./components/Toast";
 
 const STORAGE_KEY = "number-sense-balls";
 
 function HomeContent() {
   const searchParams = useSearchParams();
   const isDebugMode = searchParams.get("debugMode") === "true";
+  const { showToast } = useToast();
 
   const canvasRef = useRef<PhysicsCanvasHandle>(null);
   const [inputValue, setInputValue] = useState("");
@@ -126,14 +128,14 @@ function HomeContent() {
     const balls = canvasRef.current?.getBalls?.() || [];
 
     if (balls.length === 0) {
-      alert("Add some data to share!");
+      showToast("Add some data to share!", "info");
       return;
     }
 
     // Get current persisted balls from localStorage
     const stored = localStorage.getItem(STORAGE_KEY);
     if (!stored) {
-      alert("No data to share!");
+      showToast("No data to share!", "info");
       return;
     }
 
@@ -150,7 +152,7 @@ function HomeContent() {
         if (navigator.clipboard && navigator.clipboard.writeText) {
           try {
             await navigator.clipboard.writeText(shareURL);
-            alert("Share link copied to clipboard!");
+            showToast("Share link copied to clipboard!", "success");
             return;
           } catch (err) {
             console.warn("Clipboard API failed, trying fallback:", err);
@@ -172,7 +174,7 @@ function HomeContent() {
           document.body.removeChild(textarea);
 
           if (successful) {
-            alert("Share link copied to clipboard!");
+            showToast("Share link copied to clipboard!", "success");
           } else {
             throw new Error("execCommand failed");
           }
@@ -186,9 +188,9 @@ function HomeContent() {
       copyToClipboard();
     } catch (e) {
       console.error("Failed to create share URL:", e);
-      alert("Failed to create share link. Please try again.");
+      showToast("Failed to create share link. Please try again.", "error");
     }
-  }, [comparisonType]);
+  }, [comparisonType, showToast]);
 
   return (
     <div className="app-container">
