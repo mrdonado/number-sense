@@ -1,8 +1,27 @@
 "use client";
 
-import { useState, useEffect, useMemo, useCallback } from "react";
+import { useState, useEffect, useMemo, useCallback, useRef } from "react";
 import { formatValue } from "@/app/utils/formatValue";
 import styles from "./AddDataDialog.module.css";
+
+// Constants
+const DATA_INDEX_PATH = "/data/index.json";
+
+const UNIT_LABELS: Record<string, string> = {
+  all: "All Units",
+  USD: "Money (USD)",
+  People: "Population",
+  Meters: "Distance (Meters)",
+  Years: "Time (Years)",
+};
+
+const UNIT_ICONS: Record<string, string> = {
+  all: "📊",
+  USD: "💵",
+  People: "👥",
+  Meters: "📏",
+  Years: "⏳",
+};
 
 interface DataSource {
   id: string;
@@ -79,9 +98,12 @@ export function AddDataDialog({
   const [customName, setCustomName] = useState("");
   const [customValue, setCustomValue] = useState("");
 
+  // Track initialization to prevent cascading renders
+  const hasInitialized = useRef(false);
+
   // Auto-preselect units and source if all existing balls share them
   useEffect(() => {
-    if (isOpen && existingUnits.length > 0) {
+    if (isOpen && !hasInitialized.current && existingUnits.length > 0) {
       const uniqueUnits = new Set(existingUnits.filter((u) => u)); // Filter out undefined/empty
       if (uniqueUnits.size === 1) {
         const commonUnits = Array.from(uniqueUnits)[0];
@@ -96,14 +118,17 @@ export function AddDataDialog({
         } else {
           setStep("source");
         }
+        hasInitialized.current = true;
       }
+    } else if (!isOpen) {
+      hasInitialized.current = false;
     }
   }, [isOpen, existingUnits, existingSourceIds]);
 
   // Load the data index on mount
   useEffect(() => {
     if (isOpen && !dataIndex) {
-      fetch("/data/index.json")
+      fetch(DATA_INDEX_PATH)
         .then((res) => res.json())
         .then((data: DataIndex) => {
           setDataIndex(data);
@@ -119,6 +144,7 @@ export function AddDataDialog({
     const source = dataIndex.sources.find((s) => s.id === selectedSourceId);
     if (!source) return;
 
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsLoading(true);
     fetch(`/data/${source.file}`)
       .then((res) => res.json())
@@ -266,6 +292,7 @@ export function AddDataDialog({
       setIsCustomMode(false);
       setCustomName("");
       setCustomValue("");
+      hasInitialized.current = false;
     }, 200);
   }, [onClose]);
 
@@ -287,14 +314,15 @@ export function AddDataDialog({
     [handleClose]
   );
 
-  if (!isOpen) return null;
+  const getUnitsLabel = useCallback((units: string) => {
+    return UNIT_LABELS[units] || units;
+  }, []);
 
-  const getUnitsLabel = (units: string) => {
-    if (units === "all") return "All Units";
-    if (units === "USD") return "US Dollars";
-    if (units === "People") return "Population";
-    return units;
-  };
+  const getUnitsIcon = useCallback((units: string) => {
+    return UNIT_ICONS[units] || "📊";
+  }, []);
+
+  if (!isOpen) return null;
 
   return (
     <div
@@ -386,7 +414,7 @@ export function AddDataDialog({
                   onClick={() => handleSelectUnits("all")}
                   className={styles.optionItem}
                 >
-                  <div className={styles.optionIcon}>📊</div>
+                  <div className={styles.optionIcon}>{getUnitsIcon("all")}</div>
                   <div className={styles.optionInfo}>
                     <span className={styles.optionName}>All Units</span>
                     <span className={styles.optionDescription}>
@@ -412,7 +440,7 @@ export function AddDataDialog({
                     className={styles.optionItem}
                   >
                     <div className={styles.optionIcon}>
-                      {units === "USD" ? "💵" : "👥"}
+                      {getUnitsIcon(units)}
                     </div>
                     <div className={styles.optionInfo}>
                       <span className={styles.optionName}>
