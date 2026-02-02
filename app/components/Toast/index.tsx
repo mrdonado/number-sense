@@ -9,16 +9,23 @@ import {
 } from "react";
 import styles from "./Toast.module.css";
 
-type ToastType = "success" | "error" | "info";
+type ToastType = "success" | "error" | "info" | "confirm";
+
+interface ToastAction {
+  label: string;
+  onClick: () => void;
+}
 
 interface Toast {
   id: number;
   message: string;
   type: ToastType;
+  actions?: ToastAction[];
 }
 
 interface ToastContextValue {
   showToast: (message: string, type?: ToastType) => void;
+  showConfirm: (message: string, onConfirm: () => void) => void;
 }
 
 const ToastContext = createContext<ToastContextValue | undefined>(undefined);
@@ -38,6 +45,31 @@ export function ToastProvider({ children }: { children: ReactNode }) {
     }, 4000);
   }, []);
 
+  const showConfirm = useCallback((message: string, onConfirm: () => void) => {
+    const id = ++toastId;
+    const confirmToast: Toast = {
+      id,
+      message,
+      type: "confirm",
+      actions: [
+        {
+          label: "Cancel",
+          onClick: () => {
+            setToasts((prev) => prev.filter((toast) => toast.id !== id));
+          },
+        },
+        {
+          label: "Clear",
+          onClick: () => {
+            onConfirm();
+            setToasts((prev) => prev.filter((toast) => toast.id !== id));
+          },
+        },
+      ],
+    };
+    setToasts((prev) => [...prev, confirmToast]);
+  }, []);
+
   const removeToast = useCallback((id: number) => {
     setToasts((prev) => prev.filter((toast) => toast.id !== id));
   }, []);
@@ -50,11 +82,13 @@ export function ToastProvider({ children }: { children: ReactNode }) {
         return "✕";
       case "info":
         return "ℹ";
+      case "confirm":
+        return "?";
     }
   };
 
   return (
-    <ToastContext.Provider value={{ showToast }}>
+    <ToastContext.Provider value={{ showToast, showConfirm }}>
       {children}
       {toasts.length > 0 && (
         <div className={styles.toastContainer}>
@@ -65,13 +99,27 @@ export function ToastProvider({ children }: { children: ReactNode }) {
             >
               <span className={styles.icon}>{getIcon(toast.type)}</span>
               <span className={styles.message}>{toast.message}</span>
-              <button
-                className={styles.closeButton}
-                onClick={() => removeToast(toast.id)}
-                aria-label="Close"
-              >
-                ×
-              </button>
+              {toast.actions ? (
+                <div className={styles.actions}>
+                  {toast.actions.map((action, idx) => (
+                    <button
+                      key={idx}
+                      className={styles.actionButton}
+                      onClick={action.onClick}
+                    >
+                      {action.label}
+                    </button>
+                  ))}
+                </div>
+              ) : (
+                <button
+                  className={styles.closeButton}
+                  onClick={() => removeToast(toast.id)}
+                  aria-label="Close"
+                >
+                  ×
+                </button>
+              )}
             </div>
           ))}
         </div>

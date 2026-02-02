@@ -38,6 +38,10 @@
   background: rgba(59, 130, 246, 0.95);
 }
 
+.toast.confirm {
+  background: rgba(251, 146, 60, 0.95);
+}
+
 .icon {
   font-size: 20px;
   flex-shrink: 0;
@@ -45,6 +49,37 @@
 
 .message {
   flex: 1;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.actionButton {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.actionButton:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.actionButton:last-child {
+  background: rgba(255, 255, 255, 0.9);
+  color: rgba(251, 146, 60, 1);
+}
+
+.actionButton:last-child:hover {
+  background: rgba(255, 255, 255, 1);
 }
 
 .closeButton {

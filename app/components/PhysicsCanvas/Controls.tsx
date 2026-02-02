@@ -85,7 +85,7 @@ export function Controls({
 
           {/* Add data button */}
           <button
-            className={styles.controlButton}
+            className={styles.controlButtonSmall}
             onClick={(e) => {
               e.stopPropagation();
               onAddData?.();
@@ -97,26 +97,26 @@ export function Controls({
 
           {/* Share button */}
           <button
-            className={styles.controlButton}
+            className={styles.controlButtonSmall}
             onClick={(e) => {
               e.stopPropagation();
               onShare?.();
             }}
             title="Share"
           >
-            <span className={styles.actionText}>Share</span>
+            <span className={styles.actionText}>↗</span>
           </button>
 
           {/* Clear button */}
           <button
-            className={styles.controlButton}
+            className={styles.controlButtonSmall}
             onClick={(e) => {
               e.stopPropagation();
               onClear?.();
             }}
             title="Clear All"
           >
-            <span className={styles.actionText}>Clear</span>
+            <span className={styles.actionText}>×</span>
           </button>
         </div>
       )}

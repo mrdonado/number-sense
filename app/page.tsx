@@ -15,7 +15,7 @@ const STORAGE_KEY = "number-sense-balls";
 function HomeContent() {
   const searchParams = useSearchParams();
   const isDebugMode = searchParams.get("debugMode") === "true";
-  const { showToast } = useToast();
+  const { showToast, showConfirm } = useToast();
 
   const canvasRef = useRef<PhysicsCanvasHandle>(null);
   const [inputValue, setInputValue] = useState("");
@@ -87,8 +87,10 @@ function HomeContent() {
   };
 
   const handleClear = useCallback(() => {
-    canvasRef.current?.clearBalls();
-  }, []);
+    showConfirm("Are you sure you want to clear all data?", () => {
+      canvasRef.current?.clearBalls();
+    });
+  }, [showConfirm]);
 
   const handleCompareToggle = useCallback(() => {
     if (isComparisonMode) {
