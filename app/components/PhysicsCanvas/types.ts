@@ -30,6 +30,7 @@ export interface PersistedBall {
   color: string;
   originalRadius: number;
   units?: string;
+  sourceId?: string;
 }
 
 // Public handle exposed via ref

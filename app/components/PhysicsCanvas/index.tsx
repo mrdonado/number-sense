@@ -29,6 +29,7 @@ interface PhysicsCanvasProps {
   onAddData?: () => void;
   onClear?: () => void;
   onToggleComparisonMode?: () => void;
+  onShare?: () => void;
 }
 
 const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
@@ -41,6 +42,7 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
       onAddData,
       onClear,
       onToggleComparisonMode,
+      onShare,
     } = props;
     const containerRef = useRef<HTMLDivElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -239,6 +241,7 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
                 onAddData={onAddData}
                 onClear={onClear}
                 onToggleComparisonMode={onToggleComparisonMode}
+                onShare={onShare}
                 onComparisonTypeChange={onComparisonTypeChange}
               />
             )}

@@ -111,6 +111,7 @@ export function usePhysicsEngine(
       color: ball.color,
       originalRadius: ball.originalRadius,
       units: ball.units,
+      sourceId: ball.sourceId,
     }));
     localStorage.setItem(STORAGE_KEY, JSON.stringify(persistedBalls));
   }, [balls]);

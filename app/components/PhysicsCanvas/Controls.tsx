@@ -12,6 +12,7 @@ interface ControlsProps {
   onClear?: () => void;
   onToggleComparisonMode?: () => void;
   onComparisonTypeChange?: () => void;
+  onShare?: () => void;
 }
 
 export function Controls({
@@ -23,6 +24,7 @@ export function Controls({
   onClear,
   onToggleComparisonMode,
   onComparisonTypeChange,
+  onShare,
 }: ControlsProps) {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
@@ -91,6 +93,18 @@ export function Controls({
             title="Add Data"
           >
             <span className={styles.actionText}>+</span>
+          </button>
+
+          {/* Share button */}
+          <button
+            className={styles.controlButton}
+            onClick={(e) => {
+              e.stopPropagation();
+              onShare?.();
+            }}
+            title="Share"
+          >
+            <span className={styles.actionText}>Share</span>
           </button>
 
           {/* Clear button */}
