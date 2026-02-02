@@ -65,21 +65,36 @@ export function formatValue(value: number, units?: string): string {
     return `${value.toExponential(2)} m`;
   }
 
-  // Special formatting for USD (add $ prefix)
-  const prefix = units === "USD" ? "$" : "";
+  // Special formatting for USD (add $ prefix, no suffix needed)
+  if (units === "USD") {
+    if (value >= 1e12) {
+      return `$${(value / 1e12).toFixed(1)}T`;
+    }
+    if (value >= 1e9) {
+      return `$${(value / 1e9).toFixed(1)}B`;
+    }
+    if (value >= 1e6) {
+      return `$${(value / 1e6).toFixed(1)}M`;
+    }
+    if (value >= 1e3) {
+      return `$${(value / 1e3).toFixed(1)}K`;
+    }
+    return `$${value.toFixed(0)}`;
+  }
 
-  // Standard formatting for other unit types (USD, People, Years, etc.)
+  // Standard formatting for other unit types (People, Years, etc.)
+  const suffix = units ? ` ${units}` : "";
   if (value >= 1e12) {
-    return `${prefix}${(value / 1e12).toFixed(1)}T`;
+    return `${(value / 1e12).toFixed(1)}T${suffix}`;
   }
   if (value >= 1e9) {
-    return `${prefix}${(value / 1e9).toFixed(1)}B`;
+    return `${(value / 1e9).toFixed(1)}B${suffix}`;
   }
   if (value >= 1e6) {
-    return `${prefix}${(value / 1e6).toFixed(1)}M`;
+    return `${(value / 1e6).toFixed(1)}M${suffix}`;
   }
   if (value >= 1e3) {
-    return `${prefix}${(value / 1e3).toFixed(1)}K`;
+    return `${(value / 1e3).toFixed(1)}K${suffix}`;
   }
-  return `${prefix}${value.toFixed(0)}`;
+  return `${value.toFixed(0)}${suffix}`;
 }

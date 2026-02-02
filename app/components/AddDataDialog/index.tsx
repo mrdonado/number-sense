@@ -705,10 +705,6 @@ export function AddDataDialog({
                       item.value,
                       selectedSource?.units
                     );
-                    // Only append units if they're not "Meters" (since formatValue handles meter conversions)
-                    const shouldAppendUnits =
-                      selectedSource?.units &&
-                      selectedSource.units !== "Meters";
 
                     return (
                       <button
@@ -719,7 +715,6 @@ export function AddDataDialog({
                         <span className={styles.valueName}>{item.name}</span>
                         <span className={styles.valueAmount}>
                           {formattedValue}
-                          {shouldAppendUnits && ` ${selectedSource.units}`}
                         </span>
                       </button>
                     );

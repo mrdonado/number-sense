@@ -15,43 +15,11 @@ import { usePhysicsEngine } from "./hooks/usePhysicsEngine";
 import { Legend } from "./Legend";
 import { ComparisonRatio } from "./ComparisonRatio";
 import { Controls } from "./Controls";
-import { formatValue } from "@/app/utils/formatValue";
+import { Tooltip } from "./Tooltip";
 import type { PhysicsCanvasHandle, BallInfo, ComparisonType } from "./types";
 import styles from "./PhysicsCanvas.module.css";
 
 export type { PhysicsCanvasHandle } from "./types";
-
-interface TooltipProps {
-  ball: BallInfo;
-  x: number;
-  y: number;
-}
-
-function Tooltip({ ball, x, y }: TooltipProps) {
-  const formattedValue = formatValue(ball.value, ball.units);
-  // Only append units if they're not "Meters" (since formatValue handles meter conversions)
-  const shouldAppendUnits = ball.units && ball.units !== "Meters";
-
-  return (
-    <div
-      className={styles.tooltip}
-      style={{
-        left: x,
-        top: y,
-      }}
-    >
-      <span
-        className={styles.tooltipIndicator}
-        style={{ backgroundColor: ball.color }}
-      />
-      <span className={styles.tooltipName}>{ball.name}</span>
-      <span className={styles.tooltipValue}>
-        {formattedValue}
-        {shouldAppendUnits && ` ${ball.units}`}
-      </span>
-    </div>
-  );
-}
 
 interface PhysicsCanvasProps {
   onBallCountChange?: (count: number) => void;

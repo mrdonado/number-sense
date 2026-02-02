@@ -108,8 +108,6 @@ export function Legend({
           {ballsToShow.map((ball) => {
             const isHidden = hiddenBallIds.has(ball.id);
             const formattedValue = formatValue(ball.value, ball.units);
-            // Only append units if they're not "Meters" (since formatValue handles meter conversions)
-            const shouldAppendUnits = ball.units && ball.units !== "Meters";
 
             return (
               <li
@@ -167,7 +165,6 @@ export function Legend({
                   }}
                 >
                   {formattedValue}
-                  {shouldAppendUnits && ` ${ball.units}`}
                 </span>
                 <input
                   type="checkbox"
