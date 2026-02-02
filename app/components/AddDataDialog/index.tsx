@@ -102,7 +102,10 @@ export function AddDataDialog({
   const hasInitialized = useRef(false);
 
   // Auto-preselect units and source if all existing balls share them
+
   useEffect(() => {
+    // This effect initializes dialog state when it opens, which is a legitimate use case
+    // The ref prevents cascading renders by ensuring this only runs once per dialog open
     if (isOpen && !hasInitialized.current && existingUnits.length > 0) {
       const uniqueUnits = new Set(existingUnits.filter((u) => u)); // Filter out undefined/empty
       if (uniqueUnits.size === 1) {
@@ -385,11 +388,16 @@ export function AddDataDialog({
           <button
             onClick={handleClose}
             className={styles.closeButton}
-            aria-label="Close dialog"
+            aria-label="Back to simulation"
+            title="Back to simulation"
           >
+            <span className={styles.closeButtonText}>Back to Simulation</span>
+            {excludedItems.length > 0 && (
+              <span className={styles.ballCount}>{excludedItems.length}</span>
+            )}
             <svg
-              width="24"
-              height="24"
+              width="20"
+              height="20"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
