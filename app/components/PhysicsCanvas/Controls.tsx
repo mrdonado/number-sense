@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Plus, Share2, Trash2, ChevronRight, ChevronDown } from "lucide-react";
 import styles from "./PhysicsCanvas.module.css";
 
 interface ControlsProps {
@@ -46,7 +47,11 @@ export function Controls({
         title={isCollapsed ? "Expand controls" : "Collapse controls"}
       >
         <span className={styles.controlsTitle}>Controls</span>
-        <span className={styles.controlsToggle}>{isCollapsed ? "▶" : "▼"}</span>
+        {isCollapsed ? (
+          <ChevronRight size={16} className={styles.controlsToggle} />
+        ) : (
+          <ChevronDown size={16} className={styles.controlsToggle} />
+        )}
       </button>
       {!isCollapsed && (
         <div className={styles.controlsGrid}>
@@ -92,7 +97,7 @@ export function Controls({
             }}
             title="Add Data"
           >
-            <span className={styles.actionText}>+</span>
+            <Plus size={18} className={styles.actionIcon} />
           </button>
 
           {/* Share button */}
@@ -104,7 +109,7 @@ export function Controls({
             }}
             title="Share"
           >
-            <span className={styles.actionText}>↗</span>
+            <Share2 size={18} className={styles.actionIcon} />
           </button>
 
           {/* Clear button */}
@@ -116,7 +121,7 @@ export function Controls({
             }}
             title="Clear All"
           >
-            <span className={styles.actionText}>×</span>
+            <Trash2 size={18} className={styles.actionIcon} />
           </button>
         </div>
       )}

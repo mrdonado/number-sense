@@ -16,6 +16,7 @@
     "generate-index": "npx tsx scripts/generateDataIndex.ts"
   },
   "dependencies": {
+    "lucide-react": "^0.563.0",
     "matter-js": "^0.20.0",
     "next": "16.1.1",
     "react": "19.2.3",

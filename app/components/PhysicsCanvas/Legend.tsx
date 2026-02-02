@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import { ChevronRight, ChevronDown } from "lucide-react";
 import { formatValue } from "@/app/utils/formatValue";
 import type { BallInfo } from "./types";
 import styles from "./PhysicsCanvas.module.css";
@@ -101,7 +102,11 @@ export function Legend({
         <span className={styles.legendTitle}>
           Legend ({balls.length}){unitsContent}
         </span>
-        <span className={styles.legendToggle}>{isCollapsed ? "▶" : "▼"}</span>
+        {isCollapsed ? (
+          <ChevronRight size={16} className={styles.legendToggle} />
+        ) : (
+          <ChevronDown size={16} className={styles.legendToggle} />
+        )}
       </button>
       {(!isCollapsed || (isCollapsed && hoveredBallId !== null)) && (
         <ul className={styles.legendList}>
