@@ -3,6 +3,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import React from "react";
 import Home from "../page";
+import { ToastProvider } from "../components/Toast";
 
 // Mock next/navigation
 const mockSearchParams = new URLSearchParams();
@@ -21,6 +22,11 @@ vi.mock("../components/AddDataDialog", () => ({
 // Mock the PhysicsCanvas component
 const mockSpawnBall = vi.fn();
 const mockClearBalls = vi.fn();
+
+// Helper to render with ToastProvider
+const renderWithToast = (component: React.ReactElement) => {
+  return render(<ToastProvider>{component}</ToastProvider>);
+};
 
 vi.mock("../components/PhysicsCanvas/index", () => ({
   default: React.forwardRef(function MockPhysicsCanvas(
@@ -66,23 +72,23 @@ describe("Home Page", () => {
   });
 
   it("renders the header", () => {
-    render(<Home />);
+    renderWithToast(<Home />);
     expect(screen.getByText(/Number/i)).toBeInTheDocument();
     expect(screen.getByText(/Sense/i)).toBeInTheDocument();
   });
 
   it("renders the Add Data button", () => {
-    render(<Home />);
+    renderWithToast(<Home />);
     expect(screen.getByTitle("Add Data")).toBeInTheDocument();
   });
 
   it("renders the Clear button", () => {
-    render(<Home />);
+    renderWithToast(<Home />);
     expect(screen.getByTitle("Clear All")).toBeInTheDocument();
   });
 
   it("renders the PhysicsCanvas component", () => {
-    render(<Home />);
+    renderWithToast(<Home />);
     expect(screen.getByTestId("physics-canvas")).toBeInTheDocument();
   });
 
@@ -92,13 +98,13 @@ describe("Home Page", () => {
     });
 
     it("renders the input fields in debug mode", () => {
-      render(<Home />);
+      renderWithToast(<Home />);
       expect(screen.getByPlaceholderText("Enter area")).toBeInTheDocument();
       expect(screen.getByPlaceholderText("Enter name")).toBeInTheDocument();
     });
 
     it("renders the Drop Ball button in debug mode", () => {
-      render(<Home />);
+      renderWithToast(<Home />);
       expect(
         screen.getByRole("button", { name: "Drop Ball" })
       ).toBeInTheDocument();
@@ -106,7 +112,7 @@ describe("Home Page", () => {
 
     it("spawns a ball with radius calculated from area when clicking the button", async () => {
       const user = userEvent.setup();
-      render(<Home />);
+      renderWithToast(<Home />);
 
       const input = screen.getByPlaceholderText("Enter area");
       const button = screen.getByRole("button", { name: "Drop Ball" });
@@ -120,7 +126,7 @@ describe("Home Page", () => {
 
     it("spawns a ball with name when provided", async () => {
       const user = userEvent.setup();
-      render(<Home />);
+      renderWithToast(<Home />);
 
       const nameInput = screen.getByPlaceholderText("Enter name");
       const areaInput = screen.getByPlaceholderText("Enter area");
@@ -135,7 +141,7 @@ describe("Home Page", () => {
 
     it("spawns a ball when pressing Enter in the input field", async () => {
       const user = userEvent.setup();
-      render(<Home />);
+      renderWithToast(<Home />);
 
       const input = screen.getByPlaceholderText("Enter area");
 
@@ -146,7 +152,7 @@ describe("Home Page", () => {
 
     it("does not spawn a ball with zero area", async () => {
       const user = userEvent.setup();
-      render(<Home />);
+      renderWithToast(<Home />);
 
       const input = screen.getByPlaceholderText("Enter area");
       const button = screen.getByRole("button", { name: "Drop Ball" });
@@ -159,7 +165,7 @@ describe("Home Page", () => {
 
     it("does not spawn a ball with negative area", async () => {
       const user = userEvent.setup();
-      render(<Home />);
+      renderWithToast(<Home />);
 
       const input = screen.getByPlaceholderText("Enter area");
       const button = screen.getByRole("button", { name: "Drop Ball" });
@@ -172,7 +178,7 @@ describe("Home Page", () => {
 
     it("does not spawn a ball with empty input", async () => {
       const user = userEvent.setup();
-      render(<Home />);
+      renderWithToast(<Home />);
 
       const button = screen.getByRole("button", { name: "Drop Ball" });
 
@@ -183,7 +189,7 @@ describe("Home Page", () => {
 
     it("does not spawn a ball with non-numeric input", async () => {
       const user = userEvent.setup();
-      render(<Home />);
+      renderWithToast(<Home />);
 
       const input = screen.getByPlaceholderText("Enter area");
       const button = screen.getByRole("button", { name: "Drop Ball" });
@@ -198,7 +204,7 @@ describe("Home Page", () => {
 
     it("spawns multiple balls with different areas", async () => {
       const user = userEvent.setup();
-      render(<Home />);
+      renderWithToast(<Home />);
 
       const input = screen.getByPlaceholderText("Enter area");
       const button = screen.getByRole("button", { name: "Drop Ball" });
@@ -225,7 +231,7 @@ describe("Home Page", () => {
 
     it("handles decimal area values", async () => {
       const user = userEvent.setup();
-      render(<Home />);
+      renderWithToast(<Home />);
 
       const input = screen.getByPlaceholderText("Enter area");
       const button = screen.getByRole("button", { name: "Drop Ball" });
@@ -238,7 +244,7 @@ describe("Home Page", () => {
 
     it("updates the input value when typing", async () => {
       const user = userEvent.setup();
-      render(<Home />);
+      renderWithToast(<Home />);
 
       const input = screen.getByPlaceholderText(
         "Enter area"
@@ -251,7 +257,7 @@ describe("Home Page", () => {
 
     it("clears when user clears the input", async () => {
       const user = userEvent.setup();
-      render(<Home />);
+      renderWithToast(<Home />);
 
       const input = screen.getByPlaceholderText(
         "Enter area"
@@ -265,7 +271,7 @@ describe("Home Page", () => {
 
     it("can clear after spawning balls", async () => {
       const user = userEvent.setup();
-      render(<Home />);
+      renderWithToast(<Home />);
 
       const areaInput = screen.getByPlaceholderText("Enter area");
       const dropButton = screen.getByRole("button", { name: "Drop Ball" });
@@ -277,8 +283,12 @@ describe("Home Page", () => {
 
       expect(mockSpawnBall).toHaveBeenCalledTimes(1);
 
-      // Clear all balls
+      // Clear all balls - click the clear button
       await user.click(clearButton);
+
+      // Confirm the clear action in the toast dialog - get all buttons and find the one in the actions
+      const confirmButton = screen.getAllByRole("button", { name: "Clear" })[1];
+      await user.click(confirmButton);
 
       expect(mockClearBalls).toHaveBeenCalledTimes(1);
     });
@@ -290,7 +300,7 @@ describe("Home Page", () => {
     });
 
     it("does not render input fields by default", () => {
-      render(<Home />);
+      renderWithToast(<Home />);
       expect(
         screen.queryByPlaceholderText("Enter area")
       ).not.toBeInTheDocument();
@@ -300,7 +310,7 @@ describe("Home Page", () => {
     });
 
     it("does not render Drop Ball button by default", () => {
-      render(<Home />);
+      renderWithToast(<Home />);
       expect(
         screen.queryByRole("button", { name: "Drop Ball" })
       ).not.toBeInTheDocument();
@@ -310,10 +320,14 @@ describe("Home Page", () => {
   describe("clear balls", () => {
     it("calls clearBalls when clicking the Clear button", async () => {
       const user = userEvent.setup();
-      render(<Home />);
+      renderWithToast(<Home />);
 
       const clearButton = screen.getByTitle("Clear All");
       await user.click(clearButton);
+
+      // Confirm the clear action in the toast dialog - get all buttons and find the one in the actions
+      const confirmButton = screen.getAllByRole("button", { name: "Clear" })[1];
+      await user.click(confirmButton);
 
       expect(mockClearBalls).toHaveBeenCalledTimes(1);
     });

@@ -69,7 +69,10 @@ describe("Legend", () => {
     render(<Legend {...defaultProps} balls={ballsWithoutUnits} />);
 
     expect(screen.getByText("Legend (3)")).toBeInTheDocument();
-    expect(screen.getByText("▼")).toBeInTheDocument();
+    // Check for the chevron-down icon
+    const svg = screen.getByTitle("Collapse legend").querySelector("svg");
+    expect(svg).toBeInTheDocument();
+    expect(svg?.classList.contains("lucide-chevron-down")).toBe(true);
   });
 
   it("renders header with units when all balls have same units", () => {
@@ -141,16 +144,20 @@ describe("Legend", () => {
 
     // Initially expanded
     expect(screen.getByText("Red Ball")).toBeInTheDocument();
+    let svg = screen.getByTitle("Collapse legend").querySelector("svg");
+    expect(svg?.classList.contains("lucide-chevron-down")).toBe(true);
 
     // Click to collapse
     fireEvent.click(screen.getByText(/Legend \(3\)/));
     expect(screen.queryByText("Red Ball")).not.toBeInTheDocument();
-    expect(screen.getByText("▶")).toBeInTheDocument();
+    svg = screen.getByTitle("Expand legend").querySelector("svg");
+    expect(svg?.classList.contains("lucide-chevron-right")).toBe(true);
 
     // Click to expand
     fireEvent.click(screen.getByText(/Legend \(3\)/));
     expect(screen.getByText("Red Ball")).toBeInTheDocument();
-    expect(screen.getByText("▼")).toBeInTheDocument();
+    svg = screen.getByTitle("Collapse legend").querySelector("svg");
+    expect(svg?.classList.contains("lucide-chevron-down")).toBe(true);
   });
 
   it("displays abbreviated values for each ball", () => {
