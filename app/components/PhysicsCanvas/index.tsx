@@ -373,6 +373,34 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
       setIsNavigating,
     ]);
 
+    // Handle legend item click to activate navigation
+    const handleLegendItemClick = useCallback(
+      (ballId: number) => {
+        if (isComparisonMode) {
+          // In comparison mode, activate navigation and focus on clicked ball
+          const index = sortedBalls.findIndex((b) => b.id === ballId);
+          if (index !== -1) {
+            setFocusedBallIndex(index);
+            setIsNavigating(true);
+            zoomOnBall(ballId);
+            // Clear hover state to show comparison tooltips
+            setHoveredBallId(null);
+          }
+        } else {
+          // In normal mode, just zoom on the ball
+          zoomOnBall(ballId);
+        }
+      },
+      [
+        isComparisonMode,
+        sortedBalls,
+        setFocusedBallIndex,
+        setIsNavigating,
+        zoomOnBall,
+        setHoveredBallId,
+      ]
+    );
+
     // Reset navigation state when exiting comparison mode
     useEffect(() => {
       if (!isComparisonMode) {
@@ -520,7 +548,7 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
               onHover={setHoveredBallId}
               onRemove={removeBall}
               onToggleVisibility={toggleBallVisibility}
-              onZoom={zoomOnBall}
+              onZoom={handleLegendItemClick}
               isComparisonMode={isComparisonMode}
             />
           </div>
