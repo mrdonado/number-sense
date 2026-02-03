@@ -48,6 +48,10 @@ interface UsePhysicsEngineReturn {
   zoomOnBall: (id: number) => void;
   wasPinching: () => boolean;
   getBallScreenPosition: (id: number) => { x: number; y: number } | null;
+  focusedBallIndex: number;
+  setFocusedBallIndex: (index: number) => void;
+  isNavigating: boolean;
+  setIsNavigating: (isNavigating: boolean) => void;
 }
 
 export function usePhysicsEngine(
@@ -82,6 +86,8 @@ export function usePhysicsEngine(
   const zoomOnBallByIdRef = useRef<((id: number) => void) | null>(null);
   const resetZoomRef = useRef<(() => void) | null>(null);
   const exitComparisonModeRef = useRef<(() => void) | null>(null);
+  const [focusedBallIndex, setFocusedBallIndex] = useState(-1);
+  const [isNavigating, setIsNavigating] = useState(false);
   const ballOpacitiesRef = useRef<Map<number, number>>(new Map());
   const mouseScreenPosRef = useRef<{ x: number; y: number } | null>(null);
   const wasPinchingRef = useRef<{ current: boolean } | null>(null);
@@ -337,6 +343,12 @@ export function usePhysicsEngine(
       mouseConstraint,
       canvas,
       onZoomChange: setZoomLevel,
+      onUserZoom: () => {
+        // Clear navigation state on user-initiated zoom
+        if (isComparisonModeRef.current) {
+          setIsNavigating(false);
+        }
+      },
       isComparisonModeRef,
       onExitComparisonMode: () => exitComparisonModeRef.current?.(),
     };
@@ -375,6 +387,12 @@ export function usePhysicsEngine(
       isZoomedRef,
       zoomTargetRef,
       isPanningRef,
+      onUserPan: () => {
+        // Clear navigation state on user-initiated pan
+        if (isComparisonModeRef.current) {
+          setIsNavigating(false);
+        }
+      },
     };
 
     const {
@@ -927,5 +945,9 @@ export function usePhysicsEngine(
 
       return { x, y };
     }, []),
+    focusedBallIndex,
+    setFocusedBallIndex,
+    isNavigating,
+    setIsNavigating,
   };
 }

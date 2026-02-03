@@ -9,6 +9,7 @@ export interface ZoomHandlerOptions {
   mouseConstraint: Matter.MouseConstraint;
   canvas: HTMLCanvasElement;
   onZoomChange: (zoomLevel: number) => void;
+  onUserZoom?: () => void;
   isComparisonModeRef?: { current: boolean };
   onExitComparisonMode?: () => void;
 }
@@ -38,6 +39,7 @@ export interface PanningHandlerOptions {
   isZoomedRef: { current: boolean };
   zoomTargetRef: { current: Bounds | null };
   isPanningRef: { current: boolean };
+  onUserPan?: () => void;
 }
 
 export interface PanningHandlerResult {

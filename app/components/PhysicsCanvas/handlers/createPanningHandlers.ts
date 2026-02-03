@@ -19,6 +19,7 @@ export function createPanningHandlers(
     isZoomedRef,
     zoomTargetRef,
     isPanningRef,
+    onUserPan,
   } = options;
   const { width, height } = dimensions;
 
@@ -36,6 +37,7 @@ export function createPanningHandlers(
       e.preventDefault();
       isPanningRef.current = true;
       isDragging = true;
+      onUserPan?.();
       // Clear zoom target so updateZoomedView won't snap back to the ball after panning
       zoomTargetRef.current = null;
       panButton = 1;
@@ -72,6 +74,7 @@ export function createPanningHandlers(
       if (distance >= DRAG_THRESHOLD) {
         isDragging = true;
         isPanningRef.current = true;
+        onUserPan?.();
         // Clear zoom target so updateZoomedView won't snap back to the ball after panning
         zoomTargetRef.current = null;
         canvas.style.cursor = "grabbing";

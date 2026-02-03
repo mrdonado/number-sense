@@ -36,6 +36,7 @@ export function createZoomHandlers(
     mouseConstraint,
     canvas,
     onZoomChange,
+    onUserZoom,
     isComparisonModeRef,
     onExitComparisonMode,
   } = options;
@@ -316,6 +317,8 @@ export function createZoomHandlers(
     const mouseWorldY = render.bounds.min.y + mouseRatioY * currentHeight;
 
     applyZoom(newZoom, mouseWorldX, mouseWorldY, mouseRatioX, mouseRatioY);
+    // Notify that user initiated a zoom
+    onUserZoom?.();
   };
 
   // ============ Touch Helper Functions ============
@@ -465,6 +468,8 @@ export function createZoomHandlers(
     const pinchWorldY = render.bounds.min.y + pinchRatioY * currentHeight;
 
     applyZoom(newZoom, pinchWorldX, pinchWorldY, pinchRatioX, pinchRatioY);
+    // Notify that user initiated a zoom
+    onUserZoom?.();
 
     lastPinchDistance = currentDistance;
     lastPinchCenter = currentCenter;
