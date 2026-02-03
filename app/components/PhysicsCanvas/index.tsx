@@ -10,6 +10,7 @@ import {
   useMemo,
   useSyncExternalStore,
 } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { ZOOM_INDICATOR_HEIGHT } from "./constants";
 import { usePhysicsEngine } from "./hooks/usePhysicsEngine";
 import { Legend } from "./Legend";
@@ -50,6 +51,8 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
       null
     );
     const [mounted, setMounted] = useState(false);
+    const [focusedBallIndex, setFocusedBallIndex] = useState<number>(-1);
+    const [clickedBallId, setClickedBallId] = useState<number | null>(null);
 
     useEffect(() => {
       setMounted(true);
@@ -148,6 +151,24 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
       setMousePos(null);
     }, [setHoveredBallId, updateMousePosition]);
 
+    // Handle click on canvas to select ball in comparison mode
+    const handleCanvasClick = useCallback(
+      (e: React.MouseEvent<HTMLCanvasElement>) => {
+        if (!isComparisonMode) return;
+
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+
+        const rect = canvas.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const ballId = getBallAtPoint(x, y);
+        setClickedBallId(ballId);
+      },
+      [isComparisonMode, getBallAtPoint]
+    );
+
     // Handle touch on canvas to activate legend item
     const handleCanvasTouchEnd = useCallback(
       (e: React.TouchEvent<HTMLCanvasElement>) => {
@@ -170,8 +191,13 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
 
         // Set the hovered state: activate if tapping a ball, deactivate if tapping background
         setHoveredBallId(ballId);
+
+        // Also set clicked ball for comparison mode navigation
+        if (isComparisonMode) {
+          setClickedBallId(ballId);
+        }
       },
-      [getBallAtPoint, setHoveredBallId, wasPinching]
+      [getBallAtPoint, setHoveredBallId, wasPinching, isComparisonMode]
     );
 
     // Clear tooltip position when hover state is cleared (e.g., when ball moves away from cursor)
@@ -186,6 +212,53 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
       if (hoveredBallId === null) return null;
       return balls.find((b) => b.id === hoveredBallId) ?? null;
     }, [balls, hoveredBallId]);
+
+    // Sort balls by value (smallest to largest) for navigation
+    const sortedBalls = useMemo(() => {
+      return [...balls]
+        .filter((b) => !hiddenBallIds.has(b.id))
+        .sort((a, b) => a.value - b.value);
+    }, [balls, hiddenBallIds]);
+
+    // Navigation handlers for comparison mode
+    const handleNavigateNext = useCallback(() => {
+      if (sortedBalls.length === 0) return;
+
+      const nextIndex = (focusedBallIndex + 1) % sortedBalls.length;
+      setFocusedBallIndex(nextIndex);
+      const nextBall = sortedBalls[nextIndex];
+      zoomOnBall(nextBall.id);
+      setHoveredBallId(nextBall.id);
+    }, [focusedBallIndex, sortedBalls, zoomOnBall, setHoveredBallId]);
+
+    const handleNavigatePrev = useCallback(() => {
+      if (sortedBalls.length === 0) return;
+
+      const prevIndex =
+        focusedBallIndex <= 0 ? sortedBalls.length - 1 : focusedBallIndex - 1;
+      setFocusedBallIndex(prevIndex);
+      const prevBall = sortedBalls[prevIndex];
+      zoomOnBall(prevBall.id);
+      setHoveredBallId(prevBall.id);
+    }, [focusedBallIndex, sortedBalls, zoomOnBall, setHoveredBallId]);
+
+    // Reset focus when exiting comparison mode
+    useEffect(() => {
+      if (!isComparisonMode) {
+        setFocusedBallIndex(-1);
+        setClickedBallId(null);
+      }
+    }, [isComparisonMode]);
+
+    // Update focusedBallIndex when a ball is clicked in comparison mode
+    useEffect(() => {
+      if (isComparisonMode && clickedBallId !== null) {
+        const index = sortedBalls.findIndex((b) => b.id === clickedBallId);
+        if (index !== -1) {
+          setFocusedBallIndex(index);
+        }
+      }
+    }, [isComparisonMode, clickedBallId, sortedBalls]);
 
     return (
       <div ref={containerRef} className={styles.container}>
@@ -208,6 +281,7 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
             ref={canvasRef}
             className={styles.canvas}
             onMouseMove={handleCanvasMouseMove}
+            onClick={handleCanvasClick}
             onMouseLeave={handleCanvasMouseLeave}
             onTouchEnd={handleCanvasTouchEnd}
           />
@@ -266,6 +340,27 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
           {/* Ball tooltip */}
           {hoveredBall && mousePos && (
             <Tooltip ball={hoveredBall} x={mousePos.x} y={mousePos.y} />
+          )}
+          {/* Navigation arrows for comparison mode */}
+          {isComparisonMode && sortedBalls.length > 1 && (
+            <>
+              <button
+                className={styles.navArrowLeft}
+                onClick={handleNavigatePrev}
+                title="Previous ball (smaller)"
+                aria-label="Navigate to previous ball"
+              >
+                <ChevronLeft size={32} />
+              </button>
+              <button
+                className={styles.navArrowRight}
+                onClick={handleNavigateNext}
+                title="Next ball (larger)"
+                aria-label="Navigate to next ball"
+              >
+                <ChevronRight size={32} />
+              </button>
+            </>
           )}
         </div>
       </div>

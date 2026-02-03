@@ -180,8 +180,27 @@
   @apply text-white/60 transition-colors text-sm cursor-pointer;
 }
 
+.navArrowLeft,
+.navArrowRight {
+  @apply absolute top-1/2 -translate-y-1/2 z-30 bg-gray-950/80 hover:bg-gray-950 backdrop-blur-sm text-white rounded-full p-2 cursor-pointer transition-all shadow-lg;
+  pointer-events: auto;
+}
+
+.navArrowLeft {
+  @apply left-4;
+}
+
+.navArrowRight {
+  @apply right-4;
+}
+
 @media (hover: hover) {
   .removeButton:hover {
     @apply text-white;
+  }
+
+  .navArrowLeft:hover,
+  .navArrowRight:hover {
+    @apply scale-110;
   }
 }
