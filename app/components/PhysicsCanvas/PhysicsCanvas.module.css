@@ -22,6 +22,7 @@
 
 .canvas {
   @apply w-full h-full;
+  touch-action: none;
 }
 
 /* Mode indicators */
@@ -200,6 +201,22 @@
 
 .removeButton {
   @apply text-white/60 transition-colors text-sm cursor-pointer;
+}
+
+.navBlockerLeft,
+.navBlockerRight {
+  @apply absolute top-1/2 -translate-y-1/2 z-20;
+  width: 80px;
+  height: 80px;
+  pointer-events: auto;
+}
+
+.navBlockerLeft {
+  @apply left-0;
+}
+
+.navBlockerRight {
+  @apply right-0;
 }
 
 .navArrowLeft,

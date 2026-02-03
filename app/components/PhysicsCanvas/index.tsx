@@ -330,7 +330,9 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
     const handleNavigateNext = useCallback(() => {
       if (sortedBalls.length === 0) return;
 
-      const nextIndex = (focusedBallIndex + 1) % sortedBalls.length;
+      // If not navigating yet, start with first ball (smallest)
+      const nextIndex =
+        focusedBallIndex < 0 ? 0 : (focusedBallIndex + 1) % sortedBalls.length;
       setFocusedBallIndex(nextIndex);
       setIsNavigating(true);
       const nextBall = sortedBalls[nextIndex];
@@ -349,8 +351,13 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
     const handleNavigatePrev = useCallback(() => {
       if (sortedBalls.length === 0) return;
 
+      // If not navigating yet, start with first ball (smallest)
       const prevIndex =
-        focusedBallIndex <= 0 ? sortedBalls.length - 1 : focusedBallIndex - 1;
+        focusedBallIndex < 0
+          ? 0
+          : focusedBallIndex <= 0
+          ? sortedBalls.length - 1
+          : focusedBallIndex - 1;
       setFocusedBallIndex(prevIndex);
       setIsNavigating(true);
       const prevBall = sortedBalls[prevIndex];
@@ -544,25 +551,33 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
           {/* Navigation arrows for comparison mode */}
           {isComparisonMode && sortedBalls.length > 1 && (
             <>
+              {/* Transparent blocking layer for left button */}
+              <div
+                className={styles.navBlockerLeft}
+                onTouchStart={(e) => e.stopPropagation()}
+                onTouchMove={(e) => e.stopPropagation()}
+                onTouchEnd={(e) => e.stopPropagation()}
+                onClick={(e) => e.stopPropagation()}
+              />
               <button
                 className={styles.navArrowLeft}
                 onClick={handleNavigatePrev}
-                onTouchEnd={(e) => {
-                  e.preventDefault();
-                  handleNavigatePrev();
-                }}
                 title="Previous ball (smaller)"
                 aria-label="Navigate to previous ball"
               >
                 <ChevronLeft size={32} />
               </button>
+              {/* Transparent blocking layer for right button */}
+              <div
+                className={styles.navBlockerRight}
+                onTouchStart={(e) => e.stopPropagation()}
+                onTouchMove={(e) => e.stopPropagation()}
+                onTouchEnd={(e) => e.stopPropagation()}
+                onClick={(e) => e.stopPropagation()}
+              />
               <button
                 className={styles.navArrowRight}
                 onClick={handleNavigateNext}
-                onTouchEnd={(e) => {
-                  e.preventDefault();
-                  handleNavigateNext();
-                }}
                 title="Next ball (larger)"
                 aria-label="Navigate to next ball"
               >
