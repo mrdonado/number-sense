@@ -52,6 +52,9 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
       null
     );
     const [mounted, setMounted] = useState(false);
+    const mouseDownPosRef = useRef<{ x: number; y: number } | null>(null);
+    const touchStartPosRef = useRef<{ x: number; y: number } | null>(null);
+    const DRAG_THRESHOLD = 5; // pixels - if moved more than this, it's a drag
 
     useEffect(() => {
       setMounted(true);
@@ -120,6 +123,13 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
         })),
     }));
 
+    // Sort balls by value (smallest to largest) for navigation
+    const sortedBalls = useMemo(() => {
+      return [...balls]
+        .filter((b) => !hiddenBallIds.has(b.id))
+        .sort((a, b) => a.value - b.value);
+    }, [balls, hiddenBallIds]);
+
     // Handle mouse move on canvas to detect hover over balls (only for devices with hover capability)
     const handleCanvasMouseMove = useCallback(
       (e: React.MouseEvent<HTMLCanvasElement>) => {
@@ -155,11 +165,93 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
       setMousePos(null);
     }, [setHoveredBallId, updateMousePosition]);
 
+    // Track mousedown position to detect drags vs clicks
+    const handleCanvasMouseDown = useCallback(
+      (e: React.MouseEvent<HTMLCanvasElement>) => {
+        const rect = canvasRef.current?.getBoundingClientRect();
+        if (!rect) return;
+        mouseDownPosRef.current = {
+          x: e.clientX - rect.left,
+          y: e.clientY - rect.top,
+        };
+      },
+      []
+    );
+
+    // Handle click on canvas to select ball in comparison mode
+    const handleCanvasClick = useCallback(
+      (e: React.MouseEvent<HTMLCanvasElement>) => {
+        if (!isComparisonMode) return;
+
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+
+        const rect = canvas.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        // Check if this was a drag (mouse moved significantly since mousedown)
+        if (mouseDownPosRef.current) {
+          const dx = x - mouseDownPosRef.current.x;
+          const dy = y - mouseDownPosRef.current.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance > DRAG_THRESHOLD) {
+            // This was a drag, not a click - ignore it
+            mouseDownPosRef.current = null;
+            return;
+          }
+        }
+        mouseDownPosRef.current = null;
+
+        const ballId = getBallAtPoint(x, y);
+
+        if (ballId !== null) {
+          // Clicked on a ball - activate navigation and focus on it
+          const index = sortedBalls.findIndex((b) => b.id === ballId);
+          if (index !== -1) {
+            setFocusedBallIndex(index);
+            setIsNavigating(true);
+            zoomOnBall(ballId);
+            // Clear hover state to show comparison tooltips
+            setHoveredBallId(null);
+          }
+        } else {
+          // Clicked on background - deactivate navigation
+          setIsNavigating(false);
+        }
+      },
+      [
+        isComparisonMode,
+        getBallAtPoint,
+        sortedBalls,
+        setFocusedBallIndex,
+        setIsNavigating,
+        zoomOnBall,
+        setHoveredBallId,
+      ]
+    );
+
+    // Track touchstart position to detect drags vs taps
+    const handleCanvasTouchStart = useCallback(
+      (e: React.TouchEvent<HTMLCanvasElement>) => {
+        const touch = e.touches[0];
+        if (!touch) return;
+        const rect = canvasRef.current?.getBoundingClientRect();
+        if (!rect) return;
+        touchStartPosRef.current = {
+          x: touch.clientX - rect.left,
+          y: touch.clientY - rect.top,
+        };
+      },
+      []
+    );
+
     // Handle touch on canvas to activate legend item
     const handleCanvasTouchEnd = useCallback(
       (e: React.TouchEvent<HTMLCanvasElement>) => {
         // Don't select balls if we were just pinching to zoom
         if (wasPinching()) {
+          touchStartPosRef.current = null;
           return;
         }
 
@@ -173,12 +265,52 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
         const x = touch.clientX - rect.left;
         const y = touch.clientY - rect.top;
 
+        // Check if this was a drag (touch moved significantly since touchstart)
+        if (touchStartPosRef.current) {
+          const dx = x - touchStartPosRef.current.x;
+          const dy = y - touchStartPosRef.current.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance > DRAG_THRESHOLD) {
+            // This was a drag, not a tap - ignore it
+            touchStartPosRef.current = null;
+            return;
+          }
+        }
+        touchStartPosRef.current = null;
+
         const ballId = getBallAtPoint(x, y);
 
         // Set the hovered state: activate if tapping a ball, deactivate if tapping background
         setHoveredBallId(ballId);
+
+        // In comparison mode, handle navigation
+        if (isComparisonMode) {
+          if (ballId !== null) {
+            // Tapped on a ball - activate navigation and focus on it
+            const index = sortedBalls.findIndex((b) => b.id === ballId);
+            if (index !== -1) {
+              setFocusedBallIndex(index);
+              setIsNavigating(true);
+              zoomOnBall(ballId);
+              // Clear hover state to show comparison tooltips
+              setHoveredBallId(null);
+            }
+          } else {
+            // Tapped on background - deactivate navigation
+            setIsNavigating(false);
+          }
+        }
       },
-      [getBallAtPoint, setHoveredBallId, wasPinching]
+      [
+        getBallAtPoint,
+        setHoveredBallId,
+        wasPinching,
+        isComparisonMode,
+        sortedBalls,
+        setFocusedBallIndex,
+        setIsNavigating,
+        zoomOnBall,
+      ]
     );
 
     // Clear tooltip position when hover state is cleared (e.g., when ball moves away from cursor)
@@ -193,13 +325,6 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
       if (hoveredBallId === null) return null;
       return balls.find((b) => b.id === hoveredBallId) ?? null;
     }, [balls, hoveredBallId]);
-
-    // Sort balls by value (smallest to largest) for navigation
-    const sortedBalls = useMemo(() => {
-      return [...balls]
-        .filter((b) => !hiddenBallIds.has(b.id))
-        .sort((a, b) => a.value - b.value);
-    }, [balls, hiddenBallIds]);
 
     // Navigation handlers for comparison mode
     const handleNavigateNext = useCallback(() => {
@@ -342,6 +467,9 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
             className={styles.canvas}
             onMouseMove={handleCanvasMouseMove}
             onMouseLeave={handleCanvasMouseLeave}
+            onMouseDown={handleCanvasMouseDown}
+            onClick={handleCanvasClick}
+            onTouchStart={handleCanvasTouchStart}
             onTouchEnd={handleCanvasTouchEnd}
           />
           {/* Controls and Legend container */}
