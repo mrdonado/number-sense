@@ -17,6 +17,7 @@ import { Legend } from "./Legend";
 import { ComparisonRatio } from "./ComparisonRatio";
 import { Controls } from "./Controls";
 import { Tooltip } from "./Tooltip";
+import { ComparisonTooltip } from "./ComparisonTooltip";
 import type { PhysicsCanvasHandle, BallInfo, ComparisonType } from "./types";
 import styles from "./PhysicsCanvas.module.css";
 
@@ -82,6 +83,7 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
       exitComparisonMode,
       zoomOnBall,
       wasPinching,
+      getBallScreenPosition,
     } = usePhysicsEngine({
       containerRef,
       canvasRef,
@@ -165,6 +167,8 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
 
         const ballId = getBallAtPoint(x, y);
         setClickedBallId(ballId);
+        // Clear hover state to show comparison tooltips immediately
+        setHoveredBallId(null);
       },
       [isComparisonMode, getBallAtPoint]
     );
@@ -195,6 +199,8 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
         // Also set clicked ball for comparison mode navigation
         if (isComparisonMode) {
           setClickedBallId(ballId);
+          // Clear hover state to show comparison tooltips immediately
+          setHoveredBallId(null);
         }
       },
       [getBallAtPoint, setHoveredBallId, wasPinching, isComparisonMode]
@@ -228,7 +234,8 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
       setFocusedBallIndex(nextIndex);
       const nextBall = sortedBalls[nextIndex];
       zoomOnBall(nextBall.id);
-      setHoveredBallId(nextBall.id);
+      // Clear hover state to show comparison tooltips
+      setHoveredBallId(null);
     }, [focusedBallIndex, sortedBalls, zoomOnBall, setHoveredBallId]);
 
     const handleNavigatePrev = useCallback(() => {
@@ -239,7 +246,8 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
       setFocusedBallIndex(prevIndex);
       const prevBall = sortedBalls[prevIndex];
       zoomOnBall(prevBall.id);
-      setHoveredBallId(prevBall.id);
+      // Clear hover state to show comparison tooltips
+      setHoveredBallId(null);
     }, [focusedBallIndex, sortedBalls, zoomOnBall, setHoveredBallId]);
 
     // Reset focus when exiting comparison mode
@@ -259,6 +267,72 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
         }
       }
     }, [isComparisonMode, clickedBallId, sortedBalls]);
+
+    // Calculate comparison tooltips data (current, left, right)
+    const comparisonTooltips = useMemo(() => {
+      if (!isComparisonMode || focusedBallIndex === -1) {
+        return null;
+      }
+
+      const currentBall = sortedBalls[focusedBallIndex];
+      if (!currentBall) return null;
+
+      // Don't show comparison tooltips if hovering over a different ball
+      if (hoveredBallId !== null && hoveredBallId !== currentBall.id) {
+        return null;
+      }
+
+      const currentPos = getBallScreenPosition(currentBall.id);
+      if (!currentPos) return null;
+
+      const tooltips: Array<{
+        ball: BallInfo;
+        x?: number;
+        y?: number;
+        ratio?: number;
+        isSmaller?: boolean;
+        position: "center" | "left" | "right";
+      }> = [
+        {
+          ball: currentBall,
+          x: currentPos.x,
+          y: currentPos.y,
+          position: "center",
+        },
+      ];
+
+      // Add left (smaller) ball tooltip - positioned below left navigation arrow
+      if (focusedBallIndex > 0) {
+        const leftBall = sortedBalls[focusedBallIndex - 1];
+        const ratio = currentBall.value / leftBall.value;
+        tooltips.push({
+          ball: leftBall,
+          ratio,
+          isSmaller: true,
+          position: "left",
+        });
+      }
+
+      // Add right (larger) ball tooltip - positioned below right navigation arrow
+      if (focusedBallIndex < sortedBalls.length - 1) {
+        const rightBall = sortedBalls[focusedBallIndex + 1];
+        const ratio = rightBall.value / currentBall.value;
+        tooltips.push({
+          ball: rightBall,
+          ratio,
+          isSmaller: false,
+          position: "right",
+        });
+      }
+
+      return tooltips;
+    }, [
+      isComparisonMode,
+      focusedBallIndex,
+      hoveredBallId,
+      sortedBalls,
+      getBallScreenPosition,
+    ]);
 
     return (
       <div ref={containerRef} className={styles.container}>
@@ -341,12 +415,29 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
           {hoveredBall && mousePos && (
             <Tooltip ball={hoveredBall} x={mousePos.x} y={mousePos.y} />
           )}
+          {/* Comparison tooltips */}
+          {comparisonTooltips &&
+            comparisonTooltips.map((tooltip) => (
+              <ComparisonTooltip
+                key={tooltip.ball.id}
+                ball={tooltip.ball}
+                x={tooltip.x}
+                y={tooltip.y}
+                ratio={tooltip.ratio}
+                isSmaller={tooltip.isSmaller}
+                position={tooltip.position}
+              />
+            ))}
           {/* Navigation arrows for comparison mode */}
           {isComparisonMode && sortedBalls.length > 1 && (
             <>
               <button
                 className={styles.navArrowLeft}
                 onClick={handleNavigatePrev}
+                onTouchEnd={(e) => {
+                  e.preventDefault();
+                  handleNavigatePrev();
+                }}
                 title="Previous ball (smaller)"
                 aria-label="Navigate to previous ball"
               >
@@ -355,6 +446,10 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
               <button
                 className={styles.navArrowRight}
                 onClick={handleNavigateNext}
+                onTouchEnd={(e) => {
+                  e.preventDefault();
+                  handleNavigateNext();
+                }}
                 title="Next ball (larger)"
                 aria-label="Navigate to next ball"
               >

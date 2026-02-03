@@ -47,6 +47,7 @@ interface UsePhysicsEngineReturn {
   exitComparisonMode: () => void;
   zoomOnBall: (id: number) => void;
   wasPinching: () => boolean;
+  getBallScreenPosition: (id: number) => { x: number; y: number } | null;
 }
 
 export function usePhysicsEngine(
@@ -903,6 +904,28 @@ export function usePhysicsEngine(
     }, []),
     wasPinching: useCallback(() => {
       return wasPinchingRef.current?.current ?? false;
+    }, []),
+    getBallScreenPosition: useCallback((id: number) => {
+      const engine = physicsRefs.current.engine;
+      const render = physicsRefs.current.render;
+      if (!engine || !render) return null;
+
+      const bodies = Matter.Composite.allBodies(engine.world);
+      const ball = bodies.find((b) => b.id === id);
+      if (!ball) return null;
+
+      // Convert world coordinates to screen coordinates
+      const bounds = render.bounds;
+      const options = render.options;
+      const boundsWidth = bounds.max.x - bounds.min.x;
+      const boundsHeight = bounds.max.y - bounds.min.y;
+
+      const x =
+        ((ball.position.x - bounds.min.x) / boundsWidth) * options.width;
+      const y =
+        ((ball.position.y - bounds.min.y) / boundsHeight) * options.height;
+
+      return { x, y };
     }, []),
   };
 }
