@@ -58,9 +58,8 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
     // Use useSyncExternalStore to handle server/client hydration for comparison type display
     const comparisonTypeDisplay = useSyncExternalStore(
       () => () => {}, // subscribe (no-op since comparisonType is controlled by parent)
-      () =>
-        comparisonType === "area" ? "Comparing Area" : "Comparing Diameter", // client snapshot
-      () => "Comparing Area" // server snapshot
+      () => (comparisonType === "area" ? "Area Mode" : "Diameter Mode"), // client snapshot
+      () => "Area Mode" // server snapshot
     );
 
     const {
@@ -229,7 +228,7 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
                     ? "Zoom Mode"
                     : isComparisonMode
                     ? "Comparison Mode"
-                    : "Normal Mode"
+                    : "Start Comparison"
                 }
                 modeTextClass={
                   zoomLevel < 1.0 && !isComparisonMode
@@ -238,6 +237,7 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
                     ? styles.comparisonModeText
                     : styles.normalModeText
                 }
+                isModeClickable={balls.length > 0}
                 onAddData={onAddData}
                 onClear={onClear}
                 onToggleComparisonMode={onToggleComparisonMode}
