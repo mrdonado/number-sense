@@ -935,6 +935,8 @@ export function usePhysicsEngine(
       // Convert world coordinates to screen coordinates
       const bounds = render.bounds;
       const options = render.options;
+      if (!options.width || !options.height) return null;
+
       const boundsWidth = bounds.max.x - bounds.min.x;
       const boundsHeight = bounds.max.y - bounds.min.y;
 
