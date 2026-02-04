@@ -80,7 +80,7 @@
 
 /* Comparison tooltip (with ratio info) */
 .comparisonTooltip {
-  @apply absolute pointer-events-none z-10 flex flex-col gap-1 px-3 py-2 bg-black/90 backdrop-blur-sm rounded-lg shadow-xl border border-amber-400/30;
+  @apply absolute pointer-events-none z-10 flex flex-col gap-1 px-3 py-2 bg-black/60 backdrop-blur-sm rounded-lg shadow-xl border border-amber-400/30;
   /* transform is set inline based on position prop */
 }
 
