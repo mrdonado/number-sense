@@ -9,6 +9,8 @@ interface ComparisonTooltipProps {
   ratio?: number;
   isSmaller?: boolean;
   position?: "center" | "left" | "right";
+  canvasWidth?: number;
+  canvasHeight?: number;
 }
 
 export function ComparisonTooltip({
@@ -18,6 +20,8 @@ export function ComparisonTooltip({
   ratio,
   isSmaller,
   position = "center",
+  canvasWidth,
+  canvasHeight,
 }: ComparisonTooltipProps) {
   const formattedValue = formatValue(ball.value, ball.units);
 
@@ -29,24 +33,54 @@ export function ComparisonTooltip({
   // Position based on type
   const style: React.CSSProperties = {};
 
-  if (position === "center" && x !== undefined && y !== undefined) {
-    // Center tooltip above the focused ball
-    style.left = x;
-    style.top = y;
-    style.transform = "translate(-50%, calc(-100% - 12px))";
-  } else if (position === "left") {
-    // Left tooltip below the left navigation arrow
-    style.left = "4rem"; // Same as navArrowLeft left position
-    style.top = "50%";
-    style.transform = "translateY(3rem)"; // Below the arrow
-  } else if (position === "right") {
-    // Right tooltip below the right navigation arrow
-    style.right = "4rem"; // Same as navArrowRight right position
-    style.top = "50%";
-    style.transform = "translateY(3rem)"; // Below the arrow
+  // Check if we have a vertical screen (height > width)
+  const isVerticalScreen =
+    canvasWidth && canvasHeight && canvasHeight > canvasWidth;
+
+  if (isVerticalScreen) {
+    // Vertical screen: position tooltips on central vertical axis
+    const centerX = canvasWidth / 2;
+
+    if (position === "center") {
+      // Current ball: center of screen
+      style.left = centerX;
+      style.top = canvasHeight / 2;
+      style.transform = "translate(-50%, -50%)";
+    } else if (position === "left") {
+      // Previous ball: bottom third
+      style.left = centerX;
+      style.top = (canvasHeight / 3) * 2;
+      style.transform = "translate(-50%, 40%)";
+    } else if (position === "right") {
+      // Next ball: top third
+      style.left = centerX;
+      style.top = canvasHeight / 3;
+      style.transform = "translate(-50%, -130%)";
+    } else {
+      // Fallback - hide if position is invalid
+      style.display = "none";
+    }
   } else {
-    // Fallback - hide if position is invalid
-    style.display = "none";
+    // Horizontal screen: original positioning near navigation arrows
+    if (position === "center" && x !== undefined && y !== undefined) {
+      // Center tooltip above the focused ball
+      style.left = x;
+      style.top = y;
+      style.transform = "translate(-50%, calc(-100% - 12px))";
+    } else if (position === "left") {
+      // Left tooltip below the left navigation arrow
+      style.left = "4rem"; // Same as navArrowLeft left position
+      style.top = "50%";
+      style.transform = "translateY(3rem)"; // Below the arrow
+    } else if (position === "right") {
+      // Right tooltip below the right navigation arrow
+      style.right = "4rem"; // Same as navArrowRight right position
+      style.top = "50%";
+      style.transform = "translateY(3rem)"; // Below the arrow
+    } else {
+      // Fallback - hide if position is invalid
+      style.display = "none";
+    }
   }
 
   return (

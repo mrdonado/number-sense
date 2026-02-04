@@ -49,9 +49,13 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
     const containerRef = useRef<HTMLDivElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [mousePos, setMousePos] = useState<{ x: number; y: number } | null>(
-      null
+      null,
     );
     const [mounted, setMounted] = useState(false);
+    const [canvasDimensions, setCanvasDimensions] = useState<{
+      width: number;
+      height: number;
+    } | null>(null);
     const mouseDownPosRef = useRef<{ x: number; y: number } | null>(null);
     const touchStartPosRef = useRef<{ x: number; y: number } | null>(null);
     const DRAG_THRESHOLD = 5; // pixels - if moved more than this, it's a drag
@@ -60,11 +64,35 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
       setMounted(true);
     }, []);
 
+    // Track canvas dimensions to avoid accessing ref during render
+    useEffect(() => {
+      const canvas = canvasRef.current;
+      if (!canvas) return;
+
+      const updateDimensions = () => {
+        setCanvasDimensions({
+          width: canvas.width,
+          height: canvas.height,
+        });
+      };
+
+      // Initial dimensions
+      updateDimensions();
+
+      // Watch for size changes
+      const resizeObserver = new ResizeObserver(updateDimensions);
+      resizeObserver.observe(canvas);
+
+      return () => {
+        resizeObserver.disconnect();
+      };
+    }, []);
+
     // Use useSyncExternalStore to handle server/client hydration for comparison type display
     const comparisonTypeDisplay = useSyncExternalStore(
       () => () => {}, // subscribe (no-op since comparisonType is controlled by parent)
       () => (comparisonType === "area" ? "Area Mode" : "Diameter Mode"), // client snapshot
-      () => "Area Mode" // server snapshot
+      () => "Area Mode", // server snapshot
     );
 
     const {
@@ -97,7 +125,7 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
 
     // Calculate visible ball count and notify parent
     const visibleBallCount = balls.filter(
-      (b) => !hiddenBallIds.has(b.id)
+      (b) => !hiddenBallIds.has(b.id),
     ).length;
 
     useEffect(() => {
@@ -156,7 +184,7 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
           setMousePos(null);
         }
       },
-      [getBallAtPoint, setHoveredBallId, updateMousePosition]
+      [getBallAtPoint, setHoveredBallId, updateMousePosition],
     );
 
     const handleCanvasMouseLeave = useCallback(() => {
@@ -175,7 +203,7 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
           y: e.clientY - rect.top,
         };
       },
-      []
+      [],
     );
 
     // Handle click on canvas to select ball in comparison mode
@@ -228,7 +256,7 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
         setIsNavigating,
         zoomOnBall,
         setHoveredBallId,
-      ]
+      ],
     );
 
     // Track touchstart position to detect drags vs taps
@@ -243,7 +271,7 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
           y: touch.clientY - rect.top,
         };
       },
-      []
+      [],
     );
 
     // Handle touch on canvas to activate legend item
@@ -310,7 +338,7 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
         setFocusedBallIndex,
         setIsNavigating,
         zoomOnBall,
-      ]
+      ],
     );
 
     // Clear tooltip position when hover state is cleared (e.g., when ball moves away from cursor)
@@ -356,8 +384,8 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
         focusedBallIndex < 0
           ? 0
           : focusedBallIndex <= 0
-          ? sortedBalls.length - 1
-          : focusedBallIndex - 1;
+            ? sortedBalls.length - 1
+            : focusedBallIndex - 1;
       setFocusedBallIndex(prevIndex);
       setIsNavigating(true);
       const prevBall = sortedBalls[prevIndex];
@@ -398,7 +426,7 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
         setIsNavigating,
         zoomOnBall,
         setHoveredBallId,
-      ]
+      ],
     );
 
     // Reset navigation state when exiting comparison mode
@@ -425,10 +453,9 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
       }
 
       // Get canvas dimensions for centering
-      const canvas = canvasRef.current;
-      if (!canvas) return null;
-      const centerX = canvas.width / 2;
-      const centerY = canvas.height / 2;
+      if (!canvasDimensions) return null;
+      const centerX = canvasDimensions.width / 2;
+      const centerY = canvasDimensions.height / 2;
 
       const tooltips: Array<{
         ball: BallInfo;
@@ -437,12 +464,16 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
         ratio?: number;
         isSmaller?: boolean;
         position: "center" | "left" | "right";
+        canvasWidth: number;
+        canvasHeight: number;
       }> = [
         {
           ball: currentBall,
           x: centerX,
           y: centerY,
           position: "center",
+          canvasWidth: canvasDimensions.width,
+          canvasHeight: canvasDimensions.height,
         },
       ];
 
@@ -455,6 +486,8 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
           ratio,
           isSmaller: true,
           position: "left",
+          canvasWidth: canvasDimensions.width,
+          canvasHeight: canvasDimensions.height,
         });
       }
 
@@ -467,6 +500,8 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
           ratio,
           isSmaller: false,
           position: "right",
+          canvasWidth: canvasDimensions.width,
+          canvasHeight: canvasDimensions.height,
         });
       }
 
@@ -477,7 +512,7 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
       focusedBallIndex,
       hoveredBallId,
       sortedBalls,
-      canvasRef,
+      canvasDimensions,
     ]);
 
     return (
@@ -523,15 +558,15 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
                   zoomLevel < 1.0 && !isComparisonMode
                     ? "Zoom Mode"
                     : isComparisonMode
-                    ? "Comparison Mode"
-                    : "Start Comparison"
+                      ? "Comparison Mode"
+                      : "Start Comparison"
                 }
                 modeTextClass={
                   zoomLevel < 1.0 && !isComparisonMode
                     ? styles.zoomModeText
                     : isComparisonMode
-                    ? styles.comparisonModeText
-                    : styles.normalModeText
+                      ? styles.comparisonModeText
+                      : styles.normalModeText
                 }
                 isModeClickable={balls.length > 0}
                 onAddData={onAddData}
@@ -574,6 +609,8 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
                 ratio={tooltip.ratio}
                 isSmaller={tooltip.isSmaller}
                 position={tooltip.position}
+                canvasWidth={tooltip.canvasWidth}
+                canvasHeight={tooltip.canvasHeight}
               />
             ))}
           {/* Navigation arrows for comparison mode */}
@@ -616,7 +653,7 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
         </div>
       </div>
     );
-  }
+  },
 );
 
 export default PhysicsCanvas;
