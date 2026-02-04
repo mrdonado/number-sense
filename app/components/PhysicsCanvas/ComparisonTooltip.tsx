@@ -50,12 +50,12 @@ export function ComparisonTooltip({
       // Previous ball: bottom third
       style.left = centerX;
       style.top = (canvasHeight / 3) * 2;
-      style.transform = "translate(-50%, 40%)";
+      style.transform = "translate(-50%, -400%)";
     } else if (position === "right") {
       // Next ball: top third
       style.left = centerX;
       style.top = canvasHeight / 3;
-      style.transform = "translate(-50%, -130%)";
+      style.transform = "translate(-50%, 340%)";
     } else {
       // Fallback - hide if position is invalid
       style.display = "none";
