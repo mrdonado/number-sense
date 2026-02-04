@@ -26,7 +26,7 @@ const TAP_MOVE_THRESHOLD = 10;
  * - Touch pan when zoomed
  */
 export function createZoomHandlers(
-  options: ZoomHandlerOptions
+  options: ZoomHandlerOptions,
 ): ZoomHandlerResult {
   const {
     dimensions,
@@ -90,7 +90,7 @@ export function createZoomHandlers(
       clientY,
       rect,
       getCurrentBounds(),
-      dimensions
+      dimensions,
     );
   };
 
@@ -109,7 +109,7 @@ export function createZoomHandlers(
 
     if (progress < 1) {
       zoomAnimationFrame = requestAnimationFrame(() =>
-        animateZoom(from, to, startTime)
+        animateZoom(from, to, startTime),
       );
     } else {
       zoomAnimationFrame = null;
@@ -190,7 +190,7 @@ export function createZoomHandlers(
     centerX: number,
     centerY: number,
     centerRatioX: number,
-    centerRatioY: number
+    centerRatioY: number,
   ) => {
     const newWidth = width * newZoom;
     const newHeight = height * newZoom;
@@ -338,7 +338,7 @@ export function createZoomHandlers(
 
   const getTouchCenter = (
     touch1: Touch,
-    touch2: Touch
+    touch2: Touch,
   ): { x: number; y: number } => ({
     x: (touch1.clientX + touch2.clientX) / 2,
     y: (touch1.clientY + touch2.clientY) / 2,
@@ -488,6 +488,8 @@ export function createZoomHandlers(
         touchStartTime = null;
         // Clear zoom target so updateZoomedView won't snap back to the ball after panning
         zoomTargetRef.current = null;
+        // Notify that user initiated a pan (exits navigation mode)
+        onUserZoom?.();
       }
     }
 
@@ -527,7 +529,7 @@ export function createZoomHandlers(
       e.changedTouches.length > 0 &&
       isEventInRightPanel(
         e.changedTouches[0].clientX,
-        e.changedTouches[0].clientY
+        e.changedTouches[0].clientY,
       )
     ) {
       return;
