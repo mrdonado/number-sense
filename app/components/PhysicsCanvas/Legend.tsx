@@ -15,6 +15,8 @@ interface LegendProps {
   onToggleVisibility: (id: number) => void;
   onZoom: (id: number) => void;
   isComparisonMode?: boolean;
+  collapsed?: boolean;
+  onCollapsedChange?: (collapsed: boolean) => void;
 }
 
 /**
@@ -22,14 +24,14 @@ interface LegendProps {
  */
 function calculateUnitsDisplay(
   balls: BallInfo[],
-  hiddenBallIds: Set<number>
+  hiddenBallIds: Set<number>,
 ): { units: string | null; isMixed: boolean } {
   // Only consider visible balls
   const visibleBalls = balls.filter((b) => !hiddenBallIds.has(b.id));
 
   // Get unique units from visible balls (excluding undefined/empty)
   const uniqueUnits = new Set(
-    visibleBalls.map((b) => b.units).filter((u): u is string => !!u)
+    visibleBalls.map((b) => b.units).filter((u): u is string => !!u),
   );
 
   if (uniqueUnits.size === 0) {
@@ -53,13 +55,27 @@ export function Legend({
   onToggleVisibility,
   onZoom,
   isComparisonMode = false,
+  collapsed,
+  onCollapsedChange,
 }: LegendProps) {
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [internalCollapsed, setInternalCollapsed] = useState(false);
+
+  // Use external collapsed state if provided, otherwise use internal state
+  const isCollapsed = collapsed !== undefined ? collapsed : internalCollapsed;
+
+  const handleToggleCollapsed = () => {
+    const newCollapsed = !isCollapsed;
+    if (onCollapsedChange) {
+      onCollapsedChange(newCollapsed);
+    } else {
+      setInternalCollapsed(newCollapsed);
+    }
+  };
 
   // Calculate units from visible balls
   const { units, isMixed } = useMemo(
     () => calculateUnitsDisplay(balls, hiddenBallIds),
-    [balls, hiddenBallIds]
+    [balls, hiddenBallIds],
   );
 
   if (balls.length === 0) {
@@ -95,7 +111,7 @@ export function Legend({
         className={styles.legendHeader}
         onClick={(e) => {
           e.stopPropagation();
-          setIsCollapsed(!isCollapsed);
+          handleToggleCollapsed();
         }}
         title={isCollapsed ? "Expand legend" : "Collapse legend"}
       >

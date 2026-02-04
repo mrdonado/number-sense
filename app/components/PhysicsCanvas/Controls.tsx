@@ -9,6 +9,8 @@ interface ControlsProps {
   modeText: string;
   modeTextClass: string;
   isModeClickable?: boolean;
+  collapsed?: boolean;
+  onCollapsedChange?: (collapsed: boolean) => void;
   onAddData?: () => void;
   onClear?: () => void;
   onToggleComparisonMode?: () => void;
@@ -21,13 +23,27 @@ export function Controls({
   modeText,
   modeTextClass,
   isModeClickable = true,
+  collapsed,
+  onCollapsedChange,
   onAddData,
   onClear,
   onToggleComparisonMode,
   onComparisonTypeChange,
   onShare,
 }: ControlsProps) {
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [internalCollapsed, setInternalCollapsed] = useState(false);
+
+  // Use external collapsed state if provided, otherwise use internal state
+  const isCollapsed = collapsed !== undefined ? collapsed : internalCollapsed;
+
+  const handleToggleCollapsed = () => {
+    const newCollapsed = !isCollapsed;
+    if (onCollapsedChange) {
+      onCollapsedChange(newCollapsed);
+    } else {
+      setInternalCollapsed(newCollapsed);
+    }
+  };
 
   return (
     <div
@@ -42,7 +58,7 @@ export function Controls({
         className={styles.controlsHeader}
         onClick={(e) => {
           e.stopPropagation();
-          setIsCollapsed(!isCollapsed);
+          handleToggleCollapsed();
         }}
         title={isCollapsed ? "Expand controls" : "Collapse controls"}
       >

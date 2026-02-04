@@ -56,6 +56,8 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
       width: number;
       height: number;
     } | null>(null);
+    const [controlsCollapsed, setControlsCollapsed] = useState(false);
+    const [legendCollapsed, setLegendCollapsed] = useState(false);
     const mouseDownPosRef = useRef<{ x: number; y: number } | null>(null);
     const touchStartPosRef = useRef<{ x: number; y: number } | null>(null);
     const DRAG_THRESHOLD = 5; // pixels - if moved more than this, it's a drag
@@ -437,6 +439,18 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
       }
     }, [isComparisonMode, setFocusedBallIndex, setIsNavigating]);
 
+    // Auto-collapse controls on small screens when navigation starts
+    useEffect(() => {
+      if (isNavigating && isComparisonMode && canvasDimensions) {
+        // Consider screens with width <= 768px as small
+        const isSmallScreen = canvasDimensions.width <= 768;
+        if (isSmallScreen) {
+          setControlsCollapsed(true);
+          setLegendCollapsed(true);
+        }
+      }
+    }, [isNavigating, isComparisonMode, canvasDimensions]);
+
     // Calculate comparison tooltips data (current, left, right)
     const comparisonTooltips = useMemo(() => {
       // Only show tooltips during active navigation
@@ -569,6 +583,8 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
                       : styles.normalModeText
                 }
                 isModeClickable={balls.length > 0}
+                collapsed={controlsCollapsed}
+                onCollapsedChange={setControlsCollapsed}
                 onAddData={onAddData}
                 onClear={onClear}
                 onToggleComparisonMode={onToggleComparisonMode}
@@ -585,6 +601,8 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
               onToggleVisibility={toggleBallVisibility}
               onZoom={handleLegendItemClick}
               isComparisonMode={isComparisonMode}
+              collapsed={legendCollapsed}
+              onCollapsedChange={setLegendCollapsed}
             />
           </div>
           {/* Comparison ratio display */}
