@@ -632,42 +632,49 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
               />
             ))}
           {/* Navigation arrows for comparison mode */}
-          {isComparisonMode && sortedBalls.length > 1 && (
-            <>
-              {/* Transparent blocking layer for left button */}
-              <div
-                className={styles.navBlockerLeft}
-                onTouchStart={(e) => e.stopPropagation()}
-                onTouchMove={(e) => e.stopPropagation()}
-                onTouchEnd={(e) => e.stopPropagation()}
-                onClick={(e) => e.stopPropagation()}
-              />
-              <button
-                className={styles.navArrowLeft}
-                onClick={handleNavigatePrev}
-                title="Previous ball (smaller)"
-                aria-label="Navigate to previous ball"
-              >
-                <ChevronLeft size={32} />
-              </button>
-              {/* Transparent blocking layer for right button */}
-              <div
-                className={styles.navBlockerRight}
-                onTouchStart={(e) => e.stopPropagation()}
-                onTouchMove={(e) => e.stopPropagation()}
-                onTouchEnd={(e) => e.stopPropagation()}
-                onClick={(e) => e.stopPropagation()}
-              />
-              <button
-                className={styles.navArrowRight}
-                onClick={handleNavigateNext}
-                title="Next ball (larger)"
-                aria-label="Navigate to next ball"
-              >
-                <ChevronRight size={32} />
-              </button>
-            </>
-          )}
+          {isComparisonMode &&
+            sortedBalls.length > 1 &&
+            // Hide buttons on small screens at zoom 1x to avoid touch handling issues
+            !(
+              canvasDimensions &&
+              canvasDimensions.width <= 768 &&
+              zoomLevel === 1.0
+            ) && (
+              <>
+                {/* Transparent blocking layer for left button */}
+                <div
+                  className={styles.navBlockerLeft}
+                  onTouchStart={(e) => e.stopPropagation()}
+                  onTouchMove={(e) => e.stopPropagation()}
+                  onTouchEnd={(e) => e.stopPropagation()}
+                  onClick={(e) => e.stopPropagation()}
+                />
+                <button
+                  className={styles.navArrowLeft}
+                  onClick={handleNavigatePrev}
+                  title="Previous ball (smaller)"
+                  aria-label="Navigate to previous ball"
+                >
+                  <ChevronLeft size={32} />
+                </button>
+                {/* Transparent blocking layer for right button */}
+                <div
+                  className={styles.navBlockerRight}
+                  onTouchStart={(e) => e.stopPropagation()}
+                  onTouchMove={(e) => e.stopPropagation()}
+                  onTouchEnd={(e) => e.stopPropagation()}
+                  onClick={(e) => e.stopPropagation()}
+                />
+                <button
+                  className={styles.navArrowRight}
+                  onClick={handleNavigateNext}
+                  title="Next ball (larger)"
+                  aria-label="Navigate to next ball"
+                >
+                  <ChevronRight size={32} />
+                </button>
+              </>
+            )}
         </div>
       </div>
     );
