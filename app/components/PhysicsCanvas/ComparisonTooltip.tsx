@@ -46,16 +46,21 @@ export function ComparisonTooltip({
       style.left = centerX;
       style.top = canvasHeight / 2;
       style.transform = "translate(-50%, -50%)";
+      style.position = "absolute";
     } else if (position === "left") {
-      // Previous ball: bottom third
+      // Previous ball: top - positioned below collapsed legend with fixed margin
+      const marginFromEdge = 100; // Fixed margin in pixels
       style.left = centerX;
-      style.top = (canvasHeight / 3) * 2;
-      style.transform = "translate(-50%, -400%)";
+      style.top = marginFromEdge;
+      style.transform = "translate(-50%, 0)";
+      style.position = "absolute";
     } else if (position === "right") {
-      // Next ball: top third
+      // Next ball: bottom - same distance from bottom as top tooltip from top
+      const marginFromEdge = 100; // Fixed margin in pixels
       style.left = centerX;
-      style.top = canvasHeight / 3;
-      style.transform = "translate(-50%, 340%)";
+      style.bottom = marginFromEdge;
+      style.transform = "translate(-50%, 0)";
+      style.position = "absolute";
     } else {
       // Fallback - hide if position is invalid
       style.display = "none";
