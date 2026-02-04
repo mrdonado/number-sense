@@ -31,7 +31,7 @@ interface UsePhysicsEngineReturn {
     radius: number,
     name?: string,
     units?: string,
-    sourceId?: string
+    sourceId?: string,
   ) => void;
   clearBalls: () => void;
   removeBall: (id: number) => void;
@@ -55,7 +55,7 @@ interface UsePhysicsEngineReturn {
 }
 
 export function usePhysicsEngine(
-  options: UsePhysicsEngineOptions
+  options: UsePhysicsEngineOptions,
 ): UsePhysicsEngineReturn {
   const { containerRef, canvasRef, comparisonType = "area" } = options;
 
@@ -80,7 +80,7 @@ export function usePhysicsEngine(
   const [isComparisonMode, setIsComparisonMode] = useState(false);
   const isComparisonModeRef = useRef(false);
   const savedPositionsRef = useRef<Map<number, { x: number; y: number }>>(
-    new Map()
+    new Map(),
   );
   const savedRunnerEnabledRef = useRef(true);
   const zoomOnBallByIdRef = useRef<((id: number) => void) | null>(null);
@@ -220,7 +220,7 @@ export function usePhysicsEngine(
     const isBallAtScreenPos = (
       ball: BallBody,
       screenX: number,
-      screenY: number
+      screenY: number,
     ): boolean => {
       // Convert screen coordinates to world coordinates accounting for zoom/pan
       const bounds = {
@@ -438,7 +438,7 @@ export function usePhysicsEngine(
           const ballInfo = ballManagerRef.current.restoreBall(
             engine,
             persistedBall,
-            { width, height }
+            { width, height },
           );
           restoredBalls.push(ballInfo);
         }
@@ -495,12 +495,12 @@ export function usePhysicsEngine(
         },
         name,
         units,
-        sourceId
+        sourceId,
       );
 
       setBalls((prev) => [...prev, ballInfo]);
     },
-    [containerRef]
+    [containerRef],
   );
 
   const getBallAtPoint = useCallback(
@@ -526,7 +526,7 @@ export function usePhysicsEngine(
       const worldY = bounds.minY + screenY * scaleY;
 
       const bodies = Matter.Composite.allBodies(
-        physicsRefs.current.engine.world
+        physicsRefs.current.engine.world,
       );
 
       for (const body of bodies) {
@@ -542,7 +542,7 @@ export function usePhysicsEngine(
 
       return null;
     },
-    []
+    [],
   );
 
   const clearBalls = useCallback(() => {
@@ -575,13 +575,13 @@ export function usePhysicsEngine(
       if (remainingBalls.length === 0) {
         // Just remove the ball and clear everything
         const bodies = Matter.Composite.allBodies(
-          physicsRefs.current.engine.world
+          physicsRefs.current.engine.world,
         );
         const ballToRemove = bodies.find((b) => b.id === id);
         if (ballToRemove) {
           Matter.Composite.remove(
             physicsRefs.current.engine.world,
-            ballToRemove
+            ballToRemove,
           );
         }
         ballManagerRef.current.resetScale();
@@ -596,7 +596,7 @@ export function usePhysicsEngine(
         physicsRefs.current.engine,
         dimensionsRef.current,
         remainingBalls,
-        newHiddenSet
+        newHiddenSet,
       );
 
       // Update hidden ball IDs with new IDs
@@ -612,7 +612,7 @@ export function usePhysicsEngine(
       setHiddenBallIds(updatedHiddenSet);
       setBalls(newBalls);
     },
-    [balls]
+    [balls],
   );
 
   const toggleBallVisibility = useCallback(
@@ -640,7 +640,7 @@ export function usePhysicsEngine(
       const newScaleFactor =
         ballManagerRef.current.calculateScaleFactorForBalls(
           visibleBalls,
-          dimensionsRef.current
+          dimensionsRef.current,
         );
       const currentScaleFactor = ballManagerRef.current.getScaleFactor();
       const scaleFactorChanges =
@@ -652,7 +652,7 @@ export function usePhysicsEngine(
           physicsRefs.current.engine,
           dimensionsRef.current,
           balls,
-          newHiddenSet
+          newHiddenSet,
         );
 
         // Update hidden ball IDs with new IDs
@@ -681,12 +681,12 @@ export function usePhysicsEngine(
               color: ballInfo.color,
               originalRadius: ballInfo.originalRadius,
             },
-            dimensionsRef.current
+            dimensionsRef.current,
           );
 
           // Update balls state with new ID
           const updatedBalls = balls.map((b) =>
-            b.id === id ? newBallInfo : b
+            b.id === id ? newBallInfo : b,
           );
           setBalls(updatedBalls);
 
@@ -696,20 +696,20 @@ export function usePhysicsEngine(
         } else {
           // Hiding: remove the ball from physics world
           const bodies = Matter.Composite.allBodies(
-            physicsRefs.current.engine.world
+            physicsRefs.current.engine.world,
           );
           const ballToRemove = bodies.find((b) => b.id === id);
           if (ballToRemove) {
             Matter.Composite.remove(
               physicsRefs.current.engine.world,
-              ballToRemove
+              ballToRemove,
             );
           }
 
           // Generate a new unique ID for the hidden ball (negative to avoid collision)
           const newId = -Date.now() - Math.random();
           const updatedBalls = balls.map((b) =>
-            b.id === id ? { ...b, id: newId } : b
+            b.id === id ? { ...b, id: newId } : b,
           );
           setBalls(updatedBalls);
 
@@ -722,7 +722,7 @@ export function usePhysicsEngine(
         }
       }
     },
-    [balls]
+    [balls],
   );
 
   // Helper function to arrange balls in comparison layout
@@ -735,14 +735,14 @@ export function usePhysicsEngine(
     // Get all visible ball bodies
     const bodies = Matter.Composite.allBodies(engine.world);
     const ballBodies = bodies.filter(
-      (b) => !b.isStatic && !hiddenBallIdsRef.current.has(b.id)
+      (b) => !b.isStatic && !hiddenBallIdsRef.current.has(b.id),
     ) as BallBody[];
 
     if (ballBodies.length === 0) return;
 
     // Sort balls by size (smallest to largest) based on original radius
     const sortedBalls = [...ballBodies].sort(
-      (a, b) => (a.originalRadius || 0) - (b.originalRadius || 0)
+      (a, b) => (a.originalRadius || 0) - (b.originalRadius || 0),
     );
 
     // Find the smallest ball's radius to use as max gap
@@ -756,11 +756,11 @@ export function usePhysicsEngine(
       gaps.push(gap);
     }
 
-    // Calculate total width needed for all balls in a row
-    const totalRadius = sortedBalls.reduce(
+    // Calculate total span (distance from edge to edge of all balls)
+    const totalSpan = sortedBalls.reduce(
       (sum, ball, index) =>
         sum + (ball.circleRadius || 0) * 2 + (gaps[index] || 0),
-      0
+      0,
     );
 
     // Determine if we should arrange horizontally or vertically based on aspect ratio
@@ -768,9 +768,9 @@ export function usePhysicsEngine(
 
     if (isLandscape) {
       // Horizontal arrangement (left to right)
-      // Start from the left, accounting for the first ball's radius
-      let currentX =
-        (width - totalRadius) / 2 + (sortedBalls[0].circleRadius || 0);
+      // Calculate starting position to center the balls horizontally with equal space on left and right
+      const leftMargin = (width - totalSpan) / 2;
+      let currentX = leftMargin + (sortedBalls[0].circleRadius || 0);
       const centerY = height / 2;
 
       sortedBalls.forEach((ball, index) => {
@@ -789,8 +789,9 @@ export function usePhysicsEngine(
     } else {
       // Vertical arrangement (bottom to top, with smallest at bottom)
       const centerX = width / 2;
-      // Start from the bottom, accounting for the first ball's radius
-      let currentY = height - 50 - (sortedBalls[0].circleRadius || 0);
+      // Calculate starting position to center the balls vertically with equal space on top and bottom
+      const topMargin = (height - totalSpan) / 2;
+      let currentY = topMargin + (sortedBalls[0].circleRadius || 0);
 
       sortedBalls.forEach((ball, index) => {
         const ballRadius = ball.circleRadius || 10;
@@ -802,7 +803,7 @@ export function usePhysicsEngine(
         // Move to next position: current ball's radius + gap + next ball's radius
         if (index < sortedBalls.length - 1) {
           const nextRadius = sortedBalls[index + 1].circleRadius || 10;
-          currentY -= ballRadius + gaps[index] + nextRadius;
+          currentY += ballRadius + gaps[index] + nextRadius;
         }
       });
     }
@@ -817,7 +818,7 @@ export function usePhysicsEngine(
     // Get all visible ball bodies
     const bodies = Matter.Composite.allBodies(engine.world);
     const ballBodies = bodies.filter(
-      (b) => !b.isStatic && !hiddenBallIdsRef.current.has(b.id)
+      (b) => !b.isStatic && !hiddenBallIdsRef.current.has(b.id),
     ) as BallBody[];
 
     if (ballBodies.length === 0) return;
@@ -899,7 +900,7 @@ export function usePhysicsEngine(
         mouseScreenPosRef.current = { x, y };
       }
     },
-    []
+    [],
   );
 
   return {
