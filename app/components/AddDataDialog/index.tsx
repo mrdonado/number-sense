@@ -102,6 +102,7 @@ export function AddDataDialog({
   const hasInitialized = useRef(false);
   const previousCountRef = useRef(0);
   const [hasNewItem, setHasNewItem] = useState(false);
+  const [isAddingItem, setIsAddingItem] = useState(false);
 
   // Detect when a new item is added and trigger animation
   useEffect(() => {
@@ -110,6 +111,7 @@ export function AddDataDialog({
       previousCountRef.current > 0
     ) {
       setHasNewItem(true);
+      setIsAddingItem(false); // Clear loading state when item is added
       const timer = setTimeout(() => setHasNewItem(false), 1000);
       return () => clearTimeout(timer);
     }
@@ -253,6 +255,7 @@ export function AddDataDialog({
 
   const handleSelectValue = useCallback(
     (item: DataItem) => {
+      setIsAddingItem(true);
       const units = sourceData?.metadata?.units || "";
       onSelect(item.name, item.value, units, selectedSourceId || undefined);
     },
@@ -377,26 +380,36 @@ export function AddDataDialog({
             className={`${styles.simulationInfo} ${hasNewItem ? styles.simulationInfoAnimate : ""}`}
             key={excludedItems.length}
           >
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <circle cx="12" cy="12" r="10" />
-              <circle cx="12" cy="12" r="4" />
-              <line x1="12" y1="2" x2="12" y2="6" />
-              <line x1="12" y1="18" x2="12" y2="22" />
-              <line x1="2" y1="12" x2="6" y2="12" />
-              <line x1="18" y1="12" x2="22" y2="12" />
-            </svg>
+            {isAddingItem ? (
+              <div className={styles.addingSpinner} />
+            ) : (
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <circle cx="12" cy="12" r="4" />
+                <line x1="12" y1="2" x2="12" y2="6" />
+                <line x1="12" y1="18" x2="12" y2="22" />
+                <line x1="2" y1="12" x2="6" y2="12" />
+                <line x1="18" y1="12" x2="22" y2="12" />
+              </svg>
+            )}
             <span className={styles.simulationInfoText}>
-              {excludedItems.length}{" "}
-              {excludedItems.length === 1 ? "item" : "items"} in simulation
+              {isAddingItem ? (
+                "Adding..."
+              ) : (
+                <>
+                  {excludedItems.length}{" "}
+                  {excludedItems.length === 1 ? "item" : "items"} in simulation
+                </>
+              )}
             </span>
             {hasNewItem && <span className={styles.successIndicator}>✓</span>}
           </div>
