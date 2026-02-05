@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { ChevronRight, ChevronDown } from "lucide-react";
+import { ChevronRight, ChevronDown, Eye, EyeOff, Trash2 } from "lucide-react";
 import { formatValue } from "@/app/utils/formatValue";
 import type { BallInfo } from "./types";
 import styles from "./PhysicsCanvas.module.css";
@@ -187,17 +187,16 @@ export function Legend({
                 >
                   {formattedValue}
                 </span>
-                <input
-                  type="checkbox"
-                  checked={!isHidden}
-                  onChange={(e) => {
+                <button
+                  onClick={(e) => {
                     e.stopPropagation();
                     onToggleVisibility(ball.id);
                   }}
-                  onClick={(e) => e.stopPropagation()}
-                  className={styles.checkbox}
+                  className={styles.visibilityButton}
                   title={isHidden ? "Show ball" : "Hide ball"}
-                />
+                >
+                  {isHidden ? <EyeOff size={16} /> : <Eye size={16} />}
+                </button>
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
@@ -206,7 +205,7 @@ export function Legend({
                   className={styles.removeButton}
                   title="Remove ball"
                 >
-                  🗑️
+                  <Trash2 size={16} />
                 </button>
               </li>
             );

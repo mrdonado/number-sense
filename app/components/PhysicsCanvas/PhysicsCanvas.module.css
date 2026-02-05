@@ -39,7 +39,7 @@
 }
 
 .comparisonModeText {
-  @apply text-cyan-300 text-sm font-medium;
+  @apply text-emerald-300 text-sm font-medium;
 }
 
 .normalModeText {
@@ -217,12 +217,12 @@
   @apply text-xs font-mono shrink-0;
 }
 
-.checkbox {
-  @apply w-4 h-4 cursor-pointer accent-white;
+.visibilityButton {
+  @apply text-white/60 transition-colors cursor-pointer bg-transparent border-0 p-0 flex items-center justify-center;
 }
 
 .removeButton {
-  @apply text-white/60 transition-colors text-sm cursor-pointer;
+  @apply text-white/60 transition-colors cursor-pointer bg-transparent border-0 p-0 flex items-center justify-center;
 }
 
 .navBlockerLeft,
@@ -256,6 +256,8 @@
 }
 
 @media (hover: hover) {
+
+  .visibilityButton:hover,
   .removeButton:hover {
     @apply text-white;
   }
