@@ -373,35 +373,33 @@ export function AddDataDialog({
             <span>Back to Simulation</span>
           </button>
 
-          {excludedItems.length > 0 && (
-            <div
-              className={`${styles.simulationInfo} ${hasNewItem ? styles.simulationInfoAnimate : ""}`}
-              key={excludedItems.length}
+          <div
+            className={`${styles.simulationInfo} ${hasNewItem ? styles.simulationInfoAnimate : ""}`}
+            key={excludedItems.length}
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <circle cx="12" cy="12" r="10" />
-                <circle cx="12" cy="12" r="4" />
-                <line x1="12" y1="2" x2="12" y2="6" />
-                <line x1="12" y1="18" x2="12" y2="22" />
-                <line x1="2" y1="12" x2="6" y2="12" />
-                <line x1="18" y1="12" x2="22" y2="12" />
-              </svg>
-              <span className={styles.simulationInfoText}>
-                {excludedItems.length}{" "}
-                {excludedItems.length === 1 ? "item" : "items"} in simulation
-              </span>
-              {hasNewItem && <span className={styles.successIndicator}>✓</span>}
-            </div>
-          )}
+              <circle cx="12" cy="12" r="10" />
+              <circle cx="12" cy="12" r="4" />
+              <line x1="12" y1="2" x2="12" y2="6" />
+              <line x1="12" y1="18" x2="12" y2="22" />
+              <line x1="2" y1="12" x2="6" y2="12" />
+              <line x1="18" y1="12" x2="22" y2="12" />
+            </svg>
+            <span className={styles.simulationInfoText}>
+              {excludedItems.length}{" "}
+              {excludedItems.length === 1 ? "item" : "items"} in simulation
+            </span>
+            {hasNewItem && <span className={styles.successIndicator}>✓</span>}
+          </div>
         </div>
 
         <div className={styles.header}>
