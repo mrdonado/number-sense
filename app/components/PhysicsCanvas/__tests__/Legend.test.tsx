@@ -56,7 +56,7 @@ describe("Legend", () => {
         onRemove={vi.fn()}
         onToggleVisibility={vi.fn()}
         onZoom={vi.fn()}
-      />
+      />,
     );
     expect(container.firstChild).toBeNull();
   });
@@ -103,7 +103,7 @@ describe("Legend", () => {
       { ...mockBalls[1], units: "people" },
     ];
     const { rerender } = render(
-      <Legend {...defaultProps} balls={mixedUnitsBalls} />
+      <Legend {...defaultProps} balls={mixedUnitsBalls} />,
     );
 
     // Should show mixed
@@ -131,7 +131,7 @@ describe("Legend", () => {
         {...defaultProps}
         balls={mixedUnitsBalls}
         hiddenBallIds={hiddenBallIds}
-      />
+      />,
     );
 
     // Should show USD (not mixed) since only USD ball is visible
@@ -234,7 +234,7 @@ describe("Legend", () => {
 
     // Blue ball (id=2) is at index 0 after sorting and should have highlight styles
     expect(listItems[0].style.boxShadow).toBe(
-      `0 0 0 2px ${mockBalls[1].color}`
+      `0 0 0 2px ${mockBalls[1].color}`,
     );
 
     // Other items should not have box-shadow highlight
@@ -245,7 +245,9 @@ describe("Legend", () => {
     it("renders a remove button for each ball", () => {
       render(<Legend {...defaultProps} />);
 
-      const removeButtons = screen.getAllByRole("button", { name: "🗑️" });
+      const removeButtons = screen.getAllByRole("button", {
+        name: "Remove ball",
+      });
       expect(removeButtons).toHaveLength(3);
     });
 
@@ -253,7 +255,9 @@ describe("Legend", () => {
       const onRemove = vi.fn();
       render(<Legend {...defaultProps} onRemove={onRemove} />);
 
-      const removeButtons = screen.getAllByRole("button", { name: "🗑️" });
+      const removeButtons = screen.getAllByRole("button", {
+        name: "Remove ball",
+      });
       // Sorted order: [Blue (id=2), Green (id=3), Red (id=1)]
       fireEvent.click(removeButtons[1]);
 
@@ -264,7 +268,9 @@ describe("Legend", () => {
       const onRemove = vi.fn();
       render(<Legend {...defaultProps} onRemove={onRemove} />);
 
-      const removeButtons = screen.getAllByRole("button", { name: "🗑️" });
+      const removeButtons = screen.getAllByRole("button", {
+        name: "Remove ball",
+      });
       fireEvent.click(removeButtons[0]);
 
       expect(onRemove).toHaveBeenCalledTimes(1);
@@ -278,10 +284,12 @@ describe("Legend", () => {
           {...defaultProps}
           onRemove={onRemove}
           onToggleVisibility={onToggleVisibility}
-        />
+        />,
       );
 
-      const removeButtons = screen.getAllByRole("button", { name: "🗑️" });
+      const removeButtons = screen.getAllByRole("button", {
+        name: "Remove ball",
+      });
       fireEvent.click(removeButtons[0]);
 
       expect(onRemove).toHaveBeenCalled();
@@ -291,7 +299,9 @@ describe("Legend", () => {
     it("has remove button class applied", () => {
       render(<Legend {...defaultProps} />);
 
-      const removeButtons = screen.getAllByRole("button", { name: "🗑️" });
+      const removeButtons = screen.getAllByRole("button", {
+        name: "Remove ball",
+      });
       removeButtons.forEach((button) => {
         // CSS Modules hashes class names, so check for the module prefix
         expect(button.className).toContain("removeButton");
@@ -303,12 +313,14 @@ describe("Legend", () => {
     it("calls onToggleVisibility with ball id when checkbox is clicked", () => {
       const onToggleVisibility = vi.fn();
       render(
-        <Legend {...defaultProps} onToggleVisibility={onToggleVisibility} />
+        <Legend {...defaultProps} onToggleVisibility={onToggleVisibility} />,
       );
 
-      const checkboxes = screen.getAllByRole("checkbox");
+      const visibilityButtons = screen.getAllByRole("button", {
+        name: "Hide ball",
+      });
       // Sorted order: [Blue (id=2), Green (id=3), Red (id=1)]
-      fireEvent.click(checkboxes[1]);
+      fireEvent.click(visibilityButtons[1]);
 
       expect(onToggleVisibility).toHaveBeenCalledWith(sortedBallIds[1]);
     });
@@ -347,10 +359,10 @@ describe("Legend", () => {
       const listItems = screen.getAllByRole("listitem");
       // Red ball (id=1) is at index 2 after sorting
       const hiddenColorIndicator = listItems[2].querySelector(
-        "span"
+        "span",
       ) as HTMLElement;
       const visibleColorIndicator = listItems[0].querySelector(
-        "span"
+        "span",
       ) as HTMLElement;
 
       expect(hiddenColorIndicator.style.filter).toBe("grayscale(100%)");
