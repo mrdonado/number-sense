@@ -439,6 +439,30 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
       }
     }, [isComparisonMode, setFocusedBallIndex, setIsNavigating]);
 
+    // Auto-start navigation when entering comparison mode
+    useEffect(() => {
+      if (
+        isComparisonMode &&
+        sortedBalls.length > 0 &&
+        focusedBallIndex === -1
+      ) {
+        // Brief delay to let the comparison layout settle
+        const timeoutId = setTimeout(() => {
+          setFocusedBallIndex(0);
+          setIsNavigating(true);
+          zoomOnBall(sortedBalls[0].id);
+        }, 400);
+        return () => clearTimeout(timeoutId);
+      }
+    }, [
+      isComparisonMode,
+      sortedBalls,
+      focusedBallIndex,
+      setFocusedBallIndex,
+      setIsNavigating,
+      zoomOnBall,
+    ]);
+
     // Auto-collapse controls on small screens when navigation starts
     useEffect(() => {
       if (isNavigating && isComparisonMode && canvasDimensions) {
