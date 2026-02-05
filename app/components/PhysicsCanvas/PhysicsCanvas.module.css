@@ -39,16 +39,14 @@
 }
 
 .comparisonModeText {
-  @apply text-amber-400 text-sm font-medium;
+  @apply text-cyan-300 text-sm font-medium;
 }
 
 .normalModeText {
   @apply text-gray-50 text-sm font-medium;
 }
 
-.comparisonTypeText {
-  @apply text-blue-300 text-sm font-medium;
-}
+
 
 /* Comparison ratio display */
 .comparisonRatio {
@@ -135,9 +133,33 @@
   grid-template-columns: repeat(6, 1fr);
 }
 
+.startComparisonButton {
+  @apply px-3 py-2 rounded-lg cursor-pointer transition-all text-center;
+  grid-column: span 3;
+  background: linear-gradient(135deg, rgba(73, 206, 47, 0.55) 0%, rgba(22, 188, 33, 0.75) 100%);
+  backdrop-filter: blur(12px);
+}
+
+.startComparisonText {
+  @apply text-amber-50 text-sm font-medium;
+}
+
+.comparisonTypeText {
+  @apply text-amber-50 text-sm font-medium;
+  /*@apply text-blue-100 text-sm font-medium;*/
+}
+
 .controlButton {
+  /*
   @apply px-3 py-2 bg-black/50 backdrop-blur-sm rounded-lg cursor-pointer hover:bg-black/70 transition-colors text-center;
   grid-column: span 3;
+  */
+
+  @apply px-3 py-2 rounded-lg cursor-pointer transition-all text-center;
+  grid-column: span 3;
+  background: linear-gradient(135deg, rgba(28, 50, 90, 0.753) 0%, rgba(11, 49, 99, 0.75) 100%);
+  backdrop-filter: blur(12px);
+
 }
 
 .controlButtonSmall {

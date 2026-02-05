@@ -74,9 +74,11 @@ export function Controls({
           {/* Mode button */}
           <button
             className={
-              isModeClickable
-                ? styles.controlButton
-                : styles.controlButtonDisabled
+              !isModeClickable
+                ? styles.controlButtonDisabled
+                : modeText === "Start Comparison"
+                  ? styles.startComparisonButton
+                  : styles.controlButton
             }
             onClick={(e) => {
               if (isModeClickable) {
@@ -87,7 +89,15 @@ export function Controls({
             disabled={!isModeClickable}
             title={modeText}
           >
-            <span className={modeTextClass}>{modeText}</span>
+            <span
+              className={
+                modeText === "Start Comparison"
+                  ? styles.startComparisonText
+                  : modeTextClass
+              }
+            >
+              {modeText}
+            </span>
           </button>
 
           {/* Comparison type button */}
