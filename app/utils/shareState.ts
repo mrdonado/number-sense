@@ -6,6 +6,41 @@ export interface SharedState {
 }
 
 /**
+ * Sanitizes an array of balls by filling in missing optional fields
+ * Uses the most common unit from other balls if units is missing
+ */
+export function sanitizeBalls(balls: PersistedBall[]): PersistedBall[] {
+  if (balls.length === 0) return balls;
+
+  // Find the most common unit
+  const unitCounts = new Map<string, number>();
+  balls.forEach((ball) => {
+    if (ball.units) {
+      unitCounts.set(ball.units, (unitCounts.get(ball.units) || 0) + 1);
+    }
+  });
+
+  // Get the most common unit, defaulting to undefined if no units exist
+  let mostCommonUnit: string | undefined = undefined;
+  let maxCount = 0;
+  unitCounts.forEach((count, unit) => {
+    if (count > maxCount) {
+      maxCount = count;
+      mostCommonUnit = unit;
+    }
+  });
+
+  // Sanitize each ball
+  return balls.map((ball) => ({
+    ...ball,
+    // Fill in missing units with most common unit
+    units: ball.units || mostCommonUnit,
+    // Fill in missing sourceId with "unknown"
+    sourceId: ball.sourceId || "unknown",
+  }));
+}
+
+/**
  * Encodes the current simulation state into a compressed URL parameter
  */
 export function encodeStateToURL(state: SharedState): string {
@@ -63,11 +98,14 @@ export function decodeStateFromURL(urlString?: string): SharedState | null {
       ) {
         console.error(
           "Invalid shared state: ball missing required fields",
-          ball
+          ball,
         );
         return null;
       }
     }
+
+    // Sanitize balls to fill in missing optional fields
+    state.balls = sanitizeBalls(state.balls);
 
     return state;
   } catch (e) {

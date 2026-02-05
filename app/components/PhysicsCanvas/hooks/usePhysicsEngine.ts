@@ -8,6 +8,7 @@ import { createEscapeDetectionHandler } from "../physics/escapeDetection";
 import { createCursorUpdateHandler } from "../physics/cursorManager";
 import { BallManager } from "../physics/ballManager";
 import { createZoomHandlers, createPanningHandlers } from "../handlers";
+import { sanitizeBalls } from "../../../utils/shareState";
 import type {
   BallBody,
   BallInfo,
@@ -102,10 +103,10 @@ export function usePhysicsEngine(
     isComparisonModeRef.current = isComparisonMode;
   }, [isComparisonMode]);
 
-  // Set ball manager comparison type on initialization
+  // Set ball manager comparison type on initialization and when it changes
   useEffect(() => {
     ballManagerRef.current.setComparisonType(comparisonType);
-  }, []);
+  }, [comparisonType]);
 
   // Persist balls to localStorage whenever they change
   useEffect(() => {
@@ -432,9 +433,11 @@ export function usePhysicsEngine(
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored) {
         const persistedBalls: PersistedBall[] = JSON.parse(stored);
+        // Sanitize the balls before restoring
+        const sanitizedBalls = sanitizeBalls(persistedBalls);
         const restoredBalls: BallInfo[] = [];
 
-        for (const persistedBall of persistedBalls) {
+        for (const persistedBall of sanitizedBalls) {
           const ballInfo = ballManagerRef.current.restoreBall(
             engine,
             persistedBall,
