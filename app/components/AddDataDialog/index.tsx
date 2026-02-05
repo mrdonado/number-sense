@@ -69,7 +69,7 @@ interface AddDataDialogProps {
     name: string,
     value: number,
     units: string,
-    sourceId?: string
+    sourceId?: string,
   ) => void;
   excludedItems?: ExcludedItem[]; // Items to exclude from selection
   existingUnits?: string[]; // Units of existing balls in the simulation
@@ -100,6 +100,21 @@ export function AddDataDialog({
 
   // Track initialization to prevent cascading renders
   const hasInitialized = useRef(false);
+  const previousCountRef = useRef(0);
+  const [hasNewItem, setHasNewItem] = useState(false);
+
+  // Detect when a new item is added and trigger animation
+  useEffect(() => {
+    if (
+      excludedItems.length > previousCountRef.current &&
+      previousCountRef.current > 0
+    ) {
+      setHasNewItem(true);
+      const timer = setTimeout(() => setHasNewItem(false), 1000);
+      return () => clearTimeout(timer);
+    }
+    previousCountRef.current = excludedItems.length;
+  }, [excludedItems.length]);
 
   // Auto-preselect units and source if all existing balls share them
 
@@ -182,7 +197,7 @@ export function AddDataDialog({
       sources = sources.filter(
         (s) =>
           s.name.toLowerCase().includes(term) ||
-          s.description.toLowerCase().includes(term)
+          s.description.toLowerCase().includes(term),
       );
     }
 
@@ -198,7 +213,7 @@ export function AddDataDialog({
     if (searchFilter.trim()) {
       const term = searchFilter.toLowerCase();
       filtered = filtered.filter((item) =>
-        item.name.toLowerCase().includes(term)
+        item.name.toLowerCase().includes(term),
       );
     }
 
@@ -207,21 +222,21 @@ export function AddDataDialog({
       const excludedSet = new Set(
         excludedItems
           .filter((ex) => ex.sourceId === selectedSourceId)
-          .map((ex) => ex.name.toLowerCase())
+          .map((ex) => ex.name.toLowerCase()),
       );
       filtered = filtered.filter(
-        (item) => !excludedSet.has(item.name.toLowerCase())
+        (item) => !excludedSet.has(item.name.toLowerCase()),
       );
     }
 
     // Sort by value based on selected order
     return [...filtered].sort((a, b) =>
-      sortOrder === "desc" ? b.value - a.value : a.value - b.value
+      sortOrder === "desc" ? b.value - a.value : a.value - b.value,
     );
   }, [sourceData, searchFilter, excludedItems, selectedSourceId, sortOrder]);
 
   const selectedSource = dataIndex?.sources.find(
-    (s) => s.id === selectedSourceId
+    (s) => s.id === selectedSourceId,
   );
 
   const handleSelectUnits = useCallback((units: string) => {
@@ -241,7 +256,7 @@ export function AddDataDialog({
       const units = sourceData?.metadata?.units || "";
       onSelect(item.name, item.value, units, selectedSourceId || undefined);
     },
-    [onSelect, sourceData, selectedSourceId]
+    [onSelect, sourceData, selectedSourceId],
   );
 
   const handleBack = useCallback(() => {
@@ -280,7 +295,7 @@ export function AddDataDialog({
         setSearchFilter("");
       }
     },
-    [customName, customValue, selectedUnits, onSelect]
+    [customName, customValue, selectedUnits, onSelect],
   );
 
   const handleClose = useCallback(() => {
@@ -305,7 +320,7 @@ export function AddDataDialog({
         handleClose();
       }
     },
-    [handleClose]
+    [handleClose],
   );
 
   const handleKeyDown = useCallback(
@@ -314,7 +329,7 @@ export function AddDataDialog({
         handleClose();
       }
     },
-    [handleClose]
+    [handleClose],
   );
 
   const getUnitsLabel = useCallback((units: string) => {
@@ -337,6 +352,58 @@ export function AddDataDialog({
       tabIndex={-1}
     >
       <div className={styles.dialog}>
+        <div className={styles.headerContainer}>
+          <button
+            onClick={handleClose}
+            className={styles.backToSimulationButton}
+            aria-label="Back to simulation"
+          >
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+            <span>Back to Simulation</span>
+          </button>
+
+          {excludedItems.length > 0 && (
+            <div
+              className={`${styles.simulationInfo} ${hasNewItem ? styles.simulationInfoAnimate : ""}`}
+              key={excludedItems.length}
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <circle cx="12" cy="12" r="4" />
+                <line x1="12" y1="2" x2="12" y2="6" />
+                <line x1="12" y1="18" x2="12" y2="22" />
+                <line x1="2" y1="12" x2="6" y2="12" />
+                <line x1="18" y1="12" x2="22" y2="12" />
+              </svg>
+              <span className={styles.simulationInfoText}>
+                {excludedItems.length}{" "}
+                {excludedItems.length === 1 ? "item" : "items"} in simulation
+              </span>
+              {hasNewItem && <span className={styles.successIndicator}>✓</span>}
+            </div>
+          )}
+        </div>
+
         <div className={styles.header}>
           <div className={styles.headerLeft}>
             {step !== "units" && (
@@ -385,30 +452,6 @@ export function AddDataDialog({
               )}
             </div>
           </div>
-          <button
-            onClick={handleClose}
-            className={styles.closeButton}
-            aria-label="Back to simulation"
-            title="Back to simulation"
-          >
-            <span className={styles.closeButtonText}>Back to Simulation</span>
-            {excludedItems.length > 0 && (
-              <span className={styles.ballCount}>{excludedItems.length}</span>
-            )}
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <line x1="18" y1="6" x2="6" y2="18" />
-              <line x1="6" y1="6" x2="18" y2="18" />
-            </svg>
-          </button>
         </div>
 
         <div className={styles.content}>
@@ -711,7 +754,7 @@ export function AddDataDialog({
                   filteredData.map((item, index) => {
                     const formattedValue = formatValue(
                       item.value,
-                      selectedSource?.units
+                      selectedSource?.units,
                     );
 
                     return (
