@@ -17,7 +17,7 @@
 }
 
 .dialog {
-  @apply bg-[#0a0a0a] h-full max-h-[85dvh] flex flex-col overflow-hidden;
+  @apply bg-[#0a0a0a] h-full max-h-[90dvh] flex flex-col overflow-hidden;
   width: 90vw;
   max-width: 90vw;
   animation: slideUp 0.25s ease-out;
@@ -52,7 +52,7 @@
 }
 
 .footerContainer {
-  @apply flex flex-col gap-3 p-4 sm:p-5 border-t-2 border-blue-500/30 shrink-0 min-w-0;
+  @apply flex flex-col gap-3 p-4 sm:p-5 shrink-0 min-w-0;
   background: linear-gradient(to top, rgba(59, 130, 246, 0.05), transparent);
 }
 

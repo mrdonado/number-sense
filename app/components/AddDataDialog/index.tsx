@@ -105,6 +105,16 @@ export function AddDataDialog({
   const [hasNewItem, setHasNewItem] = useState(false);
   const [isAddingItem, setIsAddingItem] = useState(false);
 
+  // Prevent body scroll when dialog is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = "";
+      };
+    }
+  }, [isOpen]);
+
   // Detect when a new item is added and trigger animation
   useEffect(() => {
     if (

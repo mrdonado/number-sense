@@ -29,6 +29,15 @@
   }
 }
 
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
@@ -58,7 +67,9 @@ body {
 
 /* Layout components */
 .app-container {
-  @apply flex h-screen bg-zinc-50 font-sans dark:bg-black;
+  @apply flex bg-zinc-50 font-sans dark:bg-black;
+  height: 100vh;
+  height: 100dvh;
 }
 
 .main-content {
