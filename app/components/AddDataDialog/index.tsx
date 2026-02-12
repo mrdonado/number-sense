@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useMemo, useCallback, useRef } from "react";
+import { Plus, ArrowDownWideNarrow, ArrowUpWideNarrow } from "lucide-react";
 import { formatValue } from "@/app/utils/formatValue";
 import styles from "./AddDataDialog.module.css";
 
@@ -355,66 +356,6 @@ export function AddDataDialog({
       tabIndex={-1}
     >
       <div className={styles.dialog}>
-        <div className={styles.headerContainer}>
-          <button
-            onClick={handleClose}
-            className={styles.backToSimulationButton}
-            aria-label="Back to simulation"
-          >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M15 18l-6-6 6-6" />
-            </svg>
-            <span>Back to Simulation</span>
-          </button>
-
-          <div
-            className={`${styles.simulationInfo} ${hasNewItem ? styles.simulationInfoAnimate : ""}`}
-            key={excludedItems.length}
-          >
-            {isAddingItem ? (
-              <div className={styles.addingSpinner} />
-            ) : (
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <circle cx="12" cy="12" r="10" />
-                <circle cx="12" cy="12" r="4" />
-                <line x1="12" y1="2" x2="12" y2="6" />
-                <line x1="12" y1="18" x2="12" y2="22" />
-                <line x1="2" y1="12" x2="6" y2="12" />
-                <line x1="18" y1="12" x2="22" y2="12" />
-              </svg>
-            )}
-            <span className={styles.simulationInfoText}>
-              {isAddingItem ? (
-                "Adding..."
-              ) : (
-                <>
-                  {excludedItems.length}{" "}
-                  {excludedItems.length === 1 ? "item" : "items"} in simulation
-                </>
-              )}
-            </span>
-            {hasNewItem && <span className={styles.successIndicator}>✓</span>}
-          </div>
-        </div>
-
         <div className={styles.header}>
           <div className={styles.headerLeft}>
             {step !== "units" && (
@@ -539,22 +480,6 @@ export function AddDataDialog({
 
           {step === "source" && (
             <div className={styles.stepContent}>
-              <input
-                type="text"
-                value={searchFilter}
-                onChange={(e) => setSearchFilter(e.target.value)}
-                placeholder="Search data sources..."
-                className={styles.searchInput}
-              />
-              {!isCustomMode && (
-                <button
-                  onClick={() => setIsCustomMode(true)}
-                  className={styles.customButton}
-                >
-                  <span className={styles.customButtonIcon}>✏️</span>
-                  <span>Add custom value</span>
-                </button>
-              )}
               {isCustomMode && (
                 <form
                   onSubmit={handleCustomSubmit}
@@ -645,14 +570,7 @@ export function AddDataDialog({
 
           {step === "values" && (
             <div className={styles.stepContent}>
-              <div className={styles.searchRow}>
-                <input
-                  type="text"
-                  value={searchFilter}
-                  onChange={(e) => setSearchFilter(e.target.value)}
-                  placeholder={`Search in ${selectedSource?.name}...`}
-                  className={styles.searchInput}
-                />
+              <div className={styles.searchRowExtended}>
                 <button
                   onClick={toggleSortOrder}
                   className={styles.sortButton}
@@ -664,46 +582,62 @@ export function AddDataDialog({
                   }
                 >
                   {sortOrder === "desc" ? (
-                    <svg
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                    >
-                      <path d="M3 6h18M7 12h10M11 18h2" />
-                      <path d="M17 20l3-3-3-3" />
-                    </svg>
+                    <ArrowDownWideNarrow size={20} />
                   ) : (
-                    <svg
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                    >
-                      <path d="M11 6h2M7 12h10M3 18h18" />
-                      <path d="M17 4l3 3-3 3" />
-                    </svg>
+                    <ArrowUpWideNarrow size={20} />
                   )}
                 </button>
-              </div>
-              <div className={styles.resultsInfo}>
-                {isLoading
-                  ? "Loading..."
-                  : `${filteredData.length.toLocaleString()} items`}
-              </div>
-              {!isCustomMode && (
-                <button
-                  onClick={() => setIsCustomMode(true)}
-                  className={styles.customButton}
+                <div
+                  className={`${styles.simulationInfoCompact} ${hasNewItem ? styles.simulationInfoAnimate : ""}`}
+                  key={excludedItems.length}
                 >
-                  <span className={styles.customButtonIcon}>✏️</span>
-                  <span>Add custom value</span>
-                </button>
-              )}
+                  {isAddingItem ? (
+                    <div className={styles.addingSpinner} />
+                  ) : (
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <circle cx="12" cy="12" r="10" />
+                      <circle cx="12" cy="12" r="4" />
+                      <line x1="12" y1="2" x2="12" y2="6" />
+                      <line x1="12" y1="18" x2="12" y2="22" />
+                      <line x1="2" y1="12" x2="6" y2="12" />
+                      <line x1="18" y1="12" x2="22" y2="12" />
+                    </svg>
+                  )}
+                  <span className={styles.simulationInfoText}>
+                    {isAddingItem ? (
+                      "Adding..."
+                    ) : (
+                      <>
+                        {excludedItems.length}{" "}
+                        {excludedItems.length === 1 ? "item" : "items"}
+                      </>
+                    )}
+                  </span>
+                  {hasNewItem && (
+                    <span className={styles.successIndicator}>✓</span>
+                  )}
+                </div>
+                {!isCustomMode && (
+                  <button
+                    onClick={() => setIsCustomMode(true)}
+                    className={styles.customButtonCompact}
+                    title="Add custom value"
+                  >
+                    <Plus size={18} />
+                    <span>Add custom</span>
+                  </button>
+                )}
+              </div>
+
               {isCustomMode && (
                 <form
                   onSubmit={handleCustomSubmit}
@@ -786,6 +720,44 @@ export function AddDataDialog({
             </div>
           )}
         </div>
+
+        {step === "values" && (
+          <div className={styles.footerContainer}>
+            <div className={styles.searchRow}>
+              <input
+                type="text"
+                value={searchFilter}
+                onChange={(e) => setSearchFilter(e.target.value)}
+                placeholder={`Search in ${selectedSource?.name}...`}
+                className={styles.searchInput}
+              />
+              <div className={styles.resultsInfo}>
+                {isLoading
+                  ? "Loading..."
+                  : `${filteredData.length.toLocaleString()} items`}
+              </div>
+            </div>
+            <button
+              onClick={handleClose}
+              className={styles.doneButton}
+              aria-label="Done"
+            >
+              <span>Done</span>
+            </button>
+          </div>
+        )}
+
+        {step !== "values" && (
+          <div className={styles.footerContainer}>
+            <button
+              onClick={handleClose}
+              className={styles.doneButton}
+              aria-label="Done"
+            >
+              <span>Done</span>
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
