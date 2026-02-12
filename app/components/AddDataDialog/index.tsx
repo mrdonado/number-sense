@@ -117,10 +117,7 @@ export function AddDataDialog({
 
   // Detect when a new item is added and trigger animation
   useEffect(() => {
-    if (
-      excludedItems.length > previousCountRef.current &&
-      previousCountRef.current > 0
-    ) {
+    if (excludedItems.length > previousCountRef.current) {
       setHasNewItem(true);
       setIsAddingItem(false); // Clear loading state when item is added
       const timer = setTimeout(() => setHasNewItem(false), 1000);
