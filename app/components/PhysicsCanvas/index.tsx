@@ -51,7 +51,6 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
     const [mousePos, setMousePos] = useState<{ x: number; y: number } | null>(
       null,
     );
-    const [mounted, setMounted] = useState(false);
     const [canvasDimensions, setCanvasDimensions] = useState<{
       width: number;
       height: number;
@@ -61,10 +60,6 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
     const mouseDownPosRef = useRef<{ x: number; y: number } | null>(null);
     const touchStartPosRef = useRef<{ x: number; y: number } | null>(null);
     const DRAG_THRESHOLD = 5; // pixels - if moved more than this, it's a drag
-
-    useEffect(() => {
-      setMounted(true);
-    }, []);
 
     // Track canvas dimensions to avoid accessing ref during render
     useEffect(() => {
@@ -77,9 +72,6 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
           height: canvas.height,
         });
       };
-
-      // Initial dimensions
-      updateDimensions();
 
       // Watch for size changes
       const resizeObserver = new ResizeObserver(updateDimensions);
@@ -114,7 +106,6 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
       exitComparisonMode,
       zoomOnBall,
       wasPinching,
-      getBallScreenPosition,
       focusedBallIndex,
       setFocusedBallIndex,
       isNavigating,
@@ -138,18 +129,14 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
       onComparisonModeChange?.(isComparisonMode);
     }, [isComparisonMode, onComparisonModeChange]);
 
-    // Collapse legend when entering comparison mode
-    useEffect(() => {
-      if (isComparisonMode) {
-        setLegendCollapsed(true);
-      }
-    }, [isComparisonMode]);
-
     useImperativeHandle(ref, () => ({
       spawnBall,
       clearBalls,
       isComparisonMode,
-      enterComparisonMode,
+      enterComparisonMode: () => {
+        setLegendCollapsed(true);
+        enterComparisonMode();
+      },
       exitComparisonMode,
       getBallNames: () => balls.map((b) => b.name),
       getBalls: () =>
@@ -350,13 +337,6 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
       ],
     );
 
-    // Clear tooltip position when hover state is cleared (e.g., when ball moves away from cursor)
-    useEffect(() => {
-      if (hoveredBallId === null) {
-        setMousePos(null);
-      }
-    }, [hoveredBallId]);
-
     // Find the hovered ball info for tooltip
     const hoveredBall = useMemo(() => {
       if (hoveredBallId === null) return null;
@@ -469,18 +449,6 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
       setIsNavigating,
       zoomOnBall,
     ]);
-
-    // Auto-collapse controls on small screens when navigation starts
-    useEffect(() => {
-      if (isNavigating && isComparisonMode && canvasDimensions) {
-        // Consider screens with width <= 768px as small
-        const isSmallScreen = canvasDimensions.width <= 768;
-        if (isSmallScreen) {
-          setControlsCollapsed(true);
-          setLegendCollapsed(true);
-        }
-      }
-    }, [isNavigating, isComparisonMode, canvasDimensions]);
 
     // Calculate comparison tooltips data (current, left, right)
     const comparisonTooltips = useMemo(() => {
@@ -596,33 +564,31 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
             onTouchMove={(e) => e.stopPropagation()}
             onTouchEnd={(e) => e.stopPropagation()}
           >
-            {mounted && (
-              <Controls
-                comparisonTypeDisplay={comparisonTypeDisplay}
-                modeText={
-                  zoomLevel < 1.0 && !isComparisonMode
-                    ? "Zoom Mode"
-                    : isComparisonMode
-                      ? "Comparison Mode"
-                      : "Start Comparison"
-                }
-                modeTextClass={
-                  zoomLevel < 1.0 && !isComparisonMode
-                    ? styles.zoomModeText
-                    : isComparisonMode
-                      ? styles.comparisonModeText
-                      : styles.normalModeText
-                }
-                isModeClickable={balls.length > 0}
-                collapsed={controlsCollapsed}
-                onCollapsedChange={setControlsCollapsed}
-                onAddData={onAddData}
-                onClear={onClear}
-                onToggleComparisonMode={onToggleComparisonMode}
-                onShare={onShare}
-                onComparisonTypeChange={onComparisonTypeChange}
-              />
-            )}
+            <Controls
+              comparisonTypeDisplay={comparisonTypeDisplay}
+              modeText={
+                zoomLevel < 1.0 && !isComparisonMode
+                  ? "Zoom Mode"
+                  : isComparisonMode
+                    ? "Comparison Mode"
+                    : "Start Comparison"
+              }
+              modeTextClass={
+                zoomLevel < 1.0 && !isComparisonMode
+                  ? styles.zoomModeText
+                  : isComparisonMode
+                    ? styles.comparisonModeText
+                    : styles.normalModeText
+              }
+              isModeClickable={balls.length > 0}
+              collapsed={controlsCollapsed}
+              onCollapsedChange={setControlsCollapsed}
+              onAddData={onAddData}
+              onClear={onClear}
+              onToggleComparisonMode={onToggleComparisonMode}
+              onShare={onShare}
+              onComparisonTypeChange={onComparisonTypeChange}
+            />
             <Legend
               balls={balls}
               hoveredBallId={hoveredBallId}
