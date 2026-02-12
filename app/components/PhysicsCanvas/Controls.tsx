@@ -116,7 +116,11 @@ export function Controls({
 
           {/* Add data button */}
           <button
-            className={styles.controlButtonSmall}
+            className={
+              isModeClickable
+                ? styles.controlButtonSmall
+                : styles.controlButtonSmallGreen
+            }
             onClick={(e) => {
               e.stopPropagation();
               onAddData?.();
