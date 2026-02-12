@@ -138,6 +138,13 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
       onComparisonModeChange?.(isComparisonMode);
     }, [isComparisonMode, onComparisonModeChange]);
 
+    // Collapse legend when entering comparison mode
+    useEffect(() => {
+      if (isComparisonMode) {
+        setLegendCollapsed(true);
+      }
+    }, [isComparisonMode]);
+
     useImperativeHandle(ref, () => ({
       spawnBall,
       clearBalls,
