@@ -49,3 +49,6 @@ export const BALL_COLORS = [
   "#d946ef", // fuchsia
   "#64748b", // slate
 ];
+
+// Key for localStorage to persist ball data
+export const STORAGE_KEY = "number-sense-balls";

@@ -7,7 +7,7 @@ import {
   MIN_ZOOM,
   MAX_ZOOM,
   MOUSE_STIFFNESS,
-} from "../constants";
+} from "../../../constants";
 import { screenToWorld, findClosestBody } from "../utils";
 import type { BallBody, Bounds } from "../types";
 import type { ZoomHandlerOptions, ZoomHandlerResult } from "./types";

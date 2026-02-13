@@ -1,5 +1,5 @@
 import Matter from "matter-js";
-import { SPEED_REDUCTION } from "../constants";
+import { SPEED_REDUCTION } from "../../../constants";
 import type { BallBody, Dimensions } from "../types";
 
 /**
@@ -7,7 +7,7 @@ import type { BallBody, Dimensions } from "../types";
  */
 export function createEscapeDetectionHandler(
   engine: Matter.Engine,
-  dimensions: Dimensions
+  dimensions: Dimensions,
 ): () => void {
   const { width, height } = dimensions;
 

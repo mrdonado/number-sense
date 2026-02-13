@@ -1,6 +1,10 @@
 import { useEffect, useRef, useCallback, useState } from "react";
 import Matter from "matter-js";
-import { ZOOM_INDICATOR_HEIGHT, MOUSE_STIFFNESS } from "../constants";
+import {
+  ZOOM_INDICATOR_HEIGHT,
+  MOUSE_STIFFNESS,
+  STORAGE_KEY,
+} from "../../../constants";
 import { getCSSVariable } from "../utils";
 import { createBoundaries } from "../physics/createBoundaries";
 import { createMouseConstraint } from "../physics/createMouseConstraint";
@@ -17,8 +21,6 @@ import type {
   PhysicsRefs,
   ComparisonType,
 } from "../types";
-
-const STORAGE_KEY = "number-sense-balls";
 
 interface UsePhysicsEngineOptions {
   containerRef: React.RefObject<HTMLDivElement | null>;

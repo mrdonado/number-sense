@@ -1,12 +1,12 @@
 import Matter from "matter-js";
-import { WALL_THICKNESS, WALL_OFFSET } from "../constants";
+import { WALL_THICKNESS, WALL_OFFSET } from "../../../constants";
 import type { Dimensions } from "../types";
 
 /**
  * Create invisible boundaries (ground, ceiling, walls) to contain balls
  */
 export function createBoundaries(
-  dimensions: Dimensions
+  dimensions: Dimensions,
 ): [Matter.Body, Matter.Body, Matter.Body, Matter.Body] {
   const { width, height } = dimensions;
 
@@ -16,7 +16,7 @@ export function createBoundaries(
     height + WALL_OFFSET,
     width,
     WALL_THICKNESS,
-    { isStatic: true, render: { visible: false } }
+    { isStatic: true, render: { visible: false } },
   );
 
   // Ceiling (invisible roof)
@@ -25,7 +25,7 @@ export function createBoundaries(
     -WALL_OFFSET,
     width,
     WALL_THICKNESS,
-    { isStatic: true, render: { visible: false } }
+    { isStatic: true, render: { visible: false } },
   );
 
   // Left wall
@@ -34,7 +34,7 @@ export function createBoundaries(
     height / 2,
     WALL_THICKNESS,
     height,
-    { isStatic: true, render: { visible: false } }
+    { isStatic: true, render: { visible: false } },
   );
 
   // Right wall
@@ -43,7 +43,7 @@ export function createBoundaries(
     height / 2,
     WALL_THICKNESS,
     height,
-    { isStatic: true, render: { visible: false } }
+    { isStatic: true, render: { visible: false } },
   );
 
   return [ground, ceiling, leftWall, rightWall];

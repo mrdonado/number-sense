@@ -15,7 +15,7 @@ import {
   WALL_THICKNESS,
   WALL_OFFSET,
   MOUSE_STIFFNESS,
-} from "../constants";
+} from "../../../constants";
 
 describe("PhysicsCanvas Constants", () => {
   describe("ball configuration", () => {

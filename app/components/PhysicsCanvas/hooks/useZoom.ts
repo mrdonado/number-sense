@@ -7,7 +7,7 @@ import {
   MIN_ZOOM,
   MAX_ZOOM,
   MOUSE_STIFFNESS,
-} from "../constants";
+} from "../../../constants";
 import { screenToWorld, findClosestBody } from "../utils";
 import type { Bounds, Dimensions, BallBody } from "../types";
 
@@ -75,13 +75,13 @@ export function useZoom(options: UseZoomOptions): UseZoomReturn {
 
       if (progress < 1) {
         zoomAnimationRef.current = requestAnimationFrame(() =>
-          animateZoom(from, to, startTime)
+          animateZoom(from, to, startTime),
         );
       } else {
         zoomAnimationRef.current = null;
       }
     },
-    [render, width, onZoomChange]
+    [render, width, onZoomChange],
   );
 
   const getCurrentBounds = useCallback(
@@ -91,7 +91,7 @@ export function useZoom(options: UseZoomOptions): UseZoomReturn {
       maxX: render.bounds.max.x,
       maxY: render.bounds.max.y,
     }),
-    [render]
+    [render],
   );
 
   const getWorldPosition = useCallback(
@@ -102,10 +102,10 @@ export function useZoom(options: UseZoomOptions): UseZoomReturn {
         e.clientY,
         rect,
         getCurrentBounds(),
-        dimensions
+        dimensions,
       );
     },
-    [canvas, getCurrentBounds, dimensions]
+    [canvas, getCurrentBounds, dimensions],
   );
 
   const handleDoubleClick = useCallback(
@@ -165,7 +165,7 @@ export function useZoom(options: UseZoomOptions): UseZoomReturn {
       getWorldPosition,
       getCurrentBounds,
       animateZoom,
-    ]
+    ],
   );
 
   const handleClick = useCallback(
@@ -207,7 +207,7 @@ export function useZoom(options: UseZoomOptions): UseZoomReturn {
       getWorldPosition,
       getCurrentBounds,
       animateZoom,
-    ]
+    ],
   );
 
   const handleWheel = useCallback(
@@ -352,7 +352,7 @@ export function useZoom(options: UseZoomOptions): UseZoomReturn {
         mouseConstraint.constraint.stiffness = 0;
       }
     },
-    [render, runner, mouseConstraint, canvas, width, height, onZoomChange]
+    [render, runner, mouseConstraint, canvas, width, height, onZoomChange],
   );
 
   const updateZoomedView = useCallback(() => {

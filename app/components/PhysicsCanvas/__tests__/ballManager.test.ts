@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import Matter from "matter-js";
 import { BallManager } from "../physics/ballManager";
-import { TARGET_BALL_RATIO, BALL_COLORS } from "../constants";
+import { TARGET_BALL_RATIO, BALL_COLORS } from "../../../constants";
 import type { BallBody } from "../types";
 
 // Mock Matter.js
@@ -15,7 +15,7 @@ vi.mock("matter-js", () => ({
           circleRadius: radius,
           isStatic: false,
           ...options,
-        })
+        }),
       ),
     },
     Body: {
@@ -56,7 +56,7 @@ describe("BallManager", () => {
 
       expect(Matter.Composite.add).toHaveBeenCalledWith(
         mockEngine.world,
-        expect.arrayContaining([expect.objectContaining({ isStatic: false })])
+        expect.arrayContaining([expect.objectContaining({ isStatic: false })]),
       );
     });
 
@@ -72,7 +72,7 @@ describe("BallManager", () => {
         expect.any(Number), // random x
         expectedDisplayRadius + 10, // y position
         expectedDisplayRadius, // display radius
-        expect.any(Object)
+        expect.any(Object),
       );
     });
 
@@ -149,7 +149,7 @@ describe("BallManager", () => {
         mockEngine,
         25,
         dimensions,
-        "Test Ball"
+        "Test Ball",
       );
 
       expect(result).toMatchObject({
@@ -284,7 +284,7 @@ describe("BallManager", () => {
           restitution: 0.7,
           friction: 0.001,
           frictionAir: 0.001,
-        })
+        }),
       );
     });
   });
@@ -488,7 +488,7 @@ describe("BallManager", () => {
       expect(Matter.Body.scale).not.toHaveBeenCalledWith(
         staticBoundary,
         expect.any(Number),
-        expect.any(Number)
+        expect.any(Number),
       );
     });
 
@@ -531,7 +531,7 @@ describe("BallManager", () => {
       dimensions,
       "Test Ball",
       "USD",
-      "gdp"
+      "gdp",
     );
 
     // Check BallInfo

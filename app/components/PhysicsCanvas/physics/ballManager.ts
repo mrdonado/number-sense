@@ -5,7 +5,7 @@ import {
   BALL_FRICTION,
   BALL_FRICTION_AIR,
   BALL_COLORS,
-} from "../constants";
+} from "../../../constants";
 import type {
   BallBody,
   BallInfo,
@@ -55,7 +55,7 @@ export class BallManager {
     dimensions: Dimensions,
     name?: string,
     units?: string,
-    sourceId?: string
+    sourceId?: string,
   ): BallInfo {
     const { width, height } = dimensions;
     const minDimension = Math.min(width, height);
@@ -150,7 +150,7 @@ export class BallManager {
   restoreBall(
     engine: Matter.Engine,
     persistedBall: PersistedBall,
-    dimensions: Dimensions
+    dimensions: Dimensions,
   ): BallInfo {
     const { width, height } = dimensions;
     const minDimension = Math.min(width, height);
@@ -236,7 +236,7 @@ export class BallManager {
   spawnBallAtCurrentScale(
     engine: Matter.Engine,
     persistedBall: PersistedBall,
-    dimensions: Dimensions
+    dimensions: Dimensions,
   ): BallInfo {
     const { width } = dimensions;
     const { originalRadius, name, color, units } = persistedBall;
@@ -296,7 +296,7 @@ export class BallManager {
    */
   calculateScaleFactorForBalls(
     visibleBalls: BallInfo[],
-    dimensions: Dimensions
+    dimensions: Dimensions,
   ): number {
     if (visibleBalls.length === 0) {
       return 1.0;
@@ -326,7 +326,7 @@ export class BallManager {
   recalculateScale(
     engine: Matter.Engine,
     dimensions: Dimensions,
-    excludeIds?: Set<number>
+    excludeIds?: Set<number>,
   ): void {
     const { width, height } = dimensions;
     const minDimension = Math.min(width, height);
@@ -335,7 +335,7 @@ export class BallManager {
     // Get all remaining dynamic bodies (balls), excluding hidden ones
     const bodies = Matter.Composite.allBodies(engine.world);
     const balls = bodies.filter(
-      (b) => !b.isStatic && (!excludeIds || !excludeIds.has(b.id))
+      (b) => !b.isStatic && (!excludeIds || !excludeIds.has(b.id)),
     ) as BallBody[];
 
     if (balls.length === 0) {
@@ -384,7 +384,7 @@ export class BallManager {
     engine: Matter.Engine,
     dimensions: Dimensions,
     currentBalls: BallInfo[],
-    excludeIds: Set<number>
+    excludeIds: Set<number>,
   ): { newBalls: BallInfo[]; idMapping: Map<number, number> } {
     const { width, height } = dimensions;
     const minDimension = Math.min(width, height);
@@ -431,7 +431,7 @@ export class BallManager {
           originalRadius: ballInfo.originalRadius,
           units: ballInfo.units,
         },
-        dimensions
+        dimensions,
       );
       idMapping.set(ballInfo.id, newBallInfo.id);
       newBallInfoMap.set(ballInfo.id, newBallInfo);
@@ -458,7 +458,7 @@ export class BallManager {
 
     // Reconstruct newBalls array in the original order
     const newBalls: BallInfo[] = currentBalls.map(
-      (ball) => newBallInfoMap.get(ball.id)!
+      (ball) => newBallInfoMap.get(ball.id)!,
     );
 
     return { newBalls, idMapping };

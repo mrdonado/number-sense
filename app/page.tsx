@@ -9,8 +9,7 @@ import AddDataDialog from "./components/AddDataDialog/index";
 import type { ComparisonType } from "./components/PhysicsCanvas/types";
 import { encodeStateToURL, decodeStateFromURL } from "./utils/shareState";
 import { useToast } from "./components/Toast";
-
-const STORAGE_KEY = "number-sense-balls";
+import { STORAGE_KEY } from "./constants";
 
 function HomeContent() {
   const searchParams = useSearchParams();
@@ -68,11 +67,11 @@ function HomeContent() {
       balls.map((b) => ({
         name: b.name,
         sourceId: b.sourceId || "",
-      }))
+      })),
     );
     setExistingUnits(balls.map((b) => b.units).filter((u): u is string => !!u));
     setExistingSourceIds(
-      balls.map((b) => b.sourceId).filter((s): s is string => !!s)
+      balls.map((b) => b.sourceId).filter((s): s is string => !!s),
     );
     setIsAddDataDialogOpen(true);
   }, []);
@@ -123,7 +122,7 @@ function HomeContent() {
       // Update excludedItems to remove the newly added item from the dialog list
       setExcludedItems((prev) => [...prev, { name, sourceId: sourceId || "" }]);
     },
-    []
+    [],
   );
 
   const handleShare = useCallback(() => {

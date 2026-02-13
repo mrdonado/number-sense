@@ -11,7 +11,7 @@ import {
   useSyncExternalStore,
 } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { ZOOM_INDICATOR_HEIGHT } from "./constants";
+import { ZOOM_INDICATOR_HEIGHT } from "../../constants";
 import { usePhysicsEngine } from "./hooks/usePhysicsEngine";
 import { Legend } from "./Legend";
 import { ComparisonRatio } from "./ComparisonRatio";
