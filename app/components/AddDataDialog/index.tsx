@@ -14,6 +14,7 @@ const UNIT_LABELS: Record<string, string> = {
   People: "Population",
   Meters: "Distance (Meters)",
   Years: "Time (Years)",
+  Kg: "Mass (Kg)",
 };
 
 const UNIT_ICONS: Record<string, string> = {
@@ -22,6 +23,7 @@ const UNIT_ICONS: Record<string, string> = {
   People: "👥",
   Meters: "📏",
   Years: "⏳",
+  Kg: "⚖️",
 };
 
 interface DataSource {

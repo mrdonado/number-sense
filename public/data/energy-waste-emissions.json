@@ -1,0 +1,270 @@
+{
+  "metadata": {
+    "source": "Scientific literature, environmental agencies, industrial data",
+    "description": "Energy production waste and emissions across different power generation technologies",
+    "units": "Kg",
+    "fetchedAt": "2026-02-14T00:00:00.000Z",
+    "totalItems": 40
+  },
+  "data": [
+    {
+      "name": "Nuclear Fuel Assembly (spent)",
+      "value": 635,
+      "description": "Typical spent nuclear fuel assembly from reactor (assembly contains multiple rods)"
+    },
+    {
+      "name": "Solar Panel (residential)",
+      "value": 18,
+      "description": "Typical 300W residential solar panel (range: 18-22 kg)"
+    },
+    {
+      "name": "Wind Turbine Blade",
+      "value": 15000,
+      "description": "Single blade from modern large wind turbine (60-80m length)"
+    },
+    {
+      "name": "Lithium-ion Battery (Tesla Model 3)",
+      "value": 480,
+      "description": "Complete battery pack from Tesla Model 3 Long Range (including housing)"
+    },
+    {
+      "name": "Gasoline (1 liter)",
+      "value": 0.75,
+      "description": "Weight of one liter of gasoline"
+    },
+    {
+      "name": "Household Electricity (annual, EU average)",
+      "value": 3500,
+      "description": "Typical EU household annual consumption ~3500 kWh (for comparison: 3.5 MWh)"
+    },
+    {
+      "name": "Coal Input per MWh",
+      "value": 400,
+      "description": "Typical hard coal consumption for 1 MWh generation (~400 kg at ~35% efficiency)"
+    },
+    {
+      "name": "Utility Scale Battery (100 MWh)",
+      "value": 550000,
+      "description": "Large grid-scale lithium-ion battery system (~550 tonnes for 100 MWh storage)"
+    },
+    {
+      "name": "Power Transformer (large)",
+      "value": 200000,
+      "description": "Major grid transformer 200-400 MVA (~200 tonnes typical)"
+    },
+    {
+      "name": "Total Waste per MWh - Coal (CO2 + ash)",
+      "value": 1050,
+      "description": "Combined CO2 emissions and operational ash waste per MWh (950 kg CO2 + ~100 kg ash)",
+      "waste_category": "total_output_mass",
+      "scope": "combustion_plus_operational"
+    },
+    {
+      "name": "Total Waste per MWh - Natural Gas (CO2 dominated)",
+      "value": 450,
+      "description": "Combined CO2 emissions and negligible solid waste per MWh",
+      "waste_category": "total_output_mass",
+      "scope": "combustion_plus_operational"
+    },
+    {
+      "name": "Total Waste per MWh - Nuclear (lifecycle CO2 + spent fuel)",
+      "value": 12.004,
+      "description": "Lifecycle CO2 plus spent fuel heavy metal mass (~12 kg CO2e + 0.0036 kg spent fuel)",
+      "waste_category": "total_output_mass",
+      "scope": "lifecycle_plus_operational"
+    },
+    {
+      "name": "Total Waste per MWh - Solar PV (lifecycle CO2 + panel waste)",
+      "value": 47,
+      "description": "Lifecycle CO2 emissions plus amortized end-of-life panel waste",
+      "waste_category": "total_output_mass",
+      "scope": "lifecycle_plus_eol"
+    },
+    {
+      "name": "Total Waste per MWh - Wind (lifecycle CO2 + blade waste)",
+      "value": 11.23,
+      "description": "Lifecycle CO2 emissions plus amortized blade waste",
+      "waste_category": "total_output_mass",
+      "scope": "lifecycle_plus_eol"
+    },
+    {
+      "name": "Total Waste per MWh - Hydroelectric",
+      "value": 24.001,
+      "description": "Lifecycle CO2 emissions plus negligible solid waste",
+      "waste_category": "total_output_mass",
+      "scope": "lifecycle_plus_operational"
+    },
+    {
+      "name": "Total Waste per MWh - Biomass (CO2 + ash)",
+      "value": 260,
+      "description": "Direct combustion CO2 plus ash residues",
+      "waste_category": "total_output_mass",
+      "scope": "combustion_plus_operational"
+    },
+    {
+      "name": "Nuclear Waste (annual, per reactor)",
+      "value": 27000,
+      "description": "Annual spent fuel from typical 1 GW reactor (~27 tonnes heavy metal)"
+    },
+    {
+      "name": "Coal Ash (annual, per 1000 MW plant)",
+      "value": 300000000,
+      "description": "Annual coal ash waste from 1000 MW coal plant"
+    },
+    {
+      "name": "Nuclear Waste per MWh",
+      "value": 0.0036,
+      "description": "Spent fuel heavy metal only from nuclear power (1 GW reactor, ~85% CF, ~27t/7.4M MWh)"
+    },
+    {
+      "name": "Coal Ash per MWh",
+      "value": 100,
+      "description": "Solid ash waste from coal power generation (varies with coal type)"
+    },
+    {
+      "name": "Coal Mining Overburden per MWh",
+      "value": 800,
+      "description": "Mining waste rock per MWh (~2 tonnes overburden per tonne coal, 400 kg coal/MWh)"
+    },
+    {
+      "name": "Solar Panel Waste per MWh (lifecycle)",
+      "value": 2,
+      "description": "End-of-life panel waste over lifetime (20 kg panel / ~10 MWh total production)"
+    },
+    {
+      "name": "Wind Turbine Waste per MWh (lifecycle)",
+      "value": 0.23,
+      "description": "Blade waste over lifetime (45t blades / ~200,000 MWh for 3 MW turbine, conservative)"
+    },
+    {
+      "name": "Hydroelectric Waste per MWh",
+      "value": 0.001,
+      "description": "Negligible solid waste (sediment buildup not counted as waste)"
+    },
+    {
+      "name": "Biomass Ash per MWh",
+      "value": 30,
+      "description": "Ash from biomass combustion (varies widely with fuel type)"
+    },
+    {
+      "name": "CO2 per MWh - Coal (combustion)",
+      "value": 950,
+      "description": "Direct CO2 emissions from coal power generation (range: 800-1100 kg)"
+    },
+    {
+      "name": "CO2 per MWh - Natural Gas (combined cycle)",
+      "value": 450,
+      "description": "Direct CO2 emissions from natural gas combined cycle (range: 350-500 kg)"
+    },
+    {
+      "name": "CO2 per MWh - Oil/Diesel",
+      "value": 750,
+      "description": "Direct CO2 emissions from oil-fired power generation"
+    },
+    {
+      "name": "CO2 per MWh - Nuclear (lifecycle)",
+      "value": 12,
+      "description": "Total lifecycle CO2 including mining, construction, operation, decommissioning"
+    },
+    {
+      "name": "CO2 per MWh - Solar PV (lifecycle)",
+      "value": 45,
+      "description": "Lifecycle CO2 from manufacturing, installation, maintenance (varies by technology)"
+    },
+    {
+      "name": "CO2 per MWh - Wind (lifecycle)",
+      "value": 11,
+      "description": "Lifecycle CO2 from manufacturing, installation, maintenance"
+    },
+    {
+      "name": "CO2 per MWh - Hydroelectric (lifecycle)",
+      "value": 24,
+      "description": "Lifecycle CO2 including construction, methane from reservoirs varies widely"
+    },
+    {
+      "name": "CO2 per MWh - Biomass",
+      "value": 230,
+      "description": "Direct combustion CO2 (carbon neutrality depends on sustainable sourcing)"
+    },
+    {
+      "name": "SO2 per MWh - Coal",
+      "value": 2.8,
+      "description": "Sulfur dioxide from coal without modern scrubbers (global fleet average)"
+    },
+    {
+      "name": "SO2 per MWh - Natural Gas",
+      "value": 0.003,
+      "description": "Minimal sulfur dioxide from gas combustion"
+    },
+    {
+      "name": "NOx per MWh - Coal",
+      "value": 1.3,
+      "description": "Nitrogen oxide from coal combustion (global fleet average, varies with controls)"
+    },
+    {
+      "name": "NOx per MWh - Natural Gas",
+      "value": 0.45,
+      "description": "Nitrogen oxide emissions from gas combustion"
+    },
+    {
+      "name": "Particulate Matter per MWh - Coal",
+      "value": 0.35,
+      "description": "PM2.5 and PM10 emissions from coal (with modern filters)"
+    },
+    {
+      "name": "Particulate Matter per MWh - Natural Gas",
+      "value": 0.01,
+      "description": "Minimal particulate emissions from gas combustion"
+    },
+    {
+      "name": "Mercury per MWh - Coal",
+      "value": 0.000008,
+      "description": "Mercury emissions from coal combustion (8 micrograms)"
+    },
+    {
+      "name": "Methane Leakage per MWh - Natural Gas (lifecycle)",
+      "value": 10,
+      "description": "Methane leaked during extraction, processing, transport (~2-3% loss, GWP adjusted mass)"
+    },
+    {
+      "name": "Steel per MW - Wind",
+      "value": 150000,
+      "description": "Steel requirement per MW wind capacity (~150 tonnes, includes tower and foundation)"
+    },
+    {
+      "name": "Steel per MW - Nuclear",
+      "value": 50000,
+      "description": "Steel requirement per MW nuclear capacity (~50 tonnes, reactor vessel and systems)"
+    },
+    {
+      "name": "Steel per MW - Solar PV",
+      "value": 35000,
+      "description": "Steel requirement per MW solar capacity (~35 tonnes, mainly mounting structures)"
+    },
+    {
+      "name": "Concrete per MW - Hydro",
+      "value": 12000000,
+      "description": "Concrete per MW hydro capacity (~12,000 tonnes, mainly dam structure, highly variable)"
+    },
+    {
+      "name": "Concrete per MW - Nuclear",
+      "value": 760000,
+      "description": "Concrete per MW nuclear capacity (~760 tonnes, containment and foundations)"
+    },
+    {
+      "name": "Concrete per MW - Wind",
+      "value": 1000000,
+      "description": "Concrete per MW wind capacity (~1,000 tonnes, mainly turbine foundations)"
+    },
+    {
+      "name": "Copper per MW - Solar PV",
+      "value": 5000,
+      "description": "Copper per MW solar capacity (~5 tonnes, wiring and inverters)"
+    },
+    {
+      "name": "Copper per MW - Wind",
+      "value": 3500,
+      "description": "Copper per MW wind capacity (~3.5 tonnes, generator and cabling)"
+    }
+  ]
+}

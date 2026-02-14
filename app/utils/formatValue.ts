@@ -3,10 +3,60 @@
  *
  * This function provides consistent formatting across the application:
  * - For Meters: Uses nm, μm, mm, cm, m, km, and light years
+ * - For Kg: Uses μg, mg, g, kg, t, Kt, Mt, Gt
  * - For USD: Uses $ prefix with K, M, B, T suffixes
  * - For other units: Uses K, M, B, T suffixes
  */
 export function formatValue(value: number, units?: string): string {
+  // Special formatting for mass/weight in kilograms
+  if (units === "Kg") {
+    // Extremely large: use gigatonnes
+    if (value >= 1e12) {
+      const gigatonnes = value / 1e12;
+      if (gigatonnes >= 1e6) {
+        return `${(gigatonnes / 1e6).toFixed(2)}M Gt`;
+      }
+      if (gigatonnes >= 1000) {
+        return `${(gigatonnes / 1000).toFixed(2)}K Gt`;
+      }
+      return `${gigatonnes.toFixed(2)} Gt`;
+    }
+    // Very large: megatonnes
+    if (value >= 1e9) {
+      return `${(value / 1e9).toFixed(1)} Mt`;
+    }
+    // Large: kilotonnes
+    if (value >= 1e6) {
+      return `${(value / 1e6).toFixed(1)} Kt`;
+    }
+    // Medium-large: tonnes
+    if (value >= 1000) {
+      const tonnes = value / 1000;
+      if (tonnes >= 1000) {
+        return `${(tonnes / 1000).toFixed(1)}K t`;
+      }
+      return `${tonnes.toFixed(1)} t`;
+    }
+    // Medium: kilograms
+    if (value >= 1) {
+      return `${value.toFixed(2)} kg`;
+    }
+    // Grams
+    if (value >= 0.001) {
+      return `${(value * 1000).toFixed(2)} g`;
+    }
+    // Milligrams
+    if (value >= 1e-6) {
+      return `${(value * 1e6).toFixed(2)} mg`;
+    }
+    // Micrograms
+    if (value >= 1e-9) {
+      return `${(value * 1e9).toFixed(2)} μg`;
+    }
+    // Very small: use scientific notation with kg
+    return `${value.toExponential(2)} kg`;
+  }
+
   // Special formatting for distance measurements in meters
   if (units === "Meters") {
     // Extremely large: use light years

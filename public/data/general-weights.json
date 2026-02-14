@@ -1,0 +1,241 @@
+{
+  "metadata": {
+    "source": "Scientific literature, standard references",
+    "description": "Weights of various objects from atomic to planetary scale",
+    "units": "Kg",
+    "fetchedAt": "2026-02-14T00:00:00.000Z",
+    "totalItems": 46
+  },
+  "data": [
+    {
+      "name": "Electron",
+      "value": 9.109e-31,
+      "description": "Mass of a single electron"
+    },
+    {
+      "name": "Proton",
+      "value": 1.673e-27,
+      "description": "Mass of a single proton"
+    },
+    {
+      "name": "Water Molecule",
+      "value": 2.99e-26,
+      "description": "Mass of a single H2O molecule"
+    },
+    {
+      "name": "Human Hair (single strand)",
+      "value": 0.000001,
+      "description": "Average weight of one strand of human hair (~1 mg)"
+    },
+    {
+      "name": "Grain of Rice",
+      "value": 0.00002,
+      "description": "A single grain of white rice (~20 mg)"
+    },
+    {
+      "name": "US Penny",
+      "value": 0.0025,
+      "description": "Weight of a modern penny coin (2.5 g)"
+    },
+    {
+      "name": "AAA Battery",
+      "value": 0.0115,
+      "description": "Standard AAA alkaline battery (11.5 g)"
+    },
+    {
+      "name": "iPhone 15 Pro",
+      "value": 0.187,
+      "description": "Weight of Apple's 2023 flagship phone (187 g)"
+    },
+    {
+      "name": "Average Human",
+      "value": 70,
+      "description": "Average adult human body weight"
+    },
+    {
+      "name": "E-waste per Person (annual, global avg)",
+      "value": 7.3,
+      "description": "Average electronic waste generated per person per year globally"
+    },
+    {
+      "name": "Plastic Waste per Person (annual, US)",
+      "value": 130,
+      "description": "Average plastic waste per US resident per year"
+    },
+    {
+      "name": "Food Waste per Person (annual, US)",
+      "value": 170,
+      "description": "Average food waste per US resident per year"
+    },
+    {
+      "name": "Mountain Bike",
+      "value": 13,
+      "description": "Typical modern mountain bike"
+    },
+    {
+      "name": "Electric Bike",
+      "value": 25,
+      "description": "Average e-bike with battery"
+    },
+    {
+      "name": "Vending Machine",
+      "value": 300,
+      "description": "Typical full-size vending machine"
+    },
+    {
+      "name": "Grand Piano",
+      "value": 450,
+      "description": "Standard concert grand piano"
+    },
+    {
+      "name": "Dairy Cow",
+      "value": 680,
+      "description": "Average weight of adult dairy cow"
+    },
+    {
+      "name": "Grizzly Bear",
+      "value": 360,
+      "description": "Average adult male grizzly bear"
+    },
+    {
+      "name": "Polar Bear",
+      "value": 450,
+      "description": "Average adult male polar bear"
+    },
+    {
+      "name": "Smart Car",
+      "value": 750,
+      "description": "Smart ForTwo city car"
+    },
+    {
+      "name": "Tesla Model S",
+      "value": 2162,
+      "description": "Tesla Model S electric sedan"
+    },
+    {
+      "name": "African Elephant",
+      "value": 6000,
+      "description": "Average adult African elephant"
+    },
+    {
+      "name": "SUV (Ford F-150)",
+      "value": 2100,
+      "description": "Popular pickup truck"
+    },
+    {
+      "name": "City Bus",
+      "value": 12500,
+      "description": "Typical urban transit bus"
+    },
+    {
+      "name": "Fire Truck",
+      "value": 20000,
+      "description": "Large fire engine"
+    },
+    {
+      "name": "Garbage Truck (loaded)",
+      "value": 25000,
+      "description": "Waste collection truck when full"
+    },
+    {
+      "name": "Humpback Whale",
+      "value": 36000,
+      "description": "Average adult humpback whale"
+    },
+    {
+      "name": "Blue Whale",
+      "value": 150000,
+      "description": "Largest animal on Earth"
+    },
+    {
+      "name": "F-16 Fighter Jet",
+      "value": 8500,
+      "description": "Empty weight of F-16 fighter"
+    },
+    {
+      "name": "Boeing 737",
+      "value": 41000,
+      "description": "Empty weight of Boeing 737-800"
+    },
+    {
+      "name": "Boeing 747",
+      "value": 180000,
+      "description": "Empty weight of Boeing 747-400"
+    },
+    {
+      "name": "Space Shuttle (empty)",
+      "value": 78000,
+      "description": "Space Shuttle orbiter without fuel"
+    },
+    {
+      "name": "Locomotive (Diesel)",
+      "value": 195000,
+      "description": "Standard diesel-electric locomotive"
+    },
+    {
+      "name": "Statue of Liberty (copper only)",
+      "value": 225000,
+      "description": "Weight of copper in the statue"
+    },
+    {
+      "name": "International Space Station",
+      "value": 420000,
+      "description": "Mass of the complete ISS"
+    },
+    {
+      "name": "Eiffel Tower (metal)",
+      "value": 10100000,
+      "description": "Metal structure weight only"
+    },
+    {
+      "name": "Golden Gate Bridge",
+      "value": 887000000,
+      "description": "Total weight of the bridge structure"
+    },
+    {
+      "name": "Burj Khalifa",
+      "value": 500000000,
+      "description": "Total weight of world's tallest building"
+    },
+    {
+      "name": "Great Pyramid of Giza",
+      "value": 5900000000,
+      "description": "Estimated total weight of the pyramid"
+    },
+    {
+      "name": "Mount Everest",
+      "value": 8.1e14,
+      "description": "Estimated total mass of the mountain"
+    },
+    {
+      "name": "Annual Aviation CO2 Emissions",
+      "value": 915000000000,
+      "description": "Global aviation CO2 emissions per year (~915 million tonnes, pre-2020 levels)"
+    },
+    {
+      "name": "Annual Cement Production",
+      "value": 4100000000000,
+      "description": "Global cement production per year (~4.1 gigatonnes)"
+    },
+    {
+      "name": "Annual CO2 Emissions - Germany",
+      "value": 675000000000,
+      "description": "Germany's annual CO2 emissions (~675 million tonnes)"
+    },
+    {
+      "name": "Annual CO2 Emissions - European Union",
+      "value": 2800000000000,
+      "description": "EU-27 annual CO2 emissions (~2.8 gigatonnes)"
+    },
+    {
+      "name": "Global Annual Plastic Production",
+      "value": 400000000000,
+      "description": "Total plastic produced worldwide per year (400 million tonnes)"
+    },
+    {
+      "name": "Global Annual CO2 Emissions",
+      "value": 37000000000000,
+      "description": "Total CO2 emissions from fossil fuels per year (37 gigatonnes)"
+    }
+  ]
+}

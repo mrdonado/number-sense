@@ -8,6 +8,28 @@ const stellarDiametersDataSource: DataSource = {
     );
   },
 };
+
+// Static data source for energy waste and emissions (no fetching required)
+const energyWasteEmissionsDataSource: DataSource = {
+  name: "Energy Waste & Emissions Data",
+  units: "Kg",
+  fetch: async () => {
+    console.log(
+      "ℹ️  Energy Waste & Emissions is a static data source (no fetch needed)",
+    );
+  },
+};
+
+// Static data source for general weights (no fetching required)
+const generalWeightsDataSource: DataSource = {
+  name: "General Weights Data",
+  units: "Kg",
+  fetch: async () => {
+    console.log(
+      "ℹ️  General Weights is a static data source (no fetch needed)",
+    );
+  },
+};
 // Static data source for rich non-billionaires (no fetching required)
 const richNonBillionairesDataSource: DataSource = {
   name: "Rich Non-Billionaires Data",
@@ -105,5 +127,15 @@ export const DATA_SOURCES: DataSourceConfig[] = [
     id: "stellar-diameters",
     source: stellarDiametersDataSource,
     file: "stellar-diameters.json",
+  },
+  {
+    id: "energy-waste-emissions",
+    source: energyWasteEmissionsDataSource,
+    file: "energy-waste-emissions.json",
+  },
+  {
+    id: "general-weights",
+    source: generalWeightsDataSource,
+    file: "general-weights.json",
   },
 ];

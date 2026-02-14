@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-02-14T16:55:23.046Z",
-  "totalSources": 10,
+  "generatedAt": "2026-02-14T18:13:14.844Z",
+  "totalSources": 12,
   "sources": [
     {
       "id": "gdp",
@@ -91,6 +91,24 @@
       "file": "stellar-diameters.json",
       "recordCount": 26,
       "fetchedAt": "2026-01-25T00:00:00.000Z"
+    },
+    {
+      "id": "energy-waste-emissions",
+      "name": "Energy Waste & Emissions Data",
+      "description": "Energy production waste and emissions across different power generation technologies",
+      "units": "Kg",
+      "file": "energy-waste-emissions.json",
+      "recordCount": 28,
+      "fetchedAt": "2026-02-14T00:00:00.000Z"
+    },
+    {
+      "id": "general-weights",
+      "name": "General Weights Data",
+      "description": "Weights of various objects from atomic to planetary scale",
+      "units": "Kg",
+      "file": "general-weights.json",
+      "recordCount": 42,
+      "fetchedAt": "2026-02-14T00:00:00.000Z"
     }
   ]
 }
