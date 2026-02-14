@@ -61,6 +61,7 @@ import billionairesDataSource from "./fetchBillionairesData";
 import marketCapDataSource from "./fetchMarketCapData";
 import populationDataSource from "./fetchPopulationData";
 import globalAssetsDataSource from "./fetchGlobalAssetsData";
+import governmentSpendingDataSource from "./fetchGovernmentSpendingData";
 import { DataSourceConfig, DataSource } from "./types";
 
 // Static data source for time-since-events (no fetching required)
@@ -113,6 +114,11 @@ export const DATA_SOURCES: DataSourceConfig[] = [
     id: "global-assets",
     source: globalAssetsDataSource,
     file: "global-assets.json",
+  },
+  {
+    id: "government-spending",
+    source: governmentSpendingDataSource,
+    file: "government-spending.json",
   },
   {
     id: "time-since-events",

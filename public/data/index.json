@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-02-14T19:44:38.137Z",
-  "totalSources": 13,
+  "generatedAt": "2026-02-14T20:18:54.761Z",
+  "totalSources": 14,
   "sources": [
     {
       "id": "gdp",
@@ -46,6 +46,15 @@
       "file": "global-assets.json",
       "recordCount": 63,
       "fetchedAt": "2026-02-14T16:55:23.039Z"
+    },
+    {
+      "id": "government-spending",
+      "name": "Government Spending Data",
+      "description": "Government spending by function for selected countries converted to USD",
+      "units": "USD",
+      "file": "government-spending.json",
+      "recordCount": 79,
+      "fetchedAt": "2026-02-14T20:18:37.563Z"
     },
     {
       "id": "time-since-events",
