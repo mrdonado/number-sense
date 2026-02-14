@@ -82,7 +82,8 @@ async function fetchBillionairesData(): Promise<void> {
       country: person.countryOfCitizenship || person.country,
       source: person.source,
     }))
-    .sort((a, b) => a.rank - b.rank);
+    .sort((a, b) => a.rank - b.rank)
+    .slice(0, 150);
 
   const currentYear = new Date().getFullYear();
 
@@ -113,7 +114,7 @@ async function fetchBillionairesData(): Promise<void> {
   billionairesArray.slice(0, 10).forEach((person) => {
     const worthInBillions = (person.value / 1e9).toFixed(1);
     console.log(
-      `   ${person.rank}. ${person.name}: $${worthInBillions}B (${person.source})`
+      `   ${person.rank}. ${person.name}: $${worthInBillions}B (${person.source})`,
     );
   });
 

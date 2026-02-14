@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-01-25T18:35:00.620Z",
+  "generatedAt": "2026-02-14T16:05:24.163Z",
   "totalSources": 9,
   "sources": [
     {
@@ -9,7 +9,7 @@
       "units": "USD",
       "file": "gdp-by-country.json",
       "recordCount": 210,
-      "fetchedAt": "2026-01-14T20:39:29.979Z"
+      "fetchedAt": "2026-02-14T16:05:18.111Z"
     },
     {
       "id": "billionaires",
@@ -17,8 +17,8 @@
       "description": "Net worth of the world's billionaires in US Dollars",
       "units": "USD",
       "file": "billionaires-net-worth.json",
-      "recordCount": 3186,
-      "fetchedAt": "2026-01-14T20:39:31.320Z"
+      "recordCount": 150,
+      "fetchedAt": "2026-02-14T16:05:19.087Z"
     },
     {
       "id": "market-cap",
@@ -27,7 +27,7 @@
       "units": "USD",
       "file": "companies-market-cap.json",
       "recordCount": 1000,
-      "fetchedAt": "2026-01-14T20:39:31.763Z"
+      "fetchedAt": "2026-02-14T16:05:22.267Z"
     },
     {
       "id": "population",
@@ -36,7 +36,7 @@
       "units": "People",
       "file": "population-by-country.json",
       "recordCount": 217,
-      "fetchedAt": "2026-01-15T20:16:41.897Z"
+      "fetchedAt": "2026-02-14T16:05:24.154Z"
     },
     {
       "id": "time-since-events",
@@ -80,7 +80,7 @@
       "description": "Diameters of well-known planets, stars, and other stellar objects in meters.",
       "units": "Meters",
       "file": "stellar-diameters.json",
-      "recordCount": 15,
+      "recordCount": 26,
       "fetchedAt": "2026-01-25T00:00:00.000Z"
     }
   ]
