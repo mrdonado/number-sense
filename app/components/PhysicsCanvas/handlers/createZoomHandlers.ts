@@ -97,7 +97,13 @@ export function createZoomHandlers(
   const animateZoom = (from: Bounds, to: Bounds, startTime: number) => {
     const elapsed = Date.now() - startTime;
     const progress = Math.min(elapsed / ZOOM_DURATION, 1);
-    const eased = 1 - Math.pow(1 - progress, 3);
+
+    // Ease-in-out cubic for smooth acceleration and deceleration
+    // This helps realize size differences when transitioning between balls
+    const eased =
+      progress < 0.5
+        ? 4 * progress * progress * progress
+        : 1 - Math.pow(-2 * progress + 2, 3) / 2;
 
     render.bounds.min.x = from.minX + (to.minX - from.minX) * eased;
     render.bounds.min.y = from.minY + (to.minY - from.minY) * eased;

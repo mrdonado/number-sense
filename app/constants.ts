@@ -8,7 +8,7 @@ export const TARGET_BALL_RATIO = 0.5;
 export const ZOOM_INDICATOR_HEIGHT = 4;
 
 // Zoom animation constants
-export const ZOOM_DURATION = 300; // ms
+export const ZOOM_DURATION = 2000; // ms
 export const BALL_VISIBLE_RATIO = 0.85; // Ball takes 85% of visible area
 export const WHEEL_ZOOM_FACTOR = 1.08; // Logarithmic zoom factor (8% per wheel tick)
 export const TRACKPAD_ZOOM_FACTOR = 1.02; // Slower zoom for trackpads (2% per tick)
