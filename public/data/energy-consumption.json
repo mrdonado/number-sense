@@ -1,0 +1,331 @@
+{
+  "metadata": {
+    "source": "Energy agencies, scientific literature, manufacturer specifications",
+    "description": "Energy consumption across diverse activities, devices, and scales",
+    "units": "kWh",
+    "fetchedAt": "2026-02-14T00:00:00.000Z",
+    "totalItems": 65
+  },
+  "data": [
+    {
+      "name": "LED Bulb (1 hour)",
+      "value": 0.01,
+      "description": "10W LED bulb running for one hour"
+    },
+    {
+      "name": "Smartphone Charge (full)",
+      "value": 0.015,
+      "description": "Charging smartphone battery from 0-100% (~15 Wh)"
+    },
+    {
+      "name": "Laptop (1 hour)",
+      "value": 0.05,
+      "description": "Average laptop power consumption for one hour (~50W)"
+    },
+    {
+      "name": "Tablet Charge (full)",
+      "value": 0.04,
+      "description": "Charging tablet battery from 0-100% (~40 Wh)"
+    },
+    {
+      "name": "Desktop Computer (1 hour)",
+      "value": 0.2,
+      "description": "Desktop PC with monitor, typical usage (~200W)"
+    },
+    {
+      "name": "LED TV 55-inch (1 hour)",
+      "value": 0.1,
+      "description": "Modern 55-inch LED TV running for one hour (~100W)"
+    },
+    {
+      "name": "Gaming Console (1 hour)",
+      "value": 0.15,
+      "description": "PlayStation 5 or Xbox Series X during gameplay (~150W)"
+    },
+    {
+      "name": "Electric Kettle (boiling 1 liter)",
+      "value": 0.15,
+      "description": "Boiling one liter of water from room temperature"
+    },
+    {
+      "name": "Microwave Oven (15 minutes)",
+      "value": 0.25,
+      "description": "Microwave at full power for 15 minutes (~1000W)"
+    },
+    {
+      "name": "Hair Dryer (10 minutes)",
+      "value": 0.25,
+      "description": "Typical hair dryer for 10 minutes (~1500W)"
+    },
+    {
+      "name": "Washing Machine (one load)",
+      "value": 1,
+      "description": "Complete wash cycle with warm water"
+    },
+    {
+      "name": "Dishwasher (one cycle)",
+      "value": 1.5,
+      "description": "Full dishwasher cycle including drying"
+    },
+    {
+      "name": "Electric Oven (1 hour)",
+      "value": 2.5,
+      "description": "Electric oven at 180°C for one hour (~2500W)"
+    },
+    {
+      "name": "Clothes Dryer (one load)",
+      "value": 3,
+      "description": "Electric tumble dryer, full cycle"
+    },
+    {
+      "name": "Hot Shower (10 minutes)",
+      "value": 5,
+      "description": "Electric water heater for 10-minute shower (~30 kW)"
+    },
+    {
+      "name": "Refrigerator (per day)",
+      "value": 1.5,
+      "description": "Modern energy-efficient refrigerator daily consumption"
+    },
+    {
+      "name": "Air Conditioner (1 hour)",
+      "value": 1.5,
+      "description": "Residential AC unit running for one hour (~1500W)"
+    },
+    {
+      "name": "Electric Space Heater (1 hour)",
+      "value": 1.5,
+      "description": "Portable electric heater on full power (~1500W)"
+    },
+    {
+      "name": "Home per Day (EU average)",
+      "value": 10,
+      "description": "Average daily household electricity consumption in EU"
+    },
+    {
+      "name": "Home per Month (EU average)",
+      "value": 300,
+      "description": "Average monthly household electricity in EU"
+    },
+    {
+      "name": "Home per Year (EU average)",
+      "value": 3500,
+      "description": "Average annual household electricity in EU"
+    },
+    {
+      "name": "Home per Year (US average)",
+      "value": 10500,
+      "description": "Average annual household electricity in US"
+    },
+    {
+      "name": "Bitcoin Transaction",
+      "value": 700,
+      "description": "Energy consumed per Bitcoin transaction (highly variable)"
+    },
+    {
+      "name": "Ethereum Transaction (post-merge)",
+      "value": 0.02,
+      "description": "Energy per Ethereum transaction after proof-of-stake"
+    },
+    {
+      "name": "Google Search",
+      "value": 0.0003,
+      "description": "Estimated energy per Google search query (~0.3 Wh)"
+    },
+    {
+      "name": "Email (typical)",
+      "value": 0.0003,
+      "description": "Energy to send/receive typical email with small attachment"
+    },
+    {
+      "name": "Netflix Streaming (1 hour, HD)",
+      "value": 0.1,
+      "description": "Streaming HD video for one hour, including data center and network"
+    },
+    {
+      "name": "Video Call (1 hour)",
+      "value": 0.05,
+      "description": "One hour of video conferencing (Zoom, Teams)"
+    },
+    {
+      "name": "Data Center Server (per day)",
+      "value": 120,
+      "description": "Typical rack server daily energy consumption (~5 kW)"
+    },
+    {
+      "name": "EV Charge (Tesla Model 3, full)",
+      "value": 75,
+      "description": "Charging Tesla Model 3 Long Range from empty to full"
+    },
+    {
+      "name": "EV Drive (100 km)",
+      "value": 15,
+      "description": "Electric vehicle driving 100 km at ~15 kWh/100km efficiency"
+    },
+    {
+      "name": "Gasoline Car (100 km energy equivalent)",
+      "value": 60,
+      "description": "Energy content of gasoline for 100 km drive (~6L × 10 kWh/L)"
+    },
+    {
+      "name": "Train Journey (100 km per passenger)",
+      "value": 3,
+      "description": "Electric train per passenger for 100 km"
+    },
+    {
+      "name": "Bus Journey (100 km per passenger)",
+      "value": 10,
+      "description": "City bus per passenger for 100 km"
+    },
+    {
+      "name": "Flight (short-haul, per passenger)",
+      "value": 250,
+      "description": "Energy equivalent for ~500 km flight per passenger"
+    },
+    {
+      "name": "Flight (long-haul, per passenger)",
+      "value": 3500,
+      "description": "Energy equivalent for ~10,000 km flight per passenger"
+    },
+    {
+      "name": "Manufacturing (1 kg steel)",
+      "value": 6,
+      "description": "Energy to produce 1 kg of steel from ore"
+    },
+    {
+      "name": "Manufacturing (1 kg aluminum)",
+      "value": 15,
+      "description": "Energy to produce 1 kg of aluminum from bauxite"
+    },
+    {
+      "name": "Manufacturing (1 kg recycled aluminum)",
+      "value": 0.7,
+      "description": "Energy to recycle 1 kg of aluminum (95% less than primary)"
+    },
+    {
+      "name": "Manufacturing (1 kg plastic)",
+      "value": 20,
+      "description": "Energy to produce 1 kg of plastic from petroleum"
+    },
+    {
+      "name": "Manufacturing (1 kg cement)",
+      "value": 0.9,
+      "description": "Energy to produce 1 kg of cement"
+    },
+    {
+      "name": "Manufacturing (1 kg glass)",
+      "value": 3,
+      "description": "Energy to produce 1 kg of glass"
+    },
+    {
+      "name": "Desalination (1 cubic meter water)",
+      "value": 4,
+      "description": "Energy to desalinate 1 m³ of seawater (reverse osmosis)"
+    },
+    {
+      "name": "Water Treatment (1 cubic meter)",
+      "value": 0.5,
+      "description": "Municipal wastewater treatment per cubic meter"
+    },
+    {
+      "name": "Aluminum Smelter (per day)",
+      "value": 240000,
+      "description": "Large aluminum smelter daily consumption (~10 MW)"
+    },
+    {
+      "name": "Hospital (per day)",
+      "value": 8000,
+      "description": "Medium-sized hospital daily electricity consumption"
+    },
+    {
+      "name": "Supermarket (per day)",
+      "value": 2000,
+      "description": "Large supermarket daily electricity use"
+    },
+    {
+      "name": "Office Building (per day)",
+      "value": 5000,
+      "description": "Medium commercial office building daily consumption"
+    },
+    {
+      "name": "Data Center (small, per day)",
+      "value": 50000,
+      "description": "Small data center daily consumption (~2 MW)"
+    },
+    {
+      "name": "Data Center (large, per day)",
+      "value": 1200000,
+      "description": "Large data center daily consumption (~50 MW)"
+    },
+    {
+      "name": "City (1 million people, per day)",
+      "value": 35000000,
+      "description": "Total electricity for city of 1 million (~35 kWh/person/day)"
+    },
+    {
+      "name": "Bitcoin Network (per day)",
+      "value": 450000000,
+      "description": "Total daily energy consumption of Bitcoin mining globally"
+    },
+    {
+      "name": "Olympic Stadium (event day)",
+      "value": 100000,
+      "description": "Large stadium during major event including lighting and systems"
+    },
+    {
+      "name": "Cruise Ship (per day)",
+      "value": 350000,
+      "description": "Large cruise ship daily energy consumption (~15 MW)"
+    },
+    {
+      "name": "Container Ship (per day)",
+      "value": 600000,
+      "description": "Large container ship daily fuel energy equivalent (~25 MW)"
+    },
+    {
+      "name": "Nuclear Power Plant (per day output)",
+      "value": 24000000,
+      "description": "1 GW nuclear plant daily electricity generation (24 GWh)"
+    },
+    {
+      "name": "Wind Farm (100 turbines, per day)",
+      "value": 7200000,
+      "description": "100× 3 MW turbines at 30% capacity factor (~300 MWh)"
+    },
+    {
+      "name": "Solar Farm (100 MW, per day)",
+      "value": 400000,
+      "description": "100 MW solar farm daily output (~4 hours effective sun)"
+    },
+    {
+      "name": "Pumped Hydro Storage (cycle loss)",
+      "value": 2500,
+      "description": "Energy loss in one charge-discharge cycle of 10 MWh storage (~25% loss)"
+    },
+    {
+      "name": "Rocket Launch (energy equivalent)",
+      "value": 50000000,
+      "description": "Energy equivalent of fuel for heavy-lift rocket launch"
+    },
+    {
+      "name": "Country: Norway (per day)",
+      "value": 400000000,
+      "description": "Norway daily electricity consumption (~150 TWh/year)"
+    },
+    {
+      "name": "Country: Germany (per day)",
+      "value": 1400000000,
+      "description": "Germany daily electricity consumption (~500 TWh/year)"
+    },
+    {
+      "name": "Country: United States (per day)",
+      "value": 11000000000,
+      "description": "US daily electricity consumption (~4000 TWh/year)"
+    },
+    {
+      "name": "Global Electricity (per day)",
+      "value": 70000000000,
+      "description": "Total global electricity generation per day (~25,000 TWh/year)"
+    }
+  ]
+}

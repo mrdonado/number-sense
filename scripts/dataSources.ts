@@ -30,6 +30,17 @@ const generalWeightsDataSource: DataSource = {
     );
   },
 };
+
+// Static data source for energy consumption (no fetching required)
+const energyConsumptionDataSource: DataSource = {
+  name: "Energy Consumption Data",
+  units: "kWh",
+  fetch: async () => {
+    console.log(
+      "ℹ️  Energy Consumption is a static data source (no fetch needed)",
+    );
+  },
+};
 // Static data source for rich non-billionaires (no fetching required)
 const richNonBillionairesDataSource: DataSource = {
   name: "Rich Non-Billionaires Data",
@@ -137,5 +148,10 @@ export const DATA_SOURCES: DataSourceConfig[] = [
     id: "general-weights",
     source: generalWeightsDataSource,
     file: "general-weights.json",
+  },
+  {
+    id: "energy-consumption",
+    source: energyConsumptionDataSource,
+    file: "energy-consumption.json",
   },
 ];

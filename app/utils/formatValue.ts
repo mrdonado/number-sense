@@ -4,10 +4,44 @@
  * This function provides consistent formatting across the application:
  * - For Meters: Uses nm, μm, mm, cm, m, km, and light years
  * - For Kg: Uses μg, mg, g, kg, t, Kt, Mt, Gt
+ * - For kWh: Uses Wh, kWh, MWh, GWh, TWh
  * - For USD: Uses $ prefix with K, M, B, T suffixes
  * - For other units: Uses K, M, B, T suffixes
  */
 export function formatValue(value: number, units?: string): string {
+  // Special formatting for energy in kilowatt-hours
+  if (units === "kWh") {
+    // Extremely large: terawatt-hours
+    if (value >= 1e9) {
+      const twh = value / 1e9;
+      if (twh >= 1e6) {
+        return `${(twh / 1e6).toFixed(2)}M TWh`;
+      }
+      if (twh >= 1000) {
+        return `${(twh / 1000).toFixed(2)}K TWh`;
+      }
+      return `${twh.toFixed(1)} TWh`;
+    }
+    // Very large: gigawatt-hours
+    if (value >= 1e6) {
+      return `${(value / 1e6).toFixed(1)} GWh`;
+    }
+    // Large: megawatt-hours
+    if (value >= 1000) {
+      return `${(value / 1000).toFixed(1)} MWh`;
+    }
+    // Medium: kilowatt-hours
+    if (value >= 1) {
+      return `${value.toFixed(1)} kWh`;
+    }
+    // Small: watt-hours
+    if (value >= 0.001) {
+      return `${(value * 1000).toFixed(1)} Wh`;
+    }
+    // Very small: use decimal kWh
+    return `${value.toFixed(4)} kWh`;
+  }
+
   // Special formatting for mass/weight in kilograms
   if (units === "Kg") {
     // Extremely large: use gigatonnes

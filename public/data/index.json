@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-02-14T18:13:14.844Z",
-  "totalSources": 12,
+  "generatedAt": "2026-02-14T19:44:38.137Z",
+  "totalSources": 13,
   "sources": [
     {
       "id": "gdp",
@@ -98,7 +98,7 @@
       "description": "Energy production waste and emissions across different power generation technologies",
       "units": "Kg",
       "file": "energy-waste-emissions.json",
-      "recordCount": 28,
+      "recordCount": 49,
       "fetchedAt": "2026-02-14T00:00:00.000Z"
     },
     {
@@ -107,7 +107,16 @@
       "description": "Weights of various objects from atomic to planetary scale",
       "units": "Kg",
       "file": "general-weights.json",
-      "recordCount": 42,
+      "recordCount": 46,
+      "fetchedAt": "2026-02-14T00:00:00.000Z"
+    },
+    {
+      "id": "energy-consumption",
+      "name": "Energy Consumption Data",
+      "description": "Energy consumption across diverse activities, devices, and scales",
+      "units": "kWh",
+      "file": "energy-consumption.json",
+      "recordCount": 64,
       "fetchedAt": "2026-02-14T00:00:00.000Z"
     }
   ]

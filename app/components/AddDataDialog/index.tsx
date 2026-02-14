@@ -15,6 +15,7 @@ const UNIT_LABELS: Record<string, string> = {
   Meters: "Distance (Meters)",
   Years: "Time (Years)",
   Kg: "Mass (Kg)",
+  kWh: "Energy (kWh)",
 };
 
 const UNIT_ICONS: Record<string, string> = {
@@ -24,6 +25,7 @@ const UNIT_ICONS: Record<string, string> = {
   Meters: "📏",
   Years: "⏳",
   Kg: "⚖️",
+  kWh: "⚡",
 };
 
 interface DataSource {
