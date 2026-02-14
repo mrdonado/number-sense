@@ -1,0 +1,185 @@
+name: Update Data Sources
+
+on:
+  workflow_dispatch: # Allows manual triggering from GitHub Actions tab
+  schedule:
+    # Optional: Run weekly on Sundays at 00:00 UTC
+    - cron: "0 0 * * 0"
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Fetch all data sources
+        run: npm run fetch-all
+        continue-on-error: true
+        id: fetch_data
+
+      - name: Validate JSON files
+        id: validate
+        run: |
+          echo "Validating JSON files..."
+
+          # Function to validate JSON and check required fields
+          validate_json() {
+            local file=$1
+            local min_size=$2
+            
+            echo "Checking $file..."
+            
+            # Check if file exists
+            if [ ! -f "$file" ]; then
+              echo "❌ File not found: $file"
+              return 1
+            fi
+            
+            # Check file size (should be > min_size bytes)
+            file_size=$(stat -c%s "$file" 2>/dev/null || stat -f%z "$file")
+            if [ "$file_size" -lt "$min_size" ]; then
+              echo "❌ File too small: $file ($file_size bytes, expected >$min_size)"
+              return 1
+            fi
+            
+            # Validate JSON syntax
+            if ! jq empty "$file" 2>/dev/null; then
+              echo "❌ Invalid JSON: $file"
+              return 1
+            fi
+            
+            # Check for metadata object
+            if ! jq -e '.metadata' "$file" >/dev/null 2>&1; then
+              echo "❌ Missing metadata: $file"
+              return 1
+            fi
+            
+            # Check for data array
+            if ! jq -e '.data | type == "array"' "$file" >/dev/null 2>&1; then
+              echo "❌ Missing or invalid data array: $file"
+              return 1
+            fi
+            
+            # Check that data array is not empty
+            data_length=$(jq '.data | length' "$file")
+            if [ "$data_length" -eq 0 ]; then
+              echo "❌ Empty data array: $file"
+              return 1
+            fi
+            
+            echo "✅ Valid: $file ($data_length entries, $file_size bytes)"
+            return 0
+          }
+
+          # Validate each data file with minimum expected size
+          all_valid=true
+
+          validate_json "public/data/gdp-by-country.json" 1000 || all_valid=false
+          validate_json "public/data/population-by-country.json" 1000 || all_valid=false
+          validate_json "public/data/billionaires-net-worth.json" 1000 || all_valid=false
+          validate_json "public/data/companies-market-cap.json" 1000 || all_valid=false
+          validate_json "public/data/global-assets.json" 1000 || all_valid=false
+
+          # Static files should exist and be valid
+          validate_json "public/data/time-since-events.json" 100 || all_valid=false
+          validate_json "public/data/distances.json" 100 || all_valid=false
+          validate_json "public/data/price-income.json" 100 || all_valid=false
+          validate_json "public/data/rich-nonbillionaires.json" 100 || all_valid=false
+          validate_json "public/data/stellar-diameters.json" 100 || all_valid=false
+
+          # Validate index file
+          if [ -f "public/data/index.json" ]; then
+            echo "Checking index.json..."
+            if jq empty "public/data/index.json" 2>/dev/null; then
+              index_count=$(jq '. | length' "public/data/index.json")
+              echo "✅ Valid: index.json ($index_count datasets)"
+            else
+              echo "❌ Invalid JSON: index.json"
+              all_valid=false
+            fi
+          fi
+
+          if [ "$all_valid" = true ]; then
+            echo "✅ All JSON files are valid!"
+            echo "validation_passed=true" >> $GITHUB_OUTPUT
+          else
+            echo "❌ Some JSON files failed validation"
+            echo "validation_passed=false" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+
+      - name: Check for changes
+        id: git_status
+        run: |
+          if [[ -n $(git status -s public/data/) ]]; then
+            echo "changes_detected=true" >> $GITHUB_OUTPUT
+            echo "Changes detected in data files"
+            git diff --stat public/data/
+          else
+            echo "changes_detected=false" >> $GITHUB_OUTPUT
+            echo "No changes detected"
+          fi
+
+      - name: Commit and push changes
+        if: steps.validate.outputs.validation_passed == 'true' && steps.git_status.outputs.changes_detected == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+          git add public/data/*.json
+
+          # Create commit message with details
+          echo "Update data sources" > commit_msg.txt
+          echo "" >> commit_msg.txt
+          echo "Automated data update on $(date -u +"%Y-%m-%d %H:%M:%S UTC")" >> commit_msg.txt
+          echo "" >> commit_msg.txt
+          echo "Updated files:" >> commit_msg.txt
+          git diff --cached --name-only >> commit_msg.txt
+
+          git commit -F commit_msg.txt
+          git push
+
+      - name: Create summary
+        if: always()
+        run: |
+          echo "## Data Update Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [ "${{ steps.validate.outputs.validation_passed }}" == "true" ]; then
+            echo "✅ **Validation:** All JSON files passed validation" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ **Validation:** Some files failed validation" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [ "${{ steps.git_status.outputs.changes_detected }}" == "true" ]; then
+            echo "📝 **Changes:** Updates detected and committed" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "ℹ️ **Changes:** No changes detected" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Updated Files" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          ls -lh public/data/*.json >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+
+      - name: Notify on failure
+        if: failure()
+        run: |
+          echo "❌ Data update workflow failed. Please check the logs for details."
+          exit 1
