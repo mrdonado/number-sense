@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-02-14T16:05:24.163Z",
-  "totalSources": 9,
+  "generatedAt": "2026-02-14T16:28:37.409Z",
+  "totalSources": 10,
   "sources": [
     {
       "id": "gdp",
@@ -37,6 +37,15 @@
       "file": "population-by-country.json",
       "recordCount": 217,
       "fetchedAt": "2026-02-14T16:05:24.154Z"
+    },
+    {
+      "id": "global-assets",
+      "name": "Global Assets Data",
+      "description": "Total value of major global assets including cryptocurrencies, commodities, currencies, and markets",
+      "units": "USD",
+      "file": "global-assets.json",
+      "recordCount": 63,
+      "fetchedAt": "2026-02-14T16:28:31.867Z"
     },
     {
       "id": "time-since-events",

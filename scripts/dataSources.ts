@@ -4,7 +4,7 @@ const stellarDiametersDataSource: DataSource = {
   units: "Meters",
   fetch: async () => {
     console.log(
-      "ℹ️  Stellar Diameters is a static data source (no fetch needed)"
+      "ℹ️  Stellar Diameters is a static data source (no fetch needed)",
     );
   },
 };
@@ -14,7 +14,7 @@ const richNonBillionairesDataSource: DataSource = {
   units: "USD",
   fetch: async () => {
     console.log(
-      "ℹ️  Rich Non-Billionaires is a static data source (no fetch needed)"
+      "ℹ️  Rich Non-Billionaires is a static data source (no fetch needed)",
     );
   },
 };
@@ -27,6 +27,7 @@ import gdpDataSource from "./fetchGdpData";
 import billionairesDataSource from "./fetchBillionairesData";
 import marketCapDataSource from "./fetchMarketCapData";
 import populationDataSource from "./fetchPopulationData";
+import globalAssetsDataSource from "./fetchGlobalAssetsData";
 import { DataSourceConfig, DataSource } from "./types";
 
 // Static data source for time-since-events (no fetching required)
@@ -35,7 +36,7 @@ const timeSinceEventsDataSource: DataSource = {
   units: "Years",
   fetch: async () => {
     console.log(
-      "ℹ️  Time Since Events is a static data source (no fetch needed)"
+      "ℹ️  Time Since Events is a static data source (no fetch needed)",
     );
   },
 };
@@ -74,6 +75,11 @@ export const DATA_SOURCES: DataSourceConfig[] = [
     id: "population",
     source: populationDataSource,
     file: "population-by-country.json",
+  },
+  {
+    id: "global-assets",
+    source: globalAssetsDataSource,
+    file: "global-assets.json",
   },
   {
     id: "time-since-events",
