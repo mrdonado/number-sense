@@ -5,7 +5,7 @@
     "indicatorName": "Company Market Capitalization",
     "description": "Market capitalization of publicly traded companies in US Dollars",
     "units": "USD",
-    "fetchedAt": "2026-02-14T16:05:22.267Z",
+    "fetchedAt": "2026-02-14T16:55:21.919Z",
     "totalCompanies": 1000,
     "year": 2026
   },
