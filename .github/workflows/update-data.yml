@@ -154,6 +154,7 @@ jobs:
           git diff --cached --name-only >> commit_msg.txt
 
           git commit -F commit_msg.txt
+          git pull --rebase origin main
           git push
 
       - name: Create summary
