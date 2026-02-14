@@ -25,7 +25,13 @@ interface Toast {
 
 interface ToastContextValue {
   showToast: (message: string, type?: ToastType) => void;
-  showConfirm: (message: string, onConfirm: () => void) => void;
+  showConfirm: (
+    message: string,
+    onConfirm: () => void,
+    onCancel?: () => void,
+    confirmLabel?: string,
+    cancelLabel?: string,
+  ) => void;
 }
 
 const ToastContext = createContext<ToastContextValue | undefined>(undefined);
@@ -45,30 +51,40 @@ export function ToastProvider({ children }: { children: ReactNode }) {
     }, 4000);
   }, []);
 
-  const showConfirm = useCallback((message: string, onConfirm: () => void) => {
-    const id = ++toastId;
-    const confirmToast: Toast = {
-      id,
-      message,
-      type: "confirm",
-      actions: [
-        {
-          label: "Cancel",
-          onClick: () => {
-            setToasts((prev) => prev.filter((toast) => toast.id !== id));
+  const showConfirm = useCallback(
+    (
+      message: string,
+      onConfirm: () => void,
+      onCancel?: () => void,
+      confirmLabel: string = "Clear",
+      cancelLabel: string = "Cancel",
+    ) => {
+      const id = ++toastId;
+      const confirmToast: Toast = {
+        id,
+        message,
+        type: "confirm",
+        actions: [
+          {
+            label: cancelLabel,
+            onClick: () => {
+              onCancel?.();
+              setToasts((prev) => prev.filter((toast) => toast.id !== id));
+            },
           },
-        },
-        {
-          label: "Clear",
-          onClick: () => {
-            onConfirm();
-            setToasts((prev) => prev.filter((toast) => toast.id !== id));
+          {
+            label: confirmLabel,
+            onClick: () => {
+              onConfirm();
+              setToasts((prev) => prev.filter((toast) => toast.id !== id));
+            },
           },
-        },
-      ],
-    };
-    setToasts((prev) => [...prev, confirmToast]);
-  }, []);
+        ],
+      };
+      setToasts((prev) => [...prev, confirmToast]);
+    },
+    [],
+  );
 
   const removeToast = useCallback((id: number) => {
     setToasts((prev) => prev.filter((toast) => toast.id !== id));

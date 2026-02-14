@@ -38,24 +38,52 @@ function HomeContent() {
   useEffect(() => {
     const sharedState = decodeStateFromURL();
     if (sharedState) {
-      // Overwrite localStorage with the shared state
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(sharedState.balls));
+      // Check if there's existing data in localStorage
+      const existingData = localStorage.getItem(STORAGE_KEY);
+      const hasExistingSimulation =
+        existingData && JSON.parse(existingData).length > 0;
 
-      // Update comparison type if different
-      if (sharedState.comparisonType !== comparisonType) {
-        localStorage.setItem("comparisonType", sharedState.comparisonType);
-        // Reload to apply the new comparison type
-        window.location.href = window.location.pathname;
-      }
+      const loadSharedState = () => {
+        // Overwrite localStorage with the shared state
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(sharedState.balls));
 
-      // Clear the URL parameter to clean up the URL
-      const url = new URL(window.location.href);
-      url.searchParams.delete("shared");
-      window.history.replaceState({}, "", url.toString());
+        // Update comparison type if different
+        if (sharedState.comparisonType !== comparisonType) {
+          localStorage.setItem("comparisonType", sharedState.comparisonType);
+          // Reload to apply the new comparison type
+          window.location.href = window.location.pathname;
+        }
 
-      // Reload to restore the balls from localStorage
-      if (sharedState.comparisonType === comparisonType) {
-        window.location.reload();
+        // Clear the URL parameter to clean up the URL
+        const url = new URL(window.location.href);
+        url.searchParams.delete("shared");
+        window.history.replaceState({}, "", url.toString());
+
+        // Reload to restore the balls from localStorage
+        if (sharedState.comparisonType === comparisonType) {
+          window.location.reload();
+        }
+      };
+
+      if (hasExistingSimulation) {
+        // Show confirmation dialog if there's existing data
+        showConfirm(
+          "Loading a new simulation will clear the current one. Are you sure?",
+          () => {
+            loadSharedState();
+          },
+          () => {
+            // User declined - just clear the URL parameter
+            const url = new URL(window.location.href);
+            url.searchParams.delete("shared");
+            window.history.replaceState({}, "", url.toString());
+          },
+          "Yes",
+          "No",
+        );
+      } else {
+        // No existing simulation, load directly
+        loadSharedState();
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
