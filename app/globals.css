@@ -76,6 +76,16 @@ body {
   @apply flex h-full w-full flex-col p-4 sm:p-6 bg-white dark:bg-black gap-0;
 }
 
+/* Header */
+.page-header {
+  @apply flex justify-between items-baseline gap-4 mb-2;
+}
+
+.help-button {
+  @apply text-zinc-400 hover:text-blue-500 transition-colors cursor-pointer shrink-0 self-start;
+  margin-top: 0.28rem;
+}
+
 /* Typography */
 .page-title {
   @apply text-2xl sm:text-3xl font-semibold leading-8 sm:leading-10 tracking-tight text-black dark:text-zinc-50;

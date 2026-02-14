@@ -2,6 +2,7 @@
 
 import { useRef, useState, useCallback, Suspense, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
+import { CircleHelp } from "lucide-react";
 import PhysicsCanvas, {
   PhysicsCanvasHandle,
 } from "./components/PhysicsCanvas/index";
@@ -224,18 +225,36 @@ function HomeContent() {
   return (
     <div className="app-container">
       <main className="main-content">
-        <h1 className="page-title">
-          <span style={{ fontWeight: "200", color: "#3b82f6" }}>Number</span>
-          <span style={{ fontWeight: "800", color: "#3b82f6" }}>Sense </span>
-        </h1>
-        <a
-          href="https://www.jdonado.com"
-          className="page-subtitle"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          by Javier Donado
-        </a>
+        <div className="page-header">
+          <div>
+            <h1 className="page-title">
+              <span style={{ fontWeight: "200", color: "#3b82f6" }}>
+                Number
+              </span>
+              <span style={{ fontWeight: "800", color: "#3b82f6" }}>
+                Sense{" "}
+              </span>
+            </h1>
+            <a
+              href="https://www.jdonado.com"
+              className="page-subtitle"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              by Javier Donado
+            </a>
+          </div>
+          <a
+            href="https://www.jdonado.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="help-button"
+            aria-label="Help"
+            title="Help"
+          >
+            <CircleHelp size={24} />
+          </a>
+        </div>
         {isDebugMode && (
           <div className="toolbar">
             <input
