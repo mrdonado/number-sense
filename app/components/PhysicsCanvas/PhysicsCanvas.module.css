@@ -180,7 +180,7 @@
 
 /* Legend */
 .legend {
-  @apply max-h-[calc(100vh-8rem)] overflow-y-auto bg-black/50 backdrop-blur-sm rounded-lg min-w-30;
+  @apply bg-black/50 backdrop-blur-sm rounded-lg min-w-30;
   touch-action: none;
 }
 
@@ -201,7 +201,8 @@
 }
 
 .legendList {
-  @apply flex flex-col gap-1 p-2;
+  @apply flex flex-col gap-1 p-2 overflow-y-auto;
+  max-height: calc(100vh - 25rem);
 }
 
 .legendItem {
