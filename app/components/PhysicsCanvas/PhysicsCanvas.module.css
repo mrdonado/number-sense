@@ -202,7 +202,7 @@
 
 .legendList {
   @apply flex flex-col gap-1 p-2 overflow-y-auto;
-  max-height: calc(100vh - 25rem);
+  max-height: calc(40vh - 4rem);
 }
 
 .legendItem {
