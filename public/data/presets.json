@@ -327,12 +327,6 @@
         "units": "kWh"
       },
       {
-        "name": "Smartphone Charge (full)",
-        "color": "#eab308",
-        "originalRadius": 0.06909882989426709,
-        "units": "kWh"
-      },
-      {
         "name": "Rocket Launch (energy equivalent)",
         "color": "#8b5cf6",
         "originalRadius": 3989.4228040143266,
