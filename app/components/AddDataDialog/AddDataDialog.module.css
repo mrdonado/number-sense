@@ -319,3 +319,28 @@
 .customFormButtonSubmit {
   @apply bg-red-500 text-white hover:bg-red-600 disabled:opacity-50 disabled:cursor-not-allowed;
 }
+
+/* Preset Item */
+.presetItem {
+  @apply flex items-center gap-3.5 p-4 rounded-xl bg-linear-to-br from-blue-600/10 to-purple-600/10 border border-blue-500/30 cursor-pointer transition-all text-left w-full hover:from-blue-600/20 hover:to-purple-600/20 hover:border-blue-500/50 active:scale-[0.99];
+}
+
+.presetInfo {
+  @apply flex flex-col gap-1 flex-1 min-w-0;
+}
+
+.presetName {
+  @apply text-zinc-50 text-base font-semibold whitespace-nowrap overflow-hidden text-ellipsis;
+}
+
+.presetDescription {
+  @apply text-zinc-400 text-xs whitespace-nowrap overflow-hidden text-ellipsis;
+}
+
+.presetMeta {
+  @apply text-blue-400 text-xs font-medium mt-0.5;
+}
+
+.presetArrow {
+  @apply text-blue-400 shrink-0;
+}

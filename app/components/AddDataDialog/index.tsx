@@ -7,6 +7,7 @@ import styles from "./AddDataDialog.module.css";
 
 // Constants
 const DATA_INDEX_PATH = "/data/index.json";
+const PRESETS_PATH = "/data/presets.json";
 
 const UNIT_LABELS: Record<string, string> = {
   all: "All Units",
@@ -62,6 +63,25 @@ interface DataFile {
   data: DataItem[];
 }
 
+interface PresetBall {
+  name: string;
+  color: string;
+  originalRadius: number;
+  units: string;
+  sourceId?: string;
+}
+
+interface Preset {
+  name: string;
+  description: string;
+  balls: PresetBall[];
+  comparisonType: "area" | "linear";
+}
+
+interface PresetsData {
+  [key: string]: Preset;
+}
+
 interface ExcludedItem {
   name: string;
   sourceId: string;
@@ -76,6 +96,7 @@ interface AddDataDialogProps {
     units: string,
     sourceId?: string,
   ) => void;
+  onLoadPreset?: (presetId: string) => void; // Callback to load a full preset (replaces simulation)
   excludedItems?: ExcludedItem[]; // Items to exclude from selection
   existingUnits?: string[]; // Units of existing balls in the simulation
   existingSourceIds?: string[]; // Source IDs of existing balls in the simulation
@@ -87,6 +108,7 @@ export function AddDataDialog({
   isOpen,
   onClose,
   onSelect,
+  onLoadPreset,
   excludedItems = [],
   existingUnits = [],
   existingSourceIds = [],
@@ -102,6 +124,7 @@ export function AddDataDialog({
   const [isCustomMode, setIsCustomMode] = useState(false);
   const [customName, setCustomName] = useState("");
   const [customValue, setCustomValue] = useState("");
+  const [presets, setPresets] = useState<PresetsData | null>(null);
 
   // Track initialization to prevent cascading renders
   const hasInitialized = useRef(false);
@@ -168,6 +191,18 @@ export function AddDataDialog({
         .catch(console.error);
     }
   }, [isOpen, dataIndex]);
+
+  // Load presets on mount
+  useEffect(() => {
+    if (isOpen && !presets) {
+      fetch(PRESETS_PATH)
+        .then((res) => res.json())
+        .then((data: PresetsData) => {
+          setPresets(data);
+        })
+        .catch(console.error);
+    }
+  }, [isOpen, presets]);
 
   // Load source data when source is selected
   useEffect(() => {
@@ -355,6 +390,17 @@ export function AddDataDialog({
     return UNIT_ICONS[units] || "📊";
   }, []);
 
+  const handleLoadPreset = useCallback(
+    (presetId: string) => {
+      if (onLoadPreset) {
+        // Use the parent's preset loading handler (for full replacement)
+        onLoadPreset(presetId);
+        handleClose();
+      }
+    },
+    [onLoadPreset, handleClose],
+  );
+
   if (!isOpen) return null;
 
   return (
@@ -424,6 +470,31 @@ export function AddDataDialog({
                 Choose the type of data you want to explore
               </p>
               <div className={styles.optionsList}>
+                {presets && Object.keys(presets).length > 0 && (
+                  <button
+                    onClick={() => handleSelectUnits("presets")}
+                    className={styles.optionItem}
+                  >
+                    <div className={styles.optionIcon}>⚡</div>
+                    <div className={styles.optionInfo}>
+                      <span className={styles.optionName}>Load Preset</span>
+                      <span className={styles.optionDescription}>
+                        {Object.keys(presets).length} pre-configured comparisons
+                      </span>
+                    </div>
+                    <svg
+                      className={styles.optionArrow}
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path d="M9 18l6-6-6-6" />
+                    </svg>
+                  </button>
+                )}
                 <button
                   onClick={() => handleSelectUnits("all")}
                   className={styles.optionItem}
@@ -489,7 +560,43 @@ export function AddDataDialog({
             </div>
           )}
 
-          {step === "source" && (
+          {step === "source" && selectedUnits === "presets" && (
+            <div className={styles.stepContent}>
+              <div className={styles.optionsList}>
+                {presets &&
+                  Object.entries(presets).map(([id, preset]) => (
+                    <button
+                      key={id}
+                      onClick={() => handleLoadPreset(id)}
+                      className={styles.presetItem}
+                    >
+                      <div className={styles.presetInfo}>
+                        <span className={styles.presetName}>{preset.name}</span>
+                        <span className={styles.presetDescription}>
+                          {preset.description}
+                        </span>
+                        <span className={styles.presetMeta}>
+                          {preset.balls.length} items • {preset.comparisonType}
+                        </span>
+                      </div>
+                      <svg
+                        className={styles.presetArrow}
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      >
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                      </svg>
+                    </button>
+                  ))}
+              </div>
+            </div>
+          )}
+
+          {step === "source" && selectedUnits !== "presets" && (
             <div className={styles.stepContent}>
               {isCustomMode && (
                 <form

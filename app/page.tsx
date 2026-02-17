@@ -223,6 +223,59 @@ function HomeContent() {
     [],
   );
 
+  const handleLoadPreset = useCallback(
+    async (presetId: string) => {
+      // Check if there's existing data in localStorage
+      const existingData = localStorage.getItem(STORAGE_KEY);
+      const hasExistingSimulation =
+        existingData && JSON.parse(existingData).length > 0;
+
+      const loadPresetData = async () => {
+        try {
+          const presetState = await loadPreset(presetId);
+          if (presetState) {
+            // Overwrite localStorage with the preset state
+            localStorage.setItem(
+              STORAGE_KEY,
+              JSON.stringify(presetState.balls),
+            );
+
+            // Update comparison type if different
+            if (presetState.comparisonType !== comparisonType) {
+              localStorage.setItem(
+                "comparisonType",
+                presetState.comparisonType,
+              );
+            }
+
+            // Reload to apply the new data
+            window.location.reload();
+          }
+        } catch (error) {
+          console.error("Failed to load preset:", error);
+          showToast("Failed to load preset. Please try again.", "error");
+        }
+      };
+
+      if (hasExistingSimulation) {
+        // Show confirmation dialog if there's existing data
+        showConfirm(
+          "Loading a preset will clear the current simulation. Are you sure?",
+          () => {
+            loadPresetData();
+          },
+          undefined,
+          "Yes",
+          "No",
+        );
+      } else {
+        // No existing simulation, load directly
+        loadPresetData();
+      }
+    },
+    [comparisonType, showConfirm, showToast],
+  );
+
   const handleShare = useCallback(() => {
     const balls = canvasRef.current?.getBalls?.() || [];
 
@@ -361,6 +414,7 @@ function HomeContent() {
           isOpen={isAddDataDialogOpen}
           onClose={() => setIsAddDataDialogOpen(false)}
           onSelect={handleAddData}
+          onLoadPreset={handleLoadPreset}
           excludedItems={excludedItems}
           existingUnits={existingUnits}
           existingSourceIds={existingSourceIds}
