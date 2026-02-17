@@ -8,7 +8,13 @@ import PhysicsCanvas, {
 } from "./components/PhysicsCanvas/index";
 import AddDataDialog from "./components/AddDataDialog/index";
 import type { ComparisonType } from "./components/PhysicsCanvas/types";
-import { encodeStateToURL, decodeStateFromURL } from "./utils/shareState";
+import {
+  encodeStateToURL,
+  decodeStateFromURL,
+  loadPreset,
+  getPresetIdFromURL,
+  type SharedState,
+} from "./utils/shareState";
 import { useToast } from "./components/Toast";
 import { STORAGE_KEY } from "./constants";
 
@@ -37,6 +43,69 @@ function HomeContent() {
 
   // Handle shared state from URL on mount
   useEffect(() => {
+    // Check for preset parameter first
+    const presetId = getPresetIdFromURL();
+    if (presetId) {
+      loadPreset(presetId).then((presetState) => {
+        if (presetState) {
+          // Check if there's existing data in localStorage
+          const existingData = localStorage.getItem(STORAGE_KEY);
+          const hasExistingSimulation =
+            existingData && JSON.parse(existingData).length > 0;
+
+          const loadState = (state: SharedState) => {
+            // Overwrite localStorage with the preset state
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(state.balls));
+
+            // Update comparison type if different
+            if (state.comparisonType !== comparisonType) {
+              localStorage.setItem("comparisonType", state.comparisonType);
+              // Reload to apply the new comparison type
+              window.location.href = window.location.pathname;
+            }
+
+            // Clear the URL parameter to clean up the URL
+            const url = new URL(window.location.href);
+            url.searchParams.delete("preset");
+            window.history.replaceState({}, "", url.toString());
+
+            // Reload to restore the balls from localStorage
+            if (state.comparisonType === comparisonType) {
+              window.location.reload();
+            }
+          };
+
+          if (hasExistingSimulation) {
+            // Show confirmation dialog if there's existing data
+            showConfirm(
+              "Loading a preset will clear the current simulation. Are you sure?",
+              () => {
+                loadState(presetState);
+              },
+              () => {
+                // User declined - just clear the URL parameter
+                const url = new URL(window.location.href);
+                url.searchParams.delete("preset");
+                window.history.replaceState({}, "", url.toString());
+              },
+              "Yes",
+              "No",
+            );
+          } else {
+            // No existing simulation, load directly
+            loadState(presetState);
+          }
+        } else {
+          // Failed to load preset, clear the URL parameter
+          const url = new URL(window.location.href);
+          url.searchParams.delete("preset");
+          window.history.replaceState({}, "", url.toString());
+        }
+      });
+      return;
+    }
+
+    // Fall back to shared parameter
     const sharedState = decodeStateFromURL();
     if (sharedState) {
       // Check if there's existing data in localStorage

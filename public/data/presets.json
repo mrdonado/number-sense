@@ -1,0 +1,435 @@
+{
+  "money-comparison": {
+    "name": "Money Comparison",
+    "description": "Comparing major tech companies, valuable items, and income levels",
+    "balls": [
+      {
+        "name": "Amazon",
+        "color": "#ef4444",
+        "originalRadius": 899169.3969264386,
+        "units": "USD"
+      },
+      {
+        "name": "TSMC",
+        "color": "#14b8a6",
+        "originalRadius": 734289.3178774389,
+        "units": "USD"
+      },
+      {
+        "name": "Apple",
+        "color": "#6366f1",
+        "originalRadius": 1106315.5696911158,
+        "units": "USD"
+      },
+      {
+        "name": "Commercial Satellite",
+        "color": "#a855f7",
+        "originalRadius": 6909.882989426709,
+        "units": "USD"
+      },
+      {
+        "name": "Private Island (Average)",
+        "color": "#f97316",
+        "originalRadius": 1492.7053303604616,
+        "units": "USD"
+      },
+      {
+        "name": "Median Annual Income (Germany)",
+        "color": "#06b6d4",
+        "originalRadius": 134.698416889271,
+        "units": "USD"
+      },
+      {
+        "name": "Median Annual Income (Nigeria)",
+        "color": "#10b981",
+        "originalRadius": 26.462837142006137,
+        "units": "USD"
+      },
+      {
+        "name": "Fighter Jet (F-35 Lightning II)",
+        "color": "#84cc16",
+        "originalRadius": 5046.265044040032,
+        "units": "USD",
+        "sourceId": "price-income"
+      },
+      {
+        "name": "Sports Car (Porsche 911)",
+        "color": "#0ea5e9",
+        "originalRadius": 195.441004761168,
+        "units": "USD",
+        "sourceId": "price-income"
+      }
+    ],
+    "comparisonType": "area"
+  },
+  "stars-planets": {
+    "name": "Stars and Planets",
+    "description": "Comparing celestial bodies from planets to giant stars",
+    "balls": [
+      {
+        "name": "Mercury",
+        "color": "#ec4899",
+        "originalRadius": 1246.2078216295686,
+        "units": "Meters"
+      },
+      {
+        "name": "Earth",
+        "color": "#f43f5e",
+        "originalRadius": 2015.0337238270813,
+        "units": "Meters"
+      },
+      {
+        "name": "Saturn",
+        "color": "#6366f1",
+        "originalRadius": 6194.174718317961,
+        "units": "Meters"
+      },
+      {
+        "name": "Jupiter",
+        "color": "#a855f7",
+        "originalRadius": 6746.348698822432,
+        "units": "Meters"
+      },
+      {
+        "name": "Sun",
+        "color": "#d946ef",
+        "originalRadius": 21054.932402840084,
+        "units": "Meters"
+      },
+      {
+        "name": "Vega",
+        "color": "#ef4444",
+        "originalRadius": 32351.24272377035,
+        "units": "Meters"
+      },
+      {
+        "name": "Rigel",
+        "color": "#3b82f6",
+        "originalRadius": 185925.93589803352,
+        "units": "Meters"
+      },
+      {
+        "name": "Betelgeuse",
+        "color": "#22c55e",
+        "originalRadius": 626987.0089858174,
+        "units": "Meters"
+      },
+      {
+        "name": "Deneb",
+        "color": "#f59e0b",
+        "originalRadius": 948778.3503683882,
+        "units": "Meters"
+      }
+    ],
+    "comparisonType": "linear"
+  },
+  "assets-gdp-debt": {
+    "name": "Assets, GDP, Debt",
+    "description": "Global economic indicators and national debts",
+    "balls": [
+      {
+        "name": "US National Debt",
+        "color": "#3b82f6",
+        "originalRadius": 3385137.501286538,
+        "units": "USD",
+        "sourceId": "global-assets"
+      },
+      {
+        "name": "Canada National Debt (2024)",
+        "color": "#eab308",
+        "originalRadius": 680808.1101568347,
+        "units": "USD",
+        "sourceId": "global-assets"
+      },
+      {
+        "name": "United Kingdom National Debt (2024)",
+        "color": "#6366f1",
+        "originalRadius": 1240113.3989712622,
+        "units": "USD",
+        "sourceId": "global-assets"
+      },
+      {
+        "name": "All Gold Ever Mined",
+        "color": "#8b5cf6",
+        "originalRadius": 2357871.5791071802,
+        "units": "USD",
+        "sourceId": "global-assets"
+      },
+      {
+        "name": "World GDP (2024)",
+        "color": "#64748b",
+        "originalRadius": 5943641.833807294,
+        "units": "USD",
+        "sourceId": "global-assets"
+      },
+      {
+        "name": "Bitcoin",
+        "color": "#ef4444",
+        "originalRadius": 664530.6167795914,
+        "units": "USD",
+        "sourceId": "global-assets"
+      },
+      {
+        "name": "Germany",
+        "color": "#84cc16",
+        "originalRadius": 1221257.7287962707,
+        "units": "USD",
+        "sourceId": "gdp"
+      },
+      {
+        "name": "Jeff Bezos",
+        "color": "#0ea5e9",
+        "originalRadius": 261096.19103806198,
+        "units": "USD",
+        "sourceId": "billionaires"
+      },
+      {
+        "name": "Fighter Jet (F-35 Lightning II)",
+        "color": "#a855f7",
+        "originalRadius": 5046.265044040032,
+        "units": "USD",
+        "sourceId": "price-income"
+      },
+      {
+        "name": "Amazon",
+        "color": "#14b8a6",
+        "originalRadius": 824179.3683350835,
+        "units": "USD",
+        "sourceId": "market-cap"
+      },
+      {
+        "name": "Microsoft",
+        "color": "#d946ef",
+        "originalRadius": 974393.4672113596,
+        "units": "USD",
+        "sourceId": "market-cap"
+      }
+    ],
+    "comparisonType": "area"
+  },
+  "energy-waste": {
+    "name": "Total Waste - Energy Sources",
+    "description": "Comparing total waste production per MWh across different energy sources",
+    "balls": [
+      {
+        "name": "Total Waste per MWh - Coal (CO2 + ash)",
+        "color": "#14b8a6",
+        "originalRadius": 18.28183197857863,
+        "units": "Kg"
+      },
+      {
+        "name": "Total Waste per MWh - Natural Gas (CO2 dominated)",
+        "color": "#ef4444",
+        "originalRadius": 11.968268412042981,
+        "units": "Kg"
+      },
+      {
+        "name": "Total Waste per MWh - Biomass (CO2 + ash)",
+        "color": "#8b5cf6",
+        "originalRadius": 9.09728368293446,
+        "units": "Kg"
+      },
+      {
+        "name": "Total Waste per MWh - Solar PV (lifecycle CO2 + panel waste)",
+        "color": "#f97316",
+        "originalRadius": 3.8678889139475245,
+        "units": "Kg"
+      },
+      {
+        "name": "Total Waste per MWh - Hydroelectric",
+        "color": "#ec4899",
+        "originalRadius": 2.7640107775291254,
+        "units": "Kg"
+      },
+      {
+        "name": "Total Waste per MWh - Nuclear (lifecycle CO2 + spent fuel)",
+        "color": "#3b82f6",
+        "originalRadius": 1.9547357554795541,
+        "units": "Kg"
+      },
+      {
+        "name": "Total Waste per MWh - Wind (lifecycle CO2 + blade waste)",
+        "color": "#64748b",
+        "originalRadius": 1.8906665549070174,
+        "units": "Kg"
+      },
+      {
+        "name": "Nuclear Waste per MWh",
+        "color": "#f43f5e",
+        "originalRadius": 0.03385137501286538,
+        "units": "Kg"
+      },
+      {
+        "name": "City Bus",
+        "color": "#06b6d4",
+        "originalRadius": 63.078313050504,
+        "units": "Kg"
+      },
+      {
+        "name": "Average Human",
+        "color": "#eab308",
+        "originalRadius": 4.720348719413148,
+        "units": "Kg"
+      }
+    ],
+    "comparisonType": "area"
+  },
+  "energy-consumption": {
+    "name": "Energy Consumption and Production",
+    "description": "Various scales of energy consumption and production",
+    "balls": [
+      {
+        "name": "Nuclear Power Plant (per day output)",
+        "color": "#f59e0b",
+        "originalRadius": 2763.953195770684,
+        "units": "kWh"
+      },
+      {
+        "name": "Wind Farm (100 turbines, per day)",
+        "color": "#a855f7",
+        "originalRadius": 1513.879513212096,
+        "units": "kWh"
+      },
+      {
+        "name": "Bitcoin Network (per day)",
+        "color": "#ec4899",
+        "originalRadius": 11968.26841204298,
+        "units": "kWh"
+      },
+      {
+        "name": "Home per Day (EU average)",
+        "color": "#06b6d4",
+        "originalRadius": 1.7841241161527712,
+        "units": "kWh"
+      },
+      {
+        "name": "Air Conditioner (1 hour)",
+        "color": "#6366f1",
+        "originalRadius": 0.690988298942671,
+        "units": "kWh"
+      },
+      {
+        "name": "Hair Dryer (10 minutes)",
+        "color": "#14b8a6",
+        "originalRadius": 0.28209479177387814,
+        "units": "kWh"
+      },
+      {
+        "name": "Microwave Oven (15 minutes)",
+        "color": "#84cc16",
+        "originalRadius": 0.28209479177387814,
+        "units": "kWh"
+      },
+      {
+        "name": "Laptop (1 hour)",
+        "color": "#64748b",
+        "originalRadius": 0.126156626101008,
+        "units": "kWh"
+      },
+      {
+        "name": "Smartphone Charge (full)",
+        "color": "#eab308",
+        "originalRadius": 0.06909882989426709,
+        "units": "kWh"
+      },
+      {
+        "name": "Rocket Launch (energy equivalent)",
+        "color": "#8b5cf6",
+        "originalRadius": 3989.4228040143266,
+        "units": "kWh"
+      },
+      {
+        "name": "Country: Norway (per day)",
+        "color": "#0ea5e9",
+        "originalRadius": 11283.791670955126,
+        "units": "kWh"
+      },
+      {
+        "name": "Country: Germany (per day)",
+        "color": "#3b82f6",
+        "originalRadius": 21110.041228223763,
+        "units": "kWh"
+      },
+      {
+        "name": "Hospital (per day)",
+        "color": "#10b981",
+        "originalRadius": 50.46265044040032,
+        "units": "kWh"
+      },
+      {
+        "name": "Office Building (per day)",
+        "color": "#ef4444",
+        "originalRadius": 39.89422804014327,
+        "units": "kWh"
+      },
+      {
+        "name": "Home per Year (EU average)",
+        "color": "#f43f5e",
+        "originalRadius": 33.37790589062273,
+        "units": "kWh"
+      },
+      {
+        "name": "Flight (long-haul, per passenger)",
+        "color": "#d946ef",
+        "originalRadius": 33.37790589062273,
+        "units": "kWh"
+      },
+      {
+        "name": "Hot Shower (10 minutes)",
+        "color": "#22c55e",
+        "originalRadius": 1.2615662610100802,
+        "units": "kWh"
+      }
+    ],
+    "comparisonType": "area"
+  },
+  "military-expenditure": {
+    "name": "Military Expenditure",
+    "description": "Military spending by major countries in 2023",
+    "balls": [
+      {
+        "name": "United States - Military Expenditure (2023)",
+        "color": "#10b981",
+        "originalRadius": 535788.202648351,
+        "units": "USD"
+      },
+      {
+        "name": "China - Military Expenditure (2023)",
+        "color": "#d946ef",
+        "originalRadius": 311161.59399743873,
+        "units": "USD"
+      },
+      {
+        "name": "India - Military Expenditure (2023)",
+        "color": "#3b82f6",
+        "originalRadius": 165213.84516769883,
+        "units": "USD"
+      },
+      {
+        "name": "United Kingdom - Military Expenditure (2023)",
+        "color": "#f59e0b",
+        "originalRadius": 155848.78127161643,
+        "units": "USD"
+      },
+      {
+        "name": "Germany - Military Expenditure (2023)",
+        "color": "#64748b",
+        "originalRadius": 146997.07595619265,
+        "units": "USD"
+      },
+      {
+        "name": "Spain - Military Expenditure (2023)",
+        "color": "#eab308",
+        "originalRadius": 87097.30246046376,
+        "units": "USD"
+      },
+      {
+        "name": "Mexico - Military Expenditure (2023)",
+        "color": "#ec4899",
+        "originalRadius": 61482.645270229106,
+        "units": "USD"
+      }
+    ],
+    "comparisonType": "area"
+  }
+}

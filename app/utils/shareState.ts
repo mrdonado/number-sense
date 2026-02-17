@@ -58,6 +58,67 @@ export function encodeStateToURL(state: SharedState): string {
 }
 
 /**
+ * Loads a preset from the presets.json file
+ */
+export async function loadPreset(
+  presetId: string,
+): Promise<SharedState | null> {
+  try {
+    const response = await fetch("/data/presets.json");
+    if (!response.ok) {
+      console.error("Failed to load presets file");
+      return null;
+    }
+
+    const presets = await response.json();
+    const preset = presets[presetId];
+
+    if (!preset) {
+      console.error(`Preset "${presetId}" not found`);
+      return null;
+    }
+
+    // Validate the preset structure
+    if (!preset.balls || !Array.isArray(preset.balls)) {
+      console.error("Invalid preset: missing or invalid balls array");
+      return null;
+    }
+
+    if (
+      !preset.comparisonType ||
+      !["area", "linear"].includes(preset.comparisonType)
+    ) {
+      console.error("Invalid preset: missing or invalid comparisonType");
+      return null;
+    }
+
+    // Sanitize balls to fill in missing optional fields
+    const state: SharedState = {
+      balls: sanitizeBalls(preset.balls),
+      comparisonType: preset.comparisonType,
+    };
+
+    return state;
+  } catch (e) {
+    console.error("Failed to load preset:", e);
+    return null;
+  }
+}
+
+/**
+ * Gets the preset ID from URL parameters if present
+ */
+export function getPresetIdFromURL(urlString?: string): string | null {
+  try {
+    const url = new URL(urlString || window.location.href);
+    return url.searchParams.get("preset");
+  } catch (e) {
+    console.error("Failed to get preset ID from URL:", e);
+    return null;
+  }
+}
+
+/**
  * Decodes a shared state from URL parameters
  */
 export function decodeStateFromURL(urlString?: string): SharedState | null {
@@ -115,10 +176,10 @@ export function decodeStateFromURL(urlString?: string): SharedState | null {
 }
 
 /**
- * Checks if the current URL contains a shared state
+ * Checks if the current URL contains a shared state or preset
  */
 export function hasSharedState(): boolean {
   if (typeof window === "undefined") return false;
   const url = new URL(window.location.href);
-  return url.searchParams.has("shared");
+  return url.searchParams.has("shared") || url.searchParams.has("preset");
 }
