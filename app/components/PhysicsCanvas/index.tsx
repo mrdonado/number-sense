@@ -135,6 +135,7 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
       isComparisonMode,
       enterComparisonMode: () => {
         setLegendCollapsed(true);
+        setControlsCollapsed(true);
         enterComparisonMode();
       },
       exitComparisonMode,
