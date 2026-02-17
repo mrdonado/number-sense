@@ -12,7 +12,7 @@ import { createEscapeDetectionHandler } from "../physics/escapeDetection";
 import { createCursorUpdateHandler } from "../physics/cursorManager";
 import { BallManager } from "../physics/ballManager";
 import { createZoomHandlers, createPanningHandlers } from "../handlers";
-import { sanitizeBalls } from "../../../utils/shareState";
+import { sanitizeBalls, clearPresetMarker } from "../../../utils/shareState";
 import type {
   BallBody,
   BallInfo,
@@ -568,6 +568,9 @@ export function usePhysicsEngine(
 
   const removeBall = useCallback(
     (id: number) => {
+      // Clear preset marker since simulation is being modified
+      clearPresetMarker();
+
       if (!physicsRefs.current.engine) return;
 
       // Remove from hidden set if it was hidden

@@ -183,3 +183,58 @@ export function hasSharedState(): boolean {
   const url = new URL(window.location.href);
   return url.searchParams.has("shared") || url.searchParams.has("preset");
 }
+
+/**
+ * Storage key for tracking the active preset
+ */
+const PRESET_ID_KEY = "activePresetId";
+
+/**
+ * Marks that a preset has been loaded
+ */
+export function markPresetLoaded(presetId: string): void {
+  if (typeof window === "undefined") return;
+  localStorage.setItem(PRESET_ID_KEY, presetId);
+}
+
+/**
+ * Clears the preset marker (call when simulation is modified)
+ */
+export function clearPresetMarker(): void {
+  if (typeof window === "undefined") return;
+  localStorage.removeItem(PRESET_ID_KEY);
+}
+
+/**
+ * Gets the active preset ID if one is loaded
+ */
+export function getActivePresetId(): string | null {
+  if (typeof window === "undefined") return null;
+  return localStorage.getItem(PRESET_ID_KEY);
+}
+
+/**
+ * Creates a share URL for the given state
+ * If a preset is active, returns a preset URL
+ * Otherwise, returns a base64-encoded URL
+ */
+export function createShareURL(state: SharedState): string {
+  const url = new URL(window.location.href);
+  // Clear any existing query parameters
+  url.search = "";
+
+  // Check if we have an active preset
+  const activePresetId = getActivePresetId();
+
+  if (activePresetId) {
+    // Use preset URL
+    url.searchParams.set("preset", activePresetId);
+  } else {
+    // Use base64-encoded URL
+    const stateString = JSON.stringify(state);
+    const base64 = btoa(stateString);
+    url.searchParams.set("shared", base64);
+  }
+
+  return url.toString();
+}

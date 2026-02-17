@@ -13,6 +13,9 @@ import {
   decodeStateFromURL,
   loadPreset,
   getPresetIdFromURL,
+  createShareURL,
+  markPresetLoaded,
+  clearPresetMarker,
   type SharedState,
 } from "./utils/shareState";
 import { useToast } from "./components/Toast";
@@ -114,6 +117,9 @@ function HomeContent() {
         existingData && JSON.parse(existingData).length > 0;
 
       const loadSharedState = () => {
+        // Clear any preset marker since we're loading shared state
+        clearPresetMarker();
+
         // Overwrite localStorage with the shared state
         localStorage.setItem(STORAGE_KEY, JSON.stringify(sharedState.balls));
 
@@ -185,6 +191,7 @@ function HomeContent() {
 
   const handleClear = useCallback(() => {
     showConfirm("Are you sure you want to clear all data?", () => {
+      clearPresetMarker();
       canvasRef.current?.clearBalls();
     });
   }, [showConfirm]);
@@ -212,6 +219,9 @@ function HomeContent() {
 
   const handleAddData = useCallback(
     (name: string, value: number, units: string, sourceId?: string) => {
+      // Clear preset marker since simulation is being modified
+      clearPresetMarker();
+
       // Always calculate radius from area: A = πr² → r = √(A/π)
       // The comparison type only affects visual scaling, not the stored value
       const radius = Math.sqrt(value / Math.PI);
@@ -234,6 +244,9 @@ function HomeContent() {
         try {
           const presetState = await loadPreset(presetId);
           if (presetState) {
+            // Mark this preset as loaded
+            markPresetLoaded(presetId);
+
             // Overwrite localStorage with the preset state
             localStorage.setItem(
               STORAGE_KEY,
@@ -293,7 +306,7 @@ function HomeContent() {
 
     try {
       const persistedBalls = JSON.parse(stored);
-      const shareURL = encodeStateToURL({
+      const shareURL = createShareURL({
         balls: persistedBalls,
         comparisonType,
       });
