@@ -1,4 +1,5 @@
 import { describe, it, expect } from "vitest";
+import LZString from "lz-string";
 import { encodeStateToURL, decodeStateFromURL } from "../shareState";
 import type { SharedState } from "../shareState";
 
@@ -95,5 +96,55 @@ describe("shareState utilities", () => {
 
     const decoded = decodeStateFromURL(testURL);
     expect(decoded).toBeNull();
+  });
+
+  it("should decode LZ-String compressed URLs", () => {
+    // Create a URL with LZ-String compression
+    const compressed = LZString.compressToEncodedURIComponent(
+      JSON.stringify(mockState),
+    );
+    const testURL = `http://localhost:3000?shared=${compressed}`;
+
+    const decoded = decodeStateFromURL(testURL);
+
+    expect(decoded).not.toBeNull();
+    expect(decoded?.balls).toHaveLength(2);
+    expect(decoded?.balls[0].name).toBe("Test Ball 1");
+    expect(decoded?.comparisonType).toBe("area");
+  });
+
+  it("should produce smaller URLs with compression for large data", () => {
+    // Create a large state with many balls
+    const largeState: SharedState = {
+      balls: Array.from({ length: 20 }, (_, i) => ({
+        name: `Ball ${i + 1} with a long descriptive name`,
+        color: `#${Math.floor(Math.random() * 16777215).toString(16)}`,
+        originalRadius: Math.random() * 100,
+        units: "kilometers",
+        sourceId: `source-${i}`,
+      })),
+      comparisonType: "area",
+    };
+
+    // Compare sizes
+    const base64Encoded = btoa(JSON.stringify(largeState));
+    const lzCompressed = LZString.compressToEncodedURIComponent(
+      JSON.stringify(largeState),
+    );
+
+    // LZ-String should produce smaller output for repetitive data
+    expect(lzCompressed.length).toBeLessThan(base64Encoded.length);
+  });
+
+  it("should maintain backward compatibility with base64 URLs", () => {
+    // Old-style base64 URL should still work
+    const encodedState = btoa(JSON.stringify(mockState));
+    const testURL = `http://localhost:3000?shared=${encodedState}`;
+
+    const decoded = decodeStateFromURL(testURL);
+
+    expect(decoded).not.toBeNull();
+    expect(decoded?.balls).toHaveLength(2);
+    expect(decoded?.comparisonType).toBe("area");
   });
 });

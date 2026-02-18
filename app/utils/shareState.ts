@@ -1,3 +1,4 @@
+import LZString from "lz-string";
 import type { PersistedBall } from "../components/PhysicsCanvas/types";
 
 export interface SharedState {
@@ -120,6 +121,7 @@ export function getPresetIdFromURL(urlString?: string): string | null {
 
 /**
  * Decodes a shared state from URL parameters
+ * Supports both LZ-String compressed format and legacy base64 format
  */
 export function decodeStateFromURL(urlString?: string): SharedState | null {
   try {
@@ -130,8 +132,22 @@ export function decodeStateFromURL(urlString?: string): SharedState | null {
       return null;
     }
 
-    // Decode from base64
-    const stateString = atob(sharedParam);
+    let stateString: string;
+
+    // Try LZ-String decompression first
+    try {
+      const decompressed =
+        LZString.decompressFromEncodedURIComponent(sharedParam);
+      if (decompressed) {
+        stateString = decompressed;
+      } else {
+        // Fall back to base64 for backward compatibility
+        stateString = atob(sharedParam);
+      }
+    } catch (e) {
+      // If LZ-String fails, try base64 as fallback
+      stateString = atob(sharedParam);
+    }
 
     // Parse JSON
     const state = JSON.parse(stateString) as SharedState;
@@ -216,7 +232,7 @@ export function getActivePresetId(): string | null {
 /**
  * Creates a share URL for the given state
  * If a preset is active, returns a preset URL
- * Otherwise, returns a base64-encoded URL
+ * Otherwise, returns a compressed URL using LZ-String
  */
 export function createShareURL(state: SharedState): string {
   const url = new URL(window.location.href);
@@ -230,10 +246,10 @@ export function createShareURL(state: SharedState): string {
     // Use preset URL
     url.searchParams.set("preset", activePresetId);
   } else {
-    // Use base64-encoded URL
+    // Use LZ-String compression for URL-safe encoding
     const stateString = JSON.stringify(state);
-    const base64 = btoa(stateString);
-    url.searchParams.set("shared", base64);
+    const compressed = LZString.compressToEncodedURIComponent(stateString);
+    url.searchParams.set("shared", compressed);
   }
 
   return url.toString();
