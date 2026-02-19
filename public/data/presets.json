@@ -1,20 +1,8 @@
 {
-  "money-comparison": {
-    "name": "Money Comparison",
-    "description": "Comparing major tech companies, valuable items, and income levels",
+  "assets-gdp-wealth": {
+    "name": "Assets, GDP, and Wealth",
+    "description": "Comparing assets, GDP, and wealth across different entities",
     "balls": [
-      {
-        "name": "Amazon",
-        "color": "#ef4444",
-        "originalRadius": 899169.3969264386,
-        "units": "USD"
-      },
-      {
-        "name": "TSMC",
-        "color": "#14b8a6",
-        "originalRadius": 734289.3178774389,
-        "units": "USD"
-      },
       {
         "name": "Apple",
         "color": "#6366f1",
@@ -22,21 +10,9 @@
         "units": "USD"
       },
       {
-        "name": "Commercial Satellite",
-        "color": "#a855f7",
-        "originalRadius": 6909.882989426709,
-        "units": "USD"
-      },
-      {
         "name": "Private Island (Average)",
         "color": "#f97316",
         "originalRadius": 1492.7053303604616,
-        "units": "USD"
-      },
-      {
-        "name": "Median Annual Income (Germany)",
-        "color": "#06b6d4",
-        "originalRadius": 134.698416889271,
         "units": "USD"
       },
       {
@@ -49,15 +25,56 @@
         "name": "Fighter Jet (F-35 Lightning II)",
         "color": "#84cc16",
         "originalRadius": 5046.265044040032,
-        "units": "USD",
-        "sourceId": "price-income"
+        "units": "USD"
       },
       {
         "name": "Sports Car (Porsche 911)",
         "color": "#0ea5e9",
         "originalRadius": 195.441004761168,
+        "units": "USD"
+      },
+      {
+        "name": "Germany (GDP)",
+        "color": "#eab308",
+        "originalRadius": 1221257.7287962707,
+        "units": "USD"
+      },
+      {
+        "name": "Jeff Bezos",
+        "color": "#22c55e",
+        "originalRadius": 263888.00013897603,
+        "units": "USD"
+      },
+      {
+        "name": "All Gold Ever Mined",
+        "color": "#d946ef",
+        "originalRadius": 2357871.5791071802,
+        "units": "USD"
+      },
+      {
+        "name": "Bitcoin",
+        "color": "#f43f5e",
+        "originalRadius": 664436.9551954553,
+        "units": "USD"
+      },
+      {
+        "name": "Median Wealth per Adult (United States)",
+        "color": "#8b5cf6",
+        "originalRadius": 185.18744241323554,
+        "units": "USD"
+      },
+      {
+        "name": "David Beckham",
+        "color": "#06b6d4",
+        "originalRadius": 11968.26841204298,
+        "units": "USD"
+      },
+      {
+        "name": "United States (GDP)",
+        "color": "#3b82f6",
+        "originalRadius": 3025179.924177768,
         "units": "USD",
-        "sourceId": "price-income"
+        "sourceId": "gdp"
       }
     ],
     "comparisonType": "area"
@@ -122,90 +139,6 @@
       }
     ],
     "comparisonType": "linear"
-  },
-  "assets-gdp-debt": {
-    "name": "Assets, GDP, Debt",
-    "description": "Global economic indicators and national debts",
-    "balls": [
-      {
-        "name": "US National Debt",
-        "color": "#3b82f6",
-        "originalRadius": 3385137.501286538,
-        "units": "USD",
-        "sourceId": "global-assets"
-      },
-      {
-        "name": "Canada National Debt (2024)",
-        "color": "#eab308",
-        "originalRadius": 680808.1101568347,
-        "units": "USD",
-        "sourceId": "global-assets"
-      },
-      {
-        "name": "United Kingdom National Debt (2024)",
-        "color": "#6366f1",
-        "originalRadius": 1240113.3989712622,
-        "units": "USD",
-        "sourceId": "global-assets"
-      },
-      {
-        "name": "All Gold Ever Mined",
-        "color": "#8b5cf6",
-        "originalRadius": 2357871.5791071802,
-        "units": "USD",
-        "sourceId": "global-assets"
-      },
-      {
-        "name": "World GDP (2024)",
-        "color": "#64748b",
-        "originalRadius": 5943641.833807294,
-        "units": "USD",
-        "sourceId": "global-assets"
-      },
-      {
-        "name": "Bitcoin",
-        "color": "#ef4444",
-        "originalRadius": 664530.6167795914,
-        "units": "USD",
-        "sourceId": "global-assets"
-      },
-      {
-        "name": "Germany",
-        "color": "#84cc16",
-        "originalRadius": 1221257.7287962707,
-        "units": "USD",
-        "sourceId": "gdp"
-      },
-      {
-        "name": "Jeff Bezos",
-        "color": "#0ea5e9",
-        "originalRadius": 261096.19103806198,
-        "units": "USD",
-        "sourceId": "billionaires"
-      },
-      {
-        "name": "Fighter Jet (F-35 Lightning II)",
-        "color": "#a855f7",
-        "originalRadius": 5046.265044040032,
-        "units": "USD",
-        "sourceId": "price-income"
-      },
-      {
-        "name": "Amazon",
-        "color": "#14b8a6",
-        "originalRadius": 824179.3683350835,
-        "units": "USD",
-        "sourceId": "market-cap"
-      },
-      {
-        "name": "Microsoft",
-        "color": "#d946ef",
-        "originalRadius": 974393.4672113596,
-        "units": "USD",
-        "sourceId": "market-cap"
-      }
-    ],
-    "comparisonType": "area"
   },
   "energy-waste": {
     "name": "Total Waste - Energy Sources",
