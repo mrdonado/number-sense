@@ -163,7 +163,7 @@ async function fetchGdpData(): Promise<void> {
     if (!existing || year > existing.year) {
       countryLatestGdp.set(item.countryiso3code, {
         countryCode: item.countryiso3code,
-        name: item.country.value,
+        name: `${item.country.value} (GDP)`,
         value: item.value,
         year: year,
       });
@@ -171,7 +171,7 @@ async function fetchGdpData(): Promise<void> {
   }
 
   const gdpArray = Array.from(countryLatestGdp.values()).sort(
-    (a, b) => b.value - a.value
+    (a, b) => b.value - a.value,
   );
 
   const yearCounts = new Map<number, number>();
@@ -179,7 +179,7 @@ async function fetchGdpData(): Promise<void> {
     yearCounts.set(item.year, (yearCounts.get(item.year) || 0) + 1);
   }
   const latestYear = Array.from(yearCounts.entries()).sort(
-    (a, b) => b[0] - a[0]
+    (a, b) => b[0] - a[0],
   )[0]?.[0];
 
   const output: GdpDataset = {
@@ -210,7 +210,7 @@ async function fetchGdpData(): Promise<void> {
   gdpArray.slice(0, 5).forEach((country, index) => {
     const gdpInTrillions = (country.value / 1e12).toFixed(2);
     console.log(
-      `   ${index + 1}. ${country.name}: $${gdpInTrillions}T (${country.year})`
+      `   ${index + 1}. ${country.name}: $${gdpInTrillions}T (${country.year})`,
     );
   });
 }
