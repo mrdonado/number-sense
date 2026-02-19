@@ -735,9 +735,10 @@ export function usePhysicsEngine(
 
   // Helper function to arrange balls in comparison layout
   const arrangeComparisonLayout = useCallback(() => {
-    if (!physicsRefs.current.engine) return;
+    if (!physicsRefs.current.engine || !physicsRefs.current.render) return;
 
     const engine = physicsRefs.current.engine;
+    const render = physicsRefs.current.render;
     const { width, height } = dimensionsRef.current;
 
     // Get all visible ball bodies
@@ -814,6 +815,45 @@ export function usePhysicsEngine(
           currentY += ballRadius + gaps[index] + nextRadius;
         }
       });
+    }
+
+    // Auto-fit view for comparison mode: some aligned sets can exceed 1x bounds.
+    // Expand bounds just enough so all balls are fully visible.
+    const COMPARISON_VIEW_PADDING = 24;
+    let minX = Infinity;
+    let minY = Infinity;
+    let maxX = -Infinity;
+    let maxY = -Infinity;
+
+    sortedBalls.forEach((ball) => {
+      const radius = ball.circleRadius || 0;
+      minX = Math.min(minX, ball.position.x - radius);
+      minY = Math.min(minY, ball.position.y - radius);
+      maxX = Math.max(maxX, ball.position.x + radius);
+      maxY = Math.max(maxY, ball.position.y + radius);
+    });
+
+    const requiredWidth = maxX - minX + COMPARISON_VIEW_PADDING * 2;
+    const requiredHeight = maxY - minY + COMPARISON_VIEW_PADDING * 2;
+    const fitZoom = Math.max(requiredWidth / width, requiredHeight / height, 1);
+
+    if (fitZoom > 1) {
+      const centerX = (minX + maxX) / 2;
+      const centerY = (minY + maxY) / 2;
+      const viewWidth = width * fitZoom;
+      const viewHeight = height * fitZoom;
+
+      render.bounds.min.x = centerX - viewWidth / 2;
+      render.bounds.max.x = centerX + viewWidth / 2;
+      render.bounds.min.y = centerY - viewHeight / 2;
+      render.bounds.max.y = centerY + viewHeight / 2;
+      setZoomLevel(fitZoom);
+    } else {
+      render.bounds.min.x = 0;
+      render.bounds.min.y = 0;
+      render.bounds.max.x = width;
+      render.bounds.max.y = height;
+      setZoomLevel(1);
     }
   }, []);
 

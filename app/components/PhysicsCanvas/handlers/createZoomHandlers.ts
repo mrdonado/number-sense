@@ -284,7 +284,7 @@ export function createZoomHandlers(
       // If in comparison mode at 1x zoom, exit comparison mode
       else if (isComparisonModeRef?.current && onExitComparisonMode) {
         const currentZoom = (render.bounds.max.x - render.bounds.min.x) / width;
-        if (Math.abs(currentZoom - 1.0) < 0.01) {
+        if (currentZoom >= MAX_ZOOM - 0.01) {
           onExitComparisonMode();
         }
       }
@@ -569,10 +569,10 @@ export function createZoomHandlers(
           } else if (isZoomedRef.current) {
             zoomOut();
           } else if (isComparisonModeRef?.current && onExitComparisonMode) {
-            // Tapped on background at 1x zoom in comparison mode - exit comparison mode
+            // Tapped on background at overview zoom in comparison mode - exit comparison mode
             const currentZoom =
               (render.bounds.max.x - render.bounds.min.x) / width;
-            if (Math.abs(currentZoom - 1.0) < 0.01) {
+            if (currentZoom >= MAX_ZOOM - 0.01) {
               onExitComparisonMode();
             }
           }
