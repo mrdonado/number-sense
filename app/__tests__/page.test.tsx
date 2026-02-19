@@ -12,9 +12,25 @@ vi.mock("next/navigation", () => ({
 }));
 
 // Mock the AddDataDialog component
+const mockCloseAddDataDialog = vi.fn();
 vi.mock("../components/AddDataDialog", () => ({
-  default: function MockAddDataDialog() {
-    return null;
+  default: function MockAddDataDialog(props: {
+    isOpen: boolean;
+    onClose: () => void;
+  }) {
+    if (!props.isOpen) return null;
+
+    return (
+      <button
+        onClick={() => {
+          mockCloseAddDataDialog();
+          props.onClose();
+        }}
+        title="Close Add Data"
+      >
+        Close Add Data
+      </button>
+    );
   },
   __esModule: true,
 }));
@@ -22,6 +38,7 @@ vi.mock("../components/AddDataDialog", () => ({
 // Mock the PhysicsCanvas component
 const mockSpawnBall = vi.fn();
 const mockClearBalls = vi.fn();
+const mockGoToComparisonOverview = vi.fn();
 
 // Helper to render with ToastProvider
 const renderWithToast = (component: React.ReactElement) => {
@@ -34,15 +51,18 @@ vi.mock("../components/PhysicsCanvas/index", () => ({
       onAddData?: () => void;
       onClear?: () => void;
       onToggleComparisonMode?: () => void;
+      onComparisonModeChange?: (isComparisonMode: boolean) => void;
     },
     ref: React.ForwardedRef<{
       spawnBall: (radius: number, name?: string) => void;
       clearBalls: () => void;
-    }>
+      goToComparisonOverview: () => void;
+    }>,
   ) {
     React.useImperativeHandle(ref, () => ({
       spawnBall: mockSpawnBall,
       clearBalls: mockClearBalls,
+      goToComparisonOverview: mockGoToComparisonOverview,
     }));
     return (
       <div data-testid="physics-canvas">
@@ -53,6 +73,12 @@ vi.mock("../components/PhysicsCanvas/index", () => ({
         </button>
         <button onClick={props.onClear} title="Clear All">
           Clear
+        </button>
+        <button
+          onClick={() => props.onComparisonModeChange?.(true)}
+          title="Enable Comparison"
+        >
+          Enable Comparison
         </button>
       </div>
     );
@@ -67,6 +93,8 @@ describe("Home Page", () => {
   beforeEach(() => {
     mockSpawnBall.mockClear();
     mockClearBalls.mockClear();
+    mockGoToComparisonOverview.mockClear();
+    mockCloseAddDataDialog.mockClear();
     // Reset search params to debug mode for tests that need input fields
     mockSearchParams.delete("debugMode");
   });
@@ -106,7 +134,7 @@ describe("Home Page", () => {
     it("renders the Drop Ball button in debug mode", () => {
       renderWithToast(<Home />);
       expect(
-        screen.getByRole("button", { name: "Drop Ball" })
+        screen.getByRole("button", { name: "Drop Ball" }),
       ).toBeInTheDocument();
     });
 
@@ -220,12 +248,12 @@ describe("Home Page", () => {
       expect(mockSpawnBall).toHaveBeenNthCalledWith(
         1,
         areaToRadius(50),
-        undefined
+        undefined,
       );
       expect(mockSpawnBall).toHaveBeenNthCalledWith(
         2,
         areaToRadius(200),
-        undefined
+        undefined,
       );
     });
 
@@ -247,7 +275,7 @@ describe("Home Page", () => {
       renderWithToast(<Home />);
 
       const input = screen.getByPlaceholderText(
-        "Enter area"
+        "Enter area",
       ) as HTMLInputElement;
 
       await user.type(input, "42");
@@ -260,7 +288,7 @@ describe("Home Page", () => {
       renderWithToast(<Home />);
 
       const input = screen.getByPlaceholderText(
-        "Enter area"
+        "Enter area",
       ) as HTMLInputElement;
 
       await user.type(input, "100");
@@ -302,17 +330,17 @@ describe("Home Page", () => {
     it("does not render input fields by default", () => {
       renderWithToast(<Home />);
       expect(
-        screen.queryByPlaceholderText("Enter area")
+        screen.queryByPlaceholderText("Enter area"),
       ).not.toBeInTheDocument();
       expect(
-        screen.queryByPlaceholderText("Enter name")
+        screen.queryByPlaceholderText("Enter name"),
       ).not.toBeInTheDocument();
     });
 
     it("does not render Drop Ball button by default", () => {
       renderWithToast(<Home />);
       expect(
-        screen.queryByRole("button", { name: "Drop Ball" })
+        screen.queryByRole("button", { name: "Drop Ball" }),
       ).not.toBeInTheDocument();
     });
   });
@@ -331,5 +359,17 @@ describe("Home Page", () => {
 
       expect(mockClearBalls).toHaveBeenCalledTimes(1);
     });
+  });
+
+  it("returns to comparison overview when Add Data dialog closes during comparison mode", async () => {
+    const user = userEvent.setup();
+    renderWithToast(<Home />);
+
+    await user.click(screen.getByTitle("Enable Comparison"));
+    await user.click(screen.getByTitle("Add Data"));
+    await user.click(screen.getByTitle("Close Add Data"));
+
+    expect(mockCloseAddDataDialog).toHaveBeenCalledTimes(1);
+    expect(mockGoToComparisonOverview).toHaveBeenCalledTimes(1);
   });
 });

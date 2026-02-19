@@ -55,6 +55,7 @@ interface UsePhysicsEngineReturn {
   setFocusedBallIndex: (index: number) => void;
   isNavigating: boolean;
   setIsNavigating: (isNavigating: boolean) => void;
+  goToComparisonOverview: () => void;
 }
 
 export function usePhysicsEngine(
@@ -934,6 +935,16 @@ export function usePhysicsEngine(
     setIsComparisonMode(false);
   }, []);
 
+  const goToComparisonOverview = useCallback(() => {
+    if (!isComparisonModeRef.current) return;
+
+    resetZoomRef.current?.();
+    setIsNavigating(false);
+    setFocusedBallIndex(-1);
+    setHoveredBallId(null);
+    hoveredBallIdRef.current = null;
+  }, []);
+
   // Store exitComparisonMode in ref for access from zoom handlers
   useEffect(() => {
     exitComparisonModeRef.current = exitComparisonMode;
@@ -1000,5 +1011,6 @@ export function usePhysicsEngine(
     setFocusedBallIndex,
     isNavigating,
     setIsNavigating,
+    goToComparisonOverview,
   };
 }

@@ -53,6 +53,7 @@ export interface PhysicsCanvasHandle {
   isComparisonMode: boolean;
   enterComparisonMode: () => void;
   exitComparisonMode: () => void;
+  goToComparisonOverview?: () => void;
   getBallNames: () => string[];
   getBalls?: () => BallForExclusion[];
   getPersistedBalls?: () => PersistedBall[];

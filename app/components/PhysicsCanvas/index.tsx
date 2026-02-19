@@ -110,6 +110,7 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
       setFocusedBallIndex,
       isNavigating,
       setIsNavigating,
+      goToComparisonOverview,
     } = usePhysicsEngine({
       containerRef,
       canvasRef,
@@ -139,6 +140,11 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
         enterComparisonMode();
       },
       exitComparisonMode,
+      goToComparisonOverview: () => {
+        setLegendCollapsed(true);
+        setControlsCollapsed(true);
+        goToComparisonOverview();
+      },
       getBallNames: () => balls.map((b) => b.name),
       getBalls: () =>
         balls.map((b) => ({

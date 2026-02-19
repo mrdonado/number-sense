@@ -282,6 +282,14 @@ function HomeContent() {
     window.location.reload();
   }, [comparisonType]);
 
+  const handleCloseAddDataDialog = useCallback(() => {
+    setIsAddDataDialogOpen(false);
+
+    if (isComparisonMode) {
+      canvasRef.current?.goToComparisonOverview?.();
+    }
+  }, [isComparisonMode]);
+
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
       handleSubmit();
@@ -496,7 +504,7 @@ function HomeContent() {
         />
         <AddDataDialog
           isOpen={isAddDataDialogOpen}
-          onClose={() => setIsAddDataDialogOpen(false)}
+          onClose={handleCloseAddDataDialog}
           onSelect={handleAddData}
           onLoadPreset={handleLoadPreset}
           excludedItems={excludedItems}
