@@ -310,50 +310,74 @@
     ],
     "comparisonType": "area"
   },
-  "military-expenditure": {
-    "name": "Military Expenditure",
-    "description": "Military spending by major countries in 2023",
+  "debt-and-expenditure": {
+    "name": "US Debt and Expenditure",
+    "description": "US government debt and expenditure compared to other large financial figures",
     "balls": [
       {
         "name": "United States - Military Expenditure (2023)",
+        "color": "#f43f5e",
+        "originalRadius": 535788.2026483351,
+        "units": "USD"
+      },
+      {
+        "name": "United States - Education Expenditure (2021)",
+        "color": "#f97316",
+        "originalRadius": 686213.0541227356,
+        "units": "USD"
+      },
+      {
+        "name": "United States - Compensation of Employees (Public Sector Wages) (2023)",
         "color": "#10b981",
-        "originalRadius": 535788.202648351,
+        "originalRadius": 835390.9287306588,
         "units": "USD"
       },
       {
-        "name": "China - Military Expenditure (2023)",
-        "color": "#d946ef",
-        "originalRadius": 311161.59399743873,
+        "name": "United States - Health Expenditure (2023)",
+        "color": "#22c55e",
+        "originalRadius": 884579.7892340835,
         "units": "USD"
       },
       {
-        "name": "India - Military Expenditure (2023)",
-        "color": "#3b82f6",
-        "originalRadius": 165213.84516769883,
+        "name": "United States - Interest Payments on Debt (2023)",
+        "color": "#84cc16",
+        "originalRadius": 1058950.0372259843,
         "units": "USD"
       },
       {
-        "name": "United Kingdom - Military Expenditure (2023)",
-        "color": "#f59e0b",
-        "originalRadius": 155848.78127161643,
+        "name": "United States - Total Government Expenditure (2023)",
+        "color": "#14b8a6",
+        "originalRadius": 1470715.9400593936,
         "units": "USD"
       },
       {
-        "name": "Germany - Military Expenditure (2023)",
-        "color": "#64748b",
-        "originalRadius": 146997.07595619265,
+        "name": "US National Debt",
+        "color": "#0ea5e9",
+        "originalRadius": 3385137.501286538,
         "units": "USD"
       },
       {
-        "name": "Spain - Military Expenditure (2023)",
-        "color": "#eab308",
-        "originalRadius": 87097.30246046376,
-        "units": "USD"
-      },
-      {
-        "name": "Mexico - Military Expenditure (2023)",
+        "name": "United States (GDP)",
         "color": "#ec4899",
-        "originalRadius": 61482.645270229106,
+        "originalRadius": 3025179.924177768,
+        "units": "USD"
+      },
+      {
+        "name": "Median Annual Income (United States)",
+        "color": "#06b6d4",
+        "originalRadius": 153.47615963921078,
+        "units": "USD"
+      },
+      {
+        "name": "Average House Price (US)",
+        "color": "#a855f7",
+        "originalRadius": 365.6366395715726,
+        "units": "USD"
+      },
+      {
+        "name": "Skyscraper (One World Trade Center)",
+        "color": "#eab308",
+        "originalRadius": 35233.62819972964,
         "units": "USD"
       }
     ],
