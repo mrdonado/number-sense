@@ -7,9 +7,11 @@ import PhysicsCanvas, {
   PhysicsCanvasHandle,
 } from "./components/PhysicsCanvas/index";
 import AddDataDialog from "./components/AddDataDialog/index";
-import type { ComparisonType } from "./components/PhysicsCanvas/types";
+import type {
+  ComparisonType,
+  PersistedBall,
+} from "./components/PhysicsCanvas/types";
 import {
-  encodeStateToURL,
   decodeStateFromURL,
   loadPreset,
   getPresetIdFromURL,
@@ -20,6 +22,28 @@ import {
 } from "./utils/shareState";
 import { useToast } from "./components/Toast";
 import { STORAGE_KEY } from "./constants";
+
+type PresetExport = {
+  name: string;
+  description: string;
+  balls: PersistedBall[];
+  comparisonType: ComparisonType;
+};
+
+declare global {
+  interface Window {
+    debugExportPreset?: (
+      presetId?: string,
+      name?: string,
+      description?: string,
+    ) => Record<string, PresetExport>;
+    debugExportPresetJson?: (
+      presetId?: string,
+      name?: string,
+      description?: string,
+    ) => string;
+  }
+}
 
 function HomeContent() {
   const searchParams = useSearchParams();
@@ -43,6 +67,53 @@ function HomeContent() {
   >([]);
   const [existingUnits, setExistingUnits] = useState<string[]>([]);
   const [existingSourceIds, setExistingSourceIds] = useState<string[]>([]);
+
+  useEffect(() => {
+    if (typeof window === "undefined" || !isDebugMode) {
+      return;
+    }
+
+    const buildPresetExport = (
+      presetId = "new-preset",
+      name = "New Preset",
+      description = "",
+    ) => {
+      const balls = canvasRef.current?.getPersistedBalls?.() ?? [];
+      const preset = {
+        [presetId]: {
+          name,
+          description,
+          balls,
+          comparisonType,
+        },
+      };
+
+      return preset;
+    };
+
+    window.debugExportPreset = (
+      presetId = "new-preset",
+      name = "New Preset",
+      description = "",
+    ) => {
+      const preset = buildPresetExport(presetId, name, description);
+      console.log("Preset export:", preset);
+      console.log("Preset export JSON:", JSON.stringify(preset, null, 2));
+      return preset;
+    };
+
+    window.debugExportPresetJson = (
+      presetId = "new-preset",
+      name = "New Preset",
+      description = "",
+    ) =>
+      JSON.stringify(buildPresetExport(presetId, name, description), null, 2);
+
+    return () => {
+      delete window.debugExportPreset;
+      delete window.debugExportPresetJson;
+    };
+  }, [comparisonType, isDebugMode]);
 
   // Handle shared state from URL on mount
   useEffect(() => {

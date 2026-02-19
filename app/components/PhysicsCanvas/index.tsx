@@ -146,6 +146,14 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
           sourceId: b.sourceId || "",
           units: b.units,
         })),
+      getPersistedBalls: () =>
+        balls.map((b) => ({
+          name: b.name,
+          color: b.color,
+          originalRadius: b.originalRadius,
+          units: b.units,
+          sourceId: b.sourceId,
+        })),
     }));
 
     // Sort balls by value (smallest to largest) for navigation

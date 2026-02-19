@@ -47,7 +47,7 @@ export interface PhysicsCanvasHandle {
     radius: number,
     name?: string,
     units?: string,
-    sourceId?: string
+    sourceId?: string,
   ) => void;
   clearBalls: () => void;
   isComparisonMode: boolean;
@@ -55,6 +55,7 @@ export interface PhysicsCanvasHandle {
   exitComparisonMode: () => void;
   getBallNames: () => string[];
   getBalls?: () => BallForExclusion[];
+  getPersistedBalls?: () => PersistedBall[];
 }
 
 // Bounds rectangle for zoom/pan calculations
