@@ -51,6 +51,7 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
     const [mousePos, setMousePos] = useState<{ x: number; y: number } | null>(
       null,
     );
+    const [canvasRect, setCanvasRect] = useState<DOMRect | null>(null);
     const [canvasDimensions, setCanvasDimensions] = useState<{
       width: number;
       height: number;
@@ -191,6 +192,7 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
         // Track mouse position for tooltip (relative to canvas wrapper)
         if (ballId !== null) {
           setMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+          setCanvasRect(rect);
         } else {
           setMousePos(null);
         }
@@ -626,7 +628,12 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
           />
           {/* Ball tooltip */}
           {hoveredBall && mousePos && (
-            <Tooltip ball={hoveredBall} x={mousePos.x} y={mousePos.y} />
+            <Tooltip
+              ball={hoveredBall}
+              x={mousePos.x}
+              y={mousePos.y}
+              canvasRect={canvasRect}
+            />
           )}
           {/* Comparison tooltips */}
           {comparisonTooltips &&
