@@ -382,5 +382,349 @@
       }
     ],
     "comparisonType": "area"
+  },
+  "microscopic-objects": {
+    "name": "Microscopic Objects",
+    "description": "Comparing sizes of microscopic objects from atoms to human cells",
+    "balls": [
+      {
+        "name": "Hydrogen Atom",
+        "color": "#8b5cf6",
+        "originalRadius": 0.000005808687281605183,
+        "units": "Meters"
+      },
+      {
+        "name": "Silicon Atom",
+        "color": "#06b6d4",
+        "originalRadius": 0.00000817588381146626,
+        "units": "Meters"
+      },
+      {
+        "name": "DNA Double Helix Width",
+        "color": "#eab308",
+        "originalRadius": 0.000025231325220201602,
+        "units": "Meters"
+      },
+      {
+        "name": "Glucose Molecule",
+        "color": "#f43f5e",
+        "originalRadius": 0.00001692568750643269,
+        "units": "Meters"
+      },
+      {
+        "name": "Small Virus (Poliovirus)",
+        "color": "#0ea5e9",
+        "originalRadius": 0.00009772050238058398,
+        "units": "Meters"
+      },
+      {
+        "name": "E. coli Bacterium",
+        "color": "#84cc16",
+        "originalRadius": 0.0007978845608028653,
+        "units": "Meters"
+      },
+      {
+        "name": "Human Cell (Average)",
+        "color": "#10b981",
+        "originalRadius": 0.0017841241161527712,
+        "units": "Meters"
+      },
+      {
+        "name": "Width of Human Hair",
+        "color": "#6366f1",
+        "originalRadius": 0.004720348719413148,
+        "units": "Meters"
+      }
+    ],
+    "comparisonType": "linear"
+  },
+  "close-objects": {
+    "name": "Close Objects and Distances",
+    "description": "Comparing sizes of objects and distances that are relatively close to human experience, from city blocks to the distance to the sun",
+    "balls": [
+      {
+        "name": "Height of Average Person",
+        "color": "#f43f5e",
+        "originalRadius": 0.7356132180109627,
+        "units": "Meters"
+      },
+      {
+        "name": "One Mile",
+        "color": "#d946ef",
+        "originalRadius": 22.63335662757563,
+        "units": "Meters"
+      },
+      {
+        "name": "Mount Everest Height",
+        "color": "#14b8a6",
+        "originalRadius": 53.07281962398798,
+        "units": "Meters"
+      },
+      {
+        "name": "Marathon Distance",
+        "color": "#a855f7",
+        "originalRadius": 115.89256079457839,
+        "units": "Meters"
+      },
+      {
+        "name": "London to Paris",
+        "color": "#64748b",
+        "originalRadius": 330.90572803628527,
+        "units": "Meters"
+      },
+      {
+        "name": "Sun's Diameter",
+        "color": "#ef4444",
+        "originalRadius": 21042.07812174579,
+        "units": "Meters"
+      },
+      {
+        "name": "Distance to Sun",
+        "color": "#84cc16",
+        "originalRadius": 218218.14538001895,
+        "units": "Meters"
+      },
+      {
+        "name": "Moon's Diameter",
+        "color": "#0ea5e9",
+        "originalRadius": 1051.695389602634,
+        "units": "Meters"
+      },
+      {
+        "name": "Earth's Diameter",
+        "color": "#3b82f6",
+        "originalRadius": 2013.9276475965717,
+        "units": "Meters"
+      },
+      {
+        "name": "Great Wall of China",
+        "color": "#10b981",
+        "originalRadius": 2597.4788444858655,
+        "units": "Meters"
+      },
+      {
+        "name": "Width of United States",
+        "color": "#6366f1",
+        "originalRadius": 1196.826841204298,
+        "units": "Meters"
+      },
+      {
+        "name": "City Block (Average)",
+        "color": "#22c55e",
+        "originalRadius": 5.641895835477563,
+        "units": "Meters",
+        "sourceId": "distances"
+      },
+      {
+        "name": "Eiffel Tower Height",
+        "color": "#f59e0b",
+        "originalRadius": 10.249012754438885,
+        "units": "Meters",
+        "sourceId": "distances"
+      },
+      {
+        "name": "Distance to International Space Station",
+        "color": "#06b6d4",
+        "originalRadius": 11396.070970426017,
+        "units": "Meters",
+        "sourceId": "distances"
+      },
+      {
+        "name": "Distance to Mars (Closest Approach)",
+        "color": "#8b5cf6",
+        "originalRadius": 131832.16521636504,
+        "units": "Meters",
+        "sourceId": "distances"
+      }
+    ],
+    "comparisonType": "area"
+  },
+  "far-away-objects": {
+    "name": "Far Away Objects and Distances",
+    "description": "Comparing sizes of objects and distances that are far from human experience, from planets to galaxies",
+    "balls": [
+      {
+        "name": "Distance to Jupiter",
+        "color": "#d946ef",
+        "originalRadius": 497799.40377031494,
+        "units": "Meters"
+      },
+      {
+        "name": "Diameter of Solar System (Heliopause)",
+        "color": "#3b82f6",
+        "originalRadius": 2393653.682408596,
+        "units": "Meters"
+      },
+      {
+        "name": "One Light Year",
+        "color": "#f43f5e",
+        "originalRadius": 54876624.25400795,
+        "units": "Meters"
+      },
+      {
+        "name": "Thickness of Milky Way Disk",
+        "color": "#64748b",
+        "originalRadius": 1735351229.4390361,
+        "units": "Meters"
+      },
+      {
+        "name": "Distance to Proxima Centauri",
+        "color": "#06b6d4",
+        "originalRadius": 112696781.04867613,
+        "units": "Meters"
+      },
+      {
+        "name": "Diameter of Milky Way Galaxy",
+        "color": "#8b5cf6",
+        "originalRadius": 17353512294.39036,
+        "units": "Meters"
+      },
+      {
+        "name": "Distance to Andromeda Galaxy",
+        "color": "#6366f1",
+        "originalRadius": 86974788042.36998,
+        "units": "Meters"
+      },
+      {
+        "name": "Distance to Large Magellanic Cloud",
+        "color": "#0ea5e9",
+        "originalRadius": 22449934059.487225,
+        "units": "Meters"
+      },
+      {
+        "name": "Distance to Triangulum Galaxy (M33)",
+        "color": "#f97316",
+        "originalRadius": 95049126472.5511,
+        "units": "Meters"
+      },
+      {
+        "name": "Diameter of Local Group",
+        "color": "#10b981",
+        "originalRadius": 173535122943.9036,
+        "units": "Meters"
+      },
+      {
+        "name": "Diameter of Local Group",
+        "color": "#ef4444",
+        "originalRadius": 173535122943.9036,
+        "units": "Meters"
+      },
+      {
+        "name": "Distance to Triangulum Galaxy (M33)",
+        "color": "#ec4899",
+        "originalRadius": 95049126472.5511,
+        "units": "Meters"
+      },
+      {
+        "name": "Distance to Neptune",
+        "color": "#14b8a6",
+        "originalRadius": 1196161.752605449,
+        "units": "Meters"
+      }
+    ],
+    "comparisonType": "area"
+  },
+  "back-in-time": {
+    "name": "Back in Time",
+    "description": "Comparing historical events and time periods, from recent history to the distant past",
+    "balls": [
+      {
+        "name": "Internet Created",
+        "color": "#ec4899",
+        "originalRadius": 4.1841419359420025,
+        "units": "Years"
+      },
+      {
+        "name": "First Radio Communication",
+        "color": "#3b82f6",
+        "originalRadius": 6.457444935117649,
+        "units": "Years"
+      },
+      {
+        "name": "Gutenberg Printing Press",
+        "color": "#d946ef",
+        "originalRadius": 13.540550005146152,
+        "units": "Years"
+      },
+      {
+        "name": "Birth of Jesus Christ",
+        "color": "#0ea5e9",
+        "originalRadius": 25.394799259067984,
+        "units": "Years"
+      },
+      {
+        "name": "Ancient Pyramids Built",
+        "color": "#8b5cf6",
+        "originalRadius": 37.8469878303024,
+        "units": "Years"
+      },
+      {
+        "name": "Invention of Writing",
+        "color": "#6366f1",
+        "originalRadius": 41.45929793656026,
+        "units": "Years"
+      },
+      {
+        "name": "Agricultural Revolution",
+        "color": "#84cc16",
+        "originalRadius": 61.80387232371034,
+        "units": "Years"
+      },
+      {
+        "name": "Homo Sapiens (Modern Humans)",
+        "color": "#10b981",
+        "originalRadius": 309.01936161855167,
+        "units": "Years"
+      },
+      {
+        "name": "Age of Dinosaurs Begins",
+        "color": "#14b8a6",
+        "originalRadius": 8556.358677747903,
+        "units": "Years"
+      },
+      {
+        "name": "Great Oxygenation Event",
+        "color": "#64748b",
+        "originalRadius": 27639.531957706837,
+        "units": "Years"
+      },
+      {
+        "name": "Formation of Earth",
+        "color": "#f97316",
+        "originalRadius": 38014.82451984238,
+        "units": "Years"
+      },
+      {
+        "name": "Formation of Milky Way Galaxy",
+        "color": "#a855f7",
+        "originalRadius": 65795.2464247954,
+        "units": "Years"
+      },
+      {
+        "name": "Big Bang (Beginning of Universe)",
+        "color": "#06b6d4",
+        "originalRadius": 66277.2693261899,
+        "units": "Years"
+      },
+      {
+        "name": "First Multicellular Life",
+        "color": "#ef4444",
+        "originalRadius": 25854.414729132055,
+        "units": "Years"
+      },
+      {
+        "name": "First Life on Earth",
+        "color": "#22c55e",
+        "originalRadius": 34778.98169151024,
+        "units": "Years"
+      },
+      {
+        "name": "Dinosaur Extinction",
+        "color": "#f59e0b",
+        "originalRadius": 4583.497844237541,
+        "units": "Years"
+      }
+    ],
+    "comparisonType": "area"
   }
 }
