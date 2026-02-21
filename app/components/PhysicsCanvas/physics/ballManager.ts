@@ -291,6 +291,28 @@ export class BallManager {
   }
 
   /**
+   * Force-set the scale factor, rescaling all ball bodies in the physics world accordingly.
+   * Used in comparison mode to shrink balls so they all fit within the 1x viewport.
+   */
+  setScaleFactor(engine: Matter.Engine, newScaleFactor: number): void {
+    if (Math.abs(newScaleFactor - this.scaleFactor) < 1e-10) return;
+
+    const scaleRatio = newScaleFactor / this.scaleFactor;
+    const bodies = Matter.Composite.allBodies(engine.world);
+    const ballBodies = bodies.filter((b) => !b.isStatic) as BallBody[];
+
+    ballBodies.forEach((ball) => {
+      if (ball.originalRadius !== undefined) {
+        Matter.Body.scale(ball, scaleRatio, scaleRatio);
+        ball.circleRadius =
+          (ball.circleRadius ?? ball.originalRadius) * scaleRatio;
+      }
+    });
+
+    this.scaleFactor = newScaleFactor;
+  }
+
+  /**
    * Calculate what the scale factor would be for the given visible balls
    * Used to determine if a repaint is needed
    */

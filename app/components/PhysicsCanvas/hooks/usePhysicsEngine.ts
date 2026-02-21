@@ -755,26 +755,42 @@ export function usePhysicsEngine(
       (a, b) => (a.originalRadius || 0) - (b.originalRadius || 0),
     );
 
-    // Find the smallest ball's radius to use as max gap
-    const smallestRadius = sortedBalls[0]?.circleRadius || 10;
+    // Determine if we should arrange horizontally or vertically based on aspect ratio
+    const isLandscape = width > height;
 
-    // Use essentially zero gaps - elements should touch directly
-    // Just 0.5 pixel minimum to prevent rendering overlap
-    const gaps: number[] = [];
-    for (let i = 0; i < sortedBalls.length - 1; i++) {
-      const gap = 0.005;
-      gaps.push(gap);
+    // Padding on each side so balls are never flush against the edge
+    const COMPARISON_LAYOUT_PADDING = 24;
+
+    // Calculate the natural total span at current ball sizes (gaps are negligible)
+    const naturalSpan = sortedBalls.reduce(
+      (sum, ball) => sum + (ball.circleRadius || 0) * 2,
+      0,
+    );
+
+    // Available dimension for the lineup in the primary axis
+    const availableDimension = isLandscape ? width : height;
+    const availableSpan = availableDimension - 2 * COMPARISON_LAYOUT_PADDING;
+
+    // Scale down all balls so they fit within the 1x viewport when needed
+    if (naturalSpan > availableSpan && availableSpan > 0) {
+      const scaleRatio = availableSpan / naturalSpan;
+      const newScaleFactor =
+        ballManagerRef.current.getScaleFactor() * scaleRatio;
+      ballManagerRef.current.setScaleFactor(engine, newScaleFactor);
     }
 
-    // Calculate total span (distance from edge to edge of all balls)
+    // Use essentially zero gaps - elements should touch directly
+    const gaps: number[] = [];
+    for (let i = 0; i < sortedBalls.length - 1; i++) {
+      gaps.push(0.005);
+    }
+
+    // Calculate total span with (potentially scaled-down) ball radii
     const totalSpan = sortedBalls.reduce(
       (sum, ball, index) =>
         sum + (ball.circleRadius || 0) * 2 + (gaps[index] || 0),
       0,
     );
-
-    // Determine if we should arrange horizontally or vertically based on aspect ratio
-    const isLandscape = width > height;
 
     if (isLandscape) {
       // Horizontal arrangement (left to right)
@@ -818,44 +834,12 @@ export function usePhysicsEngine(
       });
     }
 
-    // Auto-fit view for comparison mode: some aligned sets can exceed 1x bounds.
-    // Expand bounds just enough so all balls are fully visible.
-    const COMPARISON_VIEW_PADDING = 24;
-    let minX = Infinity;
-    let minY = Infinity;
-    let maxX = -Infinity;
-    let maxY = -Infinity;
-
-    sortedBalls.forEach((ball) => {
-      const radius = ball.circleRadius || 0;
-      minX = Math.min(minX, ball.position.x - radius);
-      minY = Math.min(minY, ball.position.y - radius);
-      maxX = Math.max(maxX, ball.position.x + radius);
-      maxY = Math.max(maxY, ball.position.y + radius);
-    });
-
-    const requiredWidth = maxX - minX + COMPARISON_VIEW_PADDING * 2;
-    const requiredHeight = maxY - minY + COMPARISON_VIEW_PADDING * 2;
-    const fitZoom = Math.max(requiredWidth / width, requiredHeight / height, 1);
-
-    if (fitZoom > 1) {
-      const centerX = (minX + maxX) / 2;
-      const centerY = (minY + maxY) / 2;
-      const viewWidth = width * fitZoom;
-      const viewHeight = height * fitZoom;
-
-      render.bounds.min.x = centerX - viewWidth / 2;
-      render.bounds.max.x = centerX + viewWidth / 2;
-      render.bounds.min.y = centerY - viewHeight / 2;
-      render.bounds.max.y = centerY + viewHeight / 2;
-      setZoomLevel(fitZoom);
-    } else {
-      render.bounds.min.x = 0;
-      render.bounds.min.y = 0;
-      render.bounds.max.x = width;
-      render.bounds.max.y = height;
-      setZoomLevel(1);
-    }
+    // Reset to 1x zoom — balls are always scaled to fit at 1x (see scale-down logic above)
+    render.bounds.min.x = 0;
+    render.bounds.min.y = 0;
+    render.bounds.max.x = width;
+    render.bounds.max.y = height;
+    setZoomLevel(1);
   }, []);
 
   const enterComparisonMode = useCallback(() => {
@@ -908,13 +892,21 @@ export function usePhysicsEngine(
   const exitComparisonMode = useCallback(() => {
     if (!physicsRefs.current.engine || !physicsRefs.current.runner) return;
 
+    const engine = physicsRefs.current.engine;
     const runner = physicsRefs.current.runner;
 
     // Reset zoom to 1x
     resetZoomRef.current?.();
 
+    // Restore natural ball scale (comparison mode may have scaled balls down to fit)
+    ballManagerRef.current.recalculateScale(
+      engine,
+      dimensionsRef.current,
+      hiddenBallIdsRef.current,
+    );
+
     // Keep balls in their current comparison positions - just reset velocities
-    const bodies = Matter.Composite.allBodies(physicsRefs.current.engine.world);
+    const bodies = Matter.Composite.allBodies(engine.world);
     bodies.forEach((body) => {
       if (!body.isStatic) {
         Matter.Body.setVelocity(body, { x: 0, y: 0 });
