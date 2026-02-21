@@ -124,6 +124,44 @@ Optimized for modern browsers with special attention to:
 
 Uses dynamic viewport height units (`dvh`) for proper mobile display.
 
+## Debug Mode
+
+Append `?debugMode=true` to the URL to enable debug mode (e.g. `http://localhost:3000/?debugMode=true`).
+
+This activates two additional capabilities:
+
+### Drop Ball toolbar
+
+A raw input toolbar appears above the canvas with:
+
+- **Name** – label for the ball
+- **Area** – numeric value (interpreted as the ball's area)
+- **Drop Ball** button – spawns the ball directly into the simulation
+
+This is useful for quickly testing custom values without going through the data dialog.
+
+### Preset export helpers
+
+Two functions become available in the browser's developer console:
+
+```js
+// Logs the preset object and its JSON representation to the console
+window.debugExportPreset(
+  "my-preset-id",
+  "My Preset Name",
+  "Optional description",
+);
+
+// Returns the preset as a formatted JSON string
+window.debugExportPresetJson(
+  "my-preset-id",
+  "My Preset Name",
+  "Optional description",
+);
+```
+
+Both functions snapshot the current canvas balls (including their names, colors, radii, and comparison type) into the preset format used by `public/data/presets.json`. The output can be copied and added directly to that file to create a new built-in preset.
+
 ## Contributing
 
 1. Fork the repository
