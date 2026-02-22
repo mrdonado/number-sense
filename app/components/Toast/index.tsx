@@ -5,6 +5,7 @@ import {
   useContext,
   useState,
   useCallback,
+  useEffect,
   ReactNode,
 } from "react";
 import styles from "./Toast.module.css";
@@ -21,6 +22,7 @@ interface Toast {
   message: string;
   type: ToastType;
   actions?: ToastAction[];
+  autoConfirmMs?: number;
 }
 
 interface ToastContextValue {
@@ -31,7 +33,50 @@ interface ToastContextValue {
     onCancel?: () => void,
     confirmLabel?: string,
     cancelLabel?: string,
+    autoConfirmMs?: number,
   ) => void;
+}
+
+/** Confirm toast that optionally auto-confirms after a countdown. */
+function ConfirmToastItem({ toast }: { toast: Toast }) {
+  const { autoConfirmMs } = toast;
+  const confirmAction = toast.actions?.[toast.actions.length - 1];
+
+  useEffect(() => {
+    if (!autoConfirmMs || !confirmAction) return;
+    const timer = setTimeout(() => confirmAction.onClick(), autoConfirmMs);
+    return () => clearTimeout(timer);
+  }, []); // intentionally run once on mount
+
+  return (
+    <div className={styles.confirmWrapper}>
+      <div className={styles.confirmRow}>
+        <span className={styles.icon}>?</span>
+        <span className={styles.message}>{toast.message}</span>
+        {toast.actions && (
+          <div className={styles.actions}>
+            {toast.actions.map((action, idx) => (
+              <button
+                key={idx}
+                className={styles.actionButton}
+                onClick={action.onClick}
+              >
+                {action.label}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+      {autoConfirmMs && (
+        <div className={styles.progressBarTrack}>
+          <div
+            className={styles.progressBarFill}
+            style={{ animationDuration: `${autoConfirmMs}ms` }}
+          />
+        </div>
+      )}
+    </div>
+  );
 }
 
 const ToastContext = createContext<ToastContextValue | undefined>(undefined);
@@ -58,12 +103,14 @@ export function ToastProvider({ children }: { children: ReactNode }) {
       onCancel?: () => void,
       confirmLabel: string = "Clear",
       cancelLabel: string = "Cancel",
+      autoConfirmMs?: number,
     ) => {
       const id = ++toastId;
       const confirmToast: Toast = {
         id,
         message,
         type: "confirm",
+        autoConfirmMs,
         actions: [
           {
             label: cancelLabel,
@@ -113,28 +160,34 @@ export function ToastProvider({ children }: { children: ReactNode }) {
               key={toast.id}
               className={`${styles.toast} ${styles[toast.type]}`}
             >
-              <span className={styles.icon}>{getIcon(toast.type)}</span>
-              <span className={styles.message}>{toast.message}</span>
-              {toast.actions ? (
-                <div className={styles.actions}>
-                  {toast.actions.map((action, idx) => (
-                    <button
-                      key={idx}
-                      className={styles.actionButton}
-                      onClick={action.onClick}
-                    >
-                      {action.label}
-                    </button>
-                  ))}
-                </div>
+              {toast.type === "confirm" ? (
+                <ConfirmToastItem toast={toast} />
               ) : (
-                <button
-                  className={styles.closeButton}
-                  onClick={() => removeToast(toast.id)}
-                  aria-label="Close"
-                >
-                  ×
-                </button>
+                <>
+                  <span className={styles.icon}>{getIcon(toast.type)}</span>
+                  <span className={styles.message}>{toast.message}</span>
+                  {toast.actions ? (
+                    <div className={styles.actions}>
+                      {toast.actions.map((action, idx) => (
+                        <button
+                          key={idx}
+                          className={styles.actionButton}
+                          onClick={action.onClick}
+                        >
+                          {action.label}
+                        </button>
+                      ))}
+                    </div>
+                  ) : (
+                    <button
+                      className={styles.closeButton}
+                      onClick={() => removeToast(toast.id)}
+                      aria-label="Close"
+                    >
+                      ×
+                    </button>
+                  )}
+                </>
               )}
             </div>
           ))}

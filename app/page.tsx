@@ -164,6 +164,7 @@ function HomeContent() {
               },
               "Yes",
               "No",
+              5000,
             );
           } else {
             // No existing simulation, load directly
@@ -227,6 +228,7 @@ function HomeContent() {
           },
           "Yes",
           "No",
+          5000,
         );
       } else {
         // No existing simulation, load directly
@@ -359,6 +361,7 @@ function HomeContent() {
           undefined,
           "Yes",
           "No",
+          5000,
         );
       } else {
         // No existing simulation, load directly
