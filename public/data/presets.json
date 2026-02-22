@@ -79,6 +79,79 @@
     ],
     "comparisonType": "area"
   },
+  "debt-and-expenditure": {
+    "name": "US Debt and Expenditure",
+    "description": "US government debt and expenditure compared to other large financial figures",
+    "balls": [
+      {
+        "name": "United States - Military Expenditure (2023)",
+        "color": "#f43f5e",
+        "originalRadius": 535788.2026483351,
+        "units": "USD"
+      },
+      {
+        "name": "United States - Education Expenditure (2021)",
+        "color": "#f97316",
+        "originalRadius": 686213.0541227356,
+        "units": "USD"
+      },
+      {
+        "name": "United States - Compensation of Employees (Public Sector Wages) (2023)",
+        "color": "#10b981",
+        "originalRadius": 835390.9287306588,
+        "units": "USD"
+      },
+      {
+        "name": "United States - Health Expenditure (2023)",
+        "color": "#22c55e",
+        "originalRadius": 884579.7892340835,
+        "units": "USD"
+      },
+      {
+        "name": "United States - Interest Payments on Debt (2023)",
+        "color": "#84cc16",
+        "originalRadius": 1058950.0372259843,
+        "units": "USD"
+      },
+      {
+        "name": "United States - Total Government Expenditure (2023)",
+        "color": "#14b8a6",
+        "originalRadius": 1470715.9400593936,
+        "units": "USD"
+      },
+      {
+        "name": "US National Debt",
+        "color": "#0ea5e9",
+        "originalRadius": 3385137.501286538,
+        "units": "USD"
+      },
+      {
+        "name": "United States (GDP)",
+        "color": "#ec4899",
+        "originalRadius": 3025179.924177768,
+        "units": "USD"
+      },
+      {
+        "name": "Median Annual Income (United States)",
+        "color": "#06b6d4",
+        "originalRadius": 153.47615963921078,
+        "units": "USD"
+      },
+      {
+        "name": "Average House Price (US)",
+        "color": "#a855f7",
+        "originalRadius": 365.6366395715726,
+        "units": "USD"
+      },
+      {
+        "name": "Skyscraper (One World Trade Center)",
+        "color": "#eab308",
+        "originalRadius": 35233.62819972964,
+        "units": "USD"
+      }
+    ],
+    "comparisonType": "area"
+  },
   "stars-planets": {
     "name": "Stars and Planets",
     "description": "Comparing celestial bodies from planets to giant stars",
@@ -310,75 +383,105 @@
     ],
     "comparisonType": "area"
   },
-  "debt-and-expenditure": {
-    "name": "US Debt and Expenditure",
-    "description": "US government debt and expenditure compared to other large financial figures",
+  "back-in-time": {
+    "name": "Back in Time",
+    "description": "Comparing historical events and time periods, from recent history to the distant past",
     "balls": [
       {
-        "name": "United States - Military Expenditure (2023)",
-        "color": "#f43f5e",
-        "originalRadius": 535788.2026483351,
-        "units": "USD"
-      },
-      {
-        "name": "United States - Education Expenditure (2021)",
-        "color": "#f97316",
-        "originalRadius": 686213.0541227356,
-        "units": "USD"
-      },
-      {
-        "name": "United States - Compensation of Employees (Public Sector Wages) (2023)",
-        "color": "#10b981",
-        "originalRadius": 835390.9287306588,
-        "units": "USD"
-      },
-      {
-        "name": "United States - Health Expenditure (2023)",
-        "color": "#22c55e",
-        "originalRadius": 884579.7892340835,
-        "units": "USD"
-      },
-      {
-        "name": "United States - Interest Payments on Debt (2023)",
-        "color": "#84cc16",
-        "originalRadius": 1058950.0372259843,
-        "units": "USD"
-      },
-      {
-        "name": "United States - Total Government Expenditure (2023)",
-        "color": "#14b8a6",
-        "originalRadius": 1470715.9400593936,
-        "units": "USD"
-      },
-      {
-        "name": "US National Debt",
-        "color": "#0ea5e9",
-        "originalRadius": 3385137.501286538,
-        "units": "USD"
-      },
-      {
-        "name": "United States (GDP)",
+        "name": "Internet Created",
         "color": "#ec4899",
-        "originalRadius": 3025179.924177768,
-        "units": "USD"
+        "originalRadius": 4.1841419359420025,
+        "units": "Years"
       },
       {
-        "name": "Median Annual Income (United States)",
-        "color": "#06b6d4",
-        "originalRadius": 153.47615963921078,
-        "units": "USD"
+        "name": "First Radio Communication",
+        "color": "#3b82f6",
+        "originalRadius": 6.457444935117649,
+        "units": "Years"
       },
       {
-        "name": "Average House Price (US)",
+        "name": "Gutenberg Printing Press",
+        "color": "#d946ef",
+        "originalRadius": 13.540550005146152,
+        "units": "Years"
+      },
+      {
+        "name": "Birth of Jesus Christ",
+        "color": "#0ea5e9",
+        "originalRadius": 25.394799259067984,
+        "units": "Years"
+      },
+      {
+        "name": "Ancient Pyramids Built",
+        "color": "#8b5cf6",
+        "originalRadius": 37.8469878303024,
+        "units": "Years"
+      },
+      {
+        "name": "Invention of Writing",
+        "color": "#6366f1",
+        "originalRadius": 41.45929793656026,
+        "units": "Years"
+      },
+      {
+        "name": "Agricultural Revolution",
+        "color": "#84cc16",
+        "originalRadius": 61.80387232371034,
+        "units": "Years"
+      },
+      {
+        "name": "Homo Sapiens (Modern Humans)",
+        "color": "#10b981",
+        "originalRadius": 309.01936161855167,
+        "units": "Years"
+      },
+      {
+        "name": "Age of Dinosaurs Begins",
+        "color": "#14b8a6",
+        "originalRadius": 8556.358677747903,
+        "units": "Years"
+      },
+      {
+        "name": "Great Oxygenation Event",
+        "color": "#64748b",
+        "originalRadius": 27639.531957706837,
+        "units": "Years"
+      },
+      {
+        "name": "Formation of Earth",
+        "color": "#f97316",
+        "originalRadius": 38014.82451984238,
+        "units": "Years"
+      },
+      {
+        "name": "Formation of Milky Way Galaxy",
         "color": "#a855f7",
-        "originalRadius": 365.6366395715726,
-        "units": "USD"
+        "originalRadius": 65795.2464247954,
+        "units": "Years"
       },
       {
-        "name": "Skyscraper (One World Trade Center)",
-        "color": "#eab308",
-        "originalRadius": 35233.62819972964,
-        "units": "USD"
+        "name": "Big Bang (Beginning of Universe)",
+        "color": "#06b6d4",
+        "originalRadius": 66277.2693261899,
+        "units": "Years"
+      },
+      {
+        "name": "First Multicellular Life",
+        "color": "#ef4444",
+        "originalRadius": 25854.414729132055,
+        "units": "Years"
+      },
+      {
+        "name": "First Life on Earth",
+        "color": "#22c55e",
+        "originalRadius": 34778.98169151024,
+        "units": "Years"
+      },
+      {
+        "name": "Dinosaur Extinction",
+        "color": "#f59e0b",
+        "originalRadius": 4583.497844237541,
+        "units": "Years"
       }
     ],
     "comparisonType": "area"
@@ -620,109 +723,6 @@
         "color": "#14b8a6",
         "originalRadius": 1196161.752605449,
         "units": "Meters"
-      }
-    ],
-    "comparisonType": "area"
-  },
-  "back-in-time": {
-    "name": "Back in Time",
-    "description": "Comparing historical events and time periods, from recent history to the distant past",
-    "balls": [
-      {
-        "name": "Internet Created",
-        "color": "#ec4899",
-        "originalRadius": 4.1841419359420025,
-        "units": "Years"
-      },
-      {
-        "name": "First Radio Communication",
-        "color": "#3b82f6",
-        "originalRadius": 6.457444935117649,
-        "units": "Years"
-      },
-      {
-        "name": "Gutenberg Printing Press",
-        "color": "#d946ef",
-        "originalRadius": 13.540550005146152,
-        "units": "Years"
-      },
-      {
-        "name": "Birth of Jesus Christ",
-        "color": "#0ea5e9",
-        "originalRadius": 25.394799259067984,
-        "units": "Years"
-      },
-      {
-        "name": "Ancient Pyramids Built",
-        "color": "#8b5cf6",
-        "originalRadius": 37.8469878303024,
-        "units": "Years"
-      },
-      {
-        "name": "Invention of Writing",
-        "color": "#6366f1",
-        "originalRadius": 41.45929793656026,
-        "units": "Years"
-      },
-      {
-        "name": "Agricultural Revolution",
-        "color": "#84cc16",
-        "originalRadius": 61.80387232371034,
-        "units": "Years"
-      },
-      {
-        "name": "Homo Sapiens (Modern Humans)",
-        "color": "#10b981",
-        "originalRadius": 309.01936161855167,
-        "units": "Years"
-      },
-      {
-        "name": "Age of Dinosaurs Begins",
-        "color": "#14b8a6",
-        "originalRadius": 8556.358677747903,
-        "units": "Years"
-      },
-      {
-        "name": "Great Oxygenation Event",
-        "color": "#64748b",
-        "originalRadius": 27639.531957706837,
-        "units": "Years"
-      },
-      {
-        "name": "Formation of Earth",
-        "color": "#f97316",
-        "originalRadius": 38014.82451984238,
-        "units": "Years"
-      },
-      {
-        "name": "Formation of Milky Way Galaxy",
-        "color": "#a855f7",
-        "originalRadius": 65795.2464247954,
-        "units": "Years"
-      },
-      {
-        "name": "Big Bang (Beginning of Universe)",
-        "color": "#06b6d4",
-        "originalRadius": 66277.2693261899,
-        "units": "Years"
-      },
-      {
-        "name": "First Multicellular Life",
-        "color": "#ef4444",
-        "originalRadius": 25854.414729132055,
-        "units": "Years"
-      },
-      {
-        "name": "First Life on Earth",
-        "color": "#22c55e",
-        "originalRadius": 34778.98169151024,
-        "units": "Years"
-      },
-      {
-        "name": "Dinosaur Extinction",
-        "color": "#f59e0b",
-        "originalRadius": 4583.497844237541,
-        "units": "Years"
       }
     ],
     "comparisonType": "area"
