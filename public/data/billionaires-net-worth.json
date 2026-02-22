@@ -5,7 +5,7 @@
     "indicatorName": "Billionaire Net Worth",
     "description": "Net worth of the world's billionaires in US Dollars",
     "units": "USD",
-    "fetchedAt": "2026-02-19T20:02:04.593Z",
+    "fetchedAt": "2026-02-22T02:36:24.061Z",
     "totalBillionaires": 150,
     "year": 2026
   },
@@ -13,112 +13,112 @@
     {
       "rank": 1,
       "name": "Elon Musk",
-      "value": 843294291000,
+      "value": 845269936000,
       "country": "United States",
       "source": "Tesla, SpaceX"
     },
     {
       "rank": 2,
       "name": "Larry Page",
-      "value": 249166260000,
+      "value": 258166953000,
       "country": "United States",
       "source": "Google"
     },
     {
       "rank": 3,
       "name": "Sergey Brin",
-      "value": 229947497000,
+      "value": 238223014000,
       "country": "United States",
       "source": "Google"
     },
     {
       "rank": 4,
       "name": "Mark Zuckerberg",
-      "value": 220642972000,
+      "value": 224837222000,
       "country": "United States",
       "source": "Facebook"
     },
     {
       "rank": 5,
       "name": "Jeff Bezos",
-      "value": 218770700000,
+      "value": 224170595000,
       "country": "United States",
       "source": "Amazon"
     },
     {
       "rank": 6,
       "name": "Larry Ellison",
-      "value": 201064076000,
+      "value": 192330799000,
       "country": "United States",
       "source": "Oracle"
     },
     {
       "rank": 7,
       "name": "Bernard Arnault & family",
-      "value": 163570887000,
+      "value": 174018631000,
       "country": "France",
       "source": "LVMH"
     },
     {
       "rank": 8,
       "name": "Jensen Huang",
-      "value": 162058375000,
+      "value": 164789767000,
       "country": "United States",
       "source": "Semiconductors"
     },
     {
       "rank": 9,
       "name": "Amancio Ortega",
-      "value": 150501028000,
+      "value": 149499031000,
       "country": "Spain",
       "source": "Zara"
     },
     {
       "rank": 10,
       "name": "Warren Buffett",
-      "value": 146804913000,
+      "value": 147295710000,
       "country": "United States",
       "source": "Berkshire Hathaway"
     },
     {
       "rank": 11,
       "name": "Rob Walton & family",
-      "value": 144091895000,
+      "value": 141506700000,
       "country": "United States",
       "source": "Walmart"
     },
     {
       "rank": 12,
       "name": "Jim Walton & family",
-      "value": 141369571000,
+      "value": 138790307000,
       "country": "United States",
       "source": "Walmart"
     },
     {
       "rank": 13,
       "name": "Michael Dell",
-      "value": 134031787000.00002,
+      "value": 135401774000,
       "country": "United States",
       "source": "Dell Technologies"
     },
     {
       "rank": 14,
       "name": "Alice Walton",
-      "value": 132225261000,
+      "value": 129705714000,
       "country": "United States",
       "source": "Walmart"
     },
     {
       "rank": 15,
       "name": "Steve Ballmer",
-      "value": 125399717000,
+      "value": 125440421000,
       "country": "United States",
       "source": "Microsoft"
     },
     {
       "rank": 16,
       "name": "Carlos Slim Helu & family",
-      "value": 114455455000,
+      "value": 114679313000,
       "country": "Mexico",
       "source": "Telecom"
     },
@@ -132,28 +132,28 @@
     {
       "rank": 18,
       "name": "Bill Gates",
-      "value": 107896674000,
+      "value": 107731816000,
       "country": "United States",
       "source": "Microsoft"
     },
     {
       "rank": 19,
       "name": "Mukesh Ambani",
-      "value": 100601497000,
+      "value": 100829653000,
       "country": "India",
       "source": "Diversified"
     },
     {
       "rank": 20,
       "name": "Francoise Bettencourt Meyers & family",
-      "value": 96558617000,
+      "value": 97620286000,
       "country": "France",
       "source": "L'Oréal"
     },
     {
       "rank": 21,
       "name": "Thomas Peterffy",
-      "value": 85521764000,
+      "value": 86346837000,
       "country": "United States",
       "source": "Discount brokerage"
     },
@@ -188,14 +188,14 @@
     {
       "rank": 26,
       "name": "Zhong Shanshan",
-      "value": 68929347000,
+      "value": 67492740000.00001,
       "country": "China",
       "source": "Beverages, pharmaceuticals"
     },
     {
       "rank": 27,
       "name": "Dieter Schwarz",
-      "value": 68000062999.99999,
+      "value": 67054065000,
       "country": "Germany",
       "source": "Retail"
     },
@@ -209,21 +209,21 @@
     {
       "rank": 29,
       "name": "Gautam Adani",
-      "value": 64284091000,
+      "value": 64136320000,
       "country": "India",
       "source": "Infrastructure, commodities"
     },
     {
       "rank": 30,
       "name": "Germán Larrea Mota Velasco & family",
-      "value": 62669698000,
+      "value": 63457944000,
       "country": "Mexico",
       "source": "Mining"
     },
     {
       "rank": 31,
       "name": "Tadashi Yanai & family",
-      "value": 61381739000,
+      "value": 60584694000,
       "country": "Japan",
       "source": "Fashion retail"
     },
@@ -237,217 +237,217 @@
     {
       "rank": 33,
       "name": "Masayoshi Son",
-      "value": 56122315000,
+      "value": 54655184000,
       "country": "Japan",
       "source": "Telecom, Investments"
     },
     {
       "rank": 34,
       "name": "Ma Huateng",
-      "value": 55284080000,
+      "value": 54274658000,
       "country": "China",
       "source": "Online games"
     },
     {
       "rank": 35,
-      "name": "Ken Griffin",
-      "value": 49873116000,
-      "country": "United States",
-      "source": "Hedge funds"
-    },
-    {
-      "rank": 36,
       "name": "Iris Fontbona & family",
-      "value": 49488865000,
+      "value": 50395574000,
       "country": "Chile",
       "source": "Mining"
     },
     {
+      "rank": 36,
+      "name": "Ken Griffin",
+      "value": 49802564000,
+      "country": "United States",
+      "source": "Hedge funds"
+    },
+    {
       "rank": 37,
+      "name": "Giovanni Ferrero",
+      "value": 48671617000,
+      "country": "Italy",
+      "source": "Nutella, chocolates"
+    },
+    {
+      "rank": 38,
       "name": "Lukas Walton",
-      "value": 48374257000,
+      "value": 47560276000,
       "country": "United States",
       "source": "Walmart "
     },
     {
-      "rank": 38,
+      "rank": 39,
       "name": "Li Ka-shing",
-      "value": 46675615000,
+      "value": 46490195000,
       "country": "Hong Kong",
       "source": "Diversified"
     },
     {
-      "rank": 39,
+      "rank": 40,
       "name": "Mark Mateschitz",
-      "value": 45845845000,
+      "value": 45710750000,
       "country": "Austria",
       "source": "Red Bull"
     },
     {
-      "rank": 40,
-      "name": "Jacqueline Mars",
-      "value": 45111768000,
-      "country": "United States",
-      "source": "Candy, pet food"
-    },
-    {
-      "rank": 40,
-      "name": "John Mars",
-      "value": 45111768000,
-      "country": "United States",
-      "source": "Candy, pet food"
+      "rank": 41,
+      "name": "Rafaela Aponte-Diamant",
+      "value": 45589009000,
+      "country": "Switzerland",
+      "source": "Shipping"
     },
     {
       "rank": 42,
-      "name": "Rafaela Aponte-Diamant",
-      "value": 45071232000,
+      "name": "Gianluigi Aponte",
+      "value": 45589006000,
       "country": "Switzerland",
       "source": "Shipping"
     },
     {
       "rank": 43,
-      "name": "Gianluigi Aponte",
-      "value": 45071229000,
-      "country": "Switzerland",
-      "source": "Shipping"
+      "name": "Jacqueline Mars",
+      "value": 44987721000,
+      "country": "United States",
+      "source": "Candy, pet food"
     },
     {
-      "rank": 44,
+      "rank": 43,
+      "name": "John Mars",
+      "value": 44987721000,
+      "country": "United States",
+      "source": "Candy, pet food"
+    },
+    {
+      "rank": 45,
       "name": "Andrea Pignataro",
-      "value": 43017733000,
+      "value": 42890971000,
       "country": "Italy",
       "source": "Financial software"
     },
     {
-      "rank": 45,
-      "name": "Giovanni Ferrero",
-      "value": 42592984000,
-      "country": "Italy",
-      "source": "Nutella, chocolates"
-    },
-    {
       "rank": 46,
-      "name": "Klaus-Michael Kuehne",
-      "value": 41158863000,
-      "country": "Germany",
-      "source": "Shipping"
-    },
-    {
-      "rank": 47,
       "name": "Thomas Frist Jr & family",
-      "value": 40959060000,
+      "value": 41300971000,
       "country": "United States",
       "source": "Hospitals"
     },
     {
-      "rank": 48,
-      "name": "Stephen Schwarzman",
-      "value": 40951262000,
-      "country": "United States",
-      "source": "Investments"
+      "rank": 47,
+      "name": "Klaus-Michael Kuehne",
+      "value": 41296597000,
+      "country": "Germany",
+      "source": "Shipping"
     },
     {
-      "rank": 49,
+      "rank": 48,
       "name": "Idan Ofer",
-      "value": 40381274000,
+      "value": 41266050000,
       "country": "Israel",
       "source": "Shipping"
     },
     {
+      "rank": 49,
+      "name": "Stephen Schwarzman",
+      "value": 40155753000,
+      "country": "United States",
+      "source": "Investments"
+    },
+    {
       "rank": 50,
       "name": "Alain Wertheimer",
-      "value": 39430086000,
+      "value": 39428345000,
       "country": "France",
       "source": "Chanel"
     },
     {
       "rank": 50,
       "name": "Gerard Wertheimer",
-      "value": 39430086000,
+      "value": 39428345000,
       "country": "France",
       "source": "Chanel"
     },
     {
       "rank": 52,
       "name": "William Ding",
-      "value": 39071202000,
+      "value": 38894241000,
       "country": "China",
       "source": "Online games"
     },
     {
       "rank": 53,
       "name": "Savitri Jindal & family",
-      "value": 38242800000,
+      "value": 38480182000,
       "country": "India",
       "source": "Steel"
     },
     {
       "rank": 54,
       "name": "Miriam Adelson & family",
-      "value": 37905710000,
+      "value": 38002417000,
       "country": "United States",
       "source": "Casinos"
     },
     {
       "rank": 55,
       "name": "Alexey Mordashov & family",
-      "value": 37255260000,
+      "value": 37250828000,
       "country": "Russia",
       "source": "Steel, investments"
     },
     {
       "rank": 56,
       "name": "Colin Huang",
-      "value": 35707053000,
+      "value": 36984634000,
       "country": "China",
       "source": "E-commerce"
     },
     {
       "rank": 57,
       "name": "Eduardo Saverin",
-      "value": 35423675000,
+      "value": 36292726000,
       "country": "Brazil",
       "source": "Facebook"
     },
     {
       "rank": 58,
       "name": "Eric Schmidt",
-      "value": 34794977000,
+      "value": 35822347000,
       "country": "United States",
       "source": "Google"
     },
     {
       "rank": 59,
       "name": "Robert Pera",
-      "value": 34521319000,
+      "value": 35796901000,
       "country": "United States",
       "source": "Wireless networking"
     },
     {
       "rank": 60,
-      "name": "Zheng Shuliang & family",
-      "value": 34084578999.999996,
-      "country": "China",
-      "source": "Aluminum products"
-    },
-    {
-      "rank": 61,
-      "name": "Abigail Johnson",
-      "value": 33776051000,
-      "country": "United States",
-      "source": "Fidelity"
-    },
-    {
-      "rank": 62,
       "name": "Eyal Ofer",
-      "value": 33672427000.000004,
+      "value": 33948982000.000004,
       "country": "Israel",
       "source": "Real estate, shipping"
     },
     {
+      "rank": 61,
+      "name": "Zheng Shuliang & family",
+      "value": 33923055000,
+      "country": "China",
+      "source": "Aluminum products"
+    },
+    {
+      "rank": 62,
+      "name": "Abigail Johnson",
+      "value": 33179265000,
+      "country": "United States",
+      "source": "Fidelity"
+    },
+    {
       "rank": 63,
       "name": "He Xiangjian & family",
-      "value": 32857174000,
+      "value": 32849623000,
       "country": "China",
       "source": "Home appliances"
     },
@@ -460,31 +460,31 @@
     },
     {
       "rank": 65,
-      "name": "Shiv Nadar",
-      "value": 32071524000,
-      "country": "India",
-      "source": "Software services"
-    },
-    {
-      "rank": 66,
       "name": "Phil Knight & family",
-      "value": 32020477000,
+      "value": 32099724000,
       "country": "United States",
       "source": "Nike"
     },
     {
-      "rank": 67,
+      "rank": 66,
       "name": "Henry Samueli",
-      "value": 31911376000,
+      "value": 31919076000,
       "country": "United States",
       "source": "Semiconductors"
     },
     {
-      "rank": 68,
+      "rank": 67,
       "name": "Vagit Alekperov",
       "value": 31824764000,
       "country": "Russia",
       "source": "Oil"
+    },
+    {
+      "rank": 68,
+      "name": "Shiv Nadar",
+      "value": 31736610000,
+      "country": "India",
+      "source": "Software services"
     },
     {
       "rank": 69,
@@ -496,114 +496,114 @@
     {
       "rank": 70,
       "name": "Emmanuel Besnier",
-      "value": 30587968000,
+      "value": 30923726000,
       "country": "France",
       "source": "Cheese"
     },
     {
       "rank": 71,
       "name": "Lakshmi Mittal",
-      "value": 30540554000,
+      "value": 30606722000,
       "country": "India",
       "source": "Steel"
     },
     {
       "rank": 72,
       "name": "Melinda French Gates",
-      "value": 30477954000,
+      "value": 30448049000,
       "country": "United States",
       "source": "Microsoft"
     },
     {
       "rank": 73,
-      "name": "Stefan Quandt",
-      "value": 30221524000,
-      "country": "Germany",
-      "source": "BMW"
-    },
-    {
-      "rank": 74,
-      "name": "Reinhold Wuerth & family",
-      "value": 30152231000,
-      "country": "Germany",
-      "source": "Fasteners"
-    },
-    {
-      "rank": 75,
       "name": "Len Blavatnik",
-      "value": 30127065000,
+      "value": 30432228000,
       "country": "United States",
       "source": "Music, chemicals"
     },
     {
-      "rank": 76,
+      "rank": 74,
       "name": "Lyndal Stephens Greth & family",
-      "value": 29973610000,
+      "value": 30195245000,
       "country": "United States",
       "source": "Oil & gas"
     },
     {
+      "rank": 75,
+      "name": "Stefan Quandt",
+      "value": 30179978000,
+      "country": "Germany",
+      "source": "BMW"
+    },
+    {
+      "rank": 76,
+      "name": "Reinhold Wuerth & family",
+      "value": 30041504000,
+      "country": "Germany",
+      "source": "Fasteners"
+    },
+    {
       "rank": 77,
       "name": "Jack Ma",
-      "value": 29858167000,
+      "value": 29953646000,
       "country": "China",
       "source": "E-commerce"
     },
     {
       "rank": 78,
       "name": "Susanne Klatten",
-      "value": 29803721000,
+      "value": 29786115000,
       "country": "Germany",
       "source": "BMW, pharmaceuticals"
     },
     {
       "rank": 79,
       "name": "Prajogo Pangestu",
-      "value": 29452359000,
+      "value": 29000537000,
       "country": "Indonesia",
       "source": "Petrochemicals, energy"
     },
     {
       "rank": 80,
-      "name": "Lei Jun",
-      "value": 29353324000,
-      "country": "China",
-      "source": "Smartphones, automobiles"
-    },
-    {
-      "rank": 81,
-      "name": "Andreas von Bechtolsheim & family",
-      "value": 28554271000,
-      "country": "Germany",
-      "source": "Google"
-    },
-    {
-      "rank": 82,
-      "name": "Aliko Dangote",
-      "value": 28452309000,
-      "country": "Nigeria",
-      "source": "Cement, sugar"
-    },
-    {
-      "rank": 83,
       "name": "MacKenzie Scott",
-      "value": 28085728000,
+      "value": 28581139000,
       "country": "United States",
       "source": "Amazon"
     },
     {
+      "rank": 81,
+      "name": "Aliko Dangote",
+      "value": 28442138000,
+      "country": "Nigeria",
+      "source": "Cement, sugar"
+    },
+    {
+      "rank": 82,
+      "name": "Lei Jun",
+      "value": 28333866000,
+      "country": "China",
+      "source": "Smartphones, automobiles"
+    },
+    {
+      "rank": 83,
+      "name": "Andreas von Bechtolsheim & family",
+      "value": 27827442000,
+      "country": "Germany",
+      "source": "Google"
+    },
+    {
       "rank": 84,
-      "name": "Daniel Gilbert",
-      "value": 26979686000,
-      "country": "United States",
-      "source": "Rocket Mortgage"
+      "name": "Vicky Safra & family",
+      "value": 26970212000,
+      "country": "Greece",
+      "source": "Banking"
     },
     {
       "rank": 85,
-      "name": "Vicky Safra & family",
-      "value": 26766855000,
-      "country": "Greece",
-      "source": "Banking"
+      "name": "Daniel Gilbert",
+      "value": 26939890000,
+      "country": "United States",
+      "source": "Rocket Mortgage"
     },
     {
       "rank": 86,
@@ -622,7 +622,7 @@
     {
       "rank": 88,
       "name": "Pham Nhat Vuong",
-      "value": 26086844000,
+      "value": 26092162000,
       "country": "Vietnam",
       "source": "Diversified"
     },
@@ -636,30 +636,30 @@
     {
       "rank": 90,
       "name": "Gina Rinehart",
-      "value": 25278034000,
+      "value": 25322806000,
       "country": "Australia",
       "source": "Mining"
     },
     {
       "rank": 91,
       "name": "Dilip Shanghvi",
-      "value": 25261810000,
+      "value": 25322696000,
       "country": "India",
       "source": "Pharmaceuticals"
     },
     {
       "rank": 92,
-      "name": "Rick Cohen & family",
-      "value": 25189699000,
+      "name": "Peter Thiel",
+      "value": 25192948000,
       "country": "United States",
-      "source": "Warehouse automation"
+      "source": "Facebook, investments"
     },
     {
       "rank": 93,
-      "name": "Peter Thiel",
-      "value": 25034684000,
-      "country": "United States",
-      "source": "Facebook, investments"
+      "name": "François Pinault & family",
+      "value": 24697799000,
+      "country": "France",
+      "source": "Luxury goods"
     },
     {
       "rank": 94,
@@ -670,80 +670,80 @@
     },
     {
       "rank": 95,
-      "name": "François Pinault & family",
-      "value": 24589181000,
-      "country": "France",
-      "source": "Luxury goods"
+      "name": "Rick Cohen & family",
+      "value": 24635414000,
+      "country": "United States",
+      "source": "Warehouse automation"
     },
     {
       "rank": 96,
       "name": "Jay Y. Lee",
-      "value": 24128728000,
+      "value": 24489466000,
       "country": "South Korea",
       "source": "Samsung"
     },
     {
       "rank": 97,
-      "name": "Christy Walton",
-      "value": 24012779000,
-      "country": "United States",
-      "source": "Walmart"
-    },
-    {
-      "rank": 98,
       "name": "Yu Yong",
       "value": 23713905000,
       "country": "China",
       "source": "Mining"
     },
     {
-      "rank": 99,
+      "rank": 98,
       "name": "David Tepper",
       "value": 23687000000,
       "country": "United States",
       "source": "Hedge funds"
     },
     {
+      "rank": 99,
+      "name": "Christy Walton",
+      "value": 23610716000,
+      "country": "United States",
+      "source": "Walmart"
+    },
+    {
       "rank": 100,
       "name": "Harry Triguboff",
-      "value": 23201414000,
+      "value": 23242508000,
       "country": "Australia",
       "source": "Real estate"
     },
     {
       "rank": 101,
       "name": "Steve Cohen",
-      "value": 22983088000,
+      "value": 22983089000,
       "country": "United States",
       "source": "Hedge funds"
     },
     {
       "rank": 102,
-      "name": "John Tu",
-      "value": 22872208000,
+      "name": "Rupert Murdoch & family",
+      "value": 22690113000,
       "country": "United States",
-      "source": "Computer hardware"
+      "source": "Newspapers, TV network"
     },
     {
       "rank": 103,
-      "name": "David Sun",
-      "value": 22848418000,
+      "name": "John Tu",
+      "value": 22580058000,
       "country": "United States",
       "source": "Computer hardware"
     },
     {
       "rank": 104,
-      "name": "Stefan Persson",
-      "value": 22764334000,
-      "country": "Sweden",
-      "source": "H&M"
+      "name": "David Sun",
+      "value": 22556268000,
+      "country": "United States",
+      "source": "Computer hardware"
     },
     {
       "rank": 105,
-      "name": "Rupert Murdoch & family",
-      "value": 22604009000,
-      "country": "United States",
-      "source": "Newspapers, TV network"
+      "name": "Stefan Persson",
+      "value": 22554996000,
+      "country": "Sweden",
+      "source": "H&M"
     },
     {
       "rank": 106,
@@ -775,78 +775,78 @@
     },
     {
       "rank": 110,
-      "name": "Wang Chuanfu",
-      "value": 21548352000,
-      "country": "China",
-      "source": "Batteries, automobiles"
-    },
-    {
-      "rank": 111,
       "name": "David Cheriton",
-      "value": 21522101000,
+      "value": 21779340000,
       "country": "Canada",
       "source": "Google"
     },
     {
+      "rank": 111,
+      "name": "Ernest Garcia II",
+      "value": 21569036000,
+      "country": "United States",
+      "source": "Used cars"
+    },
+    {
       "rank": 112,
+      "name": "Wang Chuanfu",
+      "value": 21547443000,
+      "country": "China",
+      "source": "Batteries, automobiles"
+    },
+    {
+      "rank": 113,
       "name": "Stanley Kroenke",
       "value": 21330497000,
       "country": "United States",
       "source": "Sports, real estate"
     },
     {
-      "rank": 113,
+      "rank": 114,
       "name": "Kumar Birla",
-      "value": 21251332000,
+      "value": 21300912000,
       "country": "India",
       "source": "Diversified"
     },
     {
-      "rank": 114,
+      "rank": 115,
       "name": "Henry Nicholas III",
-      "value": 21187760000,
+      "value": 21191866000,
       "country": "United States",
       "source": "Semiconductors"
     },
     {
-      "rank": 115,
-      "name": "Ernest Garcia II",
-      "value": 21145798000,
-      "country": "United States",
-      "source": "Used cars"
-    },
-    {
       "rank": 116,
-      "name": "Low Tuck Kwong",
-      "value": 20512002000,
-      "country": "Indonesia",
-      "source": "Coal"
-    },
-    {
-      "rank": 117,
       "name": "Jerry Jones & family",
-      "value": 20313119000,
+      "value": 20375609000,
       "country": "United States",
       "source": "Dallas Cowboys"
     },
     {
+      "rank": 117,
+      "name": "Andre Esteves",
+      "value": 20364861000,
+      "country": "Brazil",
+      "source": "Banking"
+    },
+    {
       "rank": 118,
       "name": "Renata Kellnerova & family",
-      "value": 20303012000,
+      "value": 20251784000,
       "country": "Czech Republic",
       "source": "Finance, telecommunications"
     },
     {
       "rank": 119,
-      "name": "Wang Ning & family",
-      "value": 20149011000,
-      "country": "China",
-      "source": "Toys"
+      "name": "Low Tuck Kwong",
+      "value": 20124223000,
+      "country": "Indonesia",
+      "source": "Coal"
     },
     {
       "rank": 120,
       "name": "Prince Alwaleed Bin Talal Alsaud",
-      "value": 20101549000,
+      "value": 20110536000,
       "country": "Saudi Arabia",
       "source": "investments"
     },
@@ -859,94 +859,94 @@
     },
     {
       "rank": 122,
+      "name": "John Doerr",
+      "value": 19849051000,
+      "country": "United States",
+      "source": "Venture capital"
+    },
+    {
+      "rank": 123,
       "name": "Dang Yanbao",
       "value": 19847231000,
       "country": "China",
       "source": "Coal"
     },
     {
-      "rank": 123,
-      "name": "Andre Esteves",
-      "value": 19797031000,
-      "country": "Brazil",
-      "source": "Banking"
-    },
-    {
       "rank": 124,
-      "name": "Cyrus Poonawalla",
-      "value": 19753041000,
-      "country": "India",
-      "source": "Vaccines"
+      "name": "Kwong Siu-hing",
+      "value": 19680982000,
+      "country": "Hong Kong",
+      "source": "Real estate"
     },
     {
       "rank": 125,
       "name": "Zhong Huijuan",
-      "value": 19748565000,
+      "value": 19665553000,
       "country": "China",
       "source": "Pharmaceuticals"
     },
     {
       "rank": 126,
-      "name": "Nancy Walton Laurie",
-      "value": 19705581000,
-      "country": "United States",
-      "source": "Walmart"
-    },
-    {
-      "rank": 127,
-      "name": "Andrew Forrest & family",
-      "value": 19677632000,
-      "country": "Australia",
-      "source": "Mining"
-    },
-    {
-      "rank": 128,
-      "name": "Dhanin Chearavanont",
-      "value": 19670437000,
-      "country": "Thailand",
-      "source": "Diversified"
-    },
-    {
-      "rank": 129,
       "name": "R. Budi Hartono",
-      "value": 19656606000,
+      "value": 19662202000,
       "country": "Indonesia",
       "source": "Banking, tobacco"
     },
     {
+      "rank": 127,
+      "name": "Wang Ning & family",
+      "value": 19608160000,
+      "country": "China",
+      "source": "Toys"
+    },
+    {
+      "rank": 128,
+      "name": "Cyrus Poonawalla",
+      "value": 19576994000,
+      "country": "India",
+      "source": "Vaccines"
+    },
+    {
+      "rank": 129,
+      "name": "Andrew Forrest & family",
+      "value": 19560265000,
+      "country": "Australia",
+      "source": "Mining"
+    },
+    {
       "rank": 130,
-      "name": "Kwong Siu-hing",
-      "value": 19579986000,
-      "country": "Hong Kong",
-      "source": "Real estate"
+      "name": "Dhanin Chearavanont",
+      "value": 19543575000,
+      "country": "Thailand",
+      "source": "Diversified"
     },
     {
       "rank": 131,
-      "name": "Georg Schaeffler",
-      "value": 19535257000,
-      "country": "Germany",
-      "source": "Auto parts"
-    },
-    {
-      "rank": 132,
-      "name": "John Menard Jr",
-      "value": 19527669000,
-      "country": "United States",
-      "source": "Home improvement stores"
-    },
-    {
-      "rank": 133,
       "name": "Chen Tianshi",
       "value": 19488807000,
       "country": "China",
       "source": "Semiconductors"
     },
     {
-      "rank": 134,
+      "rank": 132,
+      "name": "Georg Schaeffler",
+      "value": 19453629000,
+      "country": "Germany",
+      "source": "Auto parts"
+    },
+    {
+      "rank": 133,
       "name": "Vinod Adani",
-      "value": 19417384000,
+      "value": 19452428000,
       "country": "Cyprus",
       "source": "Infrastructure, commodities"
+    },
+    {
+      "rank": 134,
+      "name": "John Menard Jr",
+      "value": 19437843000,
+      "country": "United States",
+      "source": "Home improvement stores"
     },
     {
       "rank": 135,
@@ -957,108 +957,108 @@
     },
     {
       "rank": 136,
-      "name": "John Doerr",
-      "value": 19314439000,
-      "country": "United States",
-      "source": "Venture capital"
-    },
-    {
-      "rank": 137,
       "name": "Jorge Paulo Lemann & family",
-      "value": 19297930000,
+      "value": 19314723000,
       "country": "Brazil",
       "source": "Beer"
     },
     {
+      "rank": 137,
+      "name": "Nancy Walton Laurie",
+      "value": 19306919000,
+      "country": "United States",
+      "source": "Walmart"
+    },
+    {
       "rank": 138,
+      "name": "John Fredriksen",
+      "value": 19222014000,
+      "country": "Cyprus",
+      "source": "Shipping"
+    },
+    {
+      "rank": 139,
       "name": "Ludwig Merckle",
-      "value": 19260040000,
+      "value": 19221420000,
       "country": "Germany",
       "source": "Pharmaceuticals"
     },
     {
-      "rank": 139,
+      "rank": 140,
       "name": "Donald Bren",
       "value": 19212086000,
       "country": "United States",
       "source": "Real estate"
     },
     {
-      "rank": 140,
-      "name": "John Fredriksen",
-      "value": 19194649000,
-      "country": "Cyprus",
-      "source": "Shipping"
+      "rank": 141,
+      "name": "Brett Adcock",
+      "value": 19120983000,
+      "country": "United States",
+      "source": "Robots"
     },
     {
-      "rank": 141,
+      "rank": 142,
       "name": "Eric Li",
-      "value": 19121817000,
+      "value": 19074549000,
       "country": "China",
       "source": "Automobiles"
     },
     {
-      "rank": 142,
+      "rank": 143,
       "name": "Beate Heister",
-      "value": 19082683000,
+      "value": 19070678000,
       "country": "Germany",
       "source": "Supermarkets"
     },
     {
-      "rank": 142,
+      "rank": 143,
       "name": "Karl Albrecht Jr. & family",
-      "value": 19082683000,
+      "value": 19070678000,
       "country": "Germany",
       "source": "Supermarkets"
     },
     {
-      "rank": 144,
+      "rank": 145,
+      "name": "Takemitsu Takizaki",
+      "value": 18913325000,
+      "country": "Japan",
+      "source": "Sensors"
+    },
+    {
+      "rank": 146,
       "name": "Michael Hartono",
-      "value": 18885823000,
+      "value": 18891200000,
       "country": "Indonesia",
       "source": "Banking, tobacco "
     },
     {
-      "rank": 145,
+      "rank": 147,
       "name": "Israel Englander",
       "value": 18878700000,
       "country": "United States",
       "source": "Hedge funds"
     },
     {
-      "rank": 146,
+      "rank": 148,
       "name": "Michael Platt",
       "value": 18800000000,
       "country": "United Kingdom",
       "source": "Hedge funds"
     },
     {
-      "rank": 147,
-      "name": "Alejandro Baillères Gual & family",
-      "value": 18657645000,
-      "country": "Mexico",
-      "source": "Diversified"
-    },
-    {
-      "rank": 148,
-      "name": "Takemitsu Takizaki",
-      "value": 18636377000,
-      "country": "Japan",
-      "source": "Sensors"
-    },
-    {
       "rank": 149,
-      "name": "Suleiman Kerimov & family",
-      "value": 18546550000,
-      "country": "Russia",
-      "source": "Gold"
+      "name": "Dietmar Hopp & family",
+      "value": 18749694000,
+      "country": "Germany",
+      "source": "Software"
     },
     {
       "rank": 150,
-      "name": "James Ratcliffe",
-      "value": 18434745000,
-      "country": "United Kingdom",
-      "source": "Chemicals"
+      "name": "Torstein Hagen",
+      "value": 18615554000,
+      "country": "Norway",
+      "source": "Cruises"
     }
   ]
 }
