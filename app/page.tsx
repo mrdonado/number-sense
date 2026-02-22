@@ -462,7 +462,7 @@ function HomeContent() {
             </a>
           </div>
           <a
-            href="https://www.jdonado.com"
+            href="https://www.jdonado.com/post/2026-02-22-number-sense/"
             target="_blank"
             rel="noopener noreferrer"
             className="help-button"
