@@ -104,7 +104,6 @@ scripts/                   # Data fetching and generation scripts
 - **Testing**: Vitest + React Testing Library
 - **State**: React hooks with localStorage persistence
 - **Icons**: Lucide React
-- **Compression**: pako (for URL state encoding)
 
 ## Key Interactions
 
