@@ -79,13 +79,13 @@
 /* Comparison tooltip (with ratio info) */
 .comparisonTooltip {
   @apply absolute pointer-events-none z-10 flex flex-col gap-0.5 px-2.5 py-1.5 rounded-lg shadow-md border border-white/10;
-  background: rgba(0, 0, 0, 0.38);
+  background: rgba(0, 0, 0, 0.48);
   backdrop-filter: blur(6px);
   /* transform is set inline based on position prop */
 }
 
 .comparisonTooltip .tooltipIndicator {
-  @apply w-2.5 h-2.5 rounded-full shrink-0;
+  @apply w-full h-2.5 rounded shrink-0;
 }
 
 .comparisonTooltip .tooltipName {
