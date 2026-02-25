@@ -20,6 +20,7 @@ import type {
   PersistedBall,
   PhysicsRefs,
   ComparisonType,
+  ComparisonLayout,
 } from "../types";
 
 interface UsePhysicsEngineOptions {
@@ -56,6 +57,8 @@ interface UsePhysicsEngineReturn {
   isNavigating: boolean;
   setIsNavigating: (isNavigating: boolean) => void;
   goToComparisonOverview: () => void;
+  comparisonLayout: ComparisonLayout;
+  changeComparisonLayout: (layout: ComparisonLayout) => void;
 }
 
 export function usePhysicsEngine(
@@ -83,6 +86,9 @@ export function usePhysicsEngine(
   const hasRestoredBalls = useRef(false);
   const [isComparisonMode, setIsComparisonMode] = useState(false);
   const isComparisonModeRef = useRef(false);
+  const [comparisonLayout, setComparisonLayout] =
+    useState<ComparisonLayout>("sequential");
+  const comparisonLayoutRef = useRef<ComparisonLayout>("sequential");
   const savedPositionsRef = useRef<Map<number, { x: number; y: number }>>(
     new Map(),
   );
@@ -105,6 +111,11 @@ export function usePhysicsEngine(
   useEffect(() => {
     isComparisonModeRef.current = isComparisonMode;
   }, [isComparisonMode]);
+
+  // Keep comparison layout ref in sync with state
+  useEffect(() => {
+    comparisonLayoutRef.current = comparisonLayout;
+  }, [comparisonLayout]);
 
   // Set ball manager comparison type on initialization and when it changes
   useEffect(() => {
@@ -276,9 +287,16 @@ export function usePhysicsEngine(
 
         const originalColor = ball.ballColor || "#ef4444";
 
-        // Determine target opacity
+        // Determine target opacity.
+        // In concentric comparison mode all balls stay fully opaque — dimming
+        // would be confusing when every ball is stacked on the same center point.
+        const isConcentricComparison =
+          isComparisonModeRef.current &&
+          comparisonLayoutRef.current === "concentric";
         const targetOpacity =
-          hasValidHover && ball.id !== hoveredId ? 0.3 : 1.0;
+          hasValidHover && ball.id !== hoveredId && !isConcentricComparison
+            ? 0.3
+            : 1.0;
 
         // Get current opacity (default to 1.0 if not tracked)
         let currentOpacity = ballOpacities.get(ball.id) ?? 1.0;
@@ -535,6 +553,10 @@ export function usePhysicsEngine(
         physicsRefs.current.engine.world,
       );
 
+      // Collect every ball that contains the cursor point, then return the
+      // one with the smallest radius — it is rendered on the topmost layer
+      // (important for the concentric comparison layout where balls overlap).
+      let topBall: BallBody | null = null;
       for (const body of bodies) {
         if (body.isStatic) continue;
         const ball = body as BallBody;
@@ -542,11 +564,16 @@ export function usePhysicsEngine(
         const dy = worldY - ball.position.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
         if (ball.circleRadius && distance <= ball.circleRadius) {
-          return ball.id;
+          if (
+            topBall === null ||
+            (ball.circleRadius ?? Infinity) < (topBall.circleRadius ?? Infinity)
+          ) {
+            topBall = ball;
+          }
         }
       }
 
-      return null;
+      return topBall ? topBall.id : null;
     },
     [],
   );
@@ -842,6 +869,75 @@ export function usePhysicsEngine(
     setZoomLevel(1);
   }, []);
 
+  // Arrange all balls centered on the same point, largest at back, smallest at front
+  const arrangeConcentricLayout = useCallback(() => {
+    if (!physicsRefs.current.engine || !physicsRefs.current.render) return;
+
+    const engine = physicsRefs.current.engine;
+    const render = physicsRefs.current.render;
+    const { width, height } = dimensionsRef.current;
+
+    // Get all visible ball bodies
+    const bodies = Matter.Composite.allBodies(engine.world);
+    const ballBodies = bodies.filter(
+      (b) => !b.isStatic && !hiddenBallIdsRef.current.has(b.id),
+    ) as BallBody[];
+
+    if (ballBodies.length === 0) return;
+
+    // Sort largest-first to determine required scale
+    const sortedLargestFirst = [...ballBodies].sort(
+      (a, b) => (b.originalRadius || 0) - (a.originalRadius || 0),
+    );
+
+    const largestCurrentRadius = sortedLargestFirst[0].circleRadius || 0;
+
+    // Scale so the largest ball fits in the viewport with padding
+    const CONCENTRIC_PADDING = 24;
+    const availableRadius = Math.min(width, height) / 2 - CONCENTRIC_PADDING;
+
+    if (largestCurrentRadius > availableRadius && availableRadius > 0) {
+      const scaleRatio = availableRadius / largestCurrentRadius;
+      const newScaleFactor =
+        ballManagerRef.current.getScaleFactor() * scaleRatio;
+      ballManagerRef.current.setScaleFactor(engine, newScaleFactor);
+    }
+
+    // After potential scaling, re-fetch bodies and center them all
+    const updatedBodies = Matter.Composite.allBodies(engine.world).filter(
+      (b) => !b.isStatic && !hiddenBallIdsRef.current.has(b.id),
+    ) as BallBody[];
+
+    const centerX = width / 2;
+    const centerY = height / 2;
+
+    updatedBodies.forEach((ball) => {
+      Matter.Body.setPosition(ball, { x: centerX, y: centerY });
+      Matter.Body.setVelocity(ball, { x: 0, y: 0 });
+      Matter.Body.setAngularVelocity(ball, 0);
+    });
+
+    // Re-order bodies in the composite so largest is rendered first (back layer)
+    // and smallest is rendered last (front layer)
+    const orderedLargestFirst = [...updatedBodies].sort(
+      (a, b) => (b.originalRadius || 0) - (a.originalRadius || 0),
+    );
+
+    orderedLargestFirst.forEach((ball) => {
+      Matter.Composite.remove(engine.world, ball);
+    });
+    orderedLargestFirst.forEach((ball) => {
+      Matter.Composite.add(engine.world, ball);
+    });
+
+    // Reset to 1x zoom
+    render.bounds.min.x = 0;
+    render.bounds.min.y = 0;
+    render.bounds.max.x = width;
+    render.bounds.max.y = height;
+    setZoomLevel(1);
+  }, []);
+
   const enterComparisonMode = useCallback(() => {
     if (!physicsRefs.current.engine || !physicsRefs.current.runner) return;
 
@@ -869,25 +965,38 @@ export function usePhysicsEngine(
     // Reset zoom to 1x before arranging
     resetZoomRef.current?.();
 
-    // Arrange balls in comparison layout
-    arrangeComparisonLayout();
+    // Arrange balls in the selected comparison layout
+    if (comparisonLayoutRef.current === "concentric") {
+      arrangeConcentricLayout();
+    } else {
+      arrangeComparisonLayout();
+    }
 
     // Freeze the simulation
     runner.enabled = false;
 
     setIsComparisonMode(true);
-  }, [arrangeComparisonLayout]);
+  }, [arrangeComparisonLayout, arrangeConcentricLayout]);
 
   // Re-arrange balls when they change during comparison mode
   useEffect(() => {
     if (isComparisonMode && physicsRefs.current.engine) {
       // Small delay to ensure new ball is fully added to physics world
       const timeoutId = setTimeout(() => {
-        arrangeComparisonLayout();
+        if (comparisonLayoutRef.current === "concentric") {
+          arrangeConcentricLayout();
+        } else {
+          arrangeComparisonLayout();
+        }
       }, 50);
       return () => clearTimeout(timeoutId);
     }
-  }, [balls, isComparisonMode, arrangeComparisonLayout]);
+  }, [
+    balls,
+    isComparisonMode,
+    arrangeComparisonLayout,
+    arrangeConcentricLayout,
+  ]);
 
   const exitComparisonMode = useCallback(() => {
     if (!physicsRefs.current.engine || !physicsRefs.current.runner) return;
@@ -926,6 +1035,36 @@ export function usePhysicsEngine(
     savedPositionsRef.current.clear();
     setIsComparisonMode(false);
   }, []);
+
+  // Switch between sequential and concentric layouts during comparison mode
+  const changeComparisonLayout = useCallback(
+    (layout: ComparisonLayout) => {
+      comparisonLayoutRef.current = layout;
+      setComparisonLayout(layout);
+
+      if (isComparisonModeRef.current && physicsRefs.current.engine) {
+        // Reset to natural scale before re-arranging with the new layout
+        ballManagerRef.current.recalculateScale(
+          physicsRefs.current.engine,
+          dimensionsRef.current,
+          hiddenBallIdsRef.current,
+        );
+        resetZoomRef.current?.();
+
+        if (layout === "concentric") {
+          arrangeConcentricLayout();
+        } else {
+          arrangeComparisonLayout();
+        }
+
+        // Reset navigation; the auto-start effect in the host component
+        // will zoom in on the smallest ball once focusedBallIndex is -1.
+        setFocusedBallIndex(-1);
+        setIsNavigating(false);
+      }
+    },
+    [arrangeConcentricLayout, arrangeComparisonLayout],
+  );
 
   const goToComparisonOverview = useCallback(() => {
     if (!isComparisonModeRef.current) return;
@@ -1004,5 +1143,7 @@ export function usePhysicsEngine(
     isNavigating,
     setIsNavigating,
     goToComparisonOverview,
+    comparisonLayout,
+    changeComparisonLayout,
   };
 }

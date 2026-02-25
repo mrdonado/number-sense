@@ -41,6 +41,7 @@ export interface BallForExclusion {
 }
 
 export type ComparisonType = "area" | "linear";
+export type ComparisonLayout = "sequential" | "concentric";
 
 export interface PhysicsCanvasHandle {
   spawnBall: (

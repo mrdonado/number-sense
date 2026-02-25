@@ -8,7 +8,13 @@ interface ComparisonTooltipProps {
   y?: number;
   ratio?: number;
   isSmaller?: boolean;
-  position?: "center" | "left" | "right";
+  position?:
+    | "center"
+    | "left"
+    | "right"
+    | "column-top"
+    | "column-center"
+    | "column-bottom";
   canvasWidth?: number;
   canvasHeight?: number;
 }
@@ -33,58 +39,85 @@ export function ComparisonTooltip({
   // Position based on type
   const style: React.CSSProperties = {};
 
-  // Check if we have a vertical screen (height > width)
-  const isVerticalScreen =
-    canvasWidth && canvasHeight && canvasHeight > canvasWidth;
+  // Column layout (used in concentric comparison mode)
+  // All three tooltips are stacked in a column on the left side.
+  // COLUMN_LEFT must clear the left navigation arrow (left: 1rem, ~48px wide) → 80px
+  const COLUMN_LEFT = 80; // px from canvas left edge
+  const COLUMN_SPACING = 110; // px between entries
 
-  if (isVerticalScreen) {
-    // Vertical screen: position tooltips on central vertical axis
-    const centerX = canvasWidth / 2;
-
-    if (position === "center") {
-      // Current ball: center of screen
-      style.left = centerX;
-      style.top = canvasHeight / 2;
-      style.transform = "translate(-50%, -50%)";
-      style.position = "absolute";
-    } else if (position === "left") {
-      // Previous ball: top - positioned below collapsed legend with fixed margin
-      const marginFromEdge = 100; // Fixed margin in pixels
-      style.left = centerX;
-      style.top = marginFromEdge;
-      style.transform = "translate(-50%, 0)";
-      style.position = "absolute";
-    } else if (position === "right") {
-      // Next ball: bottom - same distance from bottom as top tooltip from top
-      const marginFromEdge = 100; // Fixed margin in pixels
-      style.left = centerX;
-      style.bottom = marginFromEdge;
-      style.transform = "translate(-50%, 0)";
-      style.position = "absolute";
+  if (
+    position === "column-center" ||
+    position === "column-top" ||
+    position === "column-bottom"
+  ) {
+    style.left = COLUMN_LEFT;
+    style.position = "absolute";
+    if (position === "column-center") {
+      style.top = "50%";
+      style.transform = "translateY(-50%)";
+    } else if (position === "column-top") {
+      style.top = `calc(50% - ${COLUMN_SPACING}px)`;
+      style.transform = "translateY(-50%)";
     } else {
-      // Fallback - hide if position is invalid
-      style.display = "none";
+      // column-bottom
+      style.top = `calc(50% + ${COLUMN_SPACING}px)`;
+      style.transform = "translateY(-50%)";
     }
+    // Return early — no further branching needed
   } else {
-    // Horizontal screen: original positioning near navigation arrows
-    if (position === "center" && x !== undefined && y !== undefined) {
-      // Center tooltip above the focused ball
-      style.left = x;
-      style.top = y;
-      style.transform = "translate(-50%, calc(-100% - 12px))";
-    } else if (position === "left") {
-      // Left tooltip below the left navigation arrow
-      style.left = "4rem"; // Same as navArrowLeft left position
-      style.top = "50%";
-      style.transform = "translateY(3rem)"; // Below the arrow
-    } else if (position === "right") {
-      // Right tooltip below the right navigation arrow
-      style.right = "4rem"; // Same as navArrowRight right position
-      style.top = "50%";
-      style.transform = "translateY(3rem)"; // Below the arrow
+    // Check if we have a vertical screen (height > width)
+    const isVerticalScreen =
+      canvasWidth && canvasHeight && canvasHeight > canvasWidth;
+
+    if (isVerticalScreen) {
+      // Vertical screen: position tooltips on central vertical axis
+      const centerX = canvasWidth / 2;
+
+      if (position === "center") {
+        // Current ball: center of screen
+        style.left = centerX;
+        style.top = canvasHeight / 2;
+        style.transform = "translate(-50%, -50%)";
+        style.position = "absolute";
+      } else if (position === "left") {
+        // Previous ball: top - positioned below collapsed legend with fixed margin
+        const marginFromEdge = 100; // Fixed margin in pixels
+        style.left = centerX;
+        style.top = marginFromEdge;
+        style.transform = "translate(-50%, 0)";
+        style.position = "absolute";
+      } else if (position === "right") {
+        // Next ball: bottom - same distance from bottom as top tooltip from top
+        const marginFromEdge = 100; // Fixed margin in pixels
+        style.left = centerX;
+        style.bottom = marginFromEdge;
+        style.transform = "translate(-50%, 0)";
+        style.position = "absolute";
+      } else {
+        // Fallback - hide if position is invalid
+        style.display = "none";
+      }
     } else {
-      // Fallback - hide if position is invalid
-      style.display = "none";
+      // Horizontal screen: original positioning near navigation arrows
+      if (position === "center" && x !== undefined && y !== undefined) {
+        // Center tooltip above the focused ball
+        style.left = x;
+        style.top = y;
+        style.transform = "translate(-50%, calc(-100% - 12px))";
+      } else if (position === "left") {
+        // Left tooltip below the left navigation arrow
+        style.left = "4rem"; // Same as navArrowLeft left position
+        style.top = "50%";
+        style.transform = "translateY(3rem)"; // Below the arrow
+      } else if (position === "right") {
+        // Right tooltip below the right navigation arrow
+        style.right = "4rem"; // Same as navArrowRight right position
+        style.top = "50%";
+        style.transform = "translateY(3rem)"; // Below the arrow
+      } else {
+        // Fallback - hide if position is invalid
+        style.display = "none";
+      }
     }
   }
 

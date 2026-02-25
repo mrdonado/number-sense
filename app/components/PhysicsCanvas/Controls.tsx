@@ -1,14 +1,26 @@
 "use client";
 
 import { useState } from "react";
-import { Plus, Share2, Trash2, ChevronRight, ChevronDown } from "lucide-react";
+import {
+  Plus,
+  Share2,
+  Trash2,
+  ChevronRight,
+  ChevronDown,
+  Target,
+  GalleryHorizontal,
+} from "lucide-react";
 import styles from "./PhysicsCanvas.module.css";
+import type { ComparisonLayout } from "./types";
 
 interface ControlsProps {
   comparisonTypeDisplay: string;
   modeText: string;
   modeTextClass: string;
   isModeClickable?: boolean;
+  isComparisonMode?: boolean;
+  comparisonLayout?: ComparisonLayout;
+  onComparisonLayoutChange?: () => void;
   collapsed?: boolean;
   onCollapsedChange?: (collapsed: boolean) => void;
   onAddData?: () => void;
@@ -23,6 +35,9 @@ export function Controls({
   modeText,
   modeTextClass,
   isModeClickable = true,
+  isComparisonMode = false,
+  comparisonLayout = "sequential",
+  onComparisonLayoutChange,
   collapsed,
   onCollapsedChange,
   onAddData,
@@ -69,6 +84,30 @@ export function Controls({
           <ChevronDown size={16} className={styles.controlsToggle} />
         )}
       </button>
+      {/* Comparison layout toggle – visible even when controls are collapsed */}
+      {isComparisonMode && (
+        <button
+          className={styles.layoutToggleButton}
+          onClick={(e) => {
+            e.stopPropagation();
+            onComparisonLayoutChange?.();
+          }}
+          title={
+            comparisonLayout === "sequential"
+              ? "Switch to concentric layout"
+              : "Switch to sequential layout"
+          }
+        >
+          {comparisonLayout === "sequential" ? (
+            <Target size={16} className={styles.actionIcon} />
+          ) : (
+            <GalleryHorizontal size={16} className={styles.actionIcon} />
+          )}
+          <span className={styles.layoutToggleText}>
+            {comparisonLayout === "sequential" ? "Concentric" : "Sequential"}
+          </span>
+        </button>
+      )}
       {!isCollapsed && (
         <div className={styles.controlsGrid}>
           {/* Mode button */}

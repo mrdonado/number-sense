@@ -112,6 +112,8 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
       isNavigating,
       setIsNavigating,
       goToComparisonOverview,
+      comparisonLayout,
+      changeComparisonLayout,
     } = usePhysicsEngine({
       containerRef,
       canvasRef,
@@ -467,7 +469,7 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
       zoomOnBall,
     ]);
 
-    // Calculate comparison tooltips data (current, left, right)
+    // Calculate comparison tooltips data
     const comparisonTooltips = useMemo(() => {
       // Only show tooltips during active navigation
       if (!isComparisonMode || !isNavigating || focusedBallIndex === -1) {
@@ -477,8 +479,16 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
       const currentBall = sortedBalls[focusedBallIndex];
       if (!currentBall) return null;
 
-      // Don't show comparison tooltips if hovering over a different ball
-      if (hoveredBallId !== null && hoveredBallId !== currentBall.id) {
+      const isConcentric = comparisonLayout === "concentric";
+
+      // In sequential mode, hide the comparison tooltips while the user is
+      // hovering a *different* ball (the hover tooltip takes priority).
+      // In concentric mode the column tooltips are always visible.
+      if (
+        !isConcentric &&
+        hoveredBallId !== null &&
+        hoveredBallId !== currentBall.id
+      ) {
         return null;
       }
 
@@ -487,13 +497,21 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
       const centerX = canvasDimensions.width / 2;
       const centerY = canvasDimensions.height / 2;
 
+      type TooltipPosition =
+        | "center"
+        | "left"
+        | "right"
+        | "column-top"
+        | "column-center"
+        | "column-bottom";
+
       const tooltips: Array<{
         ball: BallInfo;
         x?: number;
         y?: number;
         ratio?: number;
         isSmaller?: boolean;
-        position: "center" | "left" | "right";
+        position: TooltipPosition;
         canvasWidth: number;
         canvasHeight: number;
       }> = [
@@ -501,35 +519,35 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
           ball: currentBall,
           x: centerX,
           y: centerY,
-          position: "center",
+          position: isConcentric ? "column-center" : "center",
           canvasWidth: canvasDimensions.width,
           canvasHeight: canvasDimensions.height,
         },
       ];
 
-      // Add left (smaller) ball tooltip - positioned below left navigation arrow
+      // Smaller neighbour (prev in sorted order)
       if (focusedBallIndex > 0) {
-        const leftBall = sortedBalls[focusedBallIndex - 1];
-        const ratio = currentBall.value / leftBall.value;
+        const smallerBall = sortedBalls[focusedBallIndex - 1];
+        const ratio = currentBall.value / smallerBall.value;
         tooltips.push({
-          ball: leftBall,
+          ball: smallerBall,
           ratio,
           isSmaller: true,
-          position: "left",
+          position: isConcentric ? "column-bottom" : "left",
           canvasWidth: canvasDimensions.width,
           canvasHeight: canvasDimensions.height,
         });
       }
 
-      // Add right (larger) ball tooltip - positioned below right navigation arrow
+      // Larger neighbour (next in sorted order)
       if (focusedBallIndex < sortedBalls.length - 1) {
-        const rightBall = sortedBalls[focusedBallIndex + 1];
-        const ratio = rightBall.value / currentBall.value;
+        const largerBall = sortedBalls[focusedBallIndex + 1];
+        const ratio = largerBall.value / currentBall.value;
         tooltips.push({
-          ball: rightBall,
+          ball: largerBall,
           ratio,
           isSmaller: false,
-          position: "right",
+          position: isConcentric ? "column-top" : "right",
           canvasWidth: canvasDimensions.width,
           canvasHeight: canvasDimensions.height,
         });
@@ -543,6 +561,7 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
       hoveredBallId,
       sortedBalls,
       canvasDimensions,
+      comparisonLayout,
     ]);
 
     return (
@@ -598,6 +617,15 @@ const PhysicsCanvas = forwardRef<PhysicsCanvasHandle, PhysicsCanvasProps>(
                     : styles.normalModeText
               }
               isModeClickable={balls.length > 0}
+              isComparisonMode={isComparisonMode}
+              comparisonLayout={comparisonLayout}
+              onComparisonLayoutChange={() =>
+                changeComparisonLayout(
+                  comparisonLayout === "sequential"
+                    ? "concentric"
+                    : "sequential",
+                )
+              }
               collapsed={controlsCollapsed}
               onCollapsedChange={setControlsCollapsed}
               onAddData={onAddData}

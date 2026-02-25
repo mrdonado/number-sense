@@ -107,7 +107,7 @@
 
 /* Controls */
 .controls {
-  @apply bg-black/50 backdrop-blur-sm rounded-lg;
+  @apply bg-black/50 backdrop-blur-sm rounded-lg overflow-hidden;
   min-width: 200px;
   touch-action: none;
 }
@@ -176,6 +176,19 @@
 .controlButtonDisabled {
   @apply px-3 py-2 bg-black/30 backdrop-blur-sm rounded-lg text-center cursor-not-allowed opacity-50;
   grid-column: span 3;
+}
+
+.layoutToggleButton {
+  @apply px-3 py-1.5 cursor-pointer transition-colors flex items-center justify-center gap-2 w-full;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.layoutToggleButton:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.layoutToggleText {
+  @apply text-xs text-white/70;
 }
 
 /* Legend */
