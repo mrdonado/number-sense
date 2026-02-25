@@ -38,6 +38,7 @@ export function createZoomHandlers(
     onZoomChange,
     onUserZoom,
     isComparisonModeRef,
+    comparisonLayoutRef,
     onExitComparisonMode,
   } = options;
   const { width, height } = dimensions;
@@ -316,8 +317,16 @@ export function createZoomHandlers(
     const mouseCanvasX = e.clientX - rect.left;
     const mouseCanvasY = e.clientY - rect.top;
 
-    const mouseRatioX = mouseCanvasX / width;
-    const mouseRatioY = mouseCanvasY / height;
+    // In concentric comparison mode always zoom relative to the canvas centre
+    // (where all balls are stacked) rather than the mouse cursor position.
+    const isConcentric =
+      isComparisonModeRef?.current &&
+      comparisonLayoutRef?.current === "concentric";
+    const focalCanvasX = isConcentric ? width / 2 : mouseCanvasX;
+    const focalCanvasY = isConcentric ? height / 2 : mouseCanvasY;
+
+    const mouseRatioX = focalCanvasX / width;
+    const mouseRatioY = focalCanvasY / height;
 
     const mouseWorldX = render.bounds.min.x + mouseRatioX * currentWidth;
     const mouseWorldY = render.bounds.min.y + mouseRatioY * currentHeight;

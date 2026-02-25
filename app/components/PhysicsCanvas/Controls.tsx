@@ -94,17 +94,17 @@ export function Controls({
           }}
           title={
             comparisonLayout === "sequential"
-              ? "Switch to concentric layout"
-              : "Switch to sequential layout"
+              ? "Sequential layout (click to switch to concentric)"
+              : "Concentric layout (click to switch to sequential)"
           }
         >
           {comparisonLayout === "sequential" ? (
-            <Target size={16} className={styles.actionIcon} />
-          ) : (
             <GalleryHorizontal size={16} className={styles.actionIcon} />
+          ) : (
+            <Target size={16} className={styles.actionIcon} />
           )}
           <span className={styles.layoutToggleText}>
-            {comparisonLayout === "sequential" ? "Concentric" : "Sequential"}
+            {comparisonLayout === "sequential" ? "Sequential" : "Concentric"}
           </span>
         </button>
       )}

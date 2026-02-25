@@ -372,6 +372,7 @@ export function usePhysicsEngine(
         }
       },
       isComparisonModeRef,
+      comparisonLayoutRef,
       onExitComparisonMode: () => exitComparisonModeRef.current?.(),
     };
 

@@ -11,6 +11,7 @@ export interface ZoomHandlerOptions {
   onZoomChange: (zoomLevel: number) => void;
   onUserZoom?: () => void;
   isComparisonModeRef?: { current: boolean };
+  comparisonLayoutRef?: { current: string };
   onExitComparisonMode?: () => void;
 }
 
