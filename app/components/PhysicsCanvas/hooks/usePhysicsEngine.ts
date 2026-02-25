@@ -97,7 +97,10 @@ export function usePhysicsEngine(
   const resetZoomRef = useRef<(() => void) | null>(null);
   const exitComparisonModeRef = useRef<(() => void) | null>(null);
   const [focusedBallIndex, setFocusedBallIndex] = useState(-1);
+  const focusedBallIndexRef = useRef(-1);
   const [isNavigating, setIsNavigating] = useState(false);
+  const isNavigatingRef = useRef(false);
+  const ballsRef = useRef<BallInfo[]>([]);
   const ballOpacitiesRef = useRef<Map<number, number>>(new Map());
   const mouseScreenPosRef = useRef<{ x: number; y: number } | null>(null);
   const wasPinchingRef = useRef<{ current: boolean } | null>(null);
@@ -116,6 +119,21 @@ export function usePhysicsEngine(
   useEffect(() => {
     comparisonLayoutRef.current = comparisonLayout;
   }, [comparisonLayout]);
+
+  // Keep focused ball index ref in sync with state
+  useEffect(() => {
+    focusedBallIndexRef.current = focusedBallIndex;
+  }, [focusedBallIndex]);
+
+  // Keep isNavigating ref in sync with state
+  useEffect(() => {
+    isNavigatingRef.current = isNavigating;
+  }, [isNavigating]);
+
+  // Keep balls ref in sync with state
+  useEffect(() => {
+    ballsRef.current = balls;
+  }, [balls]);
 
   // Set ball manager comparison type on initialization and when it changes
   useEffect(() => {
@@ -344,8 +362,77 @@ export function usePhysicsEngine(
       return color;
     };
 
+    // Draw an animated focus ring around the currently focused ball in concentric mode
+    const drawFocusRing = () => {
+      if (
+        !isComparisonModeRef.current ||
+        comparisonLayoutRef.current !== "concentric" ||
+        !isNavigatingRef.current ||
+        focusedBallIndexRef.current === -1
+      )
+        return;
+
+      const allBodies = Matter.Composite.allBodies(engine.world);
+      const visibleBallBodies = (
+        allBodies.filter((b) => !b.isStatic) as BallBody[]
+      ).filter((b) => !hiddenBallIdsRef.current.has(b.id));
+
+      // Sort by value ascending (same order as sortedBalls in the component)
+      const currentBallsData = ballsRef.current;
+      const sorted = [...visibleBallBodies].sort((a, b) => {
+        const aVal = currentBallsData.find((bi) => bi.id === a.id)?.value ?? 0;
+        const bVal = currentBallsData.find((bi) => bi.id === b.id)?.value ?? 0;
+        return aVal - bVal;
+      });
+
+      const focusedBody = sorted[focusedBallIndexRef.current];
+      if (!focusedBody || !focusedBody.circleRadius) return;
+
+      // Map world coordinates to canvas pixel space
+      const bounds = render.bounds;
+      const worldWidth = bounds.max.x - bounds.min.x;
+      const canvasW = render.options.width ?? width;
+      const scale = canvasW / worldWidth;
+
+      const cx = (focusedBody.position.x - bounds.min.x) * scale;
+      const cy = (focusedBody.position.y - bounds.min.y) * scale;
+      const screenR = focusedBody.circleRadius * scale;
+
+      const ringR = screenR + 3;
+      const lineW = 1;
+      // Stripe length: each black/white segment is ~5px, full rotation in ~60 s
+      const dashLen = 5;
+      const dashTotal = dashLen * 2;
+      const offset = (Date.now() / 60000) * (2 * Math.PI * ringR);
+      const animOffset = offset % dashTotal;
+
+      const ctx = render.context as CanvasRenderingContext2D;
+      ctx.save();
+
+      // White stripe layer (slightly transparent)
+      ctx.beginPath();
+      ctx.arc(cx, cy, ringR, 0, Math.PI * 2);
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.85)";
+      ctx.lineWidth = lineW;
+      ctx.setLineDash([dashLen, dashLen]);
+      ctx.lineDashOffset = animOffset;
+      ctx.stroke();
+
+      // Black stripe layer offset by half the pattern to fill the white gaps
+      ctx.beginPath();
+      ctx.arc(cx, cy, ringR, 0, Math.PI * 2);
+      ctx.strokeStyle = "rgba(0, 0, 0, 0.75)";
+      ctx.lineWidth = lineW;
+      ctx.setLineDash([dashLen, dashLen]);
+      ctx.lineDashOffset = animOffset + dashLen;
+      ctx.stroke();
+
+      ctx.restore();
+    };
+
     Matter.Events.on(engine, "afterUpdate", checkEscapedBalls);
     Matter.Events.on(render, "afterRender", updateCursor);
+    Matter.Events.on(render, "afterRender", drawFocusRing);
     Matter.Events.on(render, "beforeRender", updateBallOpacity);
 
     // Run the renderer
@@ -496,6 +583,7 @@ export function usePhysicsEngine(
       Matter.Events.off(render, "beforeRender", updateZoomedView);
       Matter.Events.off(engine, "afterUpdate", checkEscapedBalls);
       Matter.Events.off(render, "afterRender", updateCursor);
+      Matter.Events.off(render, "afterRender", drawFocusRing);
       Matter.Events.off(render, "beforeRender", updateBallOpacity);
       Matter.Render.stop(render);
       Matter.Runner.stop(runner);
