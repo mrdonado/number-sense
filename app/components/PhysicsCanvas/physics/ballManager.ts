@@ -242,7 +242,8 @@ export class BallManager {
     const { originalRadius, name, color, units } = persistedBall;
 
     // Calculate the display radius using current scale factor
-    const displayRadius = this.getEffectiveRadius(originalRadius) * this.scaleFactor;
+    const displayRadius =
+      this.getEffectiveRadius(originalRadius) * this.scaleFactor;
 
     const x = Math.random() * (width - displayRadius * 2) + displayRadius;
 
@@ -388,7 +389,8 @@ export class BallManager {
       const allBalls = bodies.filter((b) => !b.isStatic) as BallBody[];
       allBalls.forEach((ball) => {
         if (ball.originalRadius) {
-          const newRadius = this.getEffectiveRadius(ball.originalRadius) * newScaleFactor;
+          const newRadius =
+            this.getEffectiveRadius(ball.originalRadius) * newScaleFactor;
           Matter.Body.scale(ball, scaleRatio, scaleRatio);
           ball.circleRadius = newRadius;
         }
