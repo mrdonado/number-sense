@@ -1,5 +1,7 @@
 # Number Sense
 
+<img src="app/favicon.ico" alt="Number Sense Icon" style="width:128px;"/>
+
 An interactive visualization tool for understanding and comparing numerical values through physics-based simulations. Values are represented as bouncing balls whose sizes correspond to their magnitudes, making large-scale differences intuitive and engaging.
 
 More information in my deep dive article: _[Number Sense: An interactive visualization that transforms abstract numbers into colorful, bouncing spheres](https://www.jdonado.com/post/2026-02-22-number-sense/)_.
