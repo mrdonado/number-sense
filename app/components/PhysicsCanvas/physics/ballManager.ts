@@ -242,7 +242,7 @@ export class BallManager {
     const { originalRadius, name, color, units } = persistedBall;
 
     // Calculate the display radius using current scale factor
-    const displayRadius = originalRadius * this.scaleFactor;
+    const displayRadius = this.getEffectiveRadius(originalRadius) * this.scaleFactor;
 
     const x = Math.random() * (width - displayRadius * 2) + displayRadius;
 
@@ -327,17 +327,18 @@ export class BallManager {
     const minDimension = Math.min(dimensions.width, dimensions.height);
     const targetDisplayRadius = (minDimension * TARGET_BALL_RATIO) / 2;
 
-    // Find the largest original radius among visible balls
-    let maxOriginalRadius = 0;
+    // Find the largest effective radius among visible balls
+    let maxEffectiveRadius = 0;
     visibleBalls.forEach((ball) => {
-      if (ball.originalRadius > maxOriginalRadius) {
-        maxOriginalRadius = ball.originalRadius;
+      const r = this.getEffectiveRadius(ball.originalRadius);
+      if (r > maxEffectiveRadius) {
+        maxEffectiveRadius = r;
       }
     });
 
-    if (maxOriginalRadius === 0) return 1.0;
+    if (maxEffectiveRadius === 0) return 1.0;
 
-    return targetDisplayRadius / maxOriginalRadius;
+    return targetDisplayRadius / maxEffectiveRadius;
   }
 
   /**
@@ -365,18 +366,19 @@ export class BallManager {
       return;
     }
 
-    // Find the largest original radius among remaining visible balls
-    let maxOriginalRadius = 0;
+    // Find the largest effective radius among remaining visible balls
+    let maxEffectiveRadius = 0;
     balls.forEach((ball) => {
-      if (ball.originalRadius && ball.originalRadius > maxOriginalRadius) {
-        maxOriginalRadius = ball.originalRadius;
+      if (ball.originalRadius) {
+        const r = this.getEffectiveRadius(ball.originalRadius);
+        if (r > maxEffectiveRadius) maxEffectiveRadius = r;
       }
     });
 
-    if (maxOriginalRadius === 0) return;
+    if (maxEffectiveRadius === 0) return;
 
     // Calculate new scale factor
-    const newScaleFactor = targetDisplayRadius / maxOriginalRadius;
+    const newScaleFactor = targetDisplayRadius / maxEffectiveRadius;
 
     // If scale factor changed, resize all balls (including hidden ones to maintain consistency)
     if (newScaleFactor !== this.scaleFactor) {
@@ -386,7 +388,7 @@ export class BallManager {
       const allBalls = bodies.filter((b) => !b.isStatic) as BallBody[];
       allBalls.forEach((ball) => {
         if (ball.originalRadius) {
-          const newRadius = ball.originalRadius * newScaleFactor;
+          const newRadius = this.getEffectiveRadius(ball.originalRadius) * newScaleFactor;
           Matter.Body.scale(ball, scaleRatio, scaleRatio);
           ball.circleRadius = newRadius;
         }
@@ -426,16 +428,15 @@ export class BallManager {
     const hiddenBallInfos = currentBalls.filter((b) => excludeIds.has(b.id));
 
     // Calculate scale factor based on visible balls only
-    let maxOriginalRadius = 0;
+    let maxEffectiveRadius = 0;
     visibleBallInfos.forEach((ball) => {
-      if (ball.originalRadius > maxOriginalRadius) {
-        maxOriginalRadius = ball.originalRadius;
-      }
+      const r = this.getEffectiveRadius(ball.originalRadius);
+      if (r > maxEffectiveRadius) maxEffectiveRadius = r;
     });
 
     // Set scale factor (default to 1.0 if no visible balls)
-    if (maxOriginalRadius > 0) {
-      this.scaleFactor = targetDisplayRadius / maxOriginalRadius;
+    if (maxEffectiveRadius > 0) {
+      this.scaleFactor = targetDisplayRadius / maxEffectiveRadius;
     } else {
       this.scaleFactor = 1.0;
     }
