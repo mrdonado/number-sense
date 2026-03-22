@@ -3,7 +3,7 @@
     "source": "World Bank Open Data API",
     "description": "Government spending by function for selected countries converted to USD",
     "units": "USD",
-    "fetchedAt": "2026-03-15T02:48:13.089Z",
+    "fetchedAt": "2026-03-22T02:39:53.870Z",
     "totalEntries": 79
   },
   "data": [
