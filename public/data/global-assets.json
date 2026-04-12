@@ -5,7 +5,7 @@
     "indicatorName": "Global Asset Values",
     "description": "Total value of major global assets including cryptocurrencies, commodities, currencies, and markets",
     "units": "USD",
-    "fetchedAt": "2026-04-05T02:52:27.562Z",
+    "fetchedAt": "2026-04-12T02:57:53.876Z",
     "totalAssets": 59
   },
   "data": [
@@ -74,352 +74,352 @@
     },
     {
       "name": "Bitcoin",
-      "value": 1343248003773,
+      "value": 1438043235412,
       "category": "cryptocurrency",
       "description": "Total market capitalization of Bitcoin (BTC)",
       "source": "CoinGecko"
     },
     {
       "name": "Ethereum",
-      "value": 248379544269,
+      "value": 268636823254,
       "category": "cryptocurrency",
       "description": "Total market capitalization of Ethereum (ETH)",
       "source": "CoinGecko"
     },
     {
       "name": "Tether",
-      "value": 184132256474,
+      "value": 184419517542,
       "category": "cryptocurrency",
       "description": "Total market capitalization of Tether (USDT)",
       "source": "CoinGecko"
     },
     {
-      "name": "BNB",
-      "value": 80833658235,
-      "category": "cryptocurrency",
-      "description": "Total market capitalization of BNB (BNB)",
-      "source": "CoinGecko"
-    },
-    {
       "name": "XRP",
-      "value": 80783829547,
+      "value": 81991949916,
       "category": "cryptocurrency",
       "description": "Total market capitalization of XRP (XRP)",
       "source": "CoinGecko"
     },
     {
+      "name": "BNB",
+      "value": 81513657337,
+      "category": "cryptocurrency",
+      "description": "Total market capitalization of BNB (BNB)",
+      "source": "CoinGecko"
+    },
+    {
       "name": "USDC",
-      "value": 77509205413,
+      "value": 78628369340,
       "category": "cryptocurrency",
       "description": "Total market capitalization of USDC (USDC)",
       "source": "CoinGecko"
     },
     {
       "name": "Solana",
-      "value": 46127162899,
+      "value": 47501370552,
       "category": "cryptocurrency",
       "description": "Total market capitalization of Solana (SOL)",
       "source": "CoinGecko"
     },
     {
       "name": "TRON",
-      "value": 30119051546,
+      "value": 30323874506,
       "category": "cryptocurrency",
       "description": "Total market capitalization of TRON (TRX)",
       "source": "CoinGecko"
     },
     {
       "name": "Figure Heloc",
-      "value": 16957389931,
+      "value": 17315077454,
       "category": "cryptocurrency",
       "description": "Total market capitalization of Figure Heloc (FIGR_HELOC)",
       "source": "CoinGecko"
     },
     {
       "name": "Dogecoin",
-      "value": 14051101575,
+      "value": 14072576310,
       "category": "cryptocurrency",
       "description": "Total market capitalization of Dogecoin (DOGE)",
       "source": "CoinGecko"
     },
     {
       "name": "USDS",
-      "value": 11828024025,
+      "value": 11539228252,
       "category": "cryptocurrency",
       "description": "Total market capitalization of USDS (USDS)",
       "source": "CoinGecko"
     },
     {
       "name": "WhiteBIT Coin",
-      "value": 10956610234,
+      "value": 11230973180,
       "category": "cryptocurrency",
       "description": "Total market capitalization of WhiteBIT Coin (WBT)",
       "source": "CoinGecko"
     },
     {
+      "name": "Hyperliquid",
+      "value": 9843766543,
+      "category": "cryptocurrency",
+      "description": "Total market capitalization of Hyperliquid (HYPE)",
+      "source": "CoinGecko"
+    },
+    {
       "name": "LEO Token",
-      "value": 9288368829,
+      "value": 9322202599,
       "category": "cryptocurrency",
       "description": "Total market capitalization of LEO Token (LEO)",
       "source": "CoinGecko"
     },
     {
       "name": "Cardano",
-      "value": 9124383023,
+      "value": 9032690794,
       "category": "cryptocurrency",
       "description": "Total market capitalization of Cardano (ADA)",
       "source": "CoinGecko"
     },
     {
       "name": "Bitcoin Cash",
-      "value": 8819959000,
+      "value": 8563254100,
       "category": "cryptocurrency",
       "description": "Total market capitalization of Bitcoin Cash (BCH)",
       "source": "CoinGecko"
     },
     {
-      "name": "Hyperliquid",
-      "value": 8598891549,
-      "category": "cryptocurrency",
-      "description": "Total market capitalization of Hyperliquid (HYPE)",
-      "source": "CoinGecko"
-    },
-    {
       "name": "Chainlink",
-      "value": 6296387133,
+      "value": 6431255760,
       "category": "cryptocurrency",
       "description": "Total market capitalization of Chainlink (LINK)",
       "source": "CoinGecko"
     },
     {
       "name": "Monero",
-      "value": 6003343973,
+      "value": 6260332554,
       "category": "cryptocurrency",
       "description": "Total market capitalization of Monero (XMR)",
       "source": "CoinGecko"
     },
     {
+      "name": "Zcash",
+      "value": 6076716434,
+      "category": "cryptocurrency",
+      "description": "Total market capitalization of Zcash (ZEC)",
+      "source": "CoinGecko"
+    },
+    {
       "name": "Ethena USDe",
-      "value": 5885244614,
+      "value": 5828066090,
       "category": "cryptocurrency",
       "description": "Total market capitalization of Ethena USDe (USDE)",
       "source": "CoinGecko"
     },
     {
-      "name": "Stellar",
-      "value": 5363851791,
-      "category": "cryptocurrency",
-      "description": "Total market capitalization of Stellar (XLM)",
-      "source": "CoinGecko"
-    },
-    {
       "name": "Canton",
-      "value": 5357486252,
+      "value": 5547986761,
       "category": "cryptocurrency",
       "description": "Total market capitalization of Canton (CC)",
       "source": "CoinGecko"
     },
     {
+      "name": "Stellar",
+      "value": 5017023943,
+      "category": "cryptocurrency",
+      "description": "Total market capitalization of Stellar (XLM)",
+      "source": "CoinGecko"
+    },
+    {
       "name": "MemeCore",
-      "value": 4486712108,
+      "value": 4849217635,
       "category": "cryptocurrency",
       "description": "Total market capitalization of MemeCore (M)",
       "source": "CoinGecko"
     },
     {
       "name": "Dai",
-      "value": 4444834512,
+      "value": 4422585496,
       "category": "cryptocurrency",
       "description": "Total market capitalization of Dai (DAI)",
       "source": "CoinGecko"
     },
     {
       "name": "USD1",
-      "value": 4411647366,
+      "value": 4177971504,
       "category": "cryptocurrency",
       "description": "Total market capitalization of USD1 (USD1)",
       "source": "CoinGecko"
     },
     {
       "name": "Litecoin",
-      "value": 4120214816,
+      "value": 4175269728,
       "category": "cryptocurrency",
       "description": "Total market capitalization of Litecoin (LTC)",
       "source": "CoinGecko"
     },
     {
-      "name": "Zcash",
-      "value": 4103879711,
-      "category": "cryptocurrency",
-      "description": "Total market capitalization of Zcash (ZEC)",
-      "source": "CoinGecko"
-    },
-    {
       "name": "PayPal USD",
-      "value": 3951656972,
+      "value": 4015038411,
       "category": "cryptocurrency",
       "description": "Total market capitalization of PayPal USD (PYUSD)",
       "source": "CoinGecko"
     },
     {
       "name": "Avalanche",
-      "value": 3874808766,
+      "value": 3944221743,
       "category": "cryptocurrency",
       "description": "Total market capitalization of Avalanche (AVAX)",
       "source": "CoinGecko"
     },
     {
       "name": "Hedera",
-      "value": 3794941929,
+      "value": 3765687408,
       "category": "cryptocurrency",
       "description": "Total market capitalization of Hedera (HBAR)",
       "source": "CoinGecko"
     },
     {
-      "name": "Shiba Inu",
-      "value": 3502776842,
-      "category": "cryptocurrency",
-      "description": "Total market capitalization of Shiba Inu (SHIB)",
-      "source": "CoinGecko"
-    },
-    {
       "name": "Rain",
-      "value": 3496627437,
+      "value": 3635061866,
       "category": "cryptocurrency",
       "description": "Total market capitalization of Rain (RAIN)",
       "source": "CoinGecko"
     },
     {
       "name": "Sui",
-      "value": 3419104669,
+      "value": 3621145355,
       "category": "cryptocurrency",
       "description": "Total market capitalization of Sui (SUI)",
       "source": "CoinGecko"
     },
     {
       "name": "Toncoin",
-      "value": 3059273366,
+      "value": 3540097141,
       "category": "cryptocurrency",
       "description": "Total market capitalization of Toncoin (TON)",
       "source": "CoinGecko"
     },
     {
-      "name": "World Liberty Financial",
-      "value": 3026490216,
+      "name": "Shiba Inu",
+      "value": 3438162213,
       "category": "cryptocurrency",
-      "description": "Total market capitalization of World Liberty Financial (WLFI)",
+      "description": "Total market capitalization of Shiba Inu (SHIB)",
       "source": "CoinGecko"
     },
     {
       "name": "Cronos",
-      "value": 2944026401,
+      "value": 2926047219,
       "category": "cryptocurrency",
       "description": "Total market capitalization of Cronos (CRO)",
       "source": "CoinGecko"
     },
     {
-      "name": "Bittensor",
-      "value": 2906536308,
-      "category": "cryptocurrency",
-      "description": "Total market capitalization of Bittensor (TAO)",
-      "source": "CoinGecko"
-    },
-    {
       "name": "Circle USYC",
-      "value": 2702544220,
+      "value": 2682467564,
       "category": "cryptocurrency",
       "description": "Total market capitalization of Circle USYC (USYC)",
       "source": "CoinGecko"
     },
     {
       "name": "Tether Gold",
-      "value": 2594420004,
+      "value": 2636408617,
       "category": "cryptocurrency",
       "description": "Total market capitalization of Tether Gold (XAUT)",
       "source": "CoinGecko"
     },
     {
-      "name": "PAX Gold",
-      "value": 2391341889,
+      "name": "Bittensor",
+      "value": 2545130510,
       "category": "cryptocurrency",
-      "description": "Total market capitalization of PAX Gold (PAXG)",
+      "description": "Total market capitalization of Bittensor (TAO)",
+      "source": "CoinGecko"
+    },
+    {
+      "name": "World Liberty Financial",
+      "value": 2493308075,
+      "category": "cryptocurrency",
+      "description": "Total market capitalization of World Liberty Financial (WLFI)",
       "source": "CoinGecko"
     },
     {
       "name": "BlackRock USD Institutional Digital Liquidity Fund",
-      "value": 2298435926,
+      "value": 2443379496,
       "category": "cryptocurrency",
       "description": "Total market capitalization of BlackRock USD Institutional Digital Liquidity Fund (BUIDL)",
       "source": "CoinGecko"
     },
     {
+      "name": "PAX Gold",
+      "value": 2395198526,
+      "category": "cryptocurrency",
+      "description": "Total market capitalization of PAX Gold (PAXG)",
+      "source": "CoinGecko"
+    },
+    {
       "name": "Mantle",
-      "value": 2157696413,
+      "value": 2189271133,
       "category": "cryptocurrency",
       "description": "Total market capitalization of Mantle (MNT)",
       "source": "CoinGecko"
     },
     {
+      "name": "Global Dollar",
+      "value": 2102828914,
+      "category": "cryptocurrency",
+      "description": "Total market capitalization of Global Dollar (USDG)",
+      "source": "CoinGecko"
+    },
+    {
       "name": "Polkadot",
-      "value": 2095075369,
+      "value": 2095311373,
       "category": "cryptocurrency",
       "description": "Total market capitalization of Polkadot (DOT)",
       "source": "CoinGecko"
     },
     {
       "name": "Uniswap",
-      "value": 1970953126,
+      "value": 1951327767,
       "category": "cryptocurrency",
       "description": "Total market capitalization of Uniswap (UNI)",
       "source": "CoinGecko"
     },
     {
-      "name": "Global Dollar",
-      "value": 1862996365,
-      "category": "cryptocurrency",
-      "description": "Total market capitalization of Global Dollar (USDG)",
-      "source": "CoinGecko"
-    },
-    {
       "name": "Falcon USD",
-      "value": 1740419515,
+      "value": 1791621688,
       "category": "cryptocurrency",
       "description": "Total market capitalization of Falcon USD (USDF)",
       "source": "CoinGecko"
     },
     {
-      "name": "OKB",
-      "value": 1740192762,
-      "category": "cryptocurrency",
-      "description": "Total market capitalization of OKB (OKB)",
-      "source": "CoinGecko"
-    },
-    {
-      "name": "Pi Network",
-      "value": 1731971552,
-      "category": "cryptocurrency",
-      "description": "Total market capitalization of Pi Network (PI)",
-      "source": "CoinGecko"
-    },
-    {
       "name": "Sky",
-      "value": 1715211793,
+      "value": 1760517698,
       "category": "cryptocurrency",
       "description": "Total market capitalization of Sky (SKY)",
       "source": "CoinGecko"
     },
     {
-      "name": "Aster",
-      "value": 1638594576,
+      "name": "OKB",
+      "value": 1760313032,
       "category": "cryptocurrency",
-      "description": "Total market capitalization of Aster (ASTER)",
+      "description": "Total market capitalization of OKB (OKB)",
       "source": "CoinGecko"
     },
     {
       "name": "NEAR Protocol",
-      "value": 1621570530,
+      "value": 1745822163,
       "category": "cryptocurrency",
       "description": "Total market capitalization of NEAR Protocol (NEAR)",
+      "source": "CoinGecko"
+    },
+    {
+      "name": "Pi Network",
+      "value": 1694549445,
+      "category": "cryptocurrency",
+      "description": "Total market capitalization of Pi Network (PI)",
+      "source": "CoinGecko"
+    },
+    {
+      "name": "Aster",
+      "value": 1638087167,
+      "category": "cryptocurrency",
+      "description": "Total market capitalization of Aster (ASTER)",
       "source": "CoinGecko"
     }
   ]
