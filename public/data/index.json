@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-12T02:58:04.389Z",
+  "generatedAt": "2026-04-19T03:23:12.706Z",
   "totalSources": 14,
   "sources": [
     {
@@ -9,7 +9,7 @@
       "units": "USD",
       "file": "gdp-by-country.json",
       "recordCount": 210,
-      "fetchedAt": "2026-04-12T02:57:48.092Z"
+      "fetchedAt": "2026-04-19T03:21:19.003Z"
     },
     {
       "id": "billionaires",
@@ -18,7 +18,7 @@
       "units": "USD",
       "file": "billionaires-net-worth.json",
       "recordCount": 150,
-      "fetchedAt": "2026-04-12T02:57:48.315Z"
+      "fetchedAt": "2026-04-19T03:21:19.740Z"
     },
     {
       "id": "market-cap",
@@ -27,7 +27,7 @@
       "units": "USD",
       "file": "companies-market-cap.json",
       "recordCount": 1000,
-      "fetchedAt": "2026-04-12T02:57:49.862Z"
+      "fetchedAt": "2026-04-19T03:21:22.324Z"
     },
     {
       "id": "population",
@@ -36,7 +36,7 @@
       "units": "People",
       "file": "population-by-country.json",
       "recordCount": 217,
-      "fetchedAt": "2026-04-12T02:57:51.649Z"
+      "fetchedAt": "2026-04-19T03:21:23.616Z"
     },
     {
       "id": "global-assets",
@@ -45,7 +45,7 @@
       "units": "USD",
       "file": "global-assets.json",
       "recordCount": 59,
-      "fetchedAt": "2026-04-12T02:57:53.876Z"
+      "fetchedAt": "2026-04-19T03:22:18.958Z"
     },
     {
       "id": "government-spending",
@@ -54,7 +54,7 @@
       "units": "USD",
       "file": "government-spending.json",
       "recordCount": 79,
-      "fetchedAt": "2026-04-12T02:58:04.383Z"
+      "fetchedAt": "2026-04-19T03:23:12.699Z"
     },
     {
       "id": "time-since-events",
