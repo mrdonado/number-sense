@@ -5,1312 +5,1312 @@
     "indicatorName": "Population, total",
     "description": "Total population of countries",
     "units": "People",
-    "fetchedAt": "2026-06-28T04:12:10.677Z",
+    "fetchedAt": "2026-07-05T03:49:53.606Z",
     "totalCountries": 217,
-    "latestYear": 2024
+    "latestYear": 2025
   },
   "data": [
     {
       "countryCode": "IND",
       "name": "India",
-      "value": 1450935791,
-      "year": 2024
+      "value": 1463865525,
+      "year": 2025
     },
     {
       "countryCode": "CHN",
       "name": "China",
-      "value": 1408975000,
-      "year": 2024
+      "value": 1406585000,
+      "year": 2025
     },
     {
       "countryCode": "USA",
       "name": "United States",
-      "value": 340110988,
-      "year": 2024
+      "value": 341784857,
+      "year": 2025
     },
     {
       "countryCode": "IDN",
       "name": "Indonesia",
-      "value": 283487931,
-      "year": 2024
+      "value": 285721236,
+      "year": 2025
     },
     {
       "countryCode": "PAK",
       "name": "Pakistan",
-      "value": 251269164,
-      "year": 2024
+      "value": 255219554,
+      "year": 2025
     },
     {
       "countryCode": "NGA",
       "name": "Nigeria",
-      "value": 232679478,
-      "year": 2024
+      "value": 237527782,
+      "year": 2025
     },
     {
       "countryCode": "BRA",
       "name": "Brazil",
-      "value": 211998573,
-      "year": 2024
+      "value": 212812405,
+      "year": 2025
     },
     {
       "countryCode": "BGD",
       "name": "Bangladesh",
-      "value": 173562364,
-      "year": 2024
+      "value": 175686899,
+      "year": 2025
     },
     {
       "countryCode": "RUS",
       "name": "Russian Federation",
-      "value": 143533851,
-      "year": 2024
+      "value": 143513328,
+      "year": 2025
     },
     {
       "countryCode": "ETH",
       "name": "Ethiopia",
-      "value": 132059767,
-      "year": 2024
+      "value": 135472051,
+      "year": 2025
     },
     {
       "countryCode": "MEX",
       "name": "Mexico",
-      "value": 130861007,
-      "year": 2024
+      "value": 131946900,
+      "year": 2025
     },
     {
       "countryCode": "JPN",
       "name": "Japan",
-      "value": 123975371,
-      "year": 2024
+      "value": 123366734,
+      "year": 2025
     },
     {
       "countryCode": "EGY",
       "name": "Egypt, Arab Rep.",
-      "value": 116538258,
-      "year": 2024
+      "value": 118365995,
+      "year": 2025
     },
     {
       "countryCode": "PHL",
       "name": "Philippines",
-      "value": 115843670,
-      "year": 2024
+      "value": 116786962,
+      "year": 2025
     },
     {
       "countryCode": "COD",
       "name": "Congo, Dem. Rep.",
-      "value": 109276265,
-      "year": 2024
+      "value": 112832473,
+      "year": 2025
     },
     {
       "countryCode": "VNM",
       "name": "Viet Nam",
-      "value": 100987686,
-      "year": 2024
+      "value": 101598527,
+      "year": 2025
     },
     {
       "countryCode": "IRN",
       "name": "Iran, Islamic Rep.",
-      "value": 91567738,
-      "year": 2024
+      "value": 92417681,
+      "year": 2025
     },
     {
       "countryCode": "TUR",
       "name": "Turkiye",
-      "value": 85518661,
-      "year": 2024
+      "value": 85878556,
+      "year": 2025
     },
     {
       "countryCode": "DEU",
       "name": "Germany",
-      "value": 83516593,
-      "year": 2024
+      "value": 83491249,
+      "year": 2025
     },
     {
       "countryCode": "THA",
       "name": "Thailand",
-      "value": 71668011,
-      "year": 2024
-    },
-    {
-      "countryCode": "GBR",
-      "name": "United Kingdom",
-      "value": 69226000,
-      "year": 2024
+      "value": 71619863,
+      "year": 2025
     },
     {
       "countryCode": "TZA",
       "name": "Tanzania",
-      "value": 68560157,
-      "year": 2024
+      "value": 70545865,
+      "year": 2025
+    },
+    {
+      "countryCode": "GBR",
+      "name": "United Kingdom",
+      "value": 69487000,
+      "year": 2025
     },
     {
       "countryCode": "FRA",
       "name": "France",
-      "value": 68551653,
-      "year": 2024
+      "value": 68720337,
+      "year": 2025
     },
     {
       "countryCode": "ZAF",
       "name": "South Africa",
-      "value": 64007187,
-      "year": 2024
+      "value": 64747319,
+      "year": 2025
     },
     {
       "countryCode": "ITA",
       "name": "Italy",
-      "value": 58952704,
-      "year": 2024
+      "value": 58915656,
+      "year": 2025
     },
     {
       "countryCode": "KEN",
       "name": "Kenya",
-      "value": 56432944,
-      "year": 2024
+      "value": 57532493,
+      "year": 2025
     },
     {
       "countryCode": "MMR",
       "name": "Myanmar",
-      "value": 54500091,
-      "year": 2024
+      "value": 54850648,
+      "year": 2025
     },
     {
       "countryCode": "COL",
       "name": "Colombia",
-      "value": 52886363,
-      "year": 2024
+      "value": 53425635,
+      "year": 2025
     },
     {
       "countryCode": "KOR",
       "name": "Korea, Rep.",
-      "value": 51751065,
-      "year": 2024
+      "value": 51684564,
+      "year": 2025
     },
     {
       "countryCode": "SDN",
       "name": "Sudan",
-      "value": 50448963,
-      "year": 2024
+      "value": 51662147,
+      "year": 2025
     },
     {
       "countryCode": "UGA",
       "name": "Uganda",
-      "value": 50015092,
-      "year": 2024
+      "value": 51384894,
+      "year": 2025
     },
     {
       "countryCode": "ESP",
       "name": "Spain",
-      "value": 48848840,
-      "year": 2024
+      "value": 49355143,
+      "year": 2025
     },
     {
       "countryCode": "DZA",
       "name": "Algeria",
-      "value": 46814308,
-      "year": 2024
+      "value": 47435312,
+      "year": 2025
     },
     {
       "countryCode": "IRQ",
       "name": "Iraq",
-      "value": 46042015,
-      "year": 2024
+      "value": 47020774,
+      "year": 2025
     },
     {
       "countryCode": "ARG",
       "name": "Argentina",
-      "value": 45696159,
-      "year": 2024
+      "value": 45851378,
+      "year": 2025
     },
     {
       "countryCode": "AFG",
       "name": "Afghanistan",
-      "value": 42647492,
-      "year": 2024
-    },
-    {
-      "countryCode": "CAN",
-      "name": "Canada",
-      "value": 41288599,
-      "year": 2024
+      "value": 43844111,
+      "year": 2025
     },
     {
       "countryCode": "YEM",
       "name": "Yemen, Rep.",
-      "value": 40583164,
-      "year": 2024
+      "value": 41773878,
+      "year": 2025
     },
     {
-      "countryCode": "MAR",
-      "name": "Morocco",
-      "value": 38081173,
-      "year": 2024
+      "countryCode": "CAN",
+      "name": "Canada",
+      "value": 41651653,
+      "year": 2025
     },
     {
       "countryCode": "AGO",
       "name": "Angola",
-      "value": 37885849,
-      "year": 2024
+      "value": 39040039,
+      "year": 2025
     },
     {
       "countryCode": "UKR",
       "name": "Ukraine",
-      "value": 37860221,
-      "year": 2024
+      "value": 38980376,
+      "year": 2025
     },
     {
-      "countryCode": "POL",
-      "name": "Poland",
-      "value": 36559233,
-      "year": 2024
+      "countryCode": "MAR",
+      "name": "Morocco",
+      "value": 38430770,
+      "year": 2025
     },
     {
       "countryCode": "UZB",
       "name": "Uzbekistan",
-      "value": 36361859,
-      "year": 2024
-    },
-    {
-      "countryCode": "MYS",
-      "name": "Malaysia",
-      "value": 35557673,
-      "year": 2024
+      "value": 37053428,
+      "year": 2025
     },
     {
       "countryCode": "SAU",
       "name": "Saudi Arabia",
-      "value": 35300280,
-      "year": 2024
+      "value": 36973555,
+      "year": 2025
+    },
+    {
+      "countryCode": "POL",
+      "name": "Poland",
+      "value": 36435861,
+      "year": 2025
+    },
+    {
+      "countryCode": "MYS",
+      "name": "Malaysia",
+      "value": 35977838,
+      "year": 2025
     },
     {
       "countryCode": "MOZ",
       "name": "Mozambique",
-      "value": 34631766,
-      "year": 2024
+      "value": 35631653,
+      "year": 2025
     },
     {
       "countryCode": "GHA",
       "name": "Ghana",
-      "value": 34427414,
-      "year": 2024
+      "value": 35064272,
+      "year": 2025
     },
     {
       "countryCode": "PER",
       "name": "Peru",
-      "value": 34217848,
-      "year": 2024
+      "value": 34576665,
+      "year": 2025
     },
     {
       "countryCode": "MDG",
       "name": "Madagascar",
-      "value": 31964956,
-      "year": 2024
+      "value": 32740678,
+      "year": 2025
     },
     {
       "countryCode": "CIV",
       "name": "Cote d'Ivoire",
-      "value": 31934230,
-      "year": 2024
-    },
-    {
-      "countryCode": "NPL",
-      "name": "Nepal",
-      "value": 29651054,
-      "year": 2024
+      "value": 32711547,
+      "year": 2025
     },
     {
       "countryCode": "CMR",
       "name": "Cameroon",
-      "value": 29123744,
-      "year": 2024
+      "value": 29879337,
+      "year": 2025
+    },
+    {
+      "countryCode": "NPL",
+      "name": "Nepal",
+      "value": 29618118,
+      "year": 2025
     },
     {
       "countryCode": "VEN",
       "name": "Venezuela, RB",
-      "value": 28405543,
-      "year": 2024
-    },
-    {
-      "countryCode": "AUS",
-      "name": "Australia",
-      "value": 27196812,
-      "year": 2024
+      "value": 28516896,
+      "year": 2025
     },
     {
       "countryCode": "NER",
       "name": "Niger",
-      "value": 27032412,
-      "year": 2024
+      "value": 27917831,
+      "year": 2025
+    },
+    {
+      "countryCode": "AUS",
+      "name": "Australia",
+      "value": 27614411,
+      "year": 2025
     },
     {
       "countryCode": "PRK",
       "name": "Korea, Dem. People's Rep.",
-      "value": 26498823,
-      "year": 2024
+      "value": 26571036,
+      "year": 2025
     },
     {
       "countryCode": "SYR",
       "name": "Syrian Arab Republic",
-      "value": 24672760,
-      "year": 2024
+      "value": 25620427,
+      "year": 2025
     },
     {
       "countryCode": "MLI",
       "name": "Mali",
-      "value": 24478595,
-      "year": 2024
+      "value": 25198821,
+      "year": 2025
     },
     {
       "countryCode": "BFA",
       "name": "Burkina Faso",
-      "value": 23548781,
-      "year": 2024
-    },
-    {
-      "countryCode": "LKA",
-      "name": "Sri Lanka",
-      "value": 21916000,
-      "year": 2024
+      "value": 24074580,
+      "year": 2025
     },
     {
       "countryCode": "MWI",
       "name": "Malawi",
-      "value": 21655286,
-      "year": 2024
+      "value": 22216120,
+      "year": 2025
     },
     {
       "countryCode": "ZMB",
       "name": "Zambia",
-      "value": 21314956,
-      "year": 2024
+      "value": 21913874,
+      "year": 2025
     },
     {
-      "countryCode": "KAZ",
-      "name": "Kazakhstan",
-      "value": 20592571,
-      "year": 2024
+      "countryCode": "LKA",
+      "name": "Sri Lanka",
+      "value": 21756000,
+      "year": 2025
     },
     {
       "countryCode": "TCD",
       "name": "Chad",
-      "value": 20299123,
-      "year": 2024
+      "value": 21003705,
+      "year": 2025
+    },
+    {
+      "countryCode": "KAZ",
+      "name": "Kazakhstan",
+      "value": 20843754,
+      "year": 2025
     },
     {
       "countryCode": "CHL",
       "name": "Chile",
-      "value": 19764771,
-      "year": 2024
-    },
-    {
-      "countryCode": "ROU",
-      "name": "Romania",
-      "value": 19051804,
-      "year": 2024
+      "value": 19859921,
+      "year": 2025
     },
     {
       "countryCode": "SOM",
       "name": "Somalia, Fed. Rep.",
-      "value": 19009151,
-      "year": 2024
+      "value": 19654739,
+      "year": 2025
+    },
+    {
+      "countryCode": "ROU",
+      "name": "Romania",
+      "value": 19020271,
+      "year": 2025
     },
     {
       "countryCode": "SEN",
       "name": "Senegal",
-      "value": 18501984,
-      "year": 2024
+      "value": 18931966,
+      "year": 2025
     },
     {
       "countryCode": "GTM",
       "name": "Guatemala",
-      "value": 18406359,
-      "year": 2024
+      "value": 18687881,
+      "year": 2025
     },
     {
       "countryCode": "ECU",
       "name": "Ecuador",
-      "value": 18135478,
-      "year": 2024
+      "value": 18289896,
+      "year": 2025
     },
     {
       "countryCode": "NLD",
       "name": "Netherlands",
-      "value": 17993485,
-      "year": 2024
+      "value": 18087633,
+      "year": 2025
     },
     {
       "countryCode": "KHM",
       "name": "Cambodia",
-      "value": 17638801,
-      "year": 2024
+      "value": 17847982,
+      "year": 2025
     },
     {
       "countryCode": "ZWE",
       "name": "Zimbabwe",
-      "value": 16634373,
-      "year": 2024
+      "value": 16950795,
+      "year": 2025
     },
     {
       "countryCode": "GIN",
       "name": "Guinea",
-      "value": 14754785,
-      "year": 2024
+      "value": 15099727,
+      "year": 2025
     },
     {
       "countryCode": "BEN",
       "name": "Benin",
-      "value": 14462724,
-      "year": 2024
+      "value": 14814460,
+      "year": 2025
     },
     {
       "countryCode": "RWA",
       "name": "Rwanda",
-      "value": 14256567,
-      "year": 2024
+      "value": 14569341,
+      "year": 2025
     },
     {
       "countryCode": "BDI",
       "name": "Burundi",
-      "value": 14047786,
-      "year": 2024
+      "value": 14390003,
+      "year": 2025
     },
     {
       "countryCode": "BOL",
       "name": "Bolivia",
-      "value": 12413315,
-      "year": 2024
+      "value": 12581843,
+      "year": 2025
     },
     {
       "countryCode": "TUN",
       "name": "Tunisia",
-      "value": 12277109,
-      "year": 2024
+      "value": 12348573,
+      "year": 2025
     },
     {
       "countryCode": "SSD",
       "name": "South Sudan",
-      "value": 11943408,
-      "year": 2024
+      "value": 12188788,
+      "year": 2025
     },
     {
       "countryCode": "BEL",
       "name": "Belgium",
-      "value": 11858610,
-      "year": 2024
+      "value": 11941781,
+      "year": 2025
     },
     {
       "countryCode": "HTI",
       "name": "Haiti",
-      "value": 11772557,
-      "year": 2024
+      "value": 11906095,
+      "year": 2025
     },
     {
       "countryCode": "JOR",
       "name": "Jordan",
-      "value": 11552876,
-      "year": 2024
+      "value": 11520684,
+      "year": 2025
     },
     {
       "countryCode": "DOM",
       "name": "Dominican Republic",
-      "value": 11427557,
-      "year": 2024
+      "value": 11520487,
+      "year": 2025
     },
     {
       "countryCode": "ARE",
       "name": "United Arab Emirates",
-      "value": 10986400,
-      "year": 2024
-    },
-    {
-      "countryCode": "CUB",
-      "name": "Cuba",
-      "value": 10979783,
-      "year": 2024
-    },
-    {
-      "countryCode": "CZE",
-      "name": "Czechia",
-      "value": 10905028,
-      "year": 2024
+      "value": 11513149,
+      "year": 2025
     },
     {
       "countryCode": "HND",
       "name": "Honduras",
-      "value": 10825703,
-      "year": 2024
+      "value": 11005850,
+      "year": 2025
+    },
+    {
+      "countryCode": "CUB",
+      "name": "Cuba",
+      "value": 10937203,
+      "year": 2025
+    },
+    {
+      "countryCode": "CZE",
+      "name": "Czechia",
+      "value": 10886878,
+      "year": 2025
     },
     {
       "countryCode": "PRT",
       "name": "Portugal",
-      "value": 10694681,
-      "year": 2024
+      "value": 10804871,
+      "year": 2025
     },
     {
       "countryCode": "TJK",
       "name": "Tajikistan",
-      "value": 10590927,
-      "year": 2024
+      "value": 10786734,
+      "year": 2025
     },
     {
       "countryCode": "PNG",
       "name": "Papua New Guinea",
-      "value": 10576502,
-      "year": 2024
+      "value": 10762817,
+      "year": 2025
     },
     {
       "countryCode": "SWE",
       "name": "Sweden",
-      "value": 10569709,
-      "year": 2024
+      "value": 10596620,
+      "year": 2025
     },
     {
       "countryCode": "GRC",
       "name": "Greece",
-      "value": 10405134,
-      "year": 2024
+      "value": 10413962,
+      "year": 2025
     },
     {
       "countryCode": "AZE",
       "name": "Azerbaijan",
-      "value": 10202830,
-      "year": 2024
+      "value": 10246996,
+      "year": 2025
     },
     {
       "countryCode": "ISR",
       "name": "Israel",
-      "value": 9974400,
-      "year": 2024
+      "value": 10122800,
+      "year": 2025
     },
     {
       "countryCode": "HUN",
       "name": "Hungary",
-      "value": 9562065,
-      "year": 2024
-    },
-    {
-      "countryCode": "TGO",
-      "name": "Togo",
-      "value": 9515236,
-      "year": 2024
+      "value": 9514251,
+      "year": 2025
     },
     {
       "countryCode": "AUT",
       "name": "Austria",
-      "value": 9177982,
-      "year": 2024
-    },
-    {
-      "countryCode": "BLR",
-      "name": "Belarus",
-      "value": 9132629,
-      "year": 2024
+      "value": 9208163,
+      "year": 2025
     },
     {
       "countryCode": "CHE",
       "name": "Switzerland",
-      "value": 9005582,
-      "year": 2024
+      "value": 9092436,
+      "year": 2025
+    },
+    {
+      "countryCode": "BLR",
+      "name": "Belarus",
+      "value": 9085991,
+      "year": 2025
     },
     {
       "countryCode": "SLE",
       "name": "Sierra Leone",
-      "value": 8642022,
-      "year": 2024
+      "value": 8819794,
+      "year": 2025
+    },
+    {
+      "countryCode": "TGO",
+      "name": "Togo",
+      "value": 8591626,
+      "year": 2025
     },
     {
       "countryCode": "LAO",
       "name": "Lao PDR",
-      "value": 7769819,
-      "year": 2024
-    },
-    {
-      "countryCode": "HKG",
-      "name": "Hong Kong SAR, China",
-      "value": 7524100,
-      "year": 2024
+      "value": 7873046,
+      "year": 2025
     },
     {
       "countryCode": "TKM",
       "name": "Turkmenistan",
-      "value": 7494498,
-      "year": 2024
+      "value": 7618847,
+      "year": 2025
+    },
+    {
+      "countryCode": "HKG",
+      "name": "Hong Kong SAR, China",
+      "value": 7498900,
+      "year": 2025
     },
     {
       "countryCode": "LBY",
       "name": "Libya",
-      "value": 7381023,
-      "year": 2024
+      "value": 7458555,
+      "year": 2025
     },
     {
       "countryCode": "KGZ",
       "name": "Kyrgyz Republic",
-      "value": 7221868,
-      "year": 2024
+      "value": 7343064,
+      "year": 2025
     },
     {
       "countryCode": "PRY",
       "name": "Paraguay",
-      "value": 6929153,
-      "year": 2024
+      "value": 7013078,
+      "year": 2025
     },
     {
       "countryCode": "NIC",
       "name": "Nicaragua",
-      "value": 6916140,
-      "year": 2024
+      "value": 7007502,
+      "year": 2025
     },
     {
       "countryCode": "SRB",
       "name": "Serbia",
-      "value": 6586476,
-      "year": 2024
-    },
-    {
-      "countryCode": "BGR",
-      "name": "Bulgaria",
-      "value": 6441421,
-      "year": 2024
-    },
-    {
-      "countryCode": "SLV",
-      "name": "El Salvador",
-      "value": 6338193,
-      "year": 2024
+      "value": 6549143,
+      "year": 2025
     },
     {
       "countryCode": "COG",
       "name": "Congo, Rep.",
-      "value": 6332961,
-      "year": 2024
+      "value": 6484437,
+      "year": 2025
+    },
+    {
+      "countryCode": "BGR",
+      "name": "Bulgaria",
+      "value": 6433302,
+      "year": 2025
+    },
+    {
+      "countryCode": "SLV",
+      "name": "El Salvador",
+      "value": 6365503,
+      "year": 2025
     },
     {
       "countryCode": "SGP",
       "name": "Singapore",
-      "value": 6036860,
-      "year": 2024
+      "value": 6111175,
+      "year": 2025
     },
     {
       "countryCode": "DNK",
       "name": "Denmark",
-      "value": 5976992,
-      "year": 2024
+      "value": 6009169,
+      "year": 2025
     },
     {
       "countryCode": "LBN",
       "name": "Lebanon",
-      "value": 5805962,
-      "year": 2024
-    },
-    {
-      "countryCode": "FIN",
-      "name": "Finland",
-      "value": 5619911,
-      "year": 2024
+      "value": 5849421,
+      "year": 2025
     },
     {
       "countryCode": "LBR",
       "name": "Liberia",
-      "value": 5612817,
-      "year": 2024
+      "value": 5731206,
+      "year": 2025
+    },
+    {
+      "countryCode": "FIN",
+      "name": "Finland",
+      "value": 5646436,
+      "year": 2025
     },
     {
       "countryCode": "NOR",
       "name": "Norway",
-      "value": 5572279,
-      "year": 2024
-    },
-    {
-      "countryCode": "SVK",
-      "name": "Slovak Republic",
-      "value": 5422069,
-      "year": 2024
-    },
-    {
-      "countryCode": "IRL",
-      "name": "Ireland",
-      "value": 5395790,
-      "year": 2024
+      "value": 5610870,
+      "year": 2025
     },
     {
       "countryCode": "CAF",
       "name": "Central African Republic",
-      "value": 5330690,
-      "year": 2024
-    },
-    {
-      "countryCode": "PSE",
-      "name": "West Bank and Gaza",
-      "value": 5289152,
-      "year": 2024
-    },
-    {
-      "countryCode": "NZL",
-      "name": "New Zealand",
-      "value": 5287500,
-      "year": 2024
+      "value": 5513282,
+      "year": 2025
     },
     {
       "countryCode": "OMN",
       "name": "Oman",
-      "value": 5281538,
-      "year": 2024
+      "value": 5494691,
+      "year": 2025
+    },
+    {
+      "countryCode": "IRL",
+      "name": "Ireland",
+      "value": 5484367,
+      "year": 2025
+    },
+    {
+      "countryCode": "SVK",
+      "name": "Slovak Republic",
+      "value": 5413813,
+      "year": 2025
+    },
+    {
+      "countryCode": "PSE",
+      "name": "West Bank and Gaza",
+      "value": 5413596,
+      "year": 2025
+    },
+    {
+      "countryCode": "NZL",
+      "name": "New Zealand",
+      "value": 5324700,
+      "year": 2025
     },
     {
       "countryCode": "MRT",
       "name": "Mauritania",
-      "value": 5169395,
-      "year": 2024
+      "value": 5315065,
+      "year": 2025
     },
     {
       "countryCode": "CRI",
       "name": "Costa Rica",
-      "value": 5129910,
-      "year": 2024
+      "value": 5152950,
+      "year": 2025
     },
     {
       "countryCode": "KWT",
       "name": "Kuwait",
-      "value": 4897263,
-      "year": 2024
+      "value": 4865298,
+      "year": 2025
     },
     {
       "countryCode": "PAN",
       "name": "Panama",
-      "value": 4515577,
-      "year": 2024
-    },
-    {
-      "countryCode": "HRV",
-      "name": "Croatia",
-      "value": 3866200,
-      "year": 2024
+      "value": 4571189,
+      "year": 2025
     },
     {
       "countryCode": "GEO",
       "name": "Georgia",
-      "value": 3699557,
-      "year": 2024
+      "value": 3935766,
+      "year": 2025
+    },
+    {
+      "countryCode": "HRV",
+      "name": "Croatia",
+      "value": 3876200,
+      "year": 2025
     },
     {
       "countryCode": "ERI",
       "name": "Eritrea",
-      "value": 3535603,
-      "year": 2024
+      "value": 3607003,
+      "year": 2025
     },
     {
       "countryCode": "MNG",
       "name": "Mongolia",
-      "value": 3524788,
-      "year": 2024
+      "value": 3568978,
+      "year": 2025
     },
     {
       "countryCode": "URY",
       "name": "Uruguay",
-      "value": 3386588,
-      "year": 2024
+      "value": 3384688,
+      "year": 2025
     },
     {
       "countryCode": "PRI",
       "name": "Puerto Rico (US)",
-      "value": 3203295,
-      "year": 2024
+      "value": 3184835,
+      "year": 2025
     },
     {
       "countryCode": "BIH",
       "name": "Bosnia and Herzegovina",
-      "value": 3164253,
-      "year": 2024
-    },
-    {
-      "countryCode": "ARM",
-      "name": "Armenia",
-      "value": 3033500,
-      "year": 2024
+      "value": 3140095,
+      "year": 2025
     },
     {
       "countryCode": "NAM",
       "name": "Namibia",
-      "value": 3030131,
-      "year": 2024
+      "value": 3092816,
+      "year": 2025
     },
     {
-      "countryCode": "LTU",
-      "name": "Lithuania",
-      "value": 2888278,
-      "year": 2024
+      "countryCode": "ARM",
+      "name": "Armenia",
+      "value": 3086700,
+      "year": 2025
     },
     {
       "countryCode": "QAT",
       "name": "Qatar",
-      "value": 2857822,
-      "year": 2024
+      "value": 2972215,
+      "year": 2025
+    },
+    {
+      "countryCode": "LTU",
+      "name": "Lithuania",
+      "value": 2888774,
+      "year": 2025
     },
     {
       "countryCode": "JAM",
       "name": "Jamaica",
-      "value": 2839175,
-      "year": 2024
+      "value": 2837077,
+      "year": 2025
     },
     {
       "countryCode": "GMB",
       "name": "Gambia, The",
-      "value": 2759988,
-      "year": 2024
+      "value": 2822093,
+      "year": 2025
     },
     {
       "countryCode": "GAB",
       "name": "Gabon",
-      "value": 2538952,
-      "year": 2024
+      "value": 2593130,
+      "year": 2025
     },
     {
       "countryCode": "BWA",
       "name": "Botswana",
-      "value": 2521139,
-      "year": 2024
-    },
-    {
-      "countryCode": "MDA",
-      "name": "Moldova",
-      "value": 2402306,
-      "year": 2024
-    },
-    {
-      "countryCode": "ALB",
-      "name": "Albania",
-      "value": 2377128,
-      "year": 2024
+      "value": 2562122,
+      "year": 2025
     },
     {
       "countryCode": "LSO",
       "name": "Lesotho",
-      "value": 2337423,
-      "year": 2024
+      "value": 2363325,
+      "year": 2025
+    },
+    {
+      "countryCode": "MDA",
+      "name": "Moldova",
+      "value": 2360527,
+      "year": 2025
+    },
+    {
+      "countryCode": "ALB",
+      "name": "Albania",
+      "value": 2349580,
+      "year": 2025
     },
     {
       "countryCode": "GNB",
       "name": "Guinea-Bissau",
-      "value": 2201352,
-      "year": 2024
+      "value": 2249515,
+      "year": 2025
     },
     {
       "countryCode": "SVN",
       "name": "Slovenia",
-      "value": 2127400,
-      "year": 2024
+      "value": 2130986,
+      "year": 2025
     },
     {
       "countryCode": "GNQ",
       "name": "Equatorial Guinea",
-      "value": 1892516,
-      "year": 2024
+      "value": 1938431,
+      "year": 2025
     },
     {
       "countryCode": "LVA",
       "name": "Latvia",
-      "value": 1866124,
-      "year": 2024
+      "value": 1847785,
+      "year": 2025
     },
     {
       "countryCode": "MKD",
       "name": "North Macedonia",
-      "value": 1824359,
-      "year": 2024
-    },
-    {
-      "countryCode": "XKX",
-      "name": "Kosovo",
-      "value": 1594353,
-      "year": 2024
+      "value": 1820909,
+      "year": 2025
     },
     {
       "countryCode": "BHR",
       "name": "Bahrain",
-      "value": 1588670,
-      "year": 2024
+      "value": 1600366,
+      "year": 2025
+    },
+    {
+      "countryCode": "XKX",
+      "name": "Kosovo",
+      "value": 1576876,
+      "year": 2025
     },
     {
       "countryCode": "TLS",
       "name": "Timor-Leste",
-      "value": 1400638,
-      "year": 2024
-    },
-    {
-      "countryCode": "EST",
-      "name": "Estonia",
-      "value": 1372341,
-      "year": 2024
-    },
-    {
-      "countryCode": "TTO",
-      "name": "Trinidad and Tobago",
-      "value": 1368333,
-      "year": 2024
+      "value": 1418517,
+      "year": 2025
     },
     {
       "countryCode": "CYP",
       "name": "Cyprus",
-      "value": 1358282,
-      "year": 2024
+      "value": 1370754,
+      "year": 2025
     },
     {
-      "countryCode": "MUS",
-      "name": "Mauritius",
-      "value": 1245779,
-      "year": 2024
+      "countryCode": "TTO",
+      "name": "Trinidad and Tobago",
+      "value": 1367764,
+      "year": 2025
+    },
+    {
+      "countryCode": "EST",
+      "name": "Estonia",
+      "value": 1366475,
+      "year": 2025
     },
     {
       "countryCode": "SWZ",
       "name": "Eswatini",
-      "value": 1242822,
-      "year": 2024
+      "value": 1256174,
+      "year": 2025
+    },
+    {
+      "countryCode": "MUS",
+      "name": "Mauritius",
+      "value": 1243741,
+      "year": 2025
     },
     {
       "countryCode": "DJI",
       "name": "Djibouti",
-      "value": 1168722,
-      "year": 2024
+      "value": 1184076,
+      "year": 2025
     },
     {
       "countryCode": "FJI",
       "name": "Fiji",
-      "value": 928784,
-      "year": 2024
+      "value": 933154,
+      "year": 2025
     },
     {
       "countryCode": "COM",
       "name": "Comoros",
-      "value": 866628,
-      "year": 2024
-    },
-    {
-      "countryCode": "GUY",
-      "name": "Guyana",
-      "value": 831087,
-      "year": 2024
+      "value": 882847,
+      "year": 2025
     },
     {
       "countryCode": "SLB",
       "name": "Solomon Islands",
-      "value": 819198,
-      "year": 2024
+      "value": 838645,
+      "year": 2025
+    },
+    {
+      "countryCode": "GUY",
+      "name": "Guyana",
+      "value": 835986,
+      "year": 2025
     },
     {
       "countryCode": "BTN",
       "name": "Bhutan",
-      "value": 791524,
-      "year": 2024
-    },
-    {
-      "countryCode": "MAC",
-      "name": "Macao SAR, China",
-      "value": 687000,
-      "year": 2024
+      "value": 796682,
+      "year": 2025
     },
     {
       "countryCode": "LUX",
       "name": "Luxembourg",
-      "value": 677012,
-      "year": 2024
+      "value": 686970,
+      "year": 2025
+    },
+    {
+      "countryCode": "MAC",
+      "name": "Macao SAR, China",
+      "value": 685900,
+      "year": 2025
     },
     {
       "countryCode": "SUR",
       "name": "Suriname",
-      "value": 634431,
-      "year": 2024
+      "value": 639850,
+      "year": 2025
     },
     {
       "countryCode": "MNE",
       "name": "Montenegro",
-      "value": 623525,
-      "year": 2024
+      "value": 623129,
+      "year": 2025
     },
     {
       "countryCode": "MLT",
       "name": "Malta",
-      "value": 568847,
-      "year": 2024
+      "value": 579704,
+      "year": 2025
     },
     {
       "countryCode": "MDV",
       "name": "Maldives",
-      "value": 527799,
-      "year": 2024
+      "value": 529676,
+      "year": 2025
     },
     {
       "countryCode": "CPV",
       "name": "Cabo Verde",
-      "value": 524877,
-      "year": 2024
+      "value": 527326,
+      "year": 2025
     },
     {
       "countryCode": "BRN",
       "name": "Brunei Darussalam",
-      "value": 462721,
-      "year": 2024
+      "value": 466330,
+      "year": 2025
     },
     {
       "countryCode": "BLZ",
       "name": "Belize",
-      "value": 417072,
-      "year": 2024
+      "value": 422924,
+      "year": 2025
     },
     {
       "countryCode": "BHS",
       "name": "Bahamas, The",
-      "value": 401283,
-      "year": 2024
+      "value": 403033,
+      "year": 2025
     },
     {
       "countryCode": "ISL",
       "name": "Iceland",
-      "value": 386506,
-      "year": 2024
+      "value": 392404,
+      "year": 2025
     },
     {
       "countryCode": "VUT",
       "name": "Vanuatu",
-      "value": 327777,
-      "year": 2024
+      "value": 335169,
+      "year": 2025
     },
     {
       "countryCode": "NCL",
       "name": "New Caledonia",
-      "value": 292639,
-      "year": 2024
+      "value": 295333,
+      "year": 2025
     },
     {
       "countryCode": "BRB",
       "name": "Barbados",
-      "value": 282467,
-      "year": 2024
+      "value": 282623,
+      "year": 2025
     },
     {
       "countryCode": "PYF",
       "name": "French Polynesia",
-      "value": 281807,
-      "year": 2024
+      "value": 282465,
+      "year": 2025
     },
     {
       "countryCode": "STP",
       "name": "Sao Tome and Principe",
-      "value": 235536,
-      "year": 2024
+      "value": 240254,
+      "year": 2025
     },
     {
       "countryCode": "WSM",
       "name": "Samoa",
-      "value": 218019,
-      "year": 2024
+      "value": 219306,
+      "year": 2025
     },
     {
       "countryCode": "LCA",
       "name": "St. Lucia",
-      "value": 179744,
-      "year": 2024
-    },
-    {
-      "countryCode": "CHI",
-      "name": "Channel Islands",
-      "value": 168126,
-      "year": 2024
+      "value": 180149,
+      "year": 2025
     },
     {
       "countryCode": "GUM",
       "name": "Guam",
-      "value": 167777,
-      "year": 2024
+      "value": 168999,
+      "year": 2025
+    },
+    {
+      "countryCode": "CHI",
+      "name": "Channel Islands",
+      "value": 168466,
+      "year": 2025
     },
     {
       "countryCode": "CUW",
       "name": "Curacao",
-      "value": 155967,
-      "year": 2024
+      "value": 156263,
+      "year": 2025
     },
     {
       "countryCode": "KIR",
       "name": "Kiribati",
-      "value": 134518,
-      "year": 2024
+      "value": 136488,
+      "year": 2025
     },
     {
       "countryCode": "SYC",
       "name": "Seychelles",
-      "value": 121354,
-      "year": 2024
+      "value": 122730,
+      "year": 2025
     },
     {
       "countryCode": "GRD",
       "name": "Grenada",
-      "value": 117207,
-      "year": 2024
+      "value": 117303,
+      "year": 2025
     },
     {
       "countryCode": "FSM",
       "name": "Micronesia, Fed. Sts.",
-      "value": 113160,
-      "year": 2024
+      "value": 113683,
+      "year": 2025
     },
     {
       "countryCode": "ABW",
       "name": "Aruba",
-      "value": 107995,
-      "year": 2024
+      "value": 108785,
+      "year": 2025
     },
     {
       "countryCode": "VIR",
       "name": "Virgin Islands (U.S.)",
-      "value": 104377,
-      "year": 2024
+      "value": 103792,
+      "year": 2025
     },
     {
       "countryCode": "TON",
       "name": "Tonga",
-      "value": 104175,
-      "year": 2024
+      "value": 103742,
+      "year": 2025
     },
     {
       "countryCode": "VCT",
       "name": "St. Vincent and the Grenadines",
-      "value": 100616,
-      "year": 2024
+      "value": 99924,
+      "year": 2025
     },
     {
       "countryCode": "ATG",
       "name": "Antigua and Barbuda",
-      "value": 93772,
-      "year": 2024
+      "value": 94209,
+      "year": 2025
     },
     {
       "countryCode": "IMN",
       "name": "Isle of Man",
-      "value": 84160,
-      "year": 2024
+      "value": 84118,
+      "year": 2025
     },
     {
       "countryCode": "AND",
       "name": "Andorra",
-      "value": 81938,
-      "year": 2024
+      "value": 82904,
+      "year": 2025
     },
     {
       "countryCode": "CYM",
       "name": "Cayman Islands",
-      "value": 74457,
-      "year": 2024
+      "value": 75844,
+      "year": 2025
     },
     {
       "countryCode": "DMA",
       "name": "Dominica",
-      "value": 66205,
-      "year": 2024
+      "value": 65871,
+      "year": 2025
     },
     {
       "countryCode": "BMU",
       "name": "Bermuda",
-      "value": 64636,
-      "year": 2024
+      "value": 64555,
+      "year": 2025
     },
     {
       "countryCode": "GRL",
       "name": "Greenland",
-      "value": 56836,
-      "year": 2024
+      "value": 56831,
+      "year": 2025
     },
     {
       "countryCode": "FRO",
       "name": "Faroe Islands",
-      "value": 54681,
-      "year": 2024
+      "value": 54900,
+      "year": 2025
     },
     {
       "countryCode": "KNA",
       "name": "St. Kitts and Nevis",
-      "value": 46843,
-      "year": 2024
-    },
-    {
-      "countryCode": "ASM",
-      "name": "American Samoa",
-      "value": 46765,
-      "year": 2024
+      "value": 46922,
+      "year": 2025
     },
     {
       "countryCode": "TCA",
       "name": "Turks and Caicos Islands",
-      "value": 46535,
-      "year": 2024
+      "value": 46855,
+      "year": 2025
     },
     {
-      "countryCode": "MNP",
-      "name": "Northern Mariana Islands",
-      "value": 44278,
-      "year": 2024
+      "countryCode": "ASM",
+      "name": "American Samoa",
+      "value": 46029,
+      "year": 2025
     },
     {
       "countryCode": "SXM",
       "name": "Sint Maarten (Dutch part)",
-      "value": 43350,
-      "year": 2024
+      "value": 43923,
+      "year": 2025
+    },
+    {
+      "countryCode": "MNP",
+      "name": "Northern Mariana Islands",
+      "value": 43541,
+      "year": 2025
     },
     {
       "countryCode": "LIE",
       "name": "Liechtenstein",
-      "value": 40450,
-      "year": 2024
-    },
-    {
-      "countryCode": "VGB",
-      "name": "British Virgin Islands",
-      "value": 39471,
-      "year": 2024
+      "value": 41024,
+      "year": 2025
     },
     {
       "countryCode": "GIB",
       "name": "Gibraltar",
-      "value": 39329,
-      "year": 2024
+      "value": 40126,
+      "year": 2025
+    },
+    {
+      "countryCode": "VGB",
+      "name": "British Virgin Islands",
+      "value": 39732,
+      "year": 2025
     },
     {
       "countryCode": "MCO",
       "name": "Monaco",
-      "value": 38631,
-      "year": 2024
+      "value": 38341,
+      "year": 2025
     },
     {
       "countryCode": "MHL",
       "name": "Marshall Islands",
-      "value": 37548,
-      "year": 2024
+      "value": 36282,
+      "year": 2025
     },
     {
       "countryCode": "SMR",
       "name": "San Marino",
-      "value": 33977,
-      "year": 2024
+      "value": 34109,
+      "year": 2025
     },
     {
       "countryCode": "MAF",
       "name": "St. Martin (French part)",
-      "value": 26129,
-      "year": 2024
+      "value": 24941,
+      "year": 2025
     },
     {
       "countryCode": "PLW",
       "name": "Palau",
-      "value": 17695,
-      "year": 2024
+      "value": 17663,
+      "year": 2025
     },
     {
       "countryCode": "NRU",
       "name": "Nauru",
-      "value": 11947,
-      "year": 2024
+      "value": 12025,
+      "year": 2025
     },
     {
       "countryCode": "TUV",
       "name": "Tuvalu",
-      "value": 9646,
-      "year": 2024
+      "value": 9492,
+      "year": 2025
     }
   ]
 }

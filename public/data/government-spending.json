@@ -3,7 +3,7 @@
     "source": "World Bank Open Data API",
     "description": "Government spending by function for selected countries converted to USD",
     "units": "USD",
-    "fetchedAt": "2026-06-28T04:12:20.099Z",
+    "fetchedAt": "2026-07-05T03:52:23.181Z",
     "totalEntries": 79
   },
   "data": [
@@ -11,7 +11,7 @@
       "country": "United States",
       "countryCode": "USA",
       "name": "United States - Total Government Expenditure (2023)",
-      "value": 6795281800000.006,
+      "value": 6795281800000.013,
       "year": 2023,
       "unit": "USD"
     },
@@ -19,7 +19,7 @@
       "country": "United States",
       "countryCode": "USA",
       "name": "United States - Interest Payments on Debt (2023)",
-      "value": 3520449645463.176,
+      "value": 3587440731786.2026,
       "year": 2023,
       "unit": "USD"
     },
@@ -27,7 +27,7 @@
       "country": "United States",
       "countryCode": "USA",
       "name": "United States - Health Expenditure (2023)",
-      "value": 2458237828873.51,
+      "value": 2505015950755.986,
       "year": 2023,
       "unit": "USD"
     },
@@ -35,7 +35,7 @@
       "country": "United States",
       "countryCode": "USA",
       "name": "United States - Compensation of Employees (Public Sector Wages) (2023)",
-      "value": 2213103649784.8867,
+      "value": 2255217082037.9526,
       "year": 2023,
       "unit": "USD"
     },
@@ -43,7 +43,7 @@
       "country": "United States",
       "countryCode": "USA",
       "name": "United States - Goods and Services Expenditure (2023)",
-      "value": 1770635781776.972,
+      "value": 1804329436408.9941,
       "year": 2023,
       "unit": "USD"
     },
@@ -51,7 +51,7 @@
       "country": "United States",
       "countryCode": "USA",
       "name": "United States - Education Expenditure (2021)",
-      "value": 1479339398766.1562,
+      "value": 1507489937289.4133,
       "year": 2021,
       "unit": "USD"
     },
@@ -83,7 +83,7 @@
       "country": "United States",
       "countryCode": "USA",
       "name": "United States - Military Expenditure (2023)",
-      "value": 901853855495.3369,
+      "value": 919015347795.6461,
       "year": 2023,
       "unit": "USD"
     },
@@ -91,7 +91,7 @@
       "country": "Japan",
       "countryCode": "JPN",
       "name": "Japan - Total Government Expenditure (2022)",
-      "value": 881866221327.6125,
+      "value": 879523347838.0685,
       "year": 2022,
       "unit": "USD"
     },
@@ -99,7 +99,7 @@
       "country": "India",
       "countryCode": "IND",
       "name": "India - Interest Payments on Debt (2022)",
-      "value": 845097053315.6351,
+      "value": 813141194694.7582,
       "year": 2022,
       "unit": "USD"
     },
@@ -115,7 +115,7 @@
       "country": "Brazil",
       "countryCode": "BRA",
       "name": "Brazil - Total Government Expenditure (2023)",
-      "value": 710608178480.5079,
+      "value": 710608144745.5507,
       "year": 2023,
       "unit": "USD"
     },
@@ -131,7 +131,7 @@
       "country": "Brazil",
       "countryCode": "BRA",
       "name": "Brazil - Social Protection Coverage (2022)",
-      "value": 619643438453.8615,
+      "value": 619643409037.0231,
       "year": 2022,
       "unit": "USD"
     },
@@ -163,7 +163,7 @@
       "country": "Brazil",
       "countryCode": "BRA",
       "name": "Brazil - Interest Payments on Debt (2023)",
-      "value": 528954011310.49054,
+      "value": 528953986199.0254,
       "year": 2023,
       "unit": "USD"
     },
@@ -171,7 +171,7 @@
       "country": "India",
       "countryCode": "IND",
       "name": "India - Total Government Expenditure (2022)",
-      "value": 485138593058.45447,
+      "value": 480606810398.8504,
       "year": 2022,
       "unit": "USD"
     },
@@ -192,19 +192,19 @@
       "unit": "USD"
     },
     {
-      "country": "India",
-      "countryCode": "IND",
-      "name": "India - Compensation of Employees (Public Sector Wages) (2022)",
-      "value": 438721978763.3911,
-      "year": 2022,
-      "unit": "USD"
-    },
-    {
       "country": "Germany",
       "countryCode": "DEU",
       "name": "Germany - Health Expenditure (2023)",
       "value": 423910178025.6654,
       "year": 2023,
+      "unit": "USD"
+    },
+    {
+      "country": "India",
+      "countryCode": "IND",
+      "name": "India - Compensation of Employees (Public Sector Wages) (2022)",
+      "value": 422132478809.23834,
+      "year": 2022,
       "unit": "USD"
     },
     {
@@ -219,7 +219,7 @@
       "country": "Mexico",
       "countryCode": "MEX",
       "name": "Mexico - Total Government Expenditure (2023)",
-      "value": 403014047084.8811,
+      "value": 403014047084.88116,
       "year": 2023,
       "unit": "USD"
     },
@@ -227,7 +227,7 @@
       "country": "Japan",
       "countryCode": "JPN",
       "name": "Japan - Health Expenditure (2023)",
-      "value": 383823016713.3098,
+      "value": 399463847198.6152,
       "year": 2023,
       "unit": "USD"
     },
@@ -251,7 +251,7 @@
       "country": "Mexico",
       "countryCode": "MEX",
       "name": "Mexico - Social Protection Coverage (2022)",
-      "value": 291421435007.4981,
+      "value": 290788258930.32135,
       "year": 2022,
       "unit": "USD"
     },
@@ -267,7 +267,7 @@
       "country": "Mexico",
       "countryCode": "MEX",
       "name": "Mexico - Interest Payments on Debt (2023)",
-      "value": 283551403939.6249,
+      "value": 282935327206.5601,
       "year": 2023,
       "unit": "USD"
     },
@@ -307,7 +307,7 @@
       "country": "India",
       "countryCode": "IND",
       "name": "India - Goods and Services Expenditure (2022)",
-      "value": 236334434051.95453,
+      "value": 227397863119.44586,
       "year": 2022,
       "unit": "USD"
     },
@@ -315,7 +315,7 @@
       "country": "Canada",
       "countryCode": "CAN",
       "name": "Canada - Compensation of Employees (Public Sector Wages) (2023)",
-      "value": 222349031921.18976,
+      "value": 224728108432.9742,
       "year": 2023,
       "unit": "USD"
     },
@@ -347,7 +347,7 @@
       "country": "Canada",
       "countryCode": "CAN",
       "name": "Canada - Health Expenditure (2023)",
-      "value": 170944549438.4193,
+      "value": 172773611426.55814,
       "year": 2023,
       "unit": "USD"
     },
@@ -355,7 +355,7 @@
       "country": "Canada",
       "countryCode": "CAN",
       "name": "Canada - Interest Payments on Debt (2023)",
-      "value": 165655990396.91418,
+      "value": 167428466185.92224,
       "year": 2023,
       "unit": "USD"
     },
@@ -363,7 +363,7 @@
       "country": "Mexico",
       "countryCode": "MEX",
       "name": "Mexico - Compensation of Employees (Public Sector Wages) (2023)",
-      "value": 165368476607.51807,
+      "value": 165009177836.9786,
       "year": 2023,
       "unit": "USD"
     },
@@ -387,23 +387,7 @@
       "country": "Canada",
       "countryCode": "CAN",
       "name": "Canada - Goods and Services Expenditure (2023)",
-      "value": 160128995778.84195,
-      "year": 2023,
-      "unit": "USD"
-    },
-    {
-      "country": "India",
-      "countryCode": "IND",
-      "name": "India - Education Expenditure (2022)",
-      "value": 149129229571.12823,
-      "year": 2022,
-      "unit": "USD"
-    },
-    {
-      "country": "Brazil",
-      "countryCode": "BRA",
-      "name": "Brazil - Compensation of Employees (Public Sector Wages) (2023)",
-      "value": 144081131197.52606,
+      "value": 161842334170.3853,
       "year": 2023,
       "unit": "USD"
     },
@@ -411,8 +395,24 @@
       "country": "Japan",
       "countryCode": "JPN",
       "name": "Japan - Education Expenditure (2021)",
-      "value": 140578218318.839,
+      "value": 146306796301.15817,
       "year": 2021,
+      "unit": "USD"
+    },
+    {
+      "country": "Brazil",
+      "countryCode": "BRA",
+      "name": "Brazil - Compensation of Employees (Public Sector Wages) (2023)",
+      "value": 144081124357.44504,
+      "year": 2023,
+      "unit": "USD"
+    },
+    {
+      "country": "India",
+      "countryCode": "IND",
+      "name": "India - Education Expenditure (2022)",
+      "value": 143490170059.89432,
+      "year": 2022,
       "unit": "USD"
     },
     {
@@ -427,7 +427,7 @@
       "country": "Brazil",
       "countryCode": "BRA",
       "name": "Brazil - Education Expenditure (2022)",
-      "value": 123124296016.95935,
+      "value": 123124290171.77924,
       "year": 2022,
       "unit": "USD"
     },
@@ -440,19 +440,19 @@
       "unit": "USD"
     },
     {
-      "country": "Mexico",
-      "countryCode": "MEX",
-      "name": "Mexico - Goods and Services Expenditure (2023)",
-      "value": 106470457728.40686,
-      "year": 2023,
-      "unit": "USD"
-    },
-    {
       "country": "Canada",
       "countryCode": "CAN",
       "name": "Canada - Education Expenditure (2022)",
-      "value": 105282228990.24033,
+      "value": 106408721315.99858,
       "year": 2022,
+      "unit": "USD"
+    },
+    {
+      "country": "Mexico",
+      "countryCode": "MEX",
+      "name": "Mexico - Goods and Services Expenditure (2023)",
+      "value": 106239127638.50475,
+      "year": 2023,
       "unit": "USD"
     },
     {
@@ -483,7 +483,7 @@
       "country": "Brazil",
       "countryCode": "BRA",
       "name": "Brazil - Health Expenditure (2023)",
-      "value": 94085492306.75218,
+      "value": 94085487840.15488,
       "year": 2023,
       "unit": "USD"
     },
@@ -499,7 +499,7 @@
       "country": "India",
       "countryCode": "IND",
       "name": "India - Military Expenditure (2023)",
-      "value": 85751702412.83678,
+      "value": 82509152615.68268,
       "year": 2023,
       "unit": "USD"
     },
@@ -523,7 +523,7 @@
       "country": "Mexico",
       "countryCode": "MEX",
       "name": "Mexico - Education Expenditure (2022)",
-      "value": 73009531867.65602,
+      "value": 72850902873.93329,
       "year": 2022,
       "unit": "USD"
     },
@@ -555,7 +555,7 @@
       "country": "Brazil",
       "countryCode": "BRA",
       "name": "Brazil - Goods and Services Expenditure (2023)",
-      "value": 52778904426.92442,
+      "value": 52778901921.30845,
       "year": 2023,
       "unit": "USD"
     },
@@ -568,26 +568,18 @@
       "unit": "USD"
     },
     {
-      "country": "Mexico",
-      "countryCode": "MEX",
-      "name": "Mexico - Health Expenditure (2023)",
-      "value": 48130393663.30441,
-      "year": 2023,
-      "unit": "USD"
-    },
-    {
       "country": "Japan",
       "countryCode": "JPN",
       "name": "Japan - Military Expenditure (2023)",
-      "value": 48010996337.60295,
+      "value": 49967449761.31192,
       "year": 2023,
       "unit": "USD"
     },
     {
-      "country": "India",
-      "countryCode": "IND",
-      "name": "India - Health Expenditure (2023)",
-      "value": 47416668737.826355,
+      "country": "Mexico",
+      "countryCode": "MEX",
+      "name": "Mexico - Health Expenditure (2023)",
+      "value": 48025819976.56815,
       "year": 2023,
       "unit": "USD"
     },
@@ -596,6 +588,14 @@
       "countryCode": "ESP",
       "name": "Spain - Goods and Services Expenditure (2023)",
       "value": 46840792805.75254,
+      "year": 2023,
+      "unit": "USD"
+    },
+    {
+      "country": "India",
+      "countryCode": "IND",
+      "name": "India - Health Expenditure (2023)",
+      "value": 45623690811.19169,
       "year": 2023,
       "unit": "USD"
     },
@@ -611,7 +611,7 @@
       "country": "Canada",
       "countryCode": "CAN",
       "name": "Canada - Military Expenditure (2023)",
-      "value": 27235546828.100708,
+      "value": 27526960058.84194,
       "year": 2023,
       "unit": "USD"
     },
@@ -627,7 +627,7 @@
       "country": "Brazil",
       "countryCode": "BRA",
       "name": "Brazil - Military Expenditure (2023)",
-      "value": 21963366622.21758,
+      "value": 21963365579.532764,
       "year": 2023,
       "unit": "USD"
     },
@@ -635,7 +635,7 @@
       "country": "Mexico",
       "countryCode": "MEX",
       "name": "Mexico - Military Expenditure (2023)",
-      "value": 11875583616.784695,
+      "value": 11849781343.700468,
       "year": 2023,
       "unit": "USD"
     }

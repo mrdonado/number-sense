@@ -5,838 +5,868 @@
     "indicatorName": "GDP (current US$)",
     "description": "Gross Domestic Product in current US Dollars",
     "units": "USD",
-    "fetchedAt": "2026-06-28T04:11:57.083Z",
+    "fetchedAt": "2026-07-05T03:49:31.990Z",
     "totalCountries": 210,
-    "latestYear": 2024
+    "latestYear": 2025
   },
   "data": [
     {
       "countryCode": "USA",
       "name": "United States (GDP)",
-      "value": 28750956130731.2,
-      "year": 2024
+      "value": 30769700000000,
+      "year": 2025
     },
     {
       "countryCode": "CHN",
       "name": "China (GDP)",
-      "value": 18743803170827.2,
-      "year": 2024
+      "value": 19498039388042.6,
+      "year": 2025
     },
     {
       "countryCode": "DEU",
       "name": "Germany (GDP)",
-      "value": 4685592577804.69,
-      "year": 2024
+      "value": 5050922925047.05,
+      "year": 2025
     },
     {
       "countryCode": "JPN",
       "name": "Japan (GDP)",
-      "value": 4027597523550.58,
-      "year": 2024
-    },
-    {
-      "countryCode": "IND",
-      "name": "India (GDP)",
-      "value": 3909891533858.08,
-      "year": 2024
+      "value": 4435162999976.94,
+      "year": 2025
     },
     {
       "countryCode": "GBR",
       "name": "United Kingdom (GDP)",
-      "value": 3686033044482.13,
-      "year": 2024
+      "value": 4002587541846.01,
+      "year": 2025
+    },
+    {
+      "countryCode": "IND",
+      "name": "India (GDP)",
+      "value": 3956067115771.63,
+      "year": 2025
     },
     {
       "countryCode": "FRA",
       "name": "France (GDP)",
-      "value": 3160442622465.08,
-      "year": 2024
-    },
-    {
-      "countryCode": "ITA",
-      "name": "Italy (GDP)",
-      "value": 2380825077243.59,
-      "year": 2024
-    },
-    {
-      "countryCode": "CAN",
-      "name": "Canada (GDP)",
-      "value": 2243636826633.76,
-      "year": 2024
-    },
-    {
-      "countryCode": "BRA",
-      "name": "Brazil (GDP)",
-      "value": 2185821648943.86,
-      "year": 2024
+      "value": 3366315927447.33,
+      "year": 2025
     },
     {
       "countryCode": "RUS",
       "name": "Russian Federation (GDP)",
-      "value": 2173835806671.66,
-      "year": 2024
+      "value": 2561310169358.74,
+      "year": 2025
     },
     {
-      "countryCode": "KOR",
-      "name": "Korea, Rep. (GDP)",
-      "value": 1875388209406.8,
-      "year": 2024
+      "countryCode": "ITA",
+      "name": "Italy (GDP)",
+      "value": 2551556954100.35,
+      "year": 2025
     },
     {
-      "countryCode": "MEX",
-      "name": "Mexico (GDP)",
-      "value": 1856365616165.94,
-      "year": 2024
+      "countryCode": "CAN",
+      "name": "Canada (GDP)",
+      "value": 2319899772425.92,
+      "year": 2025
     },
     {
-      "countryCode": "AUS",
-      "name": "Australia (GDP)",
-      "value": 1757022451652.83,
-      "year": 2024
+      "countryCode": "BRA",
+      "name": "Brazil (GDP)",
+      "value": 2279920092492.13,
+      "year": 2025
     },
     {
       "countryCode": "ESP",
       "name": "Spain (GDP)",
-      "value": 1725671652742.19,
-      "year": 2024
+      "value": 1906453309985.88,
+      "year": 2025
     },
     {
-      "countryCode": "IDN",
-      "name": "Indonesia (GDP)",
-      "value": 1396300098190.97,
-      "year": 2024
+      "countryCode": "KOR",
+      "name": "Korea, Rep. (GDP)",
+      "value": 1872374961553.15,
+      "year": 2025
+    },
+    {
+      "countryCode": "MEX",
+      "name": "Mexico (GDP)",
+      "value": 1832641364775.52,
+      "year": 2025
+    },
+    {
+      "countryCode": "AUS",
+      "name": "Australia (GDP)",
+      "value": 1798518933689.21,
+      "year": 2025
     },
     {
       "countryCode": "TUR",
       "name": "Turkiye (GDP)",
-      "value": 1359123768774.12,
-      "year": 2024
+      "value": 1597293229287,
+      "year": 2025
     },
     {
-      "countryCode": "SAU",
-      "name": "Saudi Arabia (GDP)",
-      "value": 1239804533333.33,
-      "year": 2024
+      "countryCode": "IDN",
+      "name": "Indonesia (GDP)",
+      "value": 1445642584163.81,
+      "year": 2025
     },
     {
       "countryCode": "NLD",
       "name": "Netherlands (GDP)",
-      "value": 1214927698572.66,
-      "year": 2024
+      "value": 1332767651100.39,
+      "year": 2025
+    },
+    {
+      "countryCode": "SAU",
+      "name": "Saudi Arabia (GDP)",
+      "value": 1276942933333.33,
+      "year": 2025
     },
     {
       "countryCode": "CHE",
       "name": "Switzerland (GDP)",
-      "value": 936564198048.516,
-      "year": 2024
+      "value": 1043529899250.92,
+      "year": 2025
     },
     {
       "countryCode": "POL",
       "name": "Poland (GDP)",
-      "value": 917767106146.761,
-      "year": 2024
+      "value": 1035491784197.44,
+      "year": 2025
     },
     {
       "countryCode": "BEL",
       "name": "Belgium (GDP)",
-      "value": 671370081636.406,
-      "year": 2024
-    },
-    {
-      "countryCode": "ARG",
-      "name": "Argentina (GDP)",
-      "value": 638365455340.04,
-      "year": 2024
+      "value": 725466462859.646,
+      "year": 2025
     },
     {
       "countryCode": "IRL",
       "name": "Ireland (GDP)",
-      "value": 609157459747.205,
-      "year": 2024
+      "value": 721701359046.313,
+      "year": 2025
+    },
+    {
+      "countryCode": "ARG",
+      "name": "Argentina (GDP)",
+      "value": 683097891618.597,
+      "year": 2025
     },
     {
       "countryCode": "SWE",
       "name": "Sweden (GDP)",
-      "value": 603715224265.798,
-      "year": 2024
-    },
-    {
-      "countryCode": "ARE",
-      "name": "United Arab Emirates (GDP)",
-      "value": 552324846834.581,
-      "year": 2024
-    },
-    {
-      "countryCode": "SGP",
-      "name": "Singapore (GDP)",
-      "value": 547386645891.847,
-      "year": 2024
+      "value": 668998664082.081,
+      "year": 2025
     },
     {
       "countryCode": "ISR",
       "name": "Israel (GDP)",
-      "value": 540379921261.681,
-      "year": 2024
+      "value": 610777842873.595,
+      "year": 2025
+    },
+    {
+      "countryCode": "SGP",
+      "name": "Singapore (GDP)",
+      "value": 603869516998.738,
+      "year": 2025
     },
     {
       "countryCode": "AUT",
       "name": "Austria (GDP)",
-      "value": 534790720466.822,
-      "year": 2024
+      "value": 579470021095.418,
+      "year": 2025
     },
     {
       "countryCode": "THA",
       "name": "Thailand (GDP)",
-      "value": 526517658841.684,
+      "value": 577009981112.015,
+      "year": 2025
+    },
+    {
+      "countryCode": "ARE",
+      "name": "United Arab Emirates (GDP)",
+      "value": 552324919095.872,
       "year": 2024
     },
     {
       "countryCode": "NOR",
       "name": "Norway (GDP)",
-      "value": 483592648313.301,
-      "year": 2024
+      "value": 530755719438.879,
+      "year": 2025
     },
     {
       "countryCode": "VNM",
       "name": "Viet Nam (GDP)",
-      "value": 476388230307.175,
-      "year": 2024
-    },
-    {
-      "countryCode": "IRN",
-      "name": "Iran, Islamic Rep. (GDP)",
-      "value": 475252089215.416,
-      "year": 2024
+      "value": 514697215165.065,
+      "year": 2025
     },
     {
       "countryCode": "PHL",
       "name": "Philippines (GDP)",
-      "value": 461617509782.355,
-      "year": 2024
-    },
-    {
-      "countryCode": "BGD",
-      "name": "Bangladesh (GDP)",
-      "value": 450119432068.852,
-      "year": 2024
-    },
-    {
-      "countryCode": "DNK",
-      "name": "Denmark (GDP)",
-      "value": 424524722037.047,
-      "year": 2024
+      "value": 487086123720.417,
+      "year": 2025
     },
     {
       "countryCode": "MYS",
       "name": "Malaysia (GDP)",
-      "value": 422227005428.688,
-      "year": 2024
+      "value": 472193128644.597,
+      "year": 2025
+    },
+    {
+      "countryCode": "DNK",
+      "name": "Denmark (GDP)",
+      "value": 462526660468.393,
+      "year": 2025
     },
     {
       "countryCode": "COL",
       "name": "Colombia (GDP)",
-      "value": 418818154879.271,
-      "year": 2024
+      "value": 457410034202.523,
+      "year": 2025
     },
     {
-      "countryCode": "HKG",
-      "name": "Hong Kong SAR, China (GDP)",
-      "value": 406863396487.342,
-      "year": 2024
-    },
-    {
-      "countryCode": "ZAF",
-      "name": "South Africa (GDP)",
-      "value": 401144998373.585,
-      "year": 2024
-    },
-    {
-      "countryCode": "EGY",
-      "name": "Egypt, Arab Rep. (GDP)",
-      "value": 389059911003.566,
-      "year": 2024
+      "countryCode": "BGD",
+      "name": "Bangladesh (GDP)",
+      "value": 456319229255.578,
+      "year": 2025
     },
     {
       "countryCode": "ROU",
       "name": "Romania (GDP)",
-      "value": 382564217988.866,
-      "year": 2024
+      "value": 428677977854.826,
+      "year": 2025
+    },
+    {
+      "countryCode": "HKG",
+      "name": "Hong Kong SAR, China (GDP)",
+      "value": 427310315921.993,
+      "year": 2025
+    },
+    {
+      "countryCode": "ZAF",
+      "name": "South Africa (GDP)",
+      "value": 427184325997.307,
+      "year": 2025
     },
     {
       "countryCode": "PAK",
       "name": "Pakistan (GDP)",
-      "value": 371570000121.266,
-      "year": 2024
+      "value": 407307214476.222,
+      "year": 2025
     },
     {
       "countryCode": "CZE",
       "name": "Czechia (GDP)",
-      "value": 347034062928.479,
-      "year": 2024
+      "value": 391026962800.475,
+      "year": 2025
+    },
+    {
+      "countryCode": "EGY",
+      "name": "Egypt, Arab Rep. (GDP)",
+      "value": 365254630179.737,
+      "year": 2025
+    },
+    {
+      "countryCode": "IRN",
+      "name": "Iran, Islamic Rep. (GDP)",
+      "value": 362682115433.364,
+      "year": 2025
     },
     {
       "countryCode": "CHL",
       "name": "Chile (GDP)",
-      "value": 330267137371.592,
-      "year": 2024
+      "value": 357371159574.862,
+      "year": 2025
     },
     {
       "countryCode": "PRT",
       "name": "Portugal (GDP)",
-      "value": 313271185085.102,
-      "year": 2024
-    },
-    {
-      "countryCode": "FIN",
-      "name": "Finland (GDP)",
-      "value": 298696961297.656,
-      "year": 2024
-    },
-    {
-      "countryCode": "KAZ",
-      "name": "Kazakhstan (GDP)",
-      "value": 291480274648.826,
-      "year": 2024
+      "value": 346639825141.821,
+      "year": 2025
     },
     {
       "countryCode": "PER",
       "name": "Peru (GDP)",
-      "value": 289221969062.941,
-      "year": 2024
+      "value": 334854659181.893,
+      "year": 2025
     },
     {
-      "countryCode": "IRQ",
-      "name": "Iraq (GDP)",
-      "value": 279641257615.385,
-      "year": 2024
+      "countryCode": "FIN",
+      "name": "Finland (GDP)",
+      "value": 317039368819.607,
+      "year": 2025
     },
     {
-      "countryCode": "DZA",
-      "name": "Algeria (GDP)",
-      "value": 269322281664.773,
-      "year": 2024
-    },
-    {
-      "countryCode": "NZL",
-      "name": "New Zealand (GDP)",
-      "value": 260172385097.616,
-      "year": 2024
-    },
-    {
-      "countryCode": "GRC",
-      "name": "Greece (GDP)",
-      "value": 256238371778.118,
-      "year": 2024
+      "countryCode": "KAZ",
+      "name": "Kazakhstan (GDP)",
+      "value": 306239209650.024,
+      "year": 2025
     },
     {
       "countryCode": "NGA",
       "name": "Nigeria (GDP)",
-      "value": 252261880141.151,
-      "year": 2024
+      "value": 290794361542.112,
+      "year": 2025
+    },
+    {
+      "countryCode": "DZA",
+      "name": "Algeria (GDP)",
+      "value": 287031225987.736,
+      "year": 2025
+    },
+    {
+      "countryCode": "GRC",
+      "name": "Greece (GDP)",
+      "value": 280635521324.441,
+      "year": 2025
+    },
+    {
+      "countryCode": "NZL",
+      "name": "New Zealand (GDP)",
+      "value": 264057413739.965,
+      "year": 2025
+    },
+    {
+      "countryCode": "IRQ",
+      "name": "Iraq (GDP)",
+      "value": 254367293538.462,
+      "year": 2025
     },
     {
       "countryCode": "HUN",
       "name": "Hungary (GDP)",
-      "value": 222722738925.641,
-      "year": 2024
+      "value": 246490213513.054,
+      "year": 2025
     },
     {
       "countryCode": "QAT",
       "name": "Qatar (GDP)",
-      "value": 219162637362.637,
-      "year": 2024
+      "value": 215559615384.615,
+      "year": 2025
     },
     {
       "countryCode": "UKR",
       "name": "Ukraine (GDP)",
-      "value": 190741262414.705,
-      "year": 2024
+      "value": 214233312784.397,
+      "year": 2025
     },
     {
       "countryCode": "MAR",
       "name": "Morocco (GDP)",
-      "value": 160610994054.734,
-      "year": 2024
+      "value": 182374250612.28,
+      "year": 2025
     },
     {
       "countryCode": "KWT",
       "name": "Kuwait (GDP)",
-      "value": 160227273053.334,
-      "year": 2024
-    },
-    {
-      "countryCode": "ETH",
-      "name": "Ethiopia (GDP)",
-      "value": 149740297952.986,
-      "year": 2024
+      "value": 157209026926.418,
+      "year": 2025
     },
     {
       "countryCode": "SVK",
       "name": "Slovak Republic (GDP)",
-      "value": 140934076532.375,
-      "year": 2024
-    },
-    {
-      "countryCode": "PRI",
-      "name": "Puerto Rico (US) (GDP)",
-      "value": 126029527033.705,
-      "year": 2024
-    },
-    {
-      "countryCode": "ECU",
-      "name": "Ecuador (GDP)",
-      "value": 124676074700,
-      "year": 2024
-    },
-    {
-      "countryCode": "DOM",
-      "name": "Dominican Republic (GDP)",
-      "value": 124282245638.568,
-      "year": 2024
-    },
-    {
-      "countryCode": "KEN",
-      "name": "Kenya (GDP)",
-      "value": 120339557905.932,
-      "year": 2024
-    },
-    {
-      "countryCode": "VEN",
-      "name": "Venezuela, RB (GDP)",
-      "value": 119802963257.783,
-      "year": 2024
+      "value": 154530066506.895,
+      "year": 2025
     },
     {
       "countryCode": "UZB",
       "name": "Uzbekistan (GDP)",
-      "value": 114965293466.611,
-      "year": 2024
+      "value": 147038081129.405,
+      "year": 2025
+    },
+    {
+      "countryCode": "KEN",
+      "name": "Kenya (GDP)",
+      "value": 135941278878.815,
+      "year": 2025
     },
     {
       "countryCode": "BGR",
       "name": "Bulgaria (GDP)",
-      "value": 113343355779.985,
-      "year": 2024
+      "value": 130777235529.606,
+      "year": 2025
+    },
+    {
+      "countryCode": "ECU",
+      "name": "Ecuador (GDP)",
+      "value": 130320560400,
+      "year": 2025
+    },
+    {
+      "countryCode": "PRI",
+      "name": "Puerto Rico (US) (GDP)",
+      "value": 129368484000,
+      "year": 2025
+    },
+    {
+      "countryCode": "DOM",
+      "name": "Dominican Republic (GDP)",
+      "value": 127407463759.043,
+      "year": 2025
+    },
+    {
+      "countryCode": "ETH",
+      "name": "Ethiopia (GDP)",
+      "value": 126358758448.356,
+      "year": 2025
     },
     {
       "countryCode": "GTM",
       "name": "Guatemala (GDP)",
-      "value": 113199581158.203,
-      "year": 2024
-    },
-    {
-      "countryCode": "OMN",
-      "name": "Oman (GDP)",
-      "value": 107137198769.386,
-      "year": 2024
+      "value": 123306008821.471,
+      "year": 2025
     },
     {
       "countryCode": "AGO",
       "name": "Angola (GDP)",
-      "value": 100998916781.079,
-      "year": 2024
-    },
-    {
-      "countryCode": "LKA",
-      "name": "Sri Lanka (GDP)",
-      "value": 98963185509.6499,
-      "year": 2024
-    },
-    {
-      "countryCode": "CRI",
-      "name": "Costa Rica (GDP)",
-      "value": 95350423176.5962,
-      "year": 2024
-    },
-    {
-      "countryCode": "LUX",
-      "name": "Luxembourg (GDP)",
-      "value": 93279851863.4062,
-      "year": 2024
-    },
-    {
-      "countryCode": "HRV",
-      "name": "Croatia (GDP)",
-      "value": 92983810328.9088,
-      "year": 2024
-    },
-    {
-      "countryCode": "SRB",
-      "name": "Serbia (GDP)",
-      "value": 90097765959.1114,
-      "year": 2024
-    },
-    {
-      "countryCode": "CIV",
-      "name": "Cote d'Ivoire (GDP)",
-      "value": 87113179149.284,
-      "year": 2024
-    },
-    {
-      "countryCode": "PAN",
-      "name": "Panama (GDP)",
-      "value": 86523959131.7472,
-      "year": 2024
-    },
-    {
-      "countryCode": "LTU",
-      "name": "Lithuania (GDP)",
-      "value": 84869215513.3648,
-      "year": 2024
+      "value": 122174889423.635,
+      "year": 2025
     },
     {
       "countryCode": "GHA",
       "name": "Ghana (GDP)",
-      "value": 82308110386.4641,
-      "year": 2024
+      "value": 114209905278.717,
+      "year": 2025
     },
     {
-      "countryCode": "URY",
-      "name": "Uruguay (GDP)",
-      "value": 80961511073.5797,
-      "year": 2024
+      "countryCode": "OMN",
+      "name": "Oman (GDP)",
+      "value": 109604780696.23,
+      "year": 2025
     },
     {
-      "countryCode": "TZA",
-      "name": "Tanzania (GDP)",
-      "value": 78844405385.2195,
-      "year": 2024
+      "countryCode": "LKA",
+      "name": "Sri Lanka (GDP)",
+      "value": 108825231671.196,
+      "year": 2025
+    },
+    {
+      "countryCode": "HRV",
+      "name": "Croatia (GDP)",
+      "value": 105060182186.274,
+      "year": 2025
+    },
+    {
+      "countryCode": "CRI",
+      "name": "Costa Rica (GDP)",
+      "value": 102904921157.478,
+      "year": 2025
+    },
+    {
+      "countryCode": "LUX",
+      "name": "Luxembourg (GDP)",
+      "value": 101157829491.107,
+      "year": 2025
+    },
+    {
+      "countryCode": "SRB",
+      "name": "Serbia (GDP)",
+      "value": 99953324472.9042,
+      "year": 2025
+    },
+    {
+      "countryCode": "CIV",
+      "name": "Cote d'Ivoire (GDP)",
+      "value": 99773555666.1988,
+      "year": 2025
+    },
+    {
+      "countryCode": "VEN",
+      "name": "Venezuela, RB (GDP)",
+      "value": 99661244155.6306,
+      "year": 2025
+    },
+    {
+      "countryCode": "LTU",
+      "name": "Lithuania (GDP)",
+      "value": 95210150818.3512,
+      "year": 2025
     },
     {
       "countryCode": "BLR",
       "name": "Belarus (GDP)",
-      "value": 75961865471.9129,
-      "year": 2024
-    },
-    {
-      "countryCode": "AZE",
-      "name": "Azerbaijan (GDP)",
-      "value": 74315882352.9412,
-      "year": 2024
-    },
-    {
-      "countryCode": "MMR",
-      "name": "Myanmar (GDP)",
-      "value": 74068349523.8095,
-      "year": 2024
-    },
-    {
-      "countryCode": "SVN",
-      "name": "Slovenia (GDP)",
-      "value": 72972015197.3859,
-      "year": 2024
+      "value": 93397215864.198,
+      "year": 2025
     },
     {
       "countryCode": "COD",
       "name": "Congo, Dem. Rep. (GDP)",
-      "value": 70962185790.7094,
-      "year": 2024
+      "value": 91030531316.9936,
+      "year": 2025
+    },
+    {
+      "countryCode": "PAN",
+      "name": "Panama (GDP)",
+      "value": 90462600000,
+      "year": 2025
+    },
+    {
+      "countryCode": "TZA",
+      "name": "Tanzania (GDP)",
+      "value": 90143496090.4411,
+      "year": 2025
+    },
+    {
+      "countryCode": "URY",
+      "name": "Uruguay (GDP)",
+      "value": 85347696277.6859,
+      "year": 2025
+    },
+    {
+      "countryCode": "MMR",
+      "name": "Myanmar (GDP)",
+      "value": 81665773809.5238,
+      "year": 2025
+    },
+    {
+      "countryCode": "SVN",
+      "name": "Slovenia (GDP)",
+      "value": 79648204979.3618,
+      "year": 2025
+    },
+    {
+      "countryCode": "AZE",
+      "name": "Azerbaijan (GDP)",
+      "value": 75937647058.8235,
+      "year": 2025
     },
     {
       "countryCode": "BOL",
       "name": "Bolivia (GDP)",
-      "value": 54881327452.9667,
-      "year": 2024
+      "value": 64768947525.3256,
+      "year": 2025
     },
     {
       "countryCode": "UGA",
       "name": "Uganda (GDP)",
-      "value": 53911907086.1525,
-      "year": 2024
+      "value": 61985829288.1496,
+      "year": 2025
     },
     {
       "countryCode": "JOR",
       "name": "Jordan (GDP)",
-      "value": 53352289577.4648,
-      "year": 2024
-    },
-    {
-      "countryCode": "CMR",
-      "name": "Cameroon (GDP)",
-      "value": 53296694320.2057,
-      "year": 2024
-    },
-    {
-      "countryCode": "TKM",
-      "name": "Turkmenistan (GDP)",
-      "value": 51387209872.2994,
-      "year": 2024
-    },
-    {
-      "countryCode": "TUN",
-      "name": "Tunisia (GDP)",
-      "value": 51332285656.5422,
-      "year": 2024
+      "value": 61610052535.2113,
+      "year": 2025
     },
     {
       "countryCode": "SDN",
       "name": "Sudan (GDP)",
-      "value": 49672435513.1126,
-      "year": 2024
+      "value": 60162634574.4689,
+      "year": 2025
+    },
+    {
+      "countryCode": "CMR",
+      "name": "Cameroon (GDP)",
+      "value": 58933453923.761,
+      "year": 2025
+    },
+    {
+      "countryCode": "TUN",
+      "name": "Tunisia (GDP)",
+      "value": 57502836548.0878,
+      "year": 2025
     },
     {
       "countryCode": "MAC",
       "name": "Macao SAR, China (GDP)",
-      "value": 49467258923.3244,
-      "year": 2024
-    },
-    {
-      "countryCode": "LBY",
-      "name": "Libya (GDP)",
-      "value": 48487151215.345,
-      "year": 2024
-    },
-    {
-      "countryCode": "BHR",
-      "name": "Bahrain (GDP)",
-      "value": 47109734308.5106,
-      "year": 2024
+      "value": 52061007670.169,
+      "year": 2025
     },
     {
       "countryCode": "KHM",
       "name": "Cambodia (GDP)",
-      "value": 46352647037.2406,
-      "year": 2024
-    },
-    {
-      "countryCode": "PRY",
-      "name": "Paraguay (GDP)",
-      "value": 44458118397.4445,
-      "year": 2024
-    },
-    {
-      "countryCode": "LVA",
-      "name": "Latvia (GDP)",
-      "value": 43684254432.3609,
-      "year": 2024
-    },
-    {
-      "countryCode": "EST",
-      "name": "Estonia (GDP)",
-      "value": 43130419829.35,
-      "year": 2024
-    },
-    {
-      "countryCode": "NPL",
-      "name": "Nepal (GDP)",
-      "value": 42914268286.7109,
-      "year": 2024
+      "value": 51267065842.9641,
+      "year": 2025
     },
     {
       "countryCode": "ZWE",
       "name": "Zimbabwe (GDP)",
-      "value": 41539411516.4448,
-      "year": 2024
+      "value": 51215643905.5886,
+      "year": 2025
+    },
+    {
+      "countryCode": "TKM",
+      "name": "Turkmenistan (GDP)",
+      "value": 49828621355.6516,
+      "year": 2025
+    },
+    {
+      "countryCode": "PRY",
+      "name": "Paraguay (GDP)",
+      "value": 49278227554.3339,
+      "year": 2025
+    },
+    {
+      "countryCode": "BHR",
+      "name": "Bahrain (GDP)",
+      "value": 48965725531.9149,
+      "year": 2025
+    },
+    {
+      "countryCode": "LVA",
+      "name": "Latvia (GDP)",
+      "value": 48618869160.3254,
+      "year": 2025
+    },
+    {
+      "countryCode": "LBY",
+      "name": "Libya (GDP)",
+      "value": 48098909613.6316,
+      "year": 2025
+    },
+    {
+      "countryCode": "EST",
+      "name": "Estonia (GDP)",
+      "value": 47030833798.5866,
+      "year": 2025
+    },
+    {
+      "countryCode": "NPL",
+      "name": "Nepal (GDP)",
+      "value": 45489810283.1132,
+      "year": 2025
     },
     {
       "countryCode": "CYP",
       "name": "Cyprus (GDP)",
-      "value": 37634533331.8902,
-      "year": 2024
+      "value": 41225787247.3309,
+      "year": 2025
     },
     {
       "countryCode": "HND",
       "name": "Honduras (GDP)",
-      "value": 37093565854.0437,
-      "year": 2024
-    },
-    {
-      "countryCode": "SLV",
-      "name": "El Salvador (GDP)",
-      "value": 35364960000,
-      "year": 2024
-    },
-    {
-      "countryCode": "GEO",
-      "name": "Georgia (GDP)",
-      "value": 34189423544.9955,
-      "year": 2024
+      "value": 39601409103.3005,
+      "year": 2025
     },
     {
       "countryCode": "ISL",
       "name": "Iceland (GDP)",
-      "value": 33255181468.9382,
-      "year": 2024
+      "value": 38582528789.0033,
+      "year": 2025
+    },
+    {
+      "countryCode": "GEO",
+      "name": "Georgia (GDP)",
+      "value": 38143612855.1367,
+      "year": 2025
     },
     {
       "countryCode": "SEN",
       "name": "Senegal (GDP)",
-      "value": 32808056600.9436,
-      "year": 2024
+      "value": 37006536238.3731,
+      "year": 2025
     },
     {
-      "countryCode": "PNG",
-      "name": "Papua New Guinea (GDP)",
-      "value": 31800428265.5246,
-      "year": 2024
+      "countryCode": "SLV",
+      "name": "El Salvador (GDP)",
+      "value": 36708110000,
+      "year": 2025
     },
     {
       "countryCode": "BIH",
       "name": "Bosnia and Herzegovina (GDP)",
-      "value": 29613572022.8993,
-      "year": 2024
+      "value": 32599982936.3931,
+      "year": 2025
+    },
+    {
+      "countryCode": "PNG",
+      "name": "Papua New Guinea (GDP)",
+      "value": 32498658653.8415,
+      "year": 2025
+    },
+    {
+      "countryCode": "HTI",
+      "name": "Haiti (GDP)",
+      "value": 32077278409.2339,
+      "year": 2025
     },
     {
       "countryCode": "ALB",
       "name": "Albania (GDP)",
-      "value": 27046429296.6673,
-      "year": 2024
+      "value": 30540188271.3421,
+      "year": 2025
     },
     {
       "countryCode": "MLI",
       "name": "Mali (GDP)",
-      "value": 26794747239.8805,
-      "year": 2024
+      "value": 30069148580.7688,
+      "year": 2025
     },
     {
       "countryCode": "ARM",
       "name": "Armenia (GDP)",
-      "value": 25955275380.0321,
+      "value": 29243452882.3545,
+      "year": 2025
+    },
+    {
+      "countryCode": "ZMB",
+      "name": "Zambia (GDP)",
+      "value": 28879806220.1264,
+      "year": 2025
+    },
+    {
+      "countryCode": "GIN",
+      "name": "Guinea (GDP)",
+      "value": 28346024753.2924,
+      "year": 2025
+    },
+    {
+      "countryCode": "MLT",
+      "name": "Malta (GDP)",
+      "value": 27771821560.9411,
+      "year": 2025
+    },
+    {
+      "countryCode": "BFA",
+      "name": "Burkina Faso (GDP)",
+      "value": 27627297461.3181,
+      "year": 2025
+    },
+    {
+      "countryCode": "GUY",
+      "name": "Guyana (GDP)",
+      "value": 27097477218.2254,
+      "year": 2025
+    },
+    {
+      "countryCode": "LBN",
+      "name": "Lebanon (GDP)",
+      "value": 25971643441.3408,
       "year": 2024
     },
     {
       "countryCode": "TTO",
       "name": "Trinidad and Tobago (GDP)",
-      "value": 25633544529.4849,
-      "year": 2024
-    },
-    {
-      "countryCode": "ZMB",
-      "name": "Zambia (GDP)",
-      "value": 25303185342.2511,
-      "year": 2024
-    },
-    {
-      "countryCode": "HTI",
-      "name": "Haiti (GDP)",
-      "value": 25224154990.7946,
-      "year": 2024
-    },
-    {
-      "countryCode": "GIN",
-      "name": "Guinea (GDP)",
-      "value": 25008678293.4084,
-      "year": 2024
-    },
-    {
-      "countryCode": "MLT",
-      "name": "Malta (GDP)",
-      "value": 24971574502.4475,
-      "year": 2024
-    },
-    {
-      "countryCode": "GUY",
-      "name": "Guyana (GDP)",
-      "value": 24662709832.1343,
-      "year": 2024
+      "value": 25942749718.4685,
+      "year": 2025
     },
     {
       "countryCode": "MNG",
       "name": "Mongolia (GDP)",
-      "value": 23794540024.5132,
-      "year": 2024
-    },
-    {
-      "countryCode": "SYR",
-      "name": "Syrian Arab Republic (GDP)",
-      "value": 23622827079.5047,
-      "year": 2022
-    },
-    {
-      "countryCode": "BFA",
-      "name": "Burkina Faso (GDP)",
-      "value": 23124729853.0218,
-      "year": 2024
-    },
-    {
-      "countryCode": "MOZ",
-      "name": "Mozambique (GDP)",
-      "value": 22745341305.0622,
-      "year": 2024
-    },
-    {
-      "countryCode": "JAM",
-      "name": "Jamaica (GDP)",
-      "value": 22014397089.7689,
-      "year": 2024
+      "value": 25369107325.4549,
+      "year": 2025
     },
     {
       "countryCode": "BEN",
       "name": "Benin (GDP)",
-      "value": 21482643706.4249,
-      "year": 2024
+      "value": 24566420903.5337,
+      "year": 2025
     },
     {
-      "countryCode": "GAB",
-      "name": "Gabon (GDP)",
-      "value": 20895684425.6752,
-      "year": 2024
+      "countryCode": "SYR",
+      "name": "Syrian Arab Republic (GDP)",
+      "value": 23737634644.3994,
+      "year": 2022
     },
     {
-      "countryCode": "LBN",
-      "name": "Lebanon (GDP)",
-      "value": 20078620356.9931,
-      "year": 2023
-    },
-    {
-      "countryCode": "NER",
-      "name": "Niger (GDP)",
-      "value": 19876128485.7857,
-      "year": 2024
-    },
-    {
-      "countryCode": "NIC",
-      "name": "Nicaragua (GDP)",
-      "value": 19693982967.5926,
-      "year": 2024
-    },
-    {
-      "countryCode": "TCD",
-      "name": "Chad (GDP)",
-      "value": 19518819751.283,
-      "year": 2024
-    },
-    {
-      "countryCode": "BWA",
-      "name": "Botswana (GDP)",
-      "value": 19402063512.9066,
-      "year": 2024
-    },
-    {
-      "countryCode": "MDA",
-      "name": "Moldova (GDP)",
-      "value": 18200340853.6517,
-      "year": 2024
+      "countryCode": "JAM",
+      "name": "Jamaica (GDP)",
+      "value": 22704903217.5631,
+      "year": 2025
     },
     {
       "countryCode": "KGZ",
       "name": "Kyrgyz Republic (GDP)",
-      "value": 17478259659.2625,
-      "year": 2024
+      "value": 22623752095.4613,
+      "year": 2025
+    },
+    {
+      "countryCode": "MOZ",
+      "name": "Mozambique (GDP)",
+      "value": 22337997046.1913,
+      "year": 2025
+    },
+    {
+      "countryCode": "NIC",
+      "name": "Nicaragua (GDP)",
+      "value": 22237167113.0916,
+      "year": 2025
+    },
+    {
+      "countryCode": "NER",
+      "name": "Niger (GDP)",
+      "value": 21646191388.2507,
+      "year": 2025
+    },
+    {
+      "countryCode": "TCD",
+      "name": "Chad (GDP)",
+      "value": 21472835225.4338,
+      "year": 2025
+    },
+    {
+      "countryCode": "GAB",
+      "name": "Gabon (GDP)",
+      "value": 21427119323.2764,
+      "year": 2025
+    },
+    {
+      "countryCode": "MDA",
+      "name": "Moldova (GDP)",
+      "value": 20351796275.2943,
+      "year": 2025
+    },
+    {
+      "countryCode": "BWA",
+      "name": "Botswana (GDP)",
+      "value": 19928479839.4476,
+      "year": 2025
     },
     {
       "countryCode": "MDG",
       "name": "Madagascar (GDP)",
-      "value": 17420501490.1231,
-      "year": 2024
-    },
-    {
-      "countryCode": "AFG",
-      "name": "Afghanistan (GDP)",
-      "value": 17152234636.8715,
-      "year": 2023
+      "value": 19620352035.7899,
+      "year": 2025
     },
     {
       "countryCode": "MKD",
       "name": "North Macedonia (GDP)",
-      "value": 16951682245.4202,
-      "year": 2024
+      "value": 19101199817.0174,
+      "year": 2025
     },
     {
       "countryCode": "LAO",
       "name": "Lao PDR (GDP)",
-      "value": 16502933121.3379,
+      "value": 18302970218.5902,
+      "year": 2025
+    },
+    {
+      "countryCode": "AFG",
+      "name": "Afghanistan (GDP)",
+      "value": 17778508875.7396,
       "year": 2024
+    },
+    {
+      "countryCode": "TJK",
+      "name": "Tajikistan (GDP)",
+      "value": 17660626562.4832,
+      "year": 2025
+    },
+    {
+      "countryCode": "PSE",
+      "name": "West Bank and Gaza (GDP)",
+      "value": 17167100000,
+      "year": 2025
+    },
+    {
+      "countryCode": "RWA",
+      "name": "Rwanda (GDP)",
+      "value": 16372132990.2271,
+      "year": 2025
+    },
+    {
+      "countryCode": "COG",
+      "name": "Congo, Rep. (GDP)",
+      "value": 16306633778.765,
+      "year": 2025
+    },
+    {
+      "countryCode": "MUS",
+      "name": "Mauritius (GDP)",
+      "value": 16157804491.7614,
+      "year": 2025
     },
     {
       "countryCode": "BHS",
@@ -845,52 +875,34 @@
       "year": 2024
     },
     {
-      "countryCode": "COG",
-      "name": "Congo, Rep. (GDP)",
-      "value": 15719986076.6464,
-      "year": 2024
+      "countryCode": "NAM",
+      "name": "Namibia (GDP)",
+      "value": 15080340653.5276,
+      "year": 2025
     },
     {
       "countryCode": "BRN",
       "name": "Brunei Darussalam (GDP)",
-      "value": 15340808592.48,
-      "year": 2024
+      "value": 15031980994.1121,
+      "year": 2025
     },
     {
-      "countryCode": "MUS",
-      "name": "Mauritius (GDP)",
-      "value": 14937861786.17,
-      "year": 2024
+      "countryCode": "MWI",
+      "name": "Malawi (GDP)",
+      "value": 14918276698.303,
+      "year": 2025
     },
     {
-      "countryCode": "RWA",
-      "name": "Rwanda (GDP)",
-      "value": 14251642235.0968,
-      "year": 2024
-    },
-    {
-      "countryCode": "TJK",
-      "name": "Tajikistan (GDP)",
-      "value": 14204575548.5536,
-      "year": 2024
-    },
-    {
-      "countryCode": "PSE",
-      "name": "West Bank and Gaza (GDP)",
-      "value": 13711100000,
-      "year": 2024
-    },
-    {
-      "countryCode": "NAM",
-      "name": "Namibia (GDP)",
-      "value": 13372354511.716,
-      "year": 2024
+      "countryCode": "SOM",
+      "name": "Somalia, Fed. Rep. (GDP)",
+      "value": 12995200000.2658,
+      "year": 2025
     },
     {
       "countryCode": "GNQ",
       "name": "Equatorial Guinea (GDP)",
-      "value": 12765777677.0622,
-      "year": 2024
+      "value": 12823210425.9217,
+      "year": 2025
     },
     {
       "countryCode": "CHI",
@@ -899,45 +911,45 @@
       "year": 2023
     },
     {
-      "countryCode": "SOM",
-      "name": "Somalia, Fed. Rep. (GDP)",
-      "value": 11967000000,
-      "year": 2024
-    },
-    {
-      "countryCode": "MWI",
-      "name": "Malawi (GDP)",
-      "value": 11316411329.4619,
-      "year": 2024
-    },
-    {
       "countryCode": "XKX",
       "name": "Kosovo (GDP)",
-      "value": 11197246322.588,
-      "year": 2024
-    },
-    {
-      "countryCode": "MCO",
-      "name": "Monaco (GDP)",
-      "value": 11125783372.4794,
-      "year": 2024
-    },
-    {
-      "countryCode": "MRT",
-      "name": "Mauritania (GDP)",
-      "value": 10908045686.8808,
-      "year": 2024
+      "value": 12456403306.8191,
+      "year": 2025
     },
     {
       "countryCode": "TGO",
       "name": "Togo (GDP)",
-      "value": 10651180146.531,
+      "value": 11889949067.4697,
+      "year": 2025
+    },
+    {
+      "countryCode": "MRT",
+      "name": "Mauritania (GDP)",
+      "value": 11679910946.4371,
+      "year": 2025
+    },
+    {
+      "countryCode": "MCO",
+      "name": "Monaco (GDP)",
+      "value": 11125788838.2812,
       "year": 2024
+    },
+    {
+      "countryCode": "MNE",
+      "name": "Montenegro (GDP)",
+      "value": 9232801464.79257,
+      "year": 2025
     },
     {
       "countryCode": "BMU",
       "name": "Bermuda (GDP)",
-      "value": 9233600000,
+      "value": 9194499000,
+      "year": 2024
+    },
+    {
+      "countryCode": "LIE",
+      "name": "Liechtenstein (GDP)",
+      "value": 8905764270.4054,
       "year": 2024
     },
     {
@@ -947,46 +959,34 @@
       "year": 2024
     },
     {
-      "countryCode": "MNE",
-      "name": "Montenegro (GDP)",
-      "value": 8270016670.86774,
-      "year": 2024
-    },
-    {
-      "countryCode": "LIE",
-      "name": "Liechtenstein (GDP)",
-      "value": 8239379403.22096,
-      "year": 2023
-    },
-    {
       "countryCode": "BRB",
       "name": "Barbados (GDP)",
-      "value": 7498050000,
-      "year": 2024
-    },
-    {
-      "countryCode": "IMN",
-      "name": "Isle of Man (GDP)",
-      "value": 7431257410.92713,
-      "year": 2022
+      "value": 8016550000,
+      "year": 2025
     },
     {
       "countryCode": "CYM",
       "name": "Cayman Islands (GDP)",
-      "value": 7241244269.45972,
-      "year": 2023
+      "value": 7765336505.34319,
+      "year": 2024
     },
     {
       "countryCode": "MDV",
       "name": "Maldives (GDP)",
-      "value": 7061608267.25451,
-      "year": 2024
+      "value": 7741066860.6337,
+      "year": 2025
+    },
+    {
+      "countryCode": "IMN",
+      "name": "Isle of Man (GDP)",
+      "value": 7576129932.79381,
+      "year": 2023
     },
     {
       "countryCode": "SLE",
       "name": "Sierra Leone (GDP)",
-      "value": 6971127235.3123,
-      "year": 2024
+      "value": 7464157904.43509,
+      "year": 2025
     },
     {
       "countryCode": "GUM",
@@ -1003,20 +1003,20 @@
     {
       "countryCode": "FJI",
       "name": "Fiji (GDP)",
-      "value": 5968125909.27126,
-      "year": 2024
-    },
-    {
-      "countryCode": "SWZ",
-      "name": "Eswatini (GDP)",
-      "value": 4858885840.77236,
-      "year": 2024
+      "value": 6198013062.06553,
+      "year": 2025
     },
     {
       "countryCode": "LBR",
       "name": "Liberia (GDP)",
-      "value": 4779300900,
-      "year": 2024
+      "value": 5245938900,
+      "year": 2025
+    },
+    {
+      "countryCode": "SWZ",
+      "name": "Eswatini (GDP)",
+      "value": 5160679612.81734,
+      "year": 2025
     },
     {
       "countryCode": "VIR",
@@ -1025,21 +1025,27 @@
       "year": 2022
     },
     {
+      "countryCode": "DJI",
+      "name": "Djibouti (GDP)",
+      "value": 4624533092.31886,
+      "year": 2025
+    },
+    {
       "countryCode": "SUR",
       "name": "Suriname (GDP)",
-      "value": 4416775112.09627,
-      "year": 2024
+      "value": 4523657796.86421,
+      "year": 2025
+    },
+    {
+      "countryCode": "AND",
+      "name": "Andorra (GDP)",
+      "value": 4500982731.80784,
+      "year": 2025
     },
     {
       "countryCode": "ABW",
       "name": "Aruba (GDP)",
-      "value": 4265650673.00236,
-      "year": 2024
-    },
-    {
-      "countryCode": "DJI",
-      "name": "Djibouti (GDP)",
-      "value": 4152145939.98458,
+      "value": 4167588070.29217,
       "year": 2024
     },
     {
@@ -1049,16 +1055,22 @@
       "year": 2024
     },
     {
-      "countryCode": "AND",
-      "name": "Andorra (GDP)",
-      "value": 4039842405.48117,
-      "year": 2024
+      "countryCode": "BTN",
+      "name": "Bhutan (GDP)",
+      "value": 3579320145.13077,
+      "year": 2025
     },
     {
       "countryCode": "CUW",
       "name": "Curacao (GDP)",
-      "value": 3561178196.20713,
+      "value": 3561178212.2905,
       "year": 2024
+    },
+    {
+      "countryCode": "BDI",
+      "name": "Burundi (GDP)",
+      "value": 3364713864.08488,
+      "year": 2025
     },
     {
       "countryCode": "GRL",
@@ -1069,86 +1081,86 @@
     {
       "countryCode": "BLZ",
       "name": "Belize (GDP)",
-      "value": 3203631800,
-      "year": 2024
-    },
-    {
-      "countryCode": "BDI",
-      "name": "Burundi (GDP)",
-      "value": 3082433067.32634,
-      "year": 2024
-    },
-    {
-      "countryCode": "BTN",
-      "name": "Bhutan (GDP)",
-      "value": 3012896789.24928,
-      "year": 2023
+      "value": 3326500000,
+      "year": 2025
     },
     {
       "countryCode": "CAF",
       "name": "Central African Republic (GDP)",
-      "value": 2751494281.06887,
-      "year": 2024
+      "value": 3066109226.40165,
+      "year": 2025
     },
     {
       "countryCode": "CPV",
       "name": "Cabo Verde (GDP)",
-      "value": 2725414150.72735,
-      "year": 2024
+      "value": 3056630435.32463,
+      "year": 2025
     },
     {
       "countryCode": "LCA",
       "name": "St. Lucia (GDP)",
-      "value": 2549062962.96296,
-      "year": 2024
+      "value": 2656444444.44444,
+      "year": 2025
     },
     {
       "countryCode": "GMB",
       "name": "Gambia, The (GDP)",
-      "value": 2404888749.21907,
-      "year": 2024
+      "value": 2593673987.53306,
+      "year": 2025
     },
     {
       "countryCode": "LSO",
       "name": "Lesotho (GDP)",
-      "value": 2271759454.51107,
-      "year": 2024
+      "value": 2573572920.05159,
+      "year": 2025
     },
     {
       "countryCode": "GNB",
       "name": "Guinea-Bissau (GDP)",
-      "value": 2218393804.54798,
-      "year": 2024
-    },
-    {
-      "countryCode": "ATG",
-      "name": "Antigua and Barbuda (GDP)",
-      "value": 2207622874.07407,
-      "year": 2024
+      "value": 2527930272.92988,
+      "year": 2025
     },
     {
       "countryCode": "SYC",
       "name": "Seychelles (GDP)",
-      "value": 2167239562.46013,
-      "year": 2024
+      "value": 2387022853.48583,
+      "year": 2025
+    },
+    {
+      "countryCode": "ATG",
+      "name": "Antigua and Barbuda (GDP)",
+      "value": 2338196296.2963,
+      "year": 2025
     },
     {
       "countryCode": "SMR",
       "name": "San Marino (GDP)",
-      "value": 2027527227.831,
+      "value": 2027243193.5116,
       "year": 2023
     },
     {
       "countryCode": "TLS",
       "name": "Timor-Leste (GDP)",
-      "value": 1865608515.41321,
-      "year": 2024
+      "value": 1902180257.82737,
+      "year": 2025
     },
     {
       "countryCode": "SXM",
       "name": "Sint Maarten (Dutch part) (GDP)",
-      "value": 1797836665.95136,
-      "year": 2024
+      "value": 1887728480.44693,
+      "year": 2025
+    },
+    {
+      "countryCode": "COM",
+      "name": "Comoros (GDP)",
+      "value": 1814920856.27026,
+      "year": 2025
+    },
+    {
+      "countryCode": "SLB",
+      "name": "Solomon Islands (GDP)",
+      "value": 1749572442.95016,
+      "year": 2025
     },
     {
       "countryCode": "TCA",
@@ -1157,46 +1169,34 @@
       "year": 2024
     },
     {
-      "countryCode": "SLB",
-      "name": "Solomon Islands (GDP)",
-      "value": 1583964703.75061,
-      "year": 2024
-    },
-    {
-      "countryCode": "COM",
-      "name": "Comoros (GDP)",
-      "value": 1440991455.45188,
-      "year": 2024
-    },
-    {
       "countryCode": "GRD",
       "name": "Grenada (GDP)",
-      "value": 1371918518.51852,
-      "year": 2024
-    },
-    {
-      "countryCode": "WSM",
-      "name": "Samoa (GDP)",
-      "value": 1175749785.65113,
-      "year": 2024
-    },
-    {
-      "countryCode": "VCT",
-      "name": "St. Vincent and the Grenadines (GDP)",
-      "value": 1157207407.40741,
-      "year": 2024
-    },
-    {
-      "countryCode": "KNA",
-      "name": "St. Kitts and Nevis (GDP)",
-      "value": 1122388888.88889,
-      "year": 2024
+      "value": 1420173228.56948,
+      "year": 2025
     },
     {
       "countryCode": "VUT",
       "name": "Vanuatu (GDP)",
-      "value": 1117972034.22642,
-      "year": 2024
+      "value": 1353658840.63993,
+      "year": 2025
+    },
+    {
+      "countryCode": "WSM",
+      "name": "Samoa (GDP)",
+      "value": 1287936621.64619,
+      "year": 2025
+    },
+    {
+      "countryCode": "VCT",
+      "name": "St. Vincent and the Grenadines (GDP)",
+      "value": 1255222222.22222,
+      "year": 2025
+    },
+    {
+      "countryCode": "KNA",
+      "name": "St. Kitts and Nevis (GDP)",
+      "value": 1183514814.81481,
+      "year": 2025
     },
     {
       "countryCode": "MNP",
@@ -1205,22 +1205,28 @@
       "year": 2022
     },
     {
+      "countryCode": "STP",
+      "name": "Sao Tome and Principe (GDP)",
+      "value": 981293586.906408,
+      "year": 2025
+    },
+    {
       "countryCode": "ASM",
       "name": "American Samoa (GDP)",
       "value": 871000000,
       "year": 2022
     },
     {
-      "countryCode": "STP",
-      "name": "Sao Tome and Principe (GDP)",
-      "value": 822154621.088897,
-      "year": 2024
-    },
-    {
       "countryCode": "DMA",
       "name": "Dominica (GDP)",
-      "value": 688881481.481481,
-      "year": 2024
+      "value": 723859259.259259,
+      "year": 2025
+    },
+    {
+      "countryCode": "TON",
+      "name": "Tonga (GDP)",
+      "value": 679218218.578017,
+      "year": 2025
     },
     {
       "countryCode": "MAF",
@@ -1229,40 +1235,34 @@
       "year": 2021
     },
     {
-      "countryCode": "TON",
-      "name": "Tonga (GDP)",
-      "value": 591139749.44287,
-      "year": 2023
-    },
-    {
       "countryCode": "FSM",
       "name": "Micronesia, Fed. Sts. (GDP)",
-      "value": 471425099.488675,
-      "year": 2024
+      "value": 501797600,
+      "year": 2025
     },
     {
       "countryCode": "KIR",
       "name": "Kiribati (GDP)",
-      "value": 307862564.489711,
-      "year": 2024
-    },
-    {
-      "countryCode": "MHL",
-      "name": "Marshall Islands (GDP)",
-      "value": 290108489.990234,
-      "year": 2024
+      "value": 349227254.158833,
+      "year": 2025
     },
     {
       "countryCode": "PLW",
       "name": "Palau (GDP)",
-      "value": 276733062.744141,
-      "year": 2023
+      "value": 345000000,
+      "year": 2025
+    },
+    {
+      "countryCode": "MHL",
+      "name": "Marshall Islands (GDP)",
+      "value": 308000000,
+      "year": 2025
     },
     {
       "countryCode": "NRU",
       "name": "Nauru (GDP)",
-      "value": 162588620.632234,
-      "year": 2024
+      "value": 176040043.932346,
+      "year": 2025
     },
     {
       "countryCode": "TUV",
