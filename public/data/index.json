@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-31T04:13:36.434Z",
+  "generatedAt": "2026-07-19T03:23:12.824Z",
   "totalSources": 14,
   "sources": [
     {
@@ -9,7 +9,7 @@
       "units": "USD",
       "file": "gdp-by-country.json",
       "recordCount": 210,
-      "fetchedAt": "2026-05-31T04:13:21.185Z"
+      "fetchedAt": "2026-07-19T03:16:42.869Z"
     },
     {
       "id": "billionaires",
@@ -18,7 +18,7 @@
       "units": "USD",
       "file": "billionaires-net-worth.json",
       "recordCount": 150,
-      "fetchedAt": "2026-05-31T04:13:25.705Z"
+      "fetchedAt": "2026-07-19T03:16:46.297Z"
     },
     {
       "id": "market-cap",
@@ -27,7 +27,7 @@
       "units": "USD",
       "file": "companies-market-cap.json",
       "recordCount": 1000,
-      "fetchedAt": "2026-05-31T04:13:27.300Z"
+      "fetchedAt": "2026-07-19T03:16:47.948Z"
     },
     {
       "id": "population",
@@ -36,7 +36,7 @@
       "units": "People",
       "file": "population-by-country.json",
       "recordCount": 217,
-      "fetchedAt": "2026-05-31T04:13:28.457Z"
+      "fetchedAt": "2026-07-19T03:16:49.567Z"
     },
     {
       "id": "global-assets",
@@ -44,8 +44,8 @@
       "description": "Total value of major global assets including cryptocurrencies, commodities, currencies, and markets",
       "units": "USD",
       "file": "global-assets.json",
-      "recordCount": 59,
-      "fetchedAt": "2026-05-31T04:13:29.548Z"
+      "recordCount": 60,
+      "fetchedAt": "2026-07-19T03:16:51.097Z"
     },
     {
       "id": "government-spending",
@@ -54,7 +54,7 @@
       "units": "USD",
       "file": "government-spending.json",
       "recordCount": 79,
-      "fetchedAt": "2026-05-31T04:13:36.428Z"
+      "fetchedAt": "2026-07-19T03:23:12.818Z"
     },
     {
       "id": "time-since-events",

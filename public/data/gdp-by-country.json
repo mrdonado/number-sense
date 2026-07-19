@@ -5,7 +5,7 @@
     "indicatorName": "GDP (current US$)",
     "description": "Gross Domestic Product in current US Dollars",
     "units": "USD",
-    "fetchedAt": "2026-07-12T03:20:42.394Z",
+    "fetchedAt": "2026-07-19T03:16:42.869Z",
     "totalCountries": 210,
     "latestYear": 2025
   },
@@ -1260,15 +1260,15 @@
     },
     {
       "countryCode": "NRU",
-      "name": "Nauru (GDP)",
+      "name": "Naoero (GDP)",
       "value": 176040043.932346,
       "year": 2025
     },
     {
       "countryCode": "TUV",
       "name": "Tuvalu (GDP)",
-      "value": 62280311.5852172,
-      "year": 2023
+      "value": 57345434.7234984,
+      "year": 2025
     }
   ]
 }
