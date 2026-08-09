@@ -3,8 +3,8 @@
     "source": "World Bank Open Data API",
     "description": "Government spending by function for selected countries converted to USD",
     "units": "USD",
-    "fetchedAt": "2026-08-02T03:38:26.402Z",
-    "totalEntries": 67
+    "fetchedAt": "2026-08-09T01:59:56.274Z",
+    "totalEntries": 79
   },
   "data": [
     {
@@ -36,6 +36,14 @@
       "countryCode": "USA",
       "name": "United States - Compensation of Employees (Public Sector Wages) (2023)",
       "value": 2255217082037.9526,
+      "year": 2023,
+      "unit": "USD"
+    },
+    {
+      "country": "United States",
+      "countryCode": "USA",
+      "name": "United States - Goods and Services Expenditure (2023)",
+      "value": 1804329436408.9941,
       "year": 2023,
       "unit": "USD"
     },
@@ -120,6 +128,14 @@
       "unit": "USD"
     },
     {
+      "country": "Brazil",
+      "countryCode": "BRA",
+      "name": "Brazil - Social Protection Coverage (2022)",
+      "value": 619643409037.0231,
+      "year": 2022,
+      "unit": "USD"
+    },
+    {
       "country": "Spain",
       "countryCode": "ESP",
       "name": "Spain - Total Government Expenditure (2023)",
@@ -165,6 +181,14 @@
       "name": "Australia - Total Government Expenditure (2022)",
       "value": 478419126236.6486,
       "year": 2022,
+      "unit": "USD"
+    },
+    {
+      "country": "United Kingdom",
+      "countryCode": "GBR",
+      "name": "United Kingdom - Goods and Services Expenditure (2023)",
+      "value": 459754640972.3808,
+      "year": 2023,
       "unit": "USD"
     },
     {
@@ -226,6 +250,22 @@
     {
       "country": "Mexico",
       "countryCode": "MEX",
+      "name": "Mexico - Social Protection Coverage (2022)",
+      "value": 290788258930.32135,
+      "year": 2022,
+      "unit": "USD"
+    },
+    {
+      "country": "Germany",
+      "countryCode": "DEU",
+      "name": "Germany - Goods and Services Expenditure (2022)",
+      "value": 284072434337.8705,
+      "year": 2022,
+      "unit": "USD"
+    },
+    {
+      "country": "Mexico",
+      "countryCode": "MEX",
       "name": "Mexico - Interest Payments on Debt (2023)",
       "value": 282935327206.5601,
       "year": 2023,
@@ -264,10 +304,26 @@
       "unit": "USD"
     },
     {
+      "country": "India",
+      "countryCode": "IND",
+      "name": "India - Goods and Services Expenditure (2022)",
+      "value": 227397863119.44586,
+      "year": 2022,
+      "unit": "USD"
+    },
+    {
       "country": "Canada",
       "countryCode": "CAN",
       "name": "Canada - Compensation of Employees (Public Sector Wages) (2023)",
       "value": 224728108432.9742,
+      "year": 2023,
+      "unit": "USD"
+    },
+    {
+      "country": "France",
+      "countryCode": "FRA",
+      "name": "France - Goods and Services Expenditure (2023)",
+      "value": 209420197391.71628,
       "year": 2023,
       "unit": "USD"
     },
@@ -277,6 +333,14 @@
       "name": "United Kingdom - Education Expenditure (2021)",
       "value": 202060294761.73187,
       "year": 2021,
+      "unit": "USD"
+    },
+    {
+      "country": "Australia",
+      "countryCode": "AUS",
+      "name": "Australia - Goods and Services Expenditure (2022)",
+      "value": 186652728188.44388,
+      "year": 2022,
       "unit": "USD"
     },
     {
@@ -317,6 +381,14 @@
       "name": "France - Education Expenditure (2022)",
       "value": 162725477723.3285,
       "year": 2022,
+      "unit": "USD"
+    },
+    {
+      "country": "Canada",
+      "countryCode": "CAN",
+      "name": "Canada - Goods and Services Expenditure (2023)",
+      "value": 161842334170.3853,
+      "year": 2023,
       "unit": "USD"
     },
     {
@@ -373,6 +445,14 @@
       "name": "Canada - Education Expenditure (2022)",
       "value": 106408721315.99858,
       "year": 2022,
+      "unit": "USD"
+    },
+    {
+      "country": "Mexico",
+      "countryCode": "MEX",
+      "name": "Mexico - Goods and Services Expenditure (2023)",
+      "value": 106239127638.50475,
+      "year": 2023,
       "unit": "USD"
     },
     {
@@ -472,6 +552,14 @@
       "unit": "USD"
     },
     {
+      "country": "Brazil",
+      "countryCode": "BRA",
+      "name": "Brazil - Goods and Services Expenditure (2023)",
+      "value": 52778901921.30845,
+      "year": 2023,
+      "unit": "USD"
+    },
+    {
       "country": "Australia",
       "countryCode": "AUS",
       "name": "Australia - Interest Payments on Debt (2022)",
@@ -492,6 +580,14 @@
       "countryCode": "MEX",
       "name": "Mexico - Health Expenditure (2023)",
       "value": 48025819976.56815,
+      "year": 2023,
+      "unit": "USD"
+    },
+    {
+      "country": "Spain",
+      "countryCode": "ESP",
+      "name": "Spain - Goods and Services Expenditure (2023)",
+      "value": 46840792805.75254,
       "year": 2023,
       "unit": "USD"
     },
