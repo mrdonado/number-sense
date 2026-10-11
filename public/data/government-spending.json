@@ -3,7 +3,7 @@
     "source": "World Bank Open Data API",
     "description": "Government spending by function for selected countries converted to USD",
     "units": "USD",
-    "fetchedAt": "2026-10-04T05:05:50.357Z",
+    "fetchedAt": "2026-10-11T04:55:09.565Z",
     "totalEntries": 79
   },
   "data": [
@@ -83,7 +83,7 @@
       "country": "United States",
       "countryCode": "USA",
       "name": "United States - Military Expenditure (2023)",
-      "value": 919015347795.6461,
+      "value": 916014700011.4943,
       "year": 2023,
       "unit": "USD"
     },
@@ -243,7 +243,7 @@
       "country": "China",
       "countryCode": "CHN",
       "name": "China - Military Expenditure (2023)",
-      "value": 304173831167.539,
+      "value": 296256203951.276,
       "year": 2023,
       "unit": "USD"
     },
@@ -499,15 +499,7 @@
       "country": "India",
       "countryCode": "IND",
       "name": "India - Military Expenditure (2023)",
-      "value": 82509152615.68268,
-      "year": 2023,
-      "unit": "USD"
-    },
-    {
-      "country": "United Kingdom",
-      "countryCode": "GBR",
-      "name": "United Kingdom - Military Expenditure (2023)",
-      "value": 76305649551.27994,
+      "value": 82509152616.29115,
       "year": 2023,
       "unit": "USD"
     },
@@ -517,6 +509,14 @@
       "name": "Spain - Education Expenditure (2022)",
       "value": 74261991068.15814,
       "year": 2022,
+      "unit": "USD"
+    },
+    {
+      "country": "United Kingdom",
+      "countryCode": "GBR",
+      "name": "United Kingdom - Military Expenditure (2023)",
+      "value": 73609224259.28773,
+      "year": 2023,
       "unit": "USD"
     },
     {
@@ -531,7 +531,7 @@
       "country": "Germany",
       "countryCode": "DEU",
       "name": "Germany - Military Expenditure (2023)",
-      "value": 67883974948.846634,
+      "value": 68584873365.57829,
       "year": 2023,
       "unit": "USD"
     },
@@ -547,7 +547,7 @@
       "country": "France",
       "countryCode": "FRA",
       "name": "France - Military Expenditure (2023)",
-      "value": 59627353506.548134,
+      "value": 59541138240.5489,
       "year": 2023,
       "unit": "USD"
     },
@@ -571,7 +571,7 @@
       "country": "Japan",
       "countryCode": "JPN",
       "name": "Japan - Military Expenditure (2023)",
-      "value": 49967449761.31192,
+      "value": 48096470835.892746,
       "year": 2023,
       "unit": "USD"
     },
@@ -603,7 +603,7 @@
       "country": "Australia",
       "countryCode": "AUS",
       "name": "Australia - Military Expenditure (2023)",
-      "value": 32288047554.751076,
+      "value": 32184186273.933502,
       "year": 2023,
       "unit": "USD"
     },
@@ -611,7 +611,7 @@
       "country": "Canada",
       "countryCode": "CAN",
       "name": "Canada - Military Expenditure (2023)",
-      "value": 27526960058.84194,
+      "value": 28878130615.434605,
       "year": 2023,
       "unit": "USD"
     },
@@ -619,7 +619,7 @@
       "country": "Spain",
       "countryCode": "ESP",
       "name": "Spain - Military Expenditure (2023)",
-      "value": 23831933675.818726,
+      "value": 24857846735.460922,
       "year": 2023,
       "unit": "USD"
     },
@@ -627,7 +627,7 @@
       "country": "Brazil",
       "countryCode": "BRA",
       "name": "Brazil - Military Expenditure (2023)",
-      "value": 21963365579.532764,
+      "value": 21788291368.68852,
       "year": 2023,
       "unit": "USD"
     },
@@ -635,7 +635,7 @@
       "country": "Mexico",
       "countryCode": "MEX",
       "name": "Mexico - Military Expenditure (2023)",
-      "value": 11849781343.700468,
+      "value": 11845743153.26273,
       "year": 2023,
       "unit": "USD"
     }

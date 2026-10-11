@@ -5,8 +5,8 @@
     "indicatorName": "GDP (current US$)",
     "description": "Gross Domestic Product in current US Dollars",
     "units": "USD",
-    "fetchedAt": "2026-10-04T05:03:16.665Z",
-    "totalCountries": 210,
+    "fetchedAt": "2026-10-11T04:54:48.815Z",
+    "totalCountries": 211,
     "latestYear": 2025
   },
   "data": [
@@ -80,6 +80,12 @@
       "countryCode": "ESP",
       "name": "Spain (GDP)",
       "value": 1906453309985.88,
+      "year": 2025
+    },
+    {
+      "countryCode": "FCV",
+      "name": "Fragility, Conflict, and Violence (FCV) situations (GDP)",
+      "value": 1878671727974.76,
       "year": 2025
     },
     {
